@@ -1,0 +1,74 @@
+a{
+	text-decoration: none;
+}
+a:link { 
+	color: #00f;
+}
+a:visited { 
+	color: #84d;
+}
+a:hover { 
+	color: #f0f;
+}
+
+div.entryheader{
+	background-color:#e4e4f0;
+	padding-left:3px;
+	padding-top:3px;
+	padding-bottom:3px;
+	margin-top:0px;
+}
+
+div.entry{
+	padding-left:3px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+div.subscriptionlist{
+	margin-left:0.8em;
+}
+
+body{
+	opacity:1;
+	letter-spacing:0.0;
+	word-spacing:0.0em;
+	line-height:16pt;
+	text-align:left;
+}
+
+div.sidebar{
+	width:100%;
+	margin-left:0%;
+	margin-right:0%;
+}
+
+div.maincontent{
+	width:100%;
+	margin-left:0%;
+	margin-right:0%;
+}
+
+div.entryheader{
+	background-color:#e4e4f0;
+	padding-left:3px;
+	padding-top:3px;
+	padding-bottom:3px;
+	margin-top:0px;
+}
+
+div.entry{
+	padding-left:3px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+div.subscriptionlist{
+	margin-left:0.8em;
+}
+
+img.logo{
+	float:left;
+	margin-top:0px;
+}
+

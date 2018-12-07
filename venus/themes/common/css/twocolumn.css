@@ -1,0 +1,60 @@
+a{
+	text-decoration: none;
+}
+a:link { 
+	color: #00f;
+}
+a:visited { 
+	color: #84d;
+}
+a:hover { 
+	color: #f0f;
+}
+
+body{
+	opacity:0.9;
+	letter-spacing:0.005em;
+	word-spacing:0.07em;
+	line-height:16pt;
+	text-align:justify
+}
+
+div.sidebar{
+	float:right;
+	width:27%;
+	margin-top:5px;
+	margin-right:2%;
+	right:0px;
+	top:10px;
+}
+
+div.maincontent{
+	float:left;
+	width:65%;
+	margin-left:3%;
+	margin-right:3%;
+}
+
+div.entryheader{
+	background-color:#e4e4f0;
+	padding-left:3px;
+	padding-top:3px;
+	padding-bottom:3px;
+	margin-top:0px;
+}
+
+div.entry{
+	padding-left:3px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+div.subscriptionlist{
+	margin-left:0.8em;
+}
+
+img.logo{
+	float:right;
+	margin-top:10px;
+}
+

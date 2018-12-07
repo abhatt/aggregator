@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:rss="http://purl.org/rss/1.0/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+>
+<foaf:Group>
+	<foaf:name>Theory of Computing Blog Aggregator</foaf:name>
+	<foaf:homepage>http://feedworld.net/toc/</foaf:homepage>
+	<rdfs:seeAlso rdf:resource="http://feedworld.net/toc/foafroll.xml" />
+
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>0xDE</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://11011110.livejournal.com">
+					<dc:title>0xDE</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://11011110.livejournal.com/data/atom" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>Andy's Math/CS page</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://andysresearch.blogspot.com/">
+					<dc:title>Andy's Math/CS page</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://andysresearch.blogspot.com/feeds/posts/default" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>Computational Complexity</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://weblog.fortnow.com/">
+					<dc:title>Computational Complexity</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://weblog.fortnow.com/rss.xml" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>Ernie's 3D Pancakes</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://3dpancakes.typepad.com/ernie/">
+					<dc:title>Ernie's 3D Pancakes</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://3dpancakes.typepad.com/ernie/rss.xml" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>My Biased Coin</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://mybiasedcoin.blogspot.com/">
+					<dc:title>My Biased Coin</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://mybiasedcoin.blogspot.com/feeds/posts/default?alt=rss" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>Shtetl-Optimized</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://scottaaronson.com/blog">
+					<dc:title>Shtetl-Optimized</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://scottaaronson.com/blog/?feed=rss2" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>The Geomblog</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://geomblog.blogspot.com/">
+					<dc:title>The Geomblog</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://feeds.feedburner.com/TheGeomblog" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>Vanity of Vanities, all is Vanity</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://valis.cs.uiuc.edu/blog">
+					<dc:title>Vanity of Vanities, all is Vanity</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://valis.cs.uiuc.edu/blog/?feed=rss2" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>WebDiarios de Motocicleta</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://infoweekly.blogspot.com/">
+					<dc:title>WebDiarios de Motocicleta</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://feeds.feedburner.com/WebdiariosDeMotocicleta" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>in theory</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://in-theory.blogspot.com/">
+					<dc:title>in theory</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://in-theory.blogspot.com/feeds/posts/default?alt=rss" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
+			<foaf:name>my slice of pizza</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://mysliceofpizza.blogspot.com/">
+					<dc:title>my slice of pizza</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://mysliceofpizza.blogspot.com/feeds/posts/default" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+
+</foaf:Group>
+</rdf:RDF>

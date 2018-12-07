@@ -1,0 +1,2243 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/" xmlns:indexing="urn:atom-extension:indexing" indexing:index="no"><access:restriction xmlns:access="http://www.bloglines.com/about/specs/fac-1.0" relationship="deny"></access:restriction>
+<title>Theory of Computing Blog Aggregator</title>
+<updated>2013-11-15T15:03:24Z</updated>
+<generator uri="http://intertwingly.net/code/venus/">Venus</generator>
+<author>
+<name>randomwalker</name>
+<email>randomwalker@gmail.com</email>
+</author>
+<id>http://feedworld.net/toc/atom.xml</id>
+<link href="http://feedworld.net/toc/atom.xml" rel="self" type="application/atom+xml" />
+<link href="http://feedworld.net/toc/" rel="alternate" />
+<entry xml:lang="en-us">
+<id>http://eccc.hpi-web.de/report/2013/156</id>
+<link href="http://eccc.hpi-web.de/report/2013/156" rel="alternate" type="text/html" />
+<title>TR13-156 |  A reduction of proof complexity to computational complexity for $AC^0[p]$ Frege systems | 
+
+	Jan  Krajicek « ECCC - Reports</title>
+<summary>We give a general reduction of lengths-of-proofs lower bounds for
+constant depth Frege systems in DeMorgan language augmented by
+a connective counting modulo a prime $p$
+(the so called $AC^0[p]$ Frege systems)
+to computational complexity
+lower bounds for search tasks involving search trees branching upon
+values of linear maps on the vector space of
+low degree polynomials over the finite field with $p$ elements.
+      <div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-15T12:55:15Z</updated>
+<published>2013-11-15T12:55:15Z</published>
+<source>
+<id>http://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="http://example.com/" rel="alternate" type="text/html" />
+<link href="http://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at http://eccc.hpi-web.de</subtitle>
+<title>ECCC - Reports</title>
+<updated>2013-11-15T15:03:21Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-6555947.post-727002561848927525</id>
+<link href="http://geomblog.blogspot.com/feeds/727002561848927525/comments/default" rel="replies" type="application/atom+xml" />
+<link href="http://www.blogger.com/comment.g?blogID=6555947&amp;postID=727002561848927525" rel="replies" type="text/html" />
+<link href="http://www.blogger.com/feeds/6555947/posts/default/727002561848927525?v=2" rel="edit" type="application/atom+xml" />
+<link href="http://www.blogger.com/feeds/6555947/posts/default/727002561848927525?v=2" rel="self" type="application/atom+xml" />
+<link href="http://feedproxy.google.com/~r/TheGeomblog/~3/O9Oy8Pb0OSA/the-many-stages-of-writing-paper-and.html" rel="alternate" type="text/html" />
+<title>The many stages of writing a paper, and how to close the deal. « The Geomblog</title>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">[<b>tl;dr</b>] <i>Producing a piece of research for publication has many stages, and each stage has different needs, requiring different ways of operating. Learning these stages is a key developmental step for a graduate student. In what follows, I describe this process</i>.<br />
+<br />
+<b>Caveat</b>: this is obviously customized to more theoretical-style work, although I'll talk about how experimental evaluation fits in, in the context of my work. So YMMV.<br />
+<br />
+From my conversations with students (mine and others), I think this accurately describes how students think a paper gets written:<br />
+<br />
+<ol>
+<li>Advisor produces problem miraculously from thin air. </li>
+<li>Come up with solution.</li>
+<li>Write down solution</li>
+<li>Advisor makes annoying and mystifying edit requests on irrelevant introductory stuff, while throwing out long complicated proofs (or experiments) student has spent many hours sweating over.</li>
+<li>Make final edits and submit paper.</li>
+</ol>
+<div>
+Most student figure out  how to do 2) , and eventually learn how to do 3) (which is itself a topic for another post). 5) is probably the first thing students learn how to do: fix typos, edit latex, and generally do <a href="http://en.wiktionary.org/wiki/yak_shaving">yak-shaving</a>.</div>
+<div>
+<br /></div>
+<div>
+But step 4) is perhaps the most mysterious part of the writing process for a new researcher, and the least structured. I call it "closing the deal" and it's really about going from a bag of results to an actual submittable paper. </div>
+<div>
+<br /></div>
+<div>
+Let me elaborate.</div>
+<div>
+<br /></div>
+<div>
+1) <b>Coming up with a problem.</b></div>
+<div>
+<b>    </b>Of course coming up with a problem is the essence of the research process ("it's about the questions, not the answers", he shrieks). This takes experience and vision, and can often be changed by things you do in stage 4. I'll say no more about it here.</div>
+<div>
+<br /></div>
+<div>
+2) <b>Solving a problem.</b></div>
+<div>
+<b>    </b>This is the stage that everyone knows about. That's what we do, after all - solve problems ! This is where we drink lots of coffee, live <a href="http://www.youtube.com/watch?v=i5oc-70Fby4">Eye of the Tiger</a> montages, get inspiration in our sleep, and so on. </div>
+<div>
+<br /></div>
+<div>
+   It often happens that you don't exactly solve the problem you set out to attack, but you make many dents in it, solving special cases and variants. It's important to be flexible here, instead of banging your head against a wall head-on. At any rate, you either exit this stage of the project completely stuck, with a complete solution, or with a collection of results, ideas and conjectures surrounding the problem (the most typical case)</div>
+<div>
+<br /></div>
+<div>
+3) <b>Writing it all down</b>.</div>
+<div>
+   Again, I could spend hours talking about this, and <a href="http://jmlr.org/reviewing-papers/knuth_mathematical_writing.pdf">many</a> <a href="http://terrytao.wordpress.com/advice-on-writing-papers/">people</a> better than I have. It's a skill to learn in and of itself, and depends tremendously in the community you're in.</div>
+<div>
+<br /></div>
+<div>
+4) <b>Closing, or getting to a submission</b>.</div>
+<div>
+    But this is the part that that's often the most critical, and the least understood. I call it "closing the deal": getting from 80% to 100% of a submission, and it requires a different kind of skill. The overarching message is this:</div>
+<blockquote class="tr_bq">
+A paper tells a story, and you have to shape your results - their ordering, presentation, and even what you keep and what you leave out - in order to tell a consistent and clear story. </blockquote>
+<div>
+(<i>before people start howling, I'm not talking about leaving out results that contradict the story; that would be dishonest. I'm talking about selecting which story to tell from among the many that might present themselves</i>)</div>
+<div>
+<br /></div>
+<div>
+So you have a bag of results centering around a problem you're trying to solve. If the story that emerges is: "here's a problem that's been open for 20 years and we solved it", then your story is relatively easy to tell. All you have to do is explain how, and using what tools. </div>
+<div>
+<br /></div>
+<div>
+But in general, life isn't that easy. Your results probably give some insights into the hard core of the problem: what parts are trivial, what directions might be blocked off, and so on. </div>
+<br />
+<div>
+Now you need to find/discover the story of your paper. You can't do this too early in the research process: you need to explore the landscape of the problem and prove some results first. But you shouldn't wait too long either: this stage can take time, especially if the story changes.</div>
+<div>
+<br /></div>
+<div>
+And the story will change. One way of thinking about what you need for a <b>conference</b> submission is a relatively tight, compelling and interesting story. While the loose ends and unexplored directions are probably the thing most interesting to you and your research, they are best left to a conclusions section rather than the main body. What the body should contain is a well-thought out march through what you <b>have</b> discovered and what it says about the problem you're solving. In doing so, you will find yourself making decisions about what to keep, and what to leave out, and how to order what you keep. </div>
+<div>
+</div>
+<br />
+<div>
+And so, speculations need to be made into concrete claims or triaged. Experiments need to be run till they tell a definite story. Introductions need to be made coherent with the rest of the paper. There's also an element of bolt-tightening: making the bounds as tight as possible, stating claims as generally as makes sense for the overarching story (if your story is about points in the plane, then stating some claims in a general metric space might not always make sense). </div>
+<div>
+<br /></div>
+<div>
+And all of this has to be done to serve the overarching story that will make the most compelling paper possible. The story can change as new results come in, or expand, or sometimes even die, (but this latter is rare). But there is this constant drumbeat of "<b>am I getting closer to a submission with a nice story with each step</b>".</div>
+<div>
+<br /></div>
+<div>
+Telling a good story is important. For someone to appreciate your paper, cite it, or even talk about it (whether it's accepted, or on the arxiv) they have to be willing to read it and retain its results. And they'll be able to do that if it tells a clear story, which is not just a union of results. </div>
+<img height="1" src="http://feeds.feedburner.com/~r/TheGeomblog/~4/O9Oy8Pb0OSA" width="1" /></div>
+<div class="commentbar">
+<p></p>
+<span class="commentbutton" href="http://geomblog.blogspot.com/feeds/727002561848927525/comments/default"></span>
+<a href="http://geomblog.blogspot.com/feeds/727002561848927525/comments/default">
+<img class="commenticon" src="/images/feed-icon.png" /> Subscribe to comments
+        </a>  | 
+        <a href="http://www.blogger.com/comment.g?blogID=6555947&amp;postID=727002561848927525">
+<img class="commenticon" src="/images/post-icon.png" /> Post a comment
+        </a>
+</div>
+</content>
+<updated>2013-11-15T01:06:00Z</updated>
+<published>2013-11-15T01:06:00Z</published>
+<category scheme="http://www.blogger.com/atom/ns#" term="writing"></category><feedburner:origlink xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0">http://geomblog.blogspot.com/2013/11/the-many-stages-of-writing-paper-and.html</feedburner:origlink>
+<author>
+<name>Suresh Venkatasubramanian</name>
+<email>noreply@blogger.com</email>
+<uri>https://plus.google.com/112165457714968997350</uri>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-6555947</id>
+<category term="journals"></category>
+<category term="clustering"></category>
+<category term="deadline"></category>
+<category term="big-data"></category>
+<category term="workshops"></category>
+<category term="icdm"></category>
+<category term="barriers"></category>
+<category term="rajeev motwani"></category>
+<category term="seminars"></category>
+<category term="jeff phillips"></category>
+<category term="books"></category>
+<category term="soda2014"></category>
+<category term="accountability"></category>
+<category term="latex"></category>
+<category term="duality"></category>
+<category term="funding"></category>
+<category term="polymath"></category>
+<category term="fonts"></category>
+<category term="MOOC"></category>
+<category term="community"></category>
+<category term="math.ST"></category>
+<category term="polytopes"></category>
+<category term="column"></category>
+<category term="game theory"></category>
+<category term="ecml-pkdd"></category>
+<category term="cs.DC"></category>
+<category term="quantum"></category>
+<category term="classification"></category>
+<category term="PPAD"></category>
+<category term="soda"></category>
+<category term="simons foundation"></category>
+<category term="travel"></category>
+<category term="combinatorial geometry"></category>
+<category term="xkcd"></category>
+<category term="memes"></category>
+<category term="stoc2012"></category>
+<category term="madalgo"></category>
+<category term="society"></category>
+<category term="polymath research"></category>
+<category term="bregman"></category>
+<category term="bibtex"></category>
+<category term="k-12"></category>
+<category term="video"></category>
+<category term="cs.CG"></category>
+<category term="social-networking"></category>
+<category term="postdocs"></category>
+<category term="guitar"></category>
+<category term="fellowships"></category>
+<category term="acceptances"></category>
+<category term="p-vs-nc"></category>
+<category term="embarrassing"></category>
+<category term="cfp"></category>
+<category term="p-vs-np"></category>
+<category term="humor"></category>
+<category term="obituary"></category>
+<category term="expanders"></category>
+<category term="academy"></category>
+<category term="focs2013"></category>
+<category term="models"></category>
+<category term="acm"></category>
+<category term="IMA"></category>
+<category term="fwcg"></category>
+<category term="misc"></category>
+<category term="beamer"></category>
+<category term="geometry"></category>
+<category term="gpu"></category>
+<category term="8f-cg"></category>
+<category term="soda2011"></category>
+<category term="sdm2011"></category>
+<category term="software"></category>
+<category term="current-distance"></category>
+<category term="esa"></category>
+<category term="reviewing"></category>
+<category term="nsf"></category>
+<category term="topology"></category>
+<category term="nih"></category>
+<category term="blogging"></category>
+<category term="dimacs"></category>
+<category term="conferences"></category>
+<category term="talks"></category>
+<category term="shape"></category>
+<category term="svn"></category>
+<category term="randomness"></category>
+<category term="theory.SE"></category>
+<category term="partha niyogi"></category>
+<category term="media"></category>
+<category term="potd"></category>
+<category term="technology"></category>
+<category term="ipe"></category>
+<category term="gct"></category>
+<category term="SDM"></category>
+<category term="shonan"></category>
+<category term="jmm"></category>
+<category term="utah"></category>
+<category term="cricket"></category>
+<category term="memorial"></category>
+<category term="alenex"></category>
+<category term="cs.DS"></category>
+<category term="massive"></category>
+<category term="active-learning"></category>
+<category term="graphs"></category>
+<category term="eda"></category>
+<category term="cs.LG"></category>
+<category term="complexity"></category>
+<category term="conf-blogs"></category>
+<category term="arxiv"></category>
+<category term="socg-2010"></category>
+<category term="announcement"></category>
+<category term="cstheory"></category>
+<category term="ams"></category>
+<category term="metrics"></category>
+<category term="dimensionality-reduction"></category>
+<category term="focs2012"></category>
+<category term="DBR"></category>
+<category term="posters"></category>
+<category term="coding-theory"></category>
+<category term="women-in-theory"></category>
+<category term="kernels"></category>
+<category term="productivity"></category>
+<category term="conjecture"></category>
+<category term="stoc"></category>
+<category term="cs.CC"></category>
+<category term="teaching"></category>
+<category term="GIA"></category>
+<category term="cra"></category>
+<category term="empirical"></category>
+<category term="miscellaneous"></category>
+<category term="research"></category>
+<category term="personal"></category>
+<category term="distributions"></category>
+<category term="nips"></category>
+<category term="submissions"></category>
+<category term=".02"></category>
+<category term="programming"></category>
+<category term="wads"></category>
+<category term="focs2010"></category>
+<category term="streaming"></category>
+<category term="implementation"></category>
+<category term="multicore"></category>
+<category term="data-mining"></category>
+<category term="knuth"></category>
+<category term="alenex2011"></category>
+<category term="ICS"></category>
+<category term="graph minors"></category>
+<category term="analco"></category>
+<category term="deolalikar"></category>
+<category term="quant-ph"></category>
+<category term="math.PR"></category>
+<category term="publishing"></category>
+<category term="socg2012"></category>
+<category term="focs"></category>
+<category term="turing"></category>
+<category term="hirsch"></category>
+<category term="candes"></category>
+<category term="jobs"></category>
+<category term="blogosphere"></category>
+<category term="twitter"></category>
+<category term="surveys"></category>
+<category term="advising"></category>
+<category term="godel"></category>
+<category term="morris"></category>
+<category term="history"></category>
+<category term="awards"></category>
+<category term="parallelism"></category>
+<category term="hangouts"></category>
+<category term="distributed-learning"></category>
+<category term="coffee"></category>
+<category term="career"></category>
+<category term="traffic"></category>
+<category term="sabbatical"></category>
+<category term="writing"></category>
+<category term="socg"></category>
+<category term="large-data"></category>
+<category term="outreach"></category>
+<category term="sampling"></category>
+<author>
+<name>Suresh Venkatasubramanian</name>
+<email>noreply@blogger.com</email>
+<uri>https://plus.google.com/112165457714968997350</uri>
+</author>
+<link href="http://geomblog.blogspot.com/feeds/posts/default" rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml" />
+<link href="http://geomblog.blogspot.com/" rel="alternate" type="text/html" />
+<link href="http://www.blogger.com/feeds/6555947/posts/default?start-index=26&amp;max-results=25&amp;redirect=false&amp;v=2" rel="next" type="application/atom+xml" />
+<link href="http://feeds.feedburner.com/TheGeomblog" rel="self" type="application/atom+xml" />
+<link href="http://pubsubhubbub.appspot.com/" rel="hub" type="text/html" />
+<subtitle>Ruminations on computational geometry, algorithms, theoretical computer science and life</subtitle>
+<title>The Geomblog</title>
+<updated>2013-11-15T01:06:48Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3651</id>
+<link href="http://arxiv.org/abs/1311.3651" rel="alternate" type="text/html" />
+<title>Smoothed Analysis of Tensor Decompositions « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384473600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Bhaskara:Aditya.html">Aditya Bhaskara</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/c/Charikar:Moses.html">Moses Charikar</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/m/Moitra:Ankur.html">Ankur Moitra</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/v/Vijayaraghavan:Aravindan.html">Aravindan Vijayaraghavan</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3651">PDF</a><br /><b>Abstract: </b>Low rank tensor decompositions are a powerful tool for learning generative
+models, and uniqueness results give them a significant advantage over matrix
+decomposition methods. However, tensors pose significant algorithmic challenges
+and tensors analogs of much of the matrix algebra toolkit are unlikely to exist
+because of hardness results. Efficient decomposition in the overcomplete case
+(where rank exceeds dimension) is particularly challenging. We introduce a
+smoothed analysis model for studying these questions and develop an efficient
+algorithm for tensor decomposition in the highly overcomplete case (rank
+polynomial in the dimension). In this setting, we show that our algorithm is
+robust to inverse polynomial error -- a crucial property for applications in
+learning since we are only allowed a polynomial number of samples. While
+algorithms are known for exact tensor decomposition in some overcomplete
+settings, these are not known to be stable to noise.
+</p>
+<p>Our main technical contribution is to show that tensor products of perturbed
+vectors are linearly independent in a robust sense (i.e. the associated matrix
+has singular values that are at least an inverse polynomial). This key result
+paves the way for applying tensor methods to learning problems in the smoothed
+setting. In particular, we use it to obtain results for learning multi-view
+models and mixtures of axis-aligned Gaussians where there are many more
+"components" than dimensions. The assumption here is that the model is not
+adversarially chosen, formalized by a perturbation of model parameters. We
+believe this an appealing way to analyze realistic instances of learning
+problems, since this framework allows us to overcome many of the usual
+limitations of using tensor methods.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-15T01:42:05Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-15T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3640</id>
+<link href="http://arxiv.org/abs/1311.3640" rel="alternate" type="text/html" />
+<title>A 9/7-Approximation Algorithm for Graphic TSP in Cubic Bipartite Graphs « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384473600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/Karp:Jeremy.html">Jeremy Karp</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/r/Ravi:R=.html">R. Ravi</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3640">PDF</a><br /><b>Abstract: </b>We prove new results for approximating Graphic TSP. Specifically, we provide
+a polynomial-time \frac{9}{7}-approximation algorithm for cubic bipartite
+graphs and a (\frac{9}{7}+\frac{1}{21(k-2)})-approximation algorithm for
+k-regular bipartite graphs, both of which are improved approximation factors
+compared to previous results. Our approach involves finding a cycle cover with
+relatively few cycles, which we are able to do by leveraging the fact that all
+cycles in bipartite graphs are of even length along with our knowledge of the
+structure of cubic graphs.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-15T01:42:17Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-15T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3623</id>
+<link href="http://arxiv.org/abs/1311.3623" rel="alternate" type="text/html" />
+<title>On the Adaptivity Gap of Stochastic Orienteering « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384473600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Bansal:Nikhil.html">Nikhil Bansal</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/n/Nagarajan:Viswanath.html">Viswanath Nagarajan</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3623">PDF</a><br /><b>Abstract: </b>The input to the stochastic orienteering problem consists of a budget $B$ and
+metric $(V,d)$ where each vertex $v$ has a job with deterministic reward and
+random processing time (drawn from a known distribution). The processing times
+are independent across vertices. The goal is to obtain a non-anticipatory
+policy to run jobs at different vertices, that maximizes expected reward,
+subject to the total distance traveled plus processing times being at most $B$.
+An adaptive policy is one that can choose the next vertex to visit based on
+observed random instantiations. Whereas, a non-adaptive policy is just given by
+a fixed ordering of vertices. The adaptivity gap is the worst-case ratio of the
+expected rewards of the optimal adaptive and non-adaptive policies.
+</p>
+<p>We prove an $\Omega(\log\log B)^{1/2}$ lower bound on the adaptivity gap of
+stochastic orienteering. This provides a negative answer to the $O(1)$
+adaptivity gap conjectured earlier, and comes close to the $O(\log\log B)$
+upper bound. This result holds even on a line metric.
+</p>
+<p>We also show an $O(\log\log B)$ upper bound on the adaptivity gap for the
+correlated stochastic orienteering problem, where the reward of each job is
+random and possibly correlated to its processing time. Using this, we obtain an
+improved quasi-polynomial time approximation algorithm for correlated
+stochastic orienteering.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-15T01:41:55Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-15T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3607</id>
+<link href="http://arxiv.org/abs/1311.3607" rel="alternate" type="text/html" />
+<title>On the Complexity of Some Problems Related to SEFE « cs.CC updates on arXiv.org</title>
+<feedworld_mtime>1384473600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/a/Angelini:Patrizio.html">Patrizio Angelini</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/l/Lozzo:Giordano_Da.html">Giordano Da Lozzo</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/n/Neuwirth:Daniel.html">Daniel Neuwirth</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3607">PDF</a><br /><b>Abstract: </b>We investigate the complexity of some problems related to the
+$\textit{Simultaneous Embedding with Fixed Edges}$ (SEFE) problem which, given
+$k$ planar graphs $G_1,\dots,G_k$ on the same set of vertices, asks whether
+they can be simultaneously embedded so that the embedding of each graph be
+planar and common edges be drawn the same. While the computational complexity
+of SEFE with $k=2$ is a central open question in Graph Drawing, the problem is
+NP-complete for $k \geq 3$ [Gassner $\textit{et al.}$, WG '06], even if the
+intersection graph is the same for each pair of graphs ($\textit{sunflower
+intersection}$) [Schaefer, JGAA (2013)].
+</p>
+<p>We improve on these results by proving that SEFE with $k \geq 3$ and
+sunflower intersection is NP-complete even when (i) the intersection graph is
+connected and (ii) two of the three input graphs are biconnected. This result
+implies that the Partitioned T-Coherent $k$-Page Book-Embedding is NP-complete
+with $k\geq 3$, which was only known for $k$ unbounded [Hoske, Bachelor Thesis
+(2012)]. Further, we prove that the problem of maximizing the number of edges
+that are drawn the same in a SEFE of two graphs is NP-complete
+($\textit{optimization of SEFE}$, Open Problem $9$, Chapter $11$ of the
+Handbook of Graph Drawing and Visualization).
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-15T01:40:37Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Complexity"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CC" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Complexity (cs.CC) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CC updates on arXiv.org</title>
+<updated>2013-11-15T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.2972</id>
+<link href="http://arxiv.org/abs/1311.2972" rel="alternate" type="text/html" />
+<title>Learning Mixtures of Discrete Product Distributions using Spectral Decompositions « cs.CC updates on arXiv.org</title>
+<feedworld_mtime>1384473600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/j/Jain:Prateek.html">Prateek Jain</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/o/Oh:Sewoong.html">Sewoong Oh</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.2972">PDF</a><br /><b>Abstract: </b>We study the problem of learning a distribution from samples, when the
+underlying distribution is a mixture of product distributions over discrete
+domains. This problem is motivated by several practical applications such as
+crowd-sourcing, recommendation systems, and learning Boolean functions. The
+existing solutions either heavily rely on the fact that the number of
+components in the mixtures is finite or have sample/time complexity that is
+exponential in the number of components. In this paper, we introduce a
+polynomial time/sample complexity method for learning a mixture of $r$ discrete
+product distributions over $\{1, 2, \dots, \ell\}^n$, for general $\ell$ and
+$r$. We show that our approach is statistically consistent and further provide
+finite sample guarantees.
+</p>
+<p>We use techniques from the recent work on tensor decompositions for
+higher-order moment matching. A crucial step in these moment matching methods
+is to construct a certain matrix and a certain tensor with low-rank spectral
+decompositions. These tensors are typically estimated directly from the
+samples. The main challenge in learning mixtures of discrete product
+distributions is that these low-rank tensors cannot be obtained directly from
+the sample moments. Instead, we reduce the tensor estimation problem to: $a$)
+estimating a low-rank matrix using only off-diagonal block elements; and $b$)
+estimating a tensor using a small number of linear measurements. Leveraging on
+recent developments in matrix completion, we give an alternating minimization
+based method to estimate the low-rank matrix, and formulate the tensor
+completion problem as a least-squares problem.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T00:00:00Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Complexity"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CC" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Complexity (cs.CC) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CC updates on arXiv.org</title>
+<updated>2013-11-15T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1302.0290</id>
+<link href="http://arxiv.org/abs/1302.0290" rel="alternate" type="text/html" />
+<title>Quantum 3-SAT is QMA1-complete « cs.CC updates on arXiv.org</title>
+<feedworld_mtime>1384473600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/g/Gosset:David.html">David Gosset</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/n/Nagaj:Daniel.html">Daniel Nagaj</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1302.0290">PDF</a><br /><b>Abstract: </b>Quantum satisfiability is a constraint satisfaction problem that generalizes
+classical boolean satisfiability. In the quantum k-SAT problem, each constraint
+is specified by a k-local projector and is satisfied by any state in its
+nullspace. Bravyi showed that quantum 2-SAT can be solved efficiently on a
+classical computer and that quantum k-SAT with k greater than or equal to 4 is
+QMA1-complete. Quantum 3-SAT was known to be contained in QMA1, but its
+computational hardness was unknown until now. We prove that quantum 3-SAT is
+QMA1-hard, and therefore complete for this complexity class.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-15T01:40:43Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Complexity"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CC" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Complexity (cs.CC) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CC updates on arXiv.org</title>
+<updated>2013-11-15T01:30:00Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-3722233.post-5166992198679496957</id>
+<link href="http://blog.computationalcomplexity.org/2013/11/local-reductions.html" rel="alternate" type="text/html" />
+<title>Local Reductions « Computational Complexity</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">With the STOC deadline passing on Monday, now is a good time to look at the <a href="http://arxiv.org/list/cs.CC/recent">arXiv</a> to see what has been posted since then. Hamid Jahanjou, Eric Miles and Emanuele Viola have a new paper, <a href="http://arxiv.org/abs/1311.3171">Local Reductions</a>, that gives a new reduction from NTIME(t) to 3-SAT formulas of size t polylog(t). The twist to their new reduction: there is an NC<sup>0</sup> circuit C that maps the number i to the ith clause. NC<sup>0</sup> means every output bit depends on only a constant number of input bits. The proof uses old-fashioned parallel routing.<br />
+<br />
+Should have some interesting applications. It does save a step in Williams' <a href="http://blog.computationalcomplexity.org/2010/11/breakthrough-circuit-lower-bound.html">proof</a> that ACC<sup>0</sup> ≠ NEXP but the combined proofs are longer.<br />
+<br />
+In other news, I've been getting several email from other CS chairs looking for students to hire as faculty in their departments. The latest <a href="http://cra.org/uploads/documents/resources/crndocs/issues/1113.pdf">CRA News</a> is 59 pages, 50 of them are faculty job ads. It's a good year to be on the job market.</div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T13:40:00Z</updated>
+<published>2013-11-14T13:40:00Z</published>
+<author>
+<name>Lance Fortnow</name>
+<email>noreply@blogger.com</email>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-3722233</id>
+<category term="typecast"></category>
+<category term="focs metacomments"></category>
+<author>
+<name>Lance Fortnow</name>
+<email>noreply@blogger.com</email>
+</author>
+<link href="http://blog.computationalcomplexity.org/" rel="alternate" type="text/html" />
+<link href="http://weblog.fortnow.com/rss.xml" rel="self" type="application/atom+xml" />
+<subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle>
+<title>Computational Complexity</title>
+<updated>2013-11-15T15:01:40Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3286</id>
+<link href="http://arxiv.org/abs/1311.3286" rel="alternate" type="text/html" />
+<title>An Efficient Parallel Solver for SDD Linear Systems « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384387200</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/p/Peng:Richard.html">Richard Peng</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Spielman:Daniel_A=.html">Daniel A. Spielman</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3286">PDF</a><br /><b>Abstract: </b>We present the first parallel algorithm for solving systems of linear
+equations in symmetric, diagonally dominant (SDD) matrices that runs in
+polylogarithmic time and nearly-linear work. The heart of our algorithm is a
+construction of a sparse approximate inverse chain for the input matrix: a
+sequence of sparse matrices whose product approximates its inverse. Whereas
+other fast algorithms for solving systems of equations in SDD matrices exploit
+low-stretch spanning trees, our algorithm only requires spectral graph
+sparsifiers.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T01:42:24Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-14T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3171</id>
+<link href="http://arxiv.org/abs/1311.3171" rel="alternate" type="text/html" />
+<title>Local reductions « cs.CC updates on arXiv.org</title>
+<feedworld_mtime>1384387200</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/j/Jahanjou:Hamid.html">Hamid Jahanjou</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/m/Miles:Eric.html">Eric Miles</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/v/Viola:Emanuele.html">Emanuele Viola</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3171">PDF</a><br /><b>Abstract: </b>We reduce non-deterministic time $T \ge 2^n$ to a 3SAT instance $\phi$ of
+size $|\phi| = T \cdot \log^{O(1)} T$ such that there is an explicit circuit
+$C$ that on input an index $i$ of $\log |\phi|$ bits outputs the $i$th clause,
+and each output bit of $C$ depends on $O(1)$ inputs bits. The previous best
+result was $C$ in NC$^1$. Even in the simpler setting of $|\phi| = \poly(T)$
+the previous best result was $C$ in AC$^0$.
+</p>
+<p>More generally, for any time $T \ge n$ and parameter $r \leq n$ we obtain
+$\log_2 |\phi| = \max(\log T, n/r) + O(\log n) + O(\log\log T)$ and each output
+bit of $C$ is a decision tree of depth $O(\log r)$.
+</p>
+<p>As an application, we simplify the proof of Williams' ACC$^0$ lower bound,
+and tighten his connection between satisfiability algorithms and lower bounds.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T01:40:29Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Complexity"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CC" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Complexity (cs.CC) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CC updates on arXiv.org</title>
+<updated>2013-11-14T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3149</id>
+<link href="http://arxiv.org/abs/1311.3149" rel="alternate" type="text/html" />
+<title>Local Event Boundary Detection with Unreliable Sensors: Analysis of the Majority Vote Scheme « cs.CG updates on arXiv.org</title>
+<feedworld_mtime>1384387200</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Brass:Peter.html">Peter Brass</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/n/Na:Hyeon=Suk.html">Hyeon-Suk Na</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Shin:Chan=Su.html">Chan-Su Shin</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3149">PDF</a><br /><b>Abstract: </b>In this paper we study the identification of an event region $X$ within a
+larger region $Y$, in which the sensors are distributed by a Poisson process of
+density $\lambda$ to detect this event region, i.e., its boundary. The model of
+sensor is a 0-1 sensor that decides whether it lies in $X$ or not, and which
+might be incorrect with probability $p$. It also collects information on the
+0-1 values of the neighbors within some distance $r$ and revises its decision
+by the majority vote of these neighbors. In the most general setting, we
+analyze this simple majority vote scheme and derive some upper and lower bounds
+on the expected number of misclassified sensors. These bounds depend on several
+sensing parameters of $p$, $r$, and some geometric parameters of the event
+region $X$. By making some assumptions on the shape of $X$, we prove a
+significantly improved upper bound on the expected number of misclassified
+sensors; especially for convex regions with sufficiently round boundary, and we
+find that the majority vote scheme performs well in the simulation rather than
+its theoretical upper bound.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T01:40:50Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Geometry"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CG" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Geometry (cs.CG) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CG updates on arXiv.org</title>
+<updated>2013-11-14T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3144</id>
+<link href="http://arxiv.org/abs/1311.3144" rel="alternate" type="text/html" />
+<title>Recent Advances in Graph Partitioning « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384387200</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Buluc:Aydin.html">Aydin Buluc</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/m/Meyerhenke:Henning.html">Henning Meyerhenke</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Safro:Ilya.html">Ilya Safro</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Sanders:Peter.html">Peter Sanders</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Schulz:Christian.html">Christian Schulz</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3144">PDF</a><br /><b>Abstract: </b>We survey recent trends in practical algorithms for balanced graph
+partitioning together with applications and future research directions.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T01:42:30Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-14T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3121</id>
+<link href="http://arxiv.org/abs/1311.3121" rel="alternate" type="text/html" />
+<title>Simple Tabulation, Fast Expanders, Double Tabulation, and High Independence « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384387200</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/t/Thorup:Mikkel.html">Mikkel Thorup</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3121">PDF</a><br /><b>Abstract: </b>Simple tabulation dates back to Zobrist in 1970. Keys are viewed as c
+characters from some alphabet A. We initialize c tables h_0, ..., h_{c-1}
+mapping characters to random hash values. A key x=(x_0, ..., x_{c-1}) is hashed
+to h_0[x_0] xor...xor h_{c-1}[x_{c-1}]. The scheme is extremely fast when the
+character hash tables h_i are in cache. Simple tabulation hashing is not
+4-independent, but we show that if we apply it twice, then we get high
+independence. First we hash to intermediate keys that are 6 times longer than
+the original keys, and then we hash the intermediate keys to the final hash
+values.
+</p>
+<p>The intermediate keys have d=6c characters from A. We can view the hash
+function as a degree d bipartite graph with keys on one side, each with edges
+to d output characters. We show that this graph has nice expansion properties,
+and from that we get that with another level of simple tabulation on the
+intermediate keys, the composition is a highly independent hash function. The
+independence we get is |A|^{Omega(1/c)}.
+</p>
+<p>Our space is O(c|A|) and the hash function is evaluated in O(c) time. Siegel
+[FOCS'89, SICOMP'04] proved that with this space, if the hash function is
+evaluated in o(c) time, then the independence can only be o(c), so our
+evaluation time is best possible for Omega(c) independence---our independence
+is much higher if c=|A|^{o(1)}.
+</p>
+<p>Siegel used O(c)^c evaluation time to get the same independence with similar
+space. Siegel's main focus was c=O(1), but we are exponentially faster when
+c=omega(1).
+</p>
+<p>Applying our scheme recursively, we can increase our independence to
+|A|^{Omega(1)} with o(c^{log c}) evaluation time. Compared with Siegel's scheme
+this is both faster and higher independence.
+</p>
+<p>Our scheme is easy to implement, and it does provide realistic
+implementations of 100-independent hashing for, say, 32 and 64-bit keys.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T01:42:19Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-14T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3054</id>
+<link href="http://arxiv.org/abs/1311.3054" rel="alternate" type="text/html" />
+<title>On the parameterized complexity of k-SUM « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384387200</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/a/Abboud:Amir.html">Amir Abboud</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/l/Lewi:Kevin.html">Kevin Lewi</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/w/Williams:Ryan.html">Ryan Williams</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3054">PDF</a><br /><b>Abstract: </b>In the k-SUM problem, we are given a set of numbers and asked if there are k
+of them which sum to 0. The case of k = 3 has been extensively studied in
+computational geometry, and known to be intimately related to many
+low-dimensional problems. The case of arbitrary k is the natural
+parameterization of Subset Sum and is well-known in parameterized algorithms
+and complexity.
+</p>
+<p>We present new FPT reductions between the k-SUM problem and the k-Clique
+problem, yielding several complexity-theoretic and algorithmic consequences.
+Our reductions show that k-SUM on "small" numbers (in the range
+$[-n^{f(k)},n^{f(k)}]$ for any computable function f) is W[1]-complete, and
+that k-SUM (in general) is W[1]-complete under a common derandomization
+assumption. These results effectively resolve the parameterized complexity of
+k-SUM, initially posed in 1992 by Downey and Fellows in their seminal paper on
+parameterized intractability. Our method is quite general and applies to other
+weighted problems as well.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T00:00:00Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-14T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.3048</id>
+<link href="http://arxiv.org/abs/1311.3048" rel="alternate" type="text/html" />
+<title>Cops, Robbers, and Threatening Skeletons: Padded Decomposition for Minor-Free Graphs « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384387200</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/a/Abraham:Ittai.html">Ittai Abraham</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/g/Gavoille:Cyril.html">Cyril Gavoille</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/g/Gupta:Anupam.html">Anupam Gupta</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/n/Neiman:Ofer.html">Ofer Neiman</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/t/Talwar:Kunal.html">Kunal Talwar</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.3048">PDF</a><br /><b>Abstract: </b>We prove that any graph excluding $K_r$ as a minor has can be partitioned
+into clusters of diameter at most $\Delta$ while removing at most $O(r/\Delta)$
+fraction of the edges. This improves over the results of Fakcharoenphol and
+Talwar, who building on the work of Klein, Plotkin and Rao gave a partitioning
+that required to remove $O(r^2/\Delta)$ fraction of the edges.
+</p>
+<p>Our result is obtained by a new approach to relate the topological properties
+(excluding a minor) of a graph to its geometric properties (the induced
+shortest path metric). Specifically, we show that techniques used by Andreae in
+his investigation of the cops-and-robbers game on excluded-minor graphs can be
+used to construct padded decompositions of the metrics induced by such graphs.
+In particular, we get probabilistic partitions with padding parameter $O(r)$
+and strong-diameter partitions with padding parameter $O(r^2)$ for $K_r$-free
+graphs, padding $O(k)$ for graphs with treewidth $k$, and padding $O(\log g)$
+for graphs with genus $g$.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T01:42:03Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-14T01:30:00Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1311.2839</id>
+<link href="http://arxiv.org/abs/1311.2839" rel="alternate" type="text/html" />
+<title>Gossip vs. Markov Chains, and Randomness-Efficient Rumor Spreading « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1384387200</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/g/Guo:Zeyu.html">Zeyu Guo</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Sun:He.html">He Sun</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1311.2839">PDF</a><br /><b>Abstract: </b>We study gossip algorithms for the rumor spreading problem which asks one
+node to deliver a rumor to all nodes in an unknown network. We present the
+first protocol for any expander graph $G$ with $n$ nodes such that, the
+protocol informs every node in $O(\log n)$ rounds with high probability, and
+uses $\tilde{O}(\log n)$ random bits in total. The runtime of our protocol is
+tight, and the randomness requirement of $\tilde{O}(\log n)$ random bits almost
+matches the lower bound of $\Omega(\log n)$ random bits for dense graphs. We
+further show that, for many graph families, polylogarithmic number of random
+bits in total suffice to spread the rumor in $O(\mathrm{poly}\log n)$ rounds.
+These results together give us an almost complete understanding of the
+randomness requirement of this fundamental gossip process.
+</p>
+<p>Our analysis relies on unexpectedly tight connections among gossip processes,
+Markov chains, and branching programs. First, we establish a connection between
+rumor spreading processes and Markov chains, which is used to approximate the
+rumor spreading time by the mixing time of Markov chains. Second, we show a
+reduction from rumor spreading processes to branching programs, and this
+reduction provides a general framework to derandomize gossip processes. In
+addition to designing rumor spreading protocols, these novel techniques may
+have applications in studying parallel and multiple random walks, and
+randomness complexity of distributed algorithms.
+</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-14T00:00:00Z</updated>
+<author>
+<name></name>
+</author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms"></category>
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2013-11-14T01:30:00Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-21129445.post-8316469495355802048</id>
+<link href="http://mysliceofpizza.blogspot.com/feeds/8316469495355802048/comments/default" rel="replies" type="application/atom+xml" />
+<link href="http://www.blogger.com/comment.g?blogID=21129445&amp;postID=8316469495355802048" rel="replies" type="text/html" />
+<link href="http://www.blogger.com/feeds/21129445/posts/default/8316469495355802048" rel="edit" type="application/atom+xml" />
+<link href="http://www.blogger.com/feeds/21129445/posts/default/8316469495355802048" rel="self" type="application/atom+xml" />
+<link href="http://mysliceofpizza.blogspot.com/2013/11/data-as-quantifiable-asset.html" rel="alternate" type="text/html" />
+<title>Data as a Quantifiable Asset « my slice of pizza</title>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><div dir="ltr" style="text-align: left;">In a dinner conversation, <a href="http://www.cs.columbia.edu/~jebara/" target="_blank">Tony Jebara </a>pointed out that machine learning is growing since companies --- beyond the internet companies in news ---- are increasingly thinking of the data they have as an asset, to be collected, analyzed widely, and used to make decisions; this is a change from the past where companies looked at data collection, storage and management as a cost, and only a few (sales, analysts) looked at data. This made me wonder: will accountants figure out how to price this asset and write it into the books of the companies (like goodwill, brand, and others)? </div></div>
+<div class="commentbar">
+<p></p>
+<span class="commentbutton" href="http://mysliceofpizza.blogspot.com/feeds/8316469495355802048/comments/default"></span>
+<a href="http://mysliceofpizza.blogspot.com/feeds/8316469495355802048/comments/default">
+<img class="commenticon" src="/images/feed-icon.png" /> Subscribe to comments
+        </a>  | 
+        <a href="http://www.blogger.com/comment.g?blogID=21129445&amp;postID=8316469495355802048">
+<img class="commenticon" src="/images/post-icon.png" /> Post a comment
+        </a>
+</div>
+</content>
+<updated>2013-11-13T14:43:00Z</updated>
+<published>2013-11-13T14:43:00Z</published>
+<category scheme="http://www.blogger.com/atom/ns#" term="aggregator"></category>
+<author>
+<name>metoo</name>
+<email>noreply@blogger.com</email>
+<uri>http://www.blogger.com/profile/07192519900962182610</uri>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-21129445</id>
+<category term="aggregator"></category>
+<category term="Non-CS"></category>
+<author>
+<name>metoo</name>
+<email>noreply@blogger.com</email>
+<uri>http://www.blogger.com/profile/07192519900962182610</uri>
+</author>
+<link href="http://mysliceofpizza.blogspot.com/feeds/posts/default" rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml" />
+<link href="http://www.blogger.com/feeds/21129445/posts/default/-/aggregator" rel="self" type="application/atom+xml" />
+<link href="http://mysliceofpizza.blogspot.com/search/label/aggregator" rel="alternate" type="text/html" />
+<link href="http://pubsubhubbub.appspot.com/" rel="hub" type="text/html" />
+<link href="http://www.blogger.com/feeds/21129445/posts/default/-/aggregator/-/aggregator?start-index=26&amp;max-results=25" rel="next" type="application/atom+xml" />
+<subtitle>books, stories, poems, algorithms, math and computer science. 
+
+some art and anecdotes too.</subtitle>
+<title>my slice of pizza</title>
+<updated>2013-11-13T23:41:39Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-3722233.post-4254094867358136250</id>
+<link href="http://blog.computationalcomplexity.org/2013/11/four-answers-to-recip-problem.html" rel="alternate" type="text/html" />
+<title>Four answers to the Recip problem « Computational Complexity</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><br />
+In my last post I asked you to solve the following question which<br />
+was from the Maryland Math Competition:<br />
+<br />
+The inequalities 1/2 + 1/3 + 1/6 = 1 and 1/2 + 1/3 + 1/7 + 1/42 = 1<br />
+express 1 as a sum of three (resp. four) reciprocals.<br />
+<br />
+Find five positive integers a,b,c,d,e such that<br />
+1/a + 1/b + 1/c + 1/d + 1/e = 1.<br />
+<br />
+Prove that for any positive integer k GE 3 there exists positive intgers numbers d1,d2,...,dk<br />
+such that 1/d1 + ... + 1/dk.<br />
+<br />
+The HS students had the following solutions.<br />
+I list the answers to part b first.  I sketch the proofs. They are all by induction.<br />
+<br />
+1) Use 1/n = 1/(n+1) + 1/n(n+1).  This was the most common solution.  This leads to (2,3,7,43,1806) for part a.<br />
+<br />
+2) Since the question itself gives the solution for m=2 and 3 we only need P(k) --&gt; P(k+2)<br />
+Use 1/n =  1/2n + 1/3n + 1/6n.  This leads to (2,3,12,18,36).<br />
+One of the students later told me that knew the solution (i) but did it this way to<br />
+avoid having to multiply 42 by 43 which is needed to get part a using that solution.<br />
+<br />
+3) Inductively that the largest denom n is even Use 1/n = 3/3n = 1/3n + 2/3n = 1/3n + 1/(3n/2)<br />
+Less than five students did 2b this way.  This leads to (2,3,7,63,126) for 2a.<br />
+<br />
+4) If (d1,...,dn) is a solution then so is (2,2xd1,...,2xdn).<br />
+Only two student did it this way.  It leads to (2,4,6,14,84), which they both used.<br />
+<br />
+NOBODY did in the non-inductive way mentioned in the last post.<br />
+<br />
+There were THIRTY TWO solutions to 2b.  Several people had their part 2a and 2b not<br />
+related to each other at all.  This was far more solutions than I anticipated.<br />
+While grading I got good at adding reciprocals.<br />
+I list them in lex order along with how many people did that answer.<br />
+(This is likely approx- I may have miscounted a bit, but its basically right)<br />
+<br />
+(2,3,7,43,1806) - 91 (linked to solution 1 above)<br />
+<br />
+(2,3,7,48,336)  - 3<br />
+<br />
+(2,3,7,56,168)  - 1<br />
+<br />
+(2,3,7,63,126)  - 6 (linked to solution 3 above)<br />
+<br />
+(2,3,7,70,105)  - 1<br />
+<br />
+(2,3,8,25,600)  - 1<br />
+<br />
+(2,3,8,30,120)  - 1<br />
+<br />
+(2,3,8,32,96)   - 6<br />
+<br />
+(2,3,8,36,72)   - 5<br />
+<br />
+(2,3,8,42,56)   - 11<br />
+<br />
+(2,3,9,21,126)  - 2<br />
+<br />
+(2,3,9,24,72)   - 4<br />
+<br />
+(2,3,9,27,54)   - 3<br />
+<br />
+(2,3,10,20,60)  - 5<br />
+<br />
+(2,3,11,22,33)  - 1<br />
+<br />
+(2,3,12,15,60)  - 1<br />
+<br />
+(2,3,12,16,48)  - 1<br />
+<br />
+(2,3,12,14,84)  - 2 (linked to solution 4 above)<br />
+<br />
+(2,3,12,18,36)  - 12 (linked to solution 2 above)<br />
+<br />
+(2,4,5,25,100)  - 3<br />
+<br />
+(2,4,5,30,60)   - 1<br />
+<br />
+(2,4,6,14,84)   - 3<br />
+<br />
+(2,4,6,16,48)   - 1<br />
+<br />
+(2,4,6,18,36)   - 2<br />
+<br />
+(2,4,6,20,30)   - 1<br />
+<br />
+(2,4,7,12,42)   - 4<br />
+<br />
+(2,4,7,14,28)   - 2<br />
+<br />
+(2,4,8,12,24)   - 6<br />
+<br />
+(2,4,8,10,40)   - 2<br />
+<br />
+(2,5,6,10,30)   - 1<br />
+<br />
+(2,5,6,12,20)   - 2<br />
+<br />
+(3,4,5,6,20)    - 3</div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-12T16:15:00Z</updated>
+<published>2013-11-12T16:15:00Z</published>
+<author>
+<name>GASARCH</name>
+<email>noreply@blogger.com</email>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-3722233</id>
+<category term="typecast"></category>
+<category term="focs metacomments"></category>
+<author>
+<name>Lance Fortnow</name>
+<email>noreply@blogger.com</email>
+</author>
+<link href="http://blog.computationalcomplexity.org/" rel="alternate" type="text/html" />
+<link href="http://weblog.fortnow.com/rss.xml" rel="self" type="application/atom+xml" />
+<subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle>
+<title>Computational Complexity</title>
+<updated>2013-11-15T15:01:42Z</updated>
+</source>
+</entry>
+<entry>
+<id>http://cstheory.stackexchange.com/q/19759</id>
+<link href="http://cstheory.stackexchange.com/questions/19759/core-algorithms-deployed" rel="alternate" type="text/html" />
+<title>Core algorithms deployed « Recent Questions - Theoretical Computer Science Stack Exchange</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>To demonstrate the importance of algorithms (e.g. to students and professors who don't do theory or are even from entirely different fields) it is sometimes useful to have ready at hand a list of examples where core algorithms have been deployed in commercial, governmental, or widely-used software/hardware.</p>
+<p>I am looking for such examples that satisfy the following criteria:</p>
+<ol>
+<li><p>The software/hardware using the algorithm should be in wide use right now.</p></li>
+<li><p>The example should be specific.
+Please give a reference to a specific system and a specific algorithm.<br />
+E.g., in "algorithm X is useful for image processing" 
+the term "image processing" is not specific enough; 
+in "Google search uses graph algorithms" 
+the term "graph algorithms" is not specific enough.  </p></li>
+<li><p>The algorithm should be taught in 
+typical undergraduate or Ph.D. classes in algorithms or data structures. 
+Ideally, the algorithm is covered in typical algorithms textbooks.
+E.g., "well-known system X uses little-known algorithm Y" is not good.</p></li>
+</ol>
+<hr />
+<h3>Update:</h3>
+<p>Thanks again for the great answers and links! 
+Some people comment that it is hard to satisfy the criteria 
+because core algorithms are so pervasive that it's hard to point to a specific use. 
+I see the difficulty. 
+But I think it is worthwhile to come up with specific examples because 
+in my experience telling people: 
+"Look, algorithms are important because they are <em>just about everywhere</em>!" does not work.</p></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-12T15:01:40Z</updated>
+<published>2013-11-12T15:01:40Z</published>
+<category scheme="http://cstheory.stackexchange.com/feeds/tags" term="ds.algorithms"></category>
+<category scheme="http://cstheory.stackexchange.com/feeds/tags" term="big-picture"></category>
+<category scheme="http://cstheory.stackexchange.com/feeds/tags" term="application-of-theory"></category>
+<author>
+<name>Emanuele Viola</name>
+<uri>http://cstheory.stackexchange.com/users/259</uri>
+</author>
+<source>
+<id>http://cstheory.stackexchange.com/feeds</id>
+<link href="http://cstheory.stackexchange.com/feeds" rel="self" type="application/atom+xml" />
+<link href="http://cstheory.stackexchange.com/questions" rel="alternate" type="text/html" />
+<link href="http://www.creativecommons.org/licenses/by-sa/3.0/rdf" rel="license" />
+<subtitle>most recent 30 from cstheory.stackexchange.com</subtitle>
+<title>Recent Questions - Theoretical Computer Science Stack Exchange</title>
+<updated>2013-11-15T15:02:29Z</updated>
+</source>
+</entry>
+<entry xml:lang="en">
+<id>http://windowsontheory.org/?p=2768</id>
+<link href="http://windowsontheory.org/2013/11/12/walk-a-thon-auction-design/" rel="alternate" type="text/html" />
+<title>Walk-a-Thon auction design « Windows On Theory</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">While this blog is mostly about theory, today I would like to talk about a real auction and how it relates to theory. I’ll focus on a fundraising auction for my child’s elementary school. As is common around here, the school has an annual community event called a “Walk-a-Thon” in which donations are collected towards […]<img alt="" border="0" height="1" src="http://stats.wordpress.com/b.gif?host=windowsontheory.org&amp;blog=32349634&amp;post=2768&amp;subd=windowsontheory&amp;ref=&amp;feed=1" width="1" /></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>While this blog is mostly about theory, today I would like to talk about a real auction and how it relates to theory. I’ll focus on a fundraising auction for my child’s elementary school.</p>
+<p>As is common around here, the school has an annual community event called a “Walk-a-Thon” in which donations are collected towards the funding of various programs such as music, band, science, arts, field trips and technology. Most of the money comes from parents (and relatives) that commit to payments proportional to the distance (number of laps) walked by their kids. The next picture shows the first lap.</p>
+<div class="wp-caption aligncenter" id="attachment_2780" style="width: 610px;"><a href="http://windowsontheory.files.wordpress.com/2013/11/auction-photo11.jpg"><img alt="auction-photo1" class="size-large wp-image-2780 " src="http://windowsontheory.files.wordpress.com/2013/11/auction-photo11.jpg?w=600&amp;h=922" /></a><p class="wp-caption-text">Kids walking the first lap of the Walk-a-Thon</p></div>
+<p>As part of the event, items are collected and are auctioned throughout the afternoon of the Walk-a-Thon day. The items presented in the auction are very diverse, and include both physical objects and services. Typical items could be crafts made by the kids, parties that parents organize, events like a pizza party organized by teachers, items donated by parents as well as items donated by corporations (and even a pumpkin grown in the school’s garden).</p>
+<div class="wp-caption aligncenter" id="attachment_2783" style="width: 610px;"><a href="http://windowsontheory.files.wordpress.com/2013/11/auction-photo21.jpg"><img alt="auction-photo2" class="size-large wp-image-2783" src="http://windowsontheory.files.wordpress.com/2013/11/auction-photo21.jpg?w=600&amp;h=427" /></a><p class="wp-caption-text">A general view of the auction.</p></div>
+<div class="wp-caption aligncenter" id="attachment_2784" style="width: 610px;"><a href="http://windowsontheory.files.wordpress.com/2013/11/auction-photo31.jpg"><img alt="auction-photo3" class="size-large wp-image-2784" src="http://windowsontheory.files.wordpress.com/2013/11/auction-photo31.jpg?w=600&amp;h=431" /></a><p class="wp-caption-text">A pumpkin from the school’s garden, ready for Halloween.</p></div>
+<p>The first year I joined the school, the auction was running as a “silent auction” (a format used by many schools for their charity auction). The auction was about 4 hours long with a fixed end time. Items were placed on tables, each item had a bid sheet in which bidders bid (simply a piece of paper attached to the item). The highest bidder for an item wins the auction and pays his bid. Each item had a minimal bid and the bid increment was $1. Bidders were encouraged to submit multiple bids, outbidding each other. When multiple identical items were sold (like in the case of tickets to a party), the highest bidders would win the items, paying their bids.</p>
+<p>Naturally I was very interested to see how the auction performed. Looking at the auction format, one sees that this is essentially an English auction implemented using bid sheets, so at least in theory (for items with private values) one would expect the allocation to be efficient (and the same as of the second price auction). Revenue should also be very high, as long as each item has enough bidders interested in it. But when attending my first Walk-A-Thon event it was quite clear to me that this optimistic outcome was not being realized, and many prices were much lower than I would have expected. Why was this happening? What are the main differences between this auction and the clean theoretical model?</p>
+<p>The Walk-A-Thon day is a very busy day for most of the potential bidders (=parents), with many of them volunteering in various activities (like handing water bottles to the kids, or serving food) or simply taking care of the children once they become exhausted from walking. So essentially the bidders in our auction have a <span style="text-decoration: underline;">high cost of submitting bids</span>, as submitting a bid requires them to leave whatever they are doing, go to the auction and find the item they are interested in, and then write their bid. All this hustle only buys you one bid, while an English auction requires you to keep coming back to the auction and submitting bids until the auction ends or someone bids above your true value.</p>
+<p>Another fundamental difference is that it is not clear that the private value model holds for some of the items (e.g., when the item is a $50 voucher for a restaurant). Moreover, it is not clear that bidders in a charity auction aim at maximizing their utility in the standard way. Perhaps they have a fix amount of money they want to spend and will maximize their utility given that they exhaust their budget? Finally, the value of some items (like party tickets) depend on whether the same group of friends manages to secure enough tickets, so there are plenty of externalities.</p>
+<p>Some people have realized that there is no reason to be active until the last minute, and have used the “sniping” strategy: bid at the last minute just as the auction closes (this strategy is well documented in online bidding). With many occupied with other things, only few people were able to execute this strategy and there were no last minute bidding wars, and the lack of competition resulted in low prices.</p>
+<p>It seems as though when people did submit bids earlier, many were basically bidding just $1 above the previous highest bid and not more than that, and many never came back to bid again. While this seems not very rational for a bidder that knows that he might never return to submit another bid, large jumps in the bids were very rare.</p>
+<p>So how could the revenue of the auction be increased? It seemed to me the main goals should be to <span style="text-decoration: underline;">decrease the cost of bidding</span> and <span style="text-decoration: underline;">increase the participation rate</span>. A natural solution is to have a sealed bid second price auction on each item, thus eliminating the need to bid multiple times on each item. This idea was not adopted by the organizing committee as it seems like such a big change might be confusing for the bidders, and the auction committee preferred incremental changes (here’s a constraint that is very rarely put into a formal model, yet exists in many real auctions, including large scale internet auctions).</p>
+<p>The ideas we came up with will not surprise anyone that is familiar with eBay’s auctions. Instead of moving all bidders to the new auction all at once, the changes will allow “traditional” bidders to continue as before and not do anything new, while allowing (but not mandating) more exploratory bidders to try new options.</p>
+<p>In the following year we implemented two changes. First, for some items we have added a <span style="text-decoration: underline;">“buy–it-now” (BIN)</span> price. People could still bid for the item on the bid sheet, but could also buy the item at any time during the auction for the BIN price, and take the item off the auction.</p>
+<p>The BIN option worked very well. It was extensively used by people that wanted to secure the acquisition of the items immediately as the auction opened. That option worked particularly well for parties, as it allowed buyers to coordinate: people would buy tickets together with friends (their valuation had significant positive externalities; and unlike in the auction, with BIN it was easy to guarantee that some set of bidders win together). Of course one has to set a proper BIN price, and that is a non-trivial task. Although the BIN prices we have posted were much higher than the selling prices in the previous year, the first year we have added BIN for parties, tickets were taken off the auction almost immediately. We raised the price in subsequent years and the result is that we almost quadrupled the revenue from one of the parties!  In general it is hard to know how to set the BIN price. One would like to update the BIN price of sold out items in future auctions, but by how much? A possible solution is to sell some of the identical items with BIN and others in the auction, but that was determined to be too complicated by the committee.</p>
+<p>Another benefit of using BIN is that more people are paying for items throughout the auction and not at the end when there are crowds in line for payments. This further reduces the indirect costs of participating in the auction and is significant when running this kind of physical auction.</p>
+<p>In the last 3 years we added BIN options to more and more items, mainly of high value, and essentially all parties. For most party tickets with BIN option we have observed that usually all tickets were sold at the BIN price, although we have consistently increased the BIN price every year.</p>
+<p>The second change we introduced was the addition of <span style="text-decoration: underline;">Proxy bidding</span> for some of the items. Proxy bids are submitted in a sealed box and are secret (see picture for the table with the boxes). People can still bid on the bid sheet, but the highest of all bids (proxy or open) wins. A proxy bidder that wins pays the <span style="text-decoration: underline;">minimal</span> amount needed to win. This option is an incremental step towards having a sealed bid second price auction. This option was mainly useful for people that were busy with other activities during the day, and was used extensively and resulted with much more aggressive bids than the open bids, and almost always won the auction.  Surprisingly, open bids were still used for items with the proxy option.</p>
+<div class="wp-caption aligncenter" id="attachment_2785" style="width: 610px;"><a href="http://windowsontheory.files.wordpress.com/2013/11/auction-photo41.jpg"><img alt="auction-photo4" class="size-large wp-image-2785" src="http://windowsontheory.files.wordpress.com/2013/11/auction-photo41.jpg?w=600&amp;h=846" /></a><p class="wp-caption-text">The auction table, with both bid sheets and boxes for Proxy bids.</p></div>
+<p>While proxy bidding are trivial to implement in an electronic system, there are surprising complications when they are done in a physical auction. Once the auction ends, people immediately want to know whether they won, and pay for the item, and it requires some time to manually handle proxy bids. Nevertheless, this option was successful and was adopted extensively, mainly for items of unclear (and private) value, like participating in a party with the teachers.</p>
+<p>Two other changes we made were aimed directly at accelerating the auction and decreasing the overall cost of bidding. First, we increased the reserve prices. Second, we increased the bid increment from $1 to $5 on items of high value. Both changes seem effective.</p>
+<p>So what have we learned? In the physical world, implementation issues can cause big gaps between the basic theoretical model and practice. Understanding the reasons for these gaps enabled us to make a set of changes that were very effective, and increased the revenue considerably. This was achieved although we do not have a complete theoretical understanding of people’s behavior in this auction, and thus are unable to come up with the optimal auction.</p><br /> <a href="http://feeds.wordpress.com/1.0/gocomments/windowsontheory.wordpress.com/2768/" rel="nofollow"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/windowsontheory.wordpress.com/2768/" /></a> <img alt="" border="0" height="1" src="http://stats.wordpress.com/b.gif?host=windowsontheory.org&amp;blog=32349634&amp;post=2768&amp;subd=windowsontheory&amp;ref=&amp;feed=1" width="1" /></div>
+</content>
+<updated>2013-11-12T13:03:31Z</updated>
+<published>2013-11-12T13:03:31Z</published>
+<category term="Uncategorized"></category>
+<author>
+<name>Moshe Babaioff</name>
+</author>
+<source>
+<id>http://windowsontheory.org</id>
+<logo>http://s2.wp.com/i/buttonw-com.png</logo>
+<link href="http://windowsontheory.org/feed/" rel="self" type="application/atom+xml" />
+<link href="http://windowsontheory.org" rel="alternate" type="text/html" />
+<link href="http://windowsontheory.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="http://windowsontheory.org/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>A Research Blog</subtitle>
+<title>Windows On Theory</title>
+<updated>2013-11-15T15:01:10Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-3722233.post-2378118916004054537</id>
+<link href="http://blog.computationalcomplexity.org/2013/11/a-problem-on-receiprocals.html" rel="alternate" type="text/html" />
+<title>A problem on Reciprocals « Computational Complexity</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">(I thought I had posted this a while back but I can't find it in past blogs<br />
+so I think I did not. I DID post a diff problem on reciprocals.)<br />
+<br />
+Here is the question I graded a while back on a  Maryland Math Olympiad.<br />
+I request that you do it and post your answer as a comment- I'll be curious<br />
+how your answers compare to the students who took it.<br />
+I will post the solutions the students used in my next post and comments<br />
+on how they were similar or different than yours.<br />
+The students had two hours to do five problems.<br />
+This was problem 2.<br />
+<br />
+The equalities 1/2 + 1/3 + 1/6 = 1 and 1/2 + 1/3 + 1/7 + 1/42 = 1<br />
+express 1 as a sum of three (resp. four) reciprocals.<br />
+<br />
+PART A: Find five distinct positive integers a,b,c,d,e  such that<br />
+<br />
+       1/a + 1/b + 1/c + 1/d + 1/e = 1.<br />
+<br />
+<br />
+PART B: Prove that for any positive integer k  GE 3 there exists k distinct positive intgers numbers d1,...,dk such that<br />
+<br />
+1/d1 + 1/d2 + ... + 1/dk = 1.</div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-11T18:07:00Z</updated>
+<published>2013-11-11T18:07:00Z</published>
+<author>
+<name>GASARCH</name>
+<email>noreply@blogger.com</email>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-3722233</id>
+<category term="typecast"></category>
+<category term="focs metacomments"></category>
+<author>
+<name>Lance Fortnow</name>
+<email>noreply@blogger.com</email>
+</author>
+<link href="http://blog.computationalcomplexity.org/" rel="alternate" type="text/html" />
+<link href="http://weblog.fortnow.com/rss.xml" rel="self" type="application/atom+xml" />
+<subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle>
+<title>Computational Complexity</title>
+<updated>2013-11-15T15:01:43Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://eccc.hpi-web.de/report/2013/155</id>
+<link href="http://eccc.hpi-web.de/report/2013/155" rel="alternate" type="text/html" />
+<title>TR13-155 |  Pseudorandom Generators for Low Degree Polynomials from Algebraic Geometry Codes | 
+
+	Gil Cohen, 
+
+	Amnon Ta-Shma « ECCC - Reports</title>
+<summary>Constructing pseudorandom generators for low degree polynomials has received a considerable attention in the past decade. Viola [CC 2009], following an exciting line of research, constructed a pseudorandom generator for degree d polynomials in n variables, over any prime field. The seed length used is $O(d \log{n} + d 2^d)$, and thus this construction yields a non-trivial result only for $d = O(\log{n})$. Bogdanov [STOC 2005] presented a pseudorandom generator with seed length $O(d^4 \log{n})$. However, it is promised to work only for fields of size $\Omega(d^{10} \log^{2}{n})$.
+
+The main result of this paper is a construction of a pseudorandom generator for low degree polynomials based on algebraic geometry codes. Our pseudorandom generator works for fields of size $\Omega(d^6)$ and has seed length $O(d^4 \log{n})$. The running time of our construction is $n^{O(d^4)}$. We postulate a conjecture concerning the explicitness of a certain Riemann-Roch space in function fields. If true, the running time of our pseudorandom generator would be reduced to n^{O(1)}$. We also make a first step at affirming the conjecture.
+      <div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-10T17:19:59Z</updated>
+<published>2013-11-10T17:19:59Z</published>
+<source>
+<id>http://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="http://example.com/" rel="alternate" type="text/html" />
+<link href="http://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at http://eccc.hpi-web.de</subtitle>
+<title>ECCC - Reports</title>
+<updated>2013-11-15T15:03:21Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-US">
+<id>http://ptreview.sublinear.info/?p=162</id>
+<link href="http://ptreview.sublinear.info/?p=162" rel="alternate" type="text/html" />
+<title>News for October 2013 « Property Testing Review</title>
+<summary>We saw two new property testing papers in October. During the month, we also saw a great presentation on estimating the distance to testable affine-invariant properties (discussed here) at FOCS, and we saw some intriguing property testing papers in the list of accepted papers for ITCS 2014. Survey on Quantum Property Testing by Ashley Montanaro and […]
+      <div class="commentbar">
+<p></p>
+</div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>We saw two new property testing papers in October. During the month, we also saw a great presentation on estimating the distance to testable affine-invariant properties (discussed <a href="http://ptreview.sublinear.info/?p=49" title="News for June 2013">here</a>) at FOCS, and we saw some intriguing property testing papers in the list of <a href="http://www.wisdom.weizmann.ac.il/~naor/ITCS_2014_Accepted_Papers.htm" title="ITCS 2014 accepted papers">accepted papers</a> for ITCS 2014.</p>
+<p><strong>Survey on Quantum Property Testing</strong> by Ashley Montanaro and Ronald de Wolf (<a href="http://arxiv.org/abs/1310.2035" title="arXiv">arxiv</a>). We already mentioned this survey <a href="http://ptreview.sublinear.info/?p=155" title="Survey on Quantum Property Testing">here</a>, but it is worth discussing it again. With a clear presentation of fundamental results in the area, this survey is a great reference for any researcher in property testing or in quantum complexity that wants to learn about the intersection of the two fields. And with 12 open questions presented throughout the text, this is also the ideal starting point for any researcher who wants to jump into the area.</p>
+<p><strong>Property Testing Bounds for Linear and Quadratic Functions via Parity Decision Trees</strong> by Abhishek Bhrushundi, Sourav Chakraborty, and Raghav Kulkarni (<a href="http://eccc.hpi-web.de/report/2013/142/" title="ECCC">ECCC</a>). The authors observe that the problem of testing a property \(P\) of linear or quadratic boolean functions is equivalent to determining the parity decision tree complexity of a function \(f\) determined by \(P\). This connection is used to obtain strong lower bounds on the query complexity required to test \(k\)-linearity, bent functions, and other related properties. It also provides further motivation for the the study of parity decision trees and the related problems on the Fourier structure of boolean functions.</p>
+<p> </p></div>
+</content>
+<updated>2013-11-10T09:26:11Z</updated>
+<published>2013-11-10T09:26:11Z</published>
+<category term="Monthly digest"></category>
+<author>
+<name>Eric Blais</name>
+</author>
+<source>
+<id>http://ptreview.sublinear.info</id>
+<link href="http://ptreview.sublinear.info/?feed=rss2" rel="self" type="application/atom+xml" />
+<link href="http://ptreview.sublinear.info" rel="alternate" type="text/html" />
+<subtitle>The latest in property testing and sublinear time algorithms</subtitle>
+<title>Property Testing Review</title>
+<updated>2013-11-15T15:01:18Z</updated>
+</source>
+</entry>
+<entry>
+<id>urn:lj:livejournal.com:atom1:11011110:278286</id>
+<link href="http://11011110.livejournal.com/278286.html" rel="alternate" type="text/html" />
+<link href="http://11011110.livejournal.com/data/atom/?itemid=278286" rel="self" type="text/xml" />
+<title>Graphs without long odd cycles « 0xDE</title>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">I've been working lately on the Wikipedia <a href="https://en.wikipedia.org/wiki/Line_graph">line graph</a> article, and am only a few [citation needed]s away from clearing all its cleanup tags. In doing so, I ran across a neat result in structural graph theory by Frédéric Maffray, <a href="http://dx.doi.org/10.1016%2F0095-8956%2892%2990028-V">describing the graphs in which the only odd simple cycles are triangles</a>.<br /><br />These graphs had previously been known as the ones whose line graphs are perfect (and are therefore called "line perfect graphs"), but neither of those descriptions is really satisfactory mathematically, because they say what the graphs are not (they don't have long odd cycles) or what some derived objects do, rather than anything about the graphs themselves. And they're not satisfactory from my point of view as an algorithm designer because they don't tell you how to recognize these graphs efficiently.<br /><br />Instead, what Maffray showed is that these graphs are exactly the graphs for which each <a href="https://en.wikipedia.org/wiki/Biconnected_component">biconnected component</a> is one of three possibilities. It can be <a href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite</a>, the complete graph <i>K</i><sub>4</sub>, or a book of one or more triangles sharing a common edge (<i>K</i><sub>1,1,<i>n</i></sub>).<br /><br /><div align="center"><img alt="decomposition of a line perfect graph" src="http://www.ics.uci.edu/~eppstein/0xDE/Line_perfect_graph.png" /></div><br /><br />How did Maffray do it?<br /><br /><a name="cutid1"></a>Well, I don't know, because math papers are generally written in a style that presents only the final results and their polished proofs, not their derivation. But I can at least say how I did it, before finding Maffray's paper.<br /><br />The usual way I would attack such a problem is to run through several standard structural decompositions that apply to arbitrary graphs, to see whether any of them can be simplified when they are applied to the subset of graphs in question. These include decompositions based on connectivity (biconnected components, bridgeless components, the <a href="https://en.wikipedia.org/wiki/SPQR_tree">SPQR tree</a>), decompositions that exist once enough connectivity has been forced (several types of <a href="https://en.wikipedia.org/wiki/Ear_decomposition">ear decomposition</a>), decompositions based on adjacency (<a href="https://en.wikipedia.org/wiki/Modular_decomposition">modular decomposition</a>, decompositions into sums of graphs), etc.<br /><br />In this case, because the simpler of the two original descriptions of these graphs involves cycles, the first thing to try is a decomposition into biconnected components. A simple cycle can only live inside a single biconnected component, so a graph is line perfect if and only if its biconnected components all are.<br /><br />Once we have reduced to biconnected graphs in this way, this frees up two more of the decompositions, which only apply to biconnected graphs: SPQR trees and open ear decompositions. I happened to try ear decompositions first, and I think it ended up being the right choice. Every biconnected graph has an open ear decomposition, which is a partition of its edges into a sequence of subgraphs called ears. The first subgraph must be a simple cycle, and subsequent subgraphs must be simple paths whose two endpoints belong to earlier ears. The interior vertices of each path must be new, not in any earlier ear. These decompositions can be constructed relatively easily by a greedy algorithm that starts from an arbitrary cycle and then adds ears one at a time.<br /><br />So what do these decompositions look like for line perfect graphs? Well, in a bipartite biconnected component they could be anything, there isn't any more information to be gained by additional decomposition, so let's ignore that case and assume that the graph we're decomposing is line perfect, biconnected, and non-bipartite. To be non-bipartite, it must contain an odd cycle, and to be line perfect, this cycle must be a triangle, so it seems like a good enough choice to start the ear decomposition. We can classify the subsequent ears into two types: paths of length two or more (that add new vertices to the graph) and paths of length one (that only add new edges) and it will simplify things to delay the length-one ears as long as possible, handling the longer ears earlier in the decomposition. But some simple case analysis shows that each longer ear must have length exactly two and they must all connect to the same two endpoints; anything else leads to a long odd cycle. If all ears are of this type, then we have exactly a book of triangles.<br /><br />But what about the short ears? They can only attach to two of the degree-two vertices in our book of triangles, because all the other edge placements are already occupied. If we have two or more long ears, giving us a book of three or more triangles, and then we add a short ear, we get a graph with a 5-cycle in it, so this can't happen. The only remaining possibility is that we add an edge to the <a href="https://en.wikipedia.org/wiki/Diamond_graph">diamond graph</a> (a book of two triangles), giving <i>K</i><sub>4</sub>. And this completes the decomposition and the characterization.<br /><br />This also points the way to some additional results. In particular, for an arbitrary class of graphs, having a constant upper bound on the length of the longest cycle is equivalent to having a constant upper bound on the maximum <a href="https://en.wikipedia.org/wiki/Tree-depth">tree-depth</a> of a biconnected component, and having a bound on the length of the longest odd cycle is equivalent to having a bound on the maximum tree-depth of a non-bipartite biconnected component. Some useful lemmas: bounded tree-depth is equivalent to a bound on the longest path; in a biconnected graph, any path can be extended to an outerpath (a planar graph for which the adjacencies of the bounded faces form a path); in every outerpath one of the faces has at least roughly square root its size; in a non-bipartite biconnected graph, every cycle can be extended to a non-bipartite theta-graph; every non-bipartite theta graph contains an odd cycle of at least roughly half its size.<a name="cutid1-end"></a></div>
+<div class="commentbar">
+<p></p>
+</div>
+</content>
+<updated>2013-11-09T22:08:04Z</updated>
+<published>2013-11-09T22:08:04Z</published>
+<category term="graph theory"></category>
+<source>
+<id>urn:lj:livejournal.com:atom1:11011110</id>
+<author>
+<name>0xDE</name>
+</author>
+<link href="http://11011110.livejournal.com/" rel="alternate" type="text/html" />
+<link href="http://11011110.livejournal.com/data/atom" rel="self" type="application/atom+xml" />
+<subtitle>0xDE</subtitle>
+<title>0xDE</title>
+<updated>2013-11-12T16:39:38Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-US">
+<id>http://www.scottaaronson.com/blog/?p=1579</id>
+<link href="http://www.scottaaronson.com/blog/?p=1579" rel="alternate" type="text/html" />
+<link href="http://www.scottaaronson.com/blog/?p=1579#comments" rel="replies" type="text/html" />
+<link href="http://www.scottaaronson.com/blog/?feed=atom&amp;p=1579" rel="replies" type="application/atom+xml" />
+<title xml:lang="en-US">Scattershot BosonSampling: A new approach to scalable BosonSampling experiments « Shtetl-Optimized</title>
+<summary xml:lang="en-US">Update (11/13): See here for video of a fantastic talk that Matthias Troyer gave at Stanford, entitled “Quantum annealing and the D-Wave devices.” The talk includes the results of experiments on the 512-qubit machine. (Thanks to commenter jim for the pointer. I attended the talk when Matthias gave it last week at Harvard, but I […]
+      <div class="commentbar">
+<p></p>
+<span class="commentbutton" href="http://www.scottaaronson.com/blog/?feed=atom&amp;p=1579"></span>
+<a href="http://www.scottaaronson.com/blog/?feed=atom&amp;p=1579">
+<img class="commenticon" src="/images/feed-icon.png" /> Subscribe to comments
+        </a>  | 
+        <a href="http://www.scottaaronson.com/blog/?p=1579#comments">
+<img class="commenticon" src="/images/post-icon.png" /> Post a comment
+        </a>
+</div>
+</summary>
+<content type="xhtml" xml:lang="en-US"><div xmlns="http://www.w3.org/1999/xhtml"><p><b><span style="color: red;">Update (11/13)</span></b>: <a href="http://nitsche.mobi/2013/troyer/">See here</a> for video of a fantastic talk that Matthias Troyer gave at Stanford, entitled “Quantum annealing and the D-Wave devices.”  The talk includes the results of experiments on the 512-qubit machine.  (Thanks to commenter jim for the pointer.  I attended the talk when Matthias gave it last week at Harvard, but I don’t think that one was videotaped.)</p>
+<hr />
+<p><b><span style="color: red;">Update (11/11)</span></b>: A commenter named RaulGPS has offered <a href="http://www.scottaaronson.com/blog/?p=1579#comment-92082">yet another great observation</a> that, while forehead-slappingly obvious in retrospect, somehow hadn’t occurred to us.  Namely, Raul points out that the argument given in this post, for the hardness of Scattershot BosonSampling, can also be applied to answer open question #4 from my and Alex’s paper: namely, how hard is BosonSampling with Gaussian inputs and number-resolving detectors?  Raul points out that the latter, in general, is certainly <em>at least</em> as hard as Scattershot BS.  For we can embed Scattershot BS into “ordinary” BS with Gaussian inputs, by first generating a bunch of entangled 2-mode Gaussian states (which are highly attenuated, so that with high probability <em>none</em> of them have 2 or more photons per mode), and then applying a Haar-random unitary U to the “right halves” of these Gaussian states while doing nothing to the left halves.  Then we can measure the left halves to find out which of the input states contained a photon <em>before</em> we applied U.  This is precisely equivalent to Scattershot BS, except for the unimportant detail that our measurement of the “herald” photons has been deferred till the end of the experiment instead of happening at the beginning.  And therefore, since (as I explain in the post) a fast classical algorithm for approximate Scattershot BosonSampling would let us estimate the permanents of i.i.d. Gaussian matrices in BPP<sup>NP</sup>, we deduce that a fast classical algorithm for approximate <em>Gaussian</em> BosonSampling would have the same consequence.  In short, approximate Gaussian BS can be argued to be hard under precisely the same complexity assumption as can approximate <em>ordinary</em> BS (and approximate Scattershot BS).  Thus, in the table in Section 1.4 of our <a href="http://theoryofcomputing.org/articles/v009a004/v009a004.pdf">paper</a>, the entries “Gaussian states / Adaptive, demolition” and “Gaussian states / Adaptive, nondemolition” should be “upgraded” from “Exact sampling hard” to “Apx. sampling hard?”</p>
+<p>One other announcement: following a <a href="http://www.scottaaronson.com/blog/?p=1579#comment-92332">suggestion by commenter Rahul</a>, I hereby invite guest posts on <em>Shtetl-Optimized</em> by experimentalists working on BosonSampling, offering your personal views about the prospects and difficulties of scaling up.  Send me email if you’re interested.  (Or if you don’t feel like writing a full post, of course you can also just leave a comment on this one.)</p>
+<hr />
+<p><em>[Those impatient for a cool, obvious-in-retrospect new idea about BosonSampling, which I learned from the quantum optics group at Oxford, should scroll to the end of this post.  Those who don't even know what BosonSampling is, let alone Scattershot BosonSampling, should start at the beginning.]</em></p>
+<p>BosonSampling is a proposal by me and Alex Arkhipov for a rudimentary kind of quantum computer: one that would be based entirely on generating single photons, sending them through a network of beamsplitters and phaseshifters, and then measuring where they ended up.  BosonSampling devices are not thought to be capable of universal quantum computing, or even universal <em>classical</em> computing for that matter.  And while they might be a stepping-stone toward universal optical quantum computers, they themselves have a grand total of zero known practical applications.  However, even if the task performed by BosonSamplers is <span style="color: #ff0000;"><strong>useless</strong></span>, the task is of some scientific interest, by virtue of apparently being <span style="color: #ff0000;"><strong>hard!</strong></span>  In particular, Alex and I showed that, if a BosonSampler can be simulated exactly in polynomial time by a classical computer, then P<sup>#P</sup>=BPP<sup>NP</sup>, and hence the polynomial hierarchy collapses to the third level.  Even if a BosonSampler can only be <em>approximately</em> simulated in classical polynomial time, the polynomial hierarchy would still collapse, if a reasonable-looking conjecture in classical complexity theory is true.  For these reasons, BosonSampling <em>might</em> provide an experimental path to testing the <a href="http://www-inst.eecs.berkeley.edu/~cs191/fa08/lectures/lecture17.pdf">Extended Church-Turing Thesis</a>—i.e., the thesis that all natural processes can be simulated with polynomial overhead by a classical computer—that’s more “direct” than building a universal quantum computer.  (As an asymptotic claim, <em>obviously</em> the ECT can never be decisively proved or refuted by a finite number of experiments.  However, if one could build a BosonSampler with, let’s say, 30 photons, then while it would still be feasible to verify the results with a classical computer, it would be fair to say that the BosonSampler was working “faster” than any known algorithm running on existing digital computers.)</p>
+<p>In arguing for the hardness of BosonSampling, the crucial fact Alex and I exploited is that the amplitudes for n-photon processes are given by the <a href="http://en.wikipedia.org/wiki/Permanent"><em>permanents</em></a> of nxn matrices of complex numbers, and Leslie Valiant proved in 1979 that the permanent is <a href="http://en.wikipedia.org/wiki/Sharp-P-complete">#P-complete</a> (i.e., as hard as any combinatorial counting problem, and probably even “harder” than NP-complete).  To clarify, this doesn’t mean that a BosonSampler lets you <em>calculate</em> the permanent of a given matrix—that would be too good to be true!  (See the tagline of this blog.)  What you could do with a BosonSampler is weirder: you could sample from a probability distribution over matrices, in which matrices with large permanents are more likely to show up than matrices with small permanents.  So, what Alex and I had to do was to argue that even that sampling task is <em>still</em> probably intractable classically—in the sense that, if it weren’t, then there would also be unlikely classical algorithms for more “conventional” problems.</p>
+<p>Anyway, that’s my attempt at a 2-paragraph summary of something we’ve been thinking about on and off for four years.  See <a href="http://theoryofcomputing.org/articles/v009a004/v009a004.pdf">here</a> for my and Alex’s original paper on BosonSampling, <a href="http://www.scottaaronson.com/papers/response.pdf">here</a> for a recent followup paper, <a href="http://www.scottaaronson.com/talks/bbn.ppt">here</a> for PowerPoint slides, <a href="http://web.mit.edu/newsoffice/2011/quantum-experiment-0302.html">here</a> and <a href="http://web.mit.edu/newsoffice/2013/research-update-quantum-singularity-0118.html">here</a> for MIT News articles by Larry Hardesty, and <a href="http://www.scottaaronson.com/blog/?p=1177">here</a> for my blog post about the first (very small, 3- or 4-photon) demonstrations of BosonSampling by quantum optics groups last year, with links to the four experimental papers that came out then.</p>
+<p>In general, we’ve been thrilled by the enthusiastic reaction to BosonSampling by quantum optics people—especially given that the idea started out as pure complexity theory, with the connection to optics coming as an “unexpected bonus.”  But not surprisingly, BosonSampling has also come in for its share of criticism: e.g., that it’s impractical, unscalable, trivial, useless, oversold, impossible to verify, and probably some other things.  A few people have even claimed that, in expressing support and cautious optimism about the recent BosonSampling experiments, I’m guilty of the same sort of quantum computing hype that I complain about in others.  (I’ll let you be the judge of that.  Reread the paragraphs above, or anything else I’ve ever written about this topic, and then compare to, let’s say, <a href="http://www.youtube.com/watch?v=K-7Ed6EyU4g">this video</a>.)</p>
+<p>By far the most<em></em> important criticism of BosonSampling—one that Alex and I have openly acknowledged and worried a lot about almost from the beginning—concerns the proposal’s <em>scalability</em>.  The basic problem is this: in BosonSampling, your goal is to measure a pattern of quantum interference among n identical, non-interacting photons, where n is as large as possible.  (The special case n=2 is called the <a href="http://en.wikipedia.org/wiki/Hong%E2%80%93Ou%E2%80%93Mandel_effect">Hong-Ou-Mandel dip</a>; conversely, BosonSampling can be seen as just “Hong-Ou-Mandel on steroids.”)  The bigger n gets, the harder the experiment ought to be to simulate using a classical computer (with the difficulty increasing at least like ~2<sup>n</sup>).  The trouble is that, to detect interference among n photons, the various quantum-mechanical paths that your photons could take, from the sources, through the beamsplitter network, and finally to the detectors, have to get them there at <em>exactly the same time</em>—or at any rate, close enough to “the same time” that the wavepackets overlap.  Yet, while that ought to be possible in theory, the photon sources that actually exist today, and that <em>will</em> exist for the foreseeable future, just don’t seem good enough to make it happen, for anything more than a few photons.</p>
+<p>The reason—well-known for decades as a bane to quantum information experiments—is that there’s no known process in nature that can serve as a <em>deterministic single-photon source</em>.  What you get from an attenuated laser is what’s called a <a href="http://en.wikipedia.org/wiki/Coherent_states">coherent state</a>: a particular kind of superposition of 0 photons, 1 photon, 2 photons, 3 photons, etc., rather than just 1 photon with certainty (the latter is called a <a href="http://en.wikipedia.org/wiki/Fock_state">Fock state</a>).  Alas, coherent states behave essentially like classical light, which makes them pretty much useless for BosonSampling, and for many other quantum information tasks besides.  For that reason, a large fraction of modern quantum optics research relies on a process called <a href="http://en.wikipedia.org/wiki/Spontaneous_parametric_down-conversion">Spontaneous Parametric Down-Conversion (SPDC)</a>.  In SPDC, a laser (called the “pump”) is used to stimulate a crystal to produce further photons.  The process is inefficient: most of the time, no photon comes out.  But crucially, any time a photon <em>does</em> come out, its arrival is “heralded” by a partner photon flying out in the opposite direction.  Once in a while, 2 photons come out simultaneously, in which case they’re heralded by 2 partner photons—and even more rarely, 3 photons come out, heralded by 3 partner photons, and so on.  Furthermore, there exists something called a <em>number-resolving detector</em>, which can tell you (today, sometimes, with as good as ~95% reliability) when one or more partner photons have arrived, and how many of them there are.  The result is that SPDC lets us build what’s called a <em>nondeterministic single-photon source</em>.  I.e., you can’t control exactly when a photon comes out—that’s random—but eventually one (and only one) photon <em>will</em> come out, and when that happens, you’ll <em>know</em> it happened, without even having to measure and destroy the precious photon.  The reason you’ll know is that the partner photon heralds its presence.</p>
+<p>Alas, while SPDC sources have enabled demonstrations of a large number of cool quantum effects, there’s a fundamental problem with using them for BosonSampling.  The problem comes from the requirement that n—the number of single photons fired off simultaneously into your beamsplitter network—should be <em>big</em> (say, 20 or 30).  Suppose that, in a given instant, the probability that your SPDC source succeeds in generating a photon is p.  Then what’s the probability that <em>two</em> SPDC sources will <em>both</em> succeed in generating a photon at that instant?  p<sup>2</sup>.  And the probability that three sources will succeed is p<sup>3</sup>, etc.  In general, with n sources, the probability that they’ll succeed simultaneously falls off exponentially with n, and the amount of time you’ll need to sit in the lab waiting for the lucky event <em>increases</em> exponentially with n.  Sure, when it finally <em>does</em> happen, it will be “heralded.”  But if you need to wait exponential time for it to happen, then there would seem to be no advantage over classical computation.  This is the reason why so far, BosonSampling has only been demonstrated with 3-4 photons.</p>
+<p>At least three solutions to the scaling problem suggest themselves, but each one has problems of its own.  The first solution is simply to use general methods for quantum fault-tolerance: it’s not hard to see that, if you had a fault-tolerant universal quantum computer, then you could simulate BosonSampling with as many photons as you wanted.  The trouble is that this requires a fault-tolerant universal quantum computer!  And if you had that, then you’d probably just skip BosonSampling and use Shor’s algorithm to factor some 10,000-digit numbers.  The second solution is to invent some specialized fault-tolerance method that would apply directly to quantum optics.  Unfortunately, we don’t know how to do that.  The third solution—until recently, the one that interested me and Alex the most—would be to argue that, even if your sources are so cruddy that you have no idea which ones generated a photon and which didn’t in any particular run, the BosonSampling distribution is <em>still</em> intractable to simulate classically.  After all, the great advantage of BosonSampling is that, unlike with (say) factoring or quantum simulation, we don’t actually care which problem we’re solving!  All we care about is that we’re doing <em>something</em> that we can argue is hard for classical computers.  And we have enormous leeway to change what that “something” is, to match the capabilities of current technology.  Alas, yet again, we <em>don’t</em> know how to argue that BosonSampling is hard to simulate approximately in the presence of realistic amounts of noise—at best, we can argue that it’s hard to simulate approximately in the presence of <em>tiny</em> amounts of noise, and hard to simulate <em>super</em>-accurately in the presence of realistic noise.</p>
+<p>When faced with these problems, until recently, all we could do was</p>
+<ol>
+<li>shrug our shoulders,</li>
+<li>point out that none of the difficulties added up to a principled argument that scalable BosonSampling was <em>not</em> possible,</li>
+<li>stress, again, that all we were asking for was to scale to 20 or 30 photons, not 100 or 1000 photons, and</li>
+<li>express hope that technologies for single-photon generation currently on the drawing board—most notably, something called “optical multiplexing”—could be used to get up to the 20 or 30 photons we wanted.</li>
+</ol>
+<p>Well, I’m pleased to announce, with this post, that there’s now a better idea for how to scale BosonSampling to interesting numbers of photons.  The idea, which I’ve taken to calling <strong>Scattershot BosonSampling</strong>, is not mine or Alex’s.  I learned of it from Ian Walmsley’s group at Oxford, where it’s been championed in particular by <a href="http://www2.physics.ox.ac.uk/contacts/people/kolthammer">Steve Kolthammer</a>.  <em>(<span style="color: #ff0000;"><strong>Update:</strong></span> A commenter has pointed me to a <a href="http://arxiv.org/pdf/1305.4346v1.pdf">preprint</a> by Lund, Rahimi-Keshari, and Ralph from May of this year, which I hadn’t seen before, and which contains substantially the same idea, albeit with an unsatisfactory argument for computational hardness.  In any case, as you’ll see, it’s not surprising that this idea would’ve occurred to multiple groups of experimentalists independently; what’s surprising is that we didn’t think of it!</em>)  The minute I heard about Scattershot BS, I kicked myself for failing to think of it, and for getting sidetracked by much more complicated ideas.  Steve and others are working on a paper about Scattershot BS, but in the meantime, Steve has generously given me permission to share the idea on this blog.  I suggested a blog post for two reasons: first, as you’ll see, this idea really is “blog-sized.”  Once you make the observation, there’s barely any theoretical analysis that needs to be done!  And second, I was impatient to get out to the “experimental BosonSampling community”—not to mention to the critics!—that there’s now a better way to BosonSample, and one that’s incredibly simple to boot.</p>
+<p>OK, so what <em>is</em> the idea?  Well, recall from above what an SPDC source does: it produces a photon with only a small probability, but whenever it does, it “heralds” the event with a second photon.  So, let’s imagine that you have an array of 200 SPDC sources.  And imagine that, these sources being unpredictable, only (say) 10 of them, on average, produce a photon at any given time.  Then what can you do?  Simple: just <em>define</em> those 10 sources to be the inputs to your experiment!  Or to say it more carefully: instead of sampling only from a probability distribution over <em>output</em> configurations of your n photons, now you’ll sample from a joint distribution over inputs <em>and</em> outputs: one where the input is uniformly random, and the output depends on the input (and also, of course, on the beamsplitter network).  So, this idea could also be called “Double BosonSampling”: now, not only do you not control which output will be observed (but only the probability distribution over outputs), you don’t control which input either—yet this lack of control is not a problem!  There are two key reasons why it isn’t:</p>
+<ol>
+<li>As I said before, SPDC sources have the crucial property that they <em>herald</em> a photon when they produce one.  So, even though you can’t control which 10 or so of your 200 SPDC sources will produce a photon in any given run, you <em>know</em> which 10 they were.</li>
+<li>In my and Alex’s original paper, the “hardest” case of BosonSampling that we were able to find—the case we used for our hardness reductions—is simply the one where the mxn “scattering matrix,” which describes the map between the n input modes and the m&gt;&gt;n output modes, is a Haar-random matrix whose columns are orthonormal vectors.  But now suppose we have m input modes <em>and</em> m output modes, and the mxm unitary matrix U mapping inputs to outputs is Haar-random.  Then any mxn submatrix of U will simply be an instance of the “original” hard case that Alex and I studied!</li>
+</ol>
+<p>More formally, what can we  say about the computational complexity of Scattershot BS?  Admittedly, I don’t know of a reduction from ordinary BS to Scattershot BS (though it’s easy to give a reduction in the other direction).  However, under exactly the same assumption that Alex and I used to argue that ordinary BosonSampling was hard—our so-called Permanent of Gaussians Conjecture (PGC)—one can show that Scattershot BS is hard also, and by essentially the same proof.  The only difference is that, instead of talking about the permanents of nxn submatrices of an mxn Haar-random, column-orthonormal matrix, now we talk about the permanents of nxn submatrices of an mxm Haar-random unitary matrix.  Or to put it differently: where before we fixed the columns that defined our nxn submatrix and only varied the rows, now we vary both the rows <em>and</em> the columns.  But the resulting nxn submatrix is still close in variation distance to a matrix of i.i.d. Gaussians, for exactly the same reasons it was before.  And we can still check whether submatrices with large permanents are more likely to be sampled than submatrices with small permanents, in the way predicted by quantum mechanics.</p>
+<p>Now, everything above assumed that each SPDC source produces either 0 or 1 photon.  But what happens when the SPDC sources produce 2 or more photons, as they sometimes do?  It turns out that there are two good ways to deal with these “higher-order terms” in the context of Scattershot BS.  The first way is by using number-resolving detectors to count how many herald photons each SPDC source produces.  That way, at least you’ll <em>know</em> exactly which sources produced extra photons, and how many extra photons each one produced.  And, as is often the case in BosonSampling, a devil you know is a devil you can deal with.  In particular, a few known sources producing extra photons, just means that the amplitudes of the output configurations will now be permanents of matrices with a few repeated rows in them.  But the permanent of an otherwise-random matrix with a few repeated rows should <em>still</em> be hard to compute!  Granted, we don’t know how to derive that as a consequence of our original hardness assumption, but this seems like a case where one is perfectly justified to stick one’s neck out and make a new assumption.</p>
+<p>But there’s also a more elegant way to deal with higher-order terms.  Namely, suppose m&gt;&gt;n<sup>2</sup> (i.e., the number of input modes is at least quadratically greater than the average number of photons).  That’s an assumption that Alex and I typically made <em>anyway</em> in our original BosonSampling paper, because of our desire to avoid what we called the “Bosonic Birthday Paradox” (i.e., the situation where two or more photons congregate in the same output mode).  What’s wonderful is that exactly the <em>same</em> assumption also implies that, in Scattershot BS, two or more photons will almost never be found in the same <em>input</em> mode!  That is, when you do the calculation, you find that, once you’ve attenuated your SPDC sources enough to avoid the Bosonic Birthday Paradox at the output modes, you’ve <em>also</em> attenuated them enough to avoid higher-order terms at the input modes.  Cool, huh?</p>
+<p>Are there any <em>drawbacks</em> to Scattershot BS?  Well, Scattershot BS certainly requires more SPDC sources than ordinary BosonSampling does, for the same average number of photons.  A little less obviously, Scattershot BS also requires a larger-depth beamsplitter network.  In our original paper, Alex and I showed that for ordinary BosonSampling, it suffices to use a beamsplitter network of depth O(n log m), where n is the number of photons and m is the number of output modes (or equivalently detectors).  However, our construction took advantage of the fact that we <em>knew</em> exactly which n&lt;&lt;m sources the photons were going to come from, and could therefore optimize for those.  For Scattershot BS, the depth bound increases to O(m log m): since the n photons could come from any possible subset of the m input modes, we no longer get the savings based on knowing where they originate.  But this seems like a relatively minor issue.</p>
+<p>I don’t want to give the impression that Scattershot BS is a silver bullet that will immediately let us BosonSample with 30 photons.  The most obvious limiting factor that remains is the efficiency of the photon <em>detectors</em>—both those used to detect the photons that have passed through the beamsplitter network, and those used to detect the herald photons.  Because of detector inefficiencies, I’m told that, without further technological improvements (or theoretical ideas), it will still be quite hard to push Scattershot BS beyond about 10 photons.  Still, as you might have noticed, 10 is greater than 4 (the current record)!  And certainly, Scattershot BS itself—a simple, obvious-in-retrospect idea that was under our noses for years, and that immediately pushes forward the number of photons a BosonSampler can handle—should make us exceedingly reluctant to declare there can’t be any <em>more</em> such ideas, and that our current ignorance amounts to a proof of impossibility.</p></div>
+</content>
+<updated>2013-11-08T18:19:50Z</updated>
+<published>2013-11-08T18:19:50Z</published>
+<category scheme="http://www.scottaaronson.com/blog" term="Complexity"></category>
+<category scheme="http://www.scottaaronson.com/blog" term="Quantum"></category>
+<author>
+<name>Scott</name>
+<uri>http://www.scottaaronson.com</uri>
+</author>
+<source>
+<id>http://www.scottaaronson.com/blog/?feed=atom</id>
+<link href="http://www.scottaaronson.com/blog" rel="alternate" type="text/html" />
+<link href="http://www.scottaaronson.com/blog/?feed=atom" rel="self" type="application/atom+xml" />
+<subtitle xml:lang="en-US">The Blog of Scott Aaronson</subtitle>
+<title xml:lang="en-US">Shtetl-Optimized</title>
+<updated>2013-11-14T14:26:06Z</updated>
+</source>
+</entry>
+<entry>
+<id>urn:lj:livejournal.com:atom1:11011110:278243</id>
+<link href="http://11011110.livejournal.com/278243.html" rel="alternate" type="text/html" />
+<link href="http://11011110.livejournal.com/data/atom/?itemid=278243" rel="self" type="text/xml" />
+<title>DMTCS web site problems? « 0xDE</title>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Whenever I try to access <a href="http://dmtcs.org/">dmtcs.org</a> lately (the web site of open-access journal <i>Discrete Mathematics &amp; Theoretical Computer Science</i>) I get (not from the front page but from the one it redirects you to) a scripting error, "Parse error: syntax error, unexpected $end in /global/web-serveurs/dmtcs/htdocs/ojs-2.2.4/cache/fc-journalSettings-1.php on line 166". It doesn't seem to depend on which browser I use. And because the web site is broken, I don't know who to contact to let them know their site has a problem. Does anyone know what's going on there?<br /><br />I haven't published in that journal myself, but I have referred to papers from there, so I want to be sure they continue to exist. The scientific literature is supposed to be permanent. This looks like just a temporary glitch but it's worrisome that it's been this way for at least several days. (It's also worrisome that, going by the numbers of papers listed in MathSciNet, they seem to be slowing down in their publication rate.)<br /><br />Update Nov 12: After the end of the French holiday weekend, the problem has been fixed and the site is back up again.</div>
+<div class="commentbar">
+<p></p>
+</div>
+</content>
+<updated>2013-11-08T17:26:38Z</updated>
+<published>2013-11-08T17:26:38Z</published>
+<category term="open access"></category>
+<source>
+<id>urn:lj:livejournal.com:atom1:11011110</id>
+<author>
+<name>0xDE</name>
+</author>
+<link href="http://11011110.livejournal.com/" rel="alternate" type="text/html" />
+<link href="http://11011110.livejournal.com/data/atom" rel="self" type="application/atom+xml" />
+<subtitle>0xDE</subtitle>
+<title>0xDE</title>
+<updated>2013-11-12T16:39:38Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://eccc.hpi-web.de/report/2013/154</id>
+<link href="http://eccc.hpi-web.de/report/2013/154" rel="alternate" type="text/html" />
+<title>TR13-154 |  Simulating Quantum Circuits with Sparse Output Distributions | 
+
+	Martin Schwarz, 
+
+	Maarten Van den Nest « ECCC - Reports</title>
+<summary>We show that several quantum circuit families can be simulated efficiently classically if it is promised that their output distribution is approximately sparse i.e. the distribution is close to one where only a polynomially small, a priori unknown subset of the measurement probabilities are nonzero. Classical simulations are thereby obtained for quantum circuits which---without the additional sparsity promise---are considered hard to simulate. Our results apply in particular to a family of Fourier sampling circuits (which have structural similarities to Shor's factoring algorithm) but also to several other circuit families, such as IQP circuits. Our results provide examples of quantum circuits that cannot achieve exponential speed-ups due to the presence of too much destructive interference i.e. too many cancelations of amplitudes. The crux of our classical simulation is an efficient algorithm for approximating the significant Fourier coefficients of a class of states called computationally tractable states. The latter result may have applications beyond the scope of this work. In the proof we employ and extend sparse approximation techniques, in particular the Kushilevitz-Mansour algorithm, in combination with probabilistic simulation methods for quantum circuits.
+      <div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-08T11:26:40Z</updated>
+<published>2013-11-08T11:26:40Z</published>
+<source>
+<id>http://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="http://example.com/" rel="alternate" type="text/html" />
+<link href="http://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at http://eccc.hpi-web.de</subtitle>
+<title>ECCC - Reports</title>
+<updated>2013-11-15T15:03:20Z</updated>
+</source>
+</entry>
+<entry>
+<id>http://cstheory.stackexchange.com/q/19714</id>
+<link href="http://cstheory.stackexchange.com/questions/19714/teaching-high-school-tcs-existing-programs" rel="alternate" type="text/html" />
+<title>Teaching high school TCS - existing programs « Recent Questions - Theoretical Computer Science Stack Exchange</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>I was offered to teach a novel TCS high school program, which requires constructing a curriculum. I would very much like to hear opinions and suggestions regarding this.</p>
+<p>First, does anyone know of high schools where a TCS program has been taught successfully (or unsuccessfully)?</p>
+<p>The idea is for a 3-year program (10th-12th grades, ages 16-18), about 8 weekly hours, for selected outstanding students, meaning that it can and should be demanding. Unlike the standard "computers" program, this program should not focus on programming, but rather on selected topics in CS, mostly in TCS. The topics we have in mind so far are, broadly:</p>
+<ul>
+<li>Asymptotic analysis</li>
+<li>Basic data structures and algorithms (lists, arrays)</li>
+<li>Graph algorithms, also as a demonstration of greedy algorithms v.s. dynamic programming.</li>
+<li>Other algorithms (e.g. probabilistic)</li>
+<li>Computability - the concept of a TM, reduction, decidability.</li>
+<li>Complexity - NP, P, perhaps PSPACE and NL. Completeness.</li>
+<li>Automata theory</li>
+</ul>
+<p>Basically, this covers the TCS part of the first two years of a B.Sc in CS. However, we must keep in mind that these students lack the mathematical foundation needed for most of this material. In particular, things like set theory, combinatorics, probability, and modular artihmetic are not taught in high school (unfortunately).</p>
+<p>To sum up, and to give precise questions:</p>
+<ol>
+<li>Does anyone know of a similar program anywhere?</li>
+<li>Are there suggestions for concrete/general topics which you think can and should be taught in addition/instead of the topics above, while keeping the program interesting as well as important and directly relevant (e.g. group theory is important and interesting, but not relevant enough to justify the time it will take)</li>
+<li>I would have been happy to introduce machine-learning in some form, as it is a really hot topic nowadays. Any ideas as to how machine learning can be presented without tools like measure-concentration theorems are welcome.</li>
+</ol></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-08T09:52:06Z</updated>
+<published>2013-11-08T09:52:06Z</published>
+<category scheme="http://cstheory.stackexchange.com/feeds/tags" term="teaching"></category>
+<author>
+<name>Shaull</name>
+<uri>http://cstheory.stackexchange.com/users/7531</uri>
+</author>
+<source>
+<id>http://cstheory.stackexchange.com/feeds</id>
+<link href="http://cstheory.stackexchange.com/feeds" rel="self" type="application/atom+xml" />
+<link href="http://cstheory.stackexchange.com/questions" rel="alternate" type="text/html" />
+<link href="http://www.creativecommons.org/licenses/by-sa/3.0/rdf" rel="license" />
+<subtitle>most recent 30 from cstheory.stackexchange.com</subtitle>
+<title>Recent Questions - Theoretical Computer Science Stack Exchange</title>
+<updated>2013-11-14T01:43:45Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://eccc.hpi-web.de/report/2013/153</id>
+<link href="http://eccc.hpi-web.de/report/2013/153" rel="alternate" type="text/html" />
+<title>TR13-153 |  The Limits of Depth Reduction for Arithmetic Formulas: It&amp;#39;s all about the top fan-in | 
+
+	Mrinal Kumar, 
+
+	Shubhangi Saraf « ECCC - Reports</title>
+<summary>In recent years, a very exciting and promising method for proving lower bounds for arithmetic circuits has been proposed. This method combines the method of {\it depth reduction} developed in the works of Agrawal-Vinay [AV08], Koiran [Koi12] and Tavenas [Tav13],  and the use of the shifted partial derivative complexity measure developed in the works of Kayal [Kay12] and Gupta et al [GKKS13a]. 
+These results inspired a flurry of other beautiful results and strong lower bounds for various classes of arithmetic circuits, in particular a recent work of Kayal et al [KSS13] showing superpolynomial lower bounds for {\it regular} arithmetic formulas via an {\it improved depth reduction} for these formulas. It was left as an intriguing question if these methods could prove superpolynomial lower bounds for general (homogeneous) arithmetic formulas, and if so this would indeed be a breakthrough in arithmetic circuit complexity. 
+
+In this paper we study the power and limitations of depth reduction and shifted partial derivatives  for arithmetic formulas. We do it via studying the class of depth 4 homogeneous arithmetic circuits. We show: (1) the first {\it superpolynomial lower bounds} for the class of homogeneous depth 4 circuits with top fan-in $o(\log n)$. The core of our result is to show  {\it improved depth reduction} for these circuits. This class of circuits has received much attention for the problem of polynomial identity testing. We give the first nontrivial lower bounds for these circuits for any top fan-in $\geq 2$.  (2) We show that improved depth reduction {\it is not possible} when the top fan-in is $\Omega(\log n)$. In particular this shows that the depth reduction procedure of Koiran and Tavenas [Koi12, Tav13] cannot be improved even for homogeneous formulas, thus strengthening the results of Fournier et al [FLMS13] who showed that depth reduction is tight for circuits, and answering some of the main open questions of [KSS13, FLMS13].   Our results in particular suggest that the method of depth reduction and shifted partial derivatives may not be powerful enough to prove superpolynomial lower bounds for (even homogeneous) arithmetic formulas.
+      <div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-08T03:05:21Z</updated>
+<published>2013-11-08T03:05:21Z</published>
+<source>
+<id>http://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="http://example.com/" rel="alternate" type="text/html" />
+<link href="http://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at http://eccc.hpi-web.de</subtitle>
+<title>ECCC - Reports</title>
+<updated>2013-11-15T15:03:20Z</updated>
+</source>
+</entry>
+<entry xml:lang="en">
+<id>http://rjlipton.wordpress.com/?p=10991</id>
+<link href="http://rjlipton.wordpress.com/2013/11/07/in-praise-of-chalk-talks/" rel="alternate" type="text/html" />
+<title>In Praise Of Chalk Talks « Gödel's Lost Letter and P=NP</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Chalking up a terrific talk on bit compression Winsor McCay was a cartoonist and animator in the early part of the twentieth century, and authored the comic strip Little Nemo. He may not have invented the chalk talk—that could have been Frank Beard—but McCay made them popular with his vaudeville act, in which he drew […]<img alt="" border="0" height="1" src="http://stats.wordpress.com/b.gif?host=rjlipton.wordpress.com&amp;blog=6472207&amp;post=10991&amp;subd=rjlipton&amp;ref=&amp;feed=1" width="1" /></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><font color="”#0066cc?"><br />
+<em> Chalking up a terrific talk on bit compression </em><br />
+<font color="”#000000?"></font></font></p><font color="”#0066cc?"><font color="”#000000?">
+</font></font><p><a href="http://rjlipton.files.wordpress.com/2013/11/images-1.jpeg"><img alt="images-1" class="alignright  wp-image-10993" src="http://rjlipton.files.wordpress.com/2013/11/images-1.jpeg?w=130" width="130" /></a></p>
+<p>
+Winsor McCay was a cartoonist and animator in the early part of the twentieth century, and authored the comic strip <a href="http://en.wikipedia.org/wiki/Little_Nemo">Little Nemo</a>. He may not have invented the chalk talk—that could have been Frank Beard—but McCay made them popular with his vaudeville act, in which he drew faces and then progressively aged them. While <a href="http://en.wikipedia.org/wiki/Chalk_talk">these</a> were over a hundred years ago, it appears from the <a href="http://en.wikipedia.org/wiki/Blackboard">history</a> that blackboards were used in schools in India a thousand years ago.</p>
+<p>
+Today I want to talk about content and delivery, about a great chalk talk and a great result.</p>
+<p>
+The talk was just given at our ARC <a href="http://www.arc.gatech.edu/events/arc6scs-distinguished-lecture-shafi-goldwasser">day</a> by Lance Fortnow, and the <a href="http://homepages.inf.ed.ac.uk/rsanthan/Papers/NPCompress_proc.pdf">result</a> is his with Rahul Santhanam. The paper is titled <i>Infeasibility of Instance Compression and Succinct PCPs for NP</i>.</p>
+<p>
+What I liked so much is that Lance used a “chalkboard”—well he used our modern version of a chalkboard, a whiteboard. Most talks these days use PowerPoint or some LaTeX-based equivalent. Such talks can be informative and easy to follow, yet sometimes PowerPoint is not well suited to giving a proof. The slides do not hold enough <em>state</em> for us to easily follow the argument. There are tricks some try to use: dual projectors, a small image of the last slide on the current slide, and others. But “chalk” can always work well, especially in the hands of a master presenter like Lance.</p>
+<p>
+I recall, eons ago when I was on the faculty at Berkeley, that on arriving there the math department asked me to give a special talk. It was an honor, and I was told the auditorium would be filled, so I was excited about giving it. In those days, before PowerPoint, we used slides on plastic and an overhead projector. These allowed the use of colors and overlays, plus other tricks that I often used. But the faculty member in charge of the invitation told me that there was a condition:  </p>
+<blockquote><p>
+The talk must be a chalk talk.
+</p></blockquote>
+<p>I pushed back, but in the end I agreed to give a chalk talk. I did. When it was over he walked up to me, said “what a great talk” and then added “see, chalk is better.”</p>
+<p>
+</p><h2> The Result </h2>
+<p></p><p>
+Lance’s result is about a kind of compression problem. I will just give an informal overview of the result and the proof. See his <a href="http://homepages.inf.ed.ac.uk/rsanthan/Papers/NPCompress_proc.pdf">paper</a> for details. </p>
+<p>
+Imagine that Bob, our old friend, is confronted with the task of solving certain hard problems. He will be given a list
+</p><p align="center"><img alt="\displaystyle  P_{1},\dots,P_{M}" class="latex" src="http://s0.wp.com/latex.php?latex=%5Cdisplaystyle++P_%7B1%7D%2C%5Cdots%2CP_%7BM%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="\displaystyle  P_{1},\dots,P_{M}" /></p>
+<p> and he must select <b>one</b> of the problems <img alt="{P_{i}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BP_%7Bi%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{P_{i}}" /> and solve it. Each problem is encoded in <img alt="{n}" class="latex" src="http://s0.wp.com/latex.php?latex=%7Bn%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{n}" /> bits, but there are <img alt="{M}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BM%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{M}" /> of them. Note <img alt="{M}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BM%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{M}" /> can be much larger than <img alt="{n}" class="latex" src="http://s0.wp.com/latex.php?latex=%7Bn%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{n}" />. This is what makes the task interesting.</p>
+<p>
+Bob is in trouble. The problems <img alt="{P_{j}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BP_%7Bj%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{P_{j}}" />‘s are very hard—think <img alt="{\mathsf{NP}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7B%5Cmathsf%7BNP%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{\mathsf{NP}}" />-complete—and even with the choice of only solving one of them, he is in a “spot of bother.” What can he do? </p>
+<p>
+Well there is an alien, who we will call Al, that is very bright. Al can solve any problem, I repeat any problem—decidable or not. Al is after all an Alien and he is very advanced. So the obvious idea is for Bob to send the full list of <img alt="{M}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BM%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{M}" /> problems to Al and get the answer. So what is the difficulty? Why is there a talk, chalk or not?</p>
+<p>
+There is a constraint. It is hard to communicate with Al, since he can only be reached by a special satellite phone that Bob has. So Bob can only ask Al a question that uses <img alt="{n^{2}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7Bn%5E%7B2%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{n^{2}}" /> bits. The question can be anything, but it cannot be <img alt="{Mn}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BMn%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{Mn}" /> bits in size. This is the problem.  Can Bob compress the problem he is given from <img alt="{Mn}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BMn%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{Mn}" /> bits to <img alt="{n^{2}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7Bn%5E%7B2%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{n^{2}}" /> bits?  This is the question. We insist, since Bob is not an alien, that the compression algorithm he uses must be computable in polynomial time. The theorem is: </p>
+<blockquote><p><b>Theorem: </b> <em> Bob cannot solve the problem unless
+</em></p><p align="center"><em><img alt="\displaystyle \mathsf{NP} \subseteq \mathsf{co}\text{-}\mathsf{NP}/\text{poly}. " class="latex" src="http://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%5Cmathsf%7BNP%7D+%5Csubseteq+%5Cmathsf%7Bco%7D%5Ctext%7B-%7D%5Cmathsf%7BNP%7D%2F%5Ctext%7Bpoly%7D.+&amp;bg=e8e8e8&amp;fg=000000&amp;s=0" title="\displaystyle \mathsf{NP} \subseteq \mathsf{co}\text{-}\mathsf{NP}/\text{poly}. " /></em></p><em>
+</em><p><em> </em></p></blockquote>
+<p> Put another way, Bob can succeed in his compression task provided some surprising result from complexity theory is true. Actually the “unless statement” can be showed to collapse the polynomial-time hierarchy so Bob is in real trouble. This last <a href="ftp://cs.nyu.edu/pub/local/yap/misc/Nonuniform83.pdf">result</a> is due to Chee Yap, who was one of my early Ph.D. students. A small world.</p>
+<p>
+</p><h2> The Proof </h2>
+<p></p><p>
+The proof of the theorem is pretty. The idea is to show via a counting argument that we only need Al for a polynomial number of bits. These bits form the advice bits used in the theorem, and so the theorem will follow. Why so few bits? The key is a simple counting argument</p>
+<p>
+Recall that each problem <img alt="{P_{j}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BP_%7Bj%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{P_{j}}" /> is hard. So imagine there is a compression method. Then Bob can solve a particular <img alt="{P_{j}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BP_%7Bj%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{P_{j}}" /> by asking Al the compressed version of <b>some</b>
+</p><p align="center"><img alt="\displaystyle  P_{1},\dots,P_{M} " class="latex" src="http://s0.wp.com/latex.php?latex=%5Cdisplaystyle++P_%7B1%7D%2C%5Cdots%2CP_%7BM%7D+&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="\displaystyle  P_{1},\dots,P_{M} " /></p>
+<p> list of problems. His <img alt="{P_{j}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BP_%7Bj%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{P_{j}}" /> is in the list—note the key is the list is “padded” with <img alt="{M-1}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BM-1%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{M-1}" /> other problems. If Al says “they all are false,” then of course Bob will know the answer to his problem. So given <img alt="{P_{j}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BP_%7Bj%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{P_{j}}" /> Bob must find a list that works. The key is that Bob does no care what other problems are in the list, but he does need that when <img alt="{P_{j}}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BP_%7Bj%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{P_{j}}" /> is false they all are.</p>
+<p>
+The counting argument shows that there must be an question that Bob can ask Al that will handle about half of all the lists. This follows by a simple counting argument. Then one amplifies it to handle all problems by the usual method of picking more such questions. The details are in the paper, and the theorem follows.</p>
+<p>
+</p><h2> Open Problems </h2>
+<p></p><p>
+Do you like PowerPoint type talks or chalk talks?</p>
+<p><br /> <a href="http://feeds.wordpress.com/1.0/gocomments/rjlipton.wordpress.com/10991/" rel="nofollow"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/rjlipton.wordpress.com/10991/" /></a> <img alt="" border="0" height="1" src="http://stats.wordpress.com/b.gif?host=rjlipton.wordpress.com&amp;blog=6472207&amp;post=10991&amp;subd=rjlipton&amp;ref=&amp;feed=1" width="1" /></p></div>
+</content>
+<updated>2013-11-07T15:08:10Z</updated>
+<published>2013-11-07T15:08:10Z</published>
+<category term="P=NP"></category>
+<category term="Proofs"></category>
+<category term="chalk talk"></category>
+<category term="compression"></category>
+<category term="polynomial hierarchy"></category>
+<author>
+<name>rjlipton</name>
+</author>
+<source>
+<id>http://rjlipton.wordpress.com</id>
+<logo>http://s2.wp.com/i/buttonw-com.png</logo>
+<link href="http://rjlipton.wordpress.com/feed/" rel="self" type="application/atom+xml" />
+<link href="http://rjlipton.wordpress.com" rel="alternate" type="text/html" />
+<link href="http://rjlipton.wordpress.com/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="http://rjlipton.wordpress.com/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>a personal view of the theory of computation</subtitle>
+<title>Gödel's Lost Letter and P=NP</title>
+<updated>2013-11-15T15:02:59Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-3722233.post-602285992105903763</id>
+<link href="http://blog.computationalcomplexity.org/2013/11/a-theorist-goes-to-sosp.html" rel="alternate" type="text/html" />
+<title>A Theorist Goes to SOSP « Computational Complexity</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Monday I attended the <a href="http://sigops.org/sosp/sosp13/">24th Symposium on Operating Systems Principles</a>, the lead conference for computer systems research. Why would a nice theorist go to SOSP? Trying to recruit a few good systems faculty for Georgia Tech.<br />
+<br />
+I really enjoyed the day in ways I didn't expect. I found several of the talks interesting, even from a theory perspective. Austin Clements, in the first and one of the best paper <a href="http://dx.doi.org/10.1145/2517349.2522712">talks</a>, said he had a theorem and proof (roughly if operations scale there is an implementation that scales well on multicores), though purposely left the formalization and proof out of the talk and focused on implementations. Kay Ousterhout <a href="http://dl.acm.org/citation.cfm?doid=2517349.2522716">built</a> on some theoretical tools for job scheduling. In a talk after I left, a group from Texas <a href="http://dl.acm.org/citation.cfm?doid=2517349.2522733">takes a step</a> towards practical proof-based verifiable computing. I never expected to be cited in a SOSP paper.<br />
+<br />
+When I go to a theory conference I see so many people I know that I don't spend enough time meeting new people. At SOSP, I knew a handful of people and just had a great time talking to people I haven't met before, particularly students.<br />
+<br />
+Only thirty papers get presented in single track in this conference held every two years. STOC/FOCS accepts over 300 papers in the same time period. Having an SOSP paper is a really big deal. Despite having only thirty talks and traditionally held in hard-to-reach places (this year an hour and a half drive from Pittsburgh), there were 628 attendees split 42% students, 42% non-student academics, 15% industry and one member of the press.<br />
+<br />
+The 2013 SOSP is the first ACM conference will fully open <a href="http://dl.acm.org/citation.cfm?id=2517349">proceedings</a> and the authors retained full rights to their paper, the gold standard espoused by many in our community. It didn't come cheap, the conference put up $1100/paper to the ACM to pay for the privilege.</div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-07T14:57:00Z</updated>
+<published>2013-11-07T14:57:00Z</published>
+<author>
+<name>Lance Fortnow</name>
+<email>noreply@blogger.com</email>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-3722233</id>
+<category term="typecast"></category>
+<category term="focs metacomments"></category>
+<author>
+<name>Lance Fortnow</name>
+<email>noreply@blogger.com</email>
+</author>
+<link href="http://blog.computationalcomplexity.org/" rel="alternate" type="text/html" />
+<link href="http://weblog.fortnow.com/rss.xml" rel="self" type="application/atom+xml" />
+<subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle>
+<title>Computational Complexity</title>
+<updated>2013-11-15T15:01:40Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://eccc.hpi-web.de/report/2013/152</id>
+<link href="http://eccc.hpi-web.de/report/2013/152" rel="alternate" type="text/html" />
+<title>TR13-152 |  On Derandomizing Algorithms that Err Extremely Rarely | 
+
+	Oded Goldreich, 
+
+	Avi Wigderson « ECCC - Reports</title>
+<summary>{\em Does derandomization of probabilistic algorithms become easier when the number of ``bad'' random inputs is extremely small?}
+
+In relation to the above question, we put forward the following {\em quantified derandomization challenge}:
+For a class of circuits $\cal C$ (e.g., P/poly or $AC^0,AC^0[2]$) and a bounding function $B:\N\to\N$ (e.g., $B(n)=n^{\log n}$ or $B(n)=\exp(n^{0.99}))$),
+given an $n$-input circuit $C$ from $\cal C$
+that evaluates to~1 on all but at most $B(n)$ of its inputs, find (in deterministic polynomial-time) an input $x$ such that $C(x)=1$.
+Indeed, the {\em standard}\/ derandomization challenge for the class $\cal C$ corresponds to the case of $B(n)=2^n /2$ (or to $B(n)=2^n /3$ for the two-sided version case).
+Our main results regarding the new {\em quantified}\/ challenge are:
+
+\begin{enumerate}
+\item
+Solving the {\em quantified}\/ derandomization challenge for the class $AC^0$ and every sub-exponential bounding function (e.g., $B(n)=\exp(n^{0.999})$).
+\item
+Showing that solving the {\em quantified}\/ derandomization challenge for the class $AC^0[2]$ and any sub-exponential bounding function (e.g., $B(n)=\exp(n^{0.001})$), implies solving the {\em standard}\/ derandomization challenge for the class $AC^0[2]$ (i.e., for $B(n)=2^n/2$).
+\end{enumerate}
+Analogous results are obtained also for stronger (Black-box) forms of efficient derandomization like hitting-set generators.
+
+We also obtain results for other classes of computational devices including log-space algorithms and Arithmetic circuits. For the latter we present a deterministic polynomial-time hitting set generator for the class of $n$-variate polynomials of degree $d$ over $GF(2)$ that evaluate to~0 on at most
+an $O(2^{-d})$ fraction of their inputs.
+
+In general, the quantified derandomization problem raises a variety of seemingly unexplored questions about many randomized
+complexity classes, and may offer a tractable approach to unconditional derandomization for some of them.
+      <div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-07T08:19:23Z</updated>
+<published>2013-11-07T08:19:23Z</published>
+<source>
+<id>http://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="http://example.com/" rel="alternate" type="text/html" />
+<link href="http://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at http://eccc.hpi-web.de</subtitle>
+<title>ECCC - Reports</title>
+<updated>2013-11-15T15:03:20Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://eccc.hpi-web.de/report/2013/151</id>
+<link href="http://eccc.hpi-web.de/report/2013/151" rel="alternate" type="text/html" />
+<title>TR13-151 |  Hardness Amplification and the Approximate Degree of Constant-Depth Circuits | 
+
+	Mark Bun, 
+
+	Justin Thaler « ECCC - Reports</title>
+<summary>We establish a generic form of hardness amplification for the approximability of constant-depth Boolean circuits by polynomials. Specifically, we show that if a Boolean circuit cannot be pointwise approximated by low-degree polynomials to within constant error in a certain one-sided sense, then an OR of disjoint copies of that circuit cannot be pointwise approximated even with very high error. As our main application, we show that for every sequence of degrees $d(n)$, there is an explicit depth-three circuit $F: \{-1,1\}^n \to \{-1,1\}$ of polynomial-size such that any degree-$d$ polynomial cannot pointwise approximate $F$ to error better than $1-\exp\left(-\tilde{\Omega}(nd^{-3/2})\right)$. As a consequence of our main result, we obtain an $\exp\left(-\tilde{\Omega}(n^{2/5})\right)$ upper bound on the the discrepancy of a function in \acz, and an $\exp\left(-\tilde{\Omega}(n^{2/5})\right)$ lower bound on the threshold weight of \acz, improving over the previous best results of $\exp\left(-\Omega(n^{1/3})\right)$ and $\exp\left(\Omega(n^{1/3})\right)$ respectively.
+  Our techniques also yield a new lower bound of $\Omega\left(n^{1/2}/\log^{(d-2)/2}(n)\right)$ on the approximate degree of the AND-OR tree of depth $d$, which is tight up to polylogarithmic factors for any constant $d$, as well as new bounds for read-once DNF formulas. In turn, these results imply new lower bounds on the communication and circuit complexity of these classes, and demonstrate strong limitations on existing PAC learning algorithms.
+      <div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-07T07:29:53Z</updated>
+<published>2013-11-07T07:29:53Z</published>
+<source>
+<id>http://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="http://example.com/" rel="alternate" type="text/html" />
+<link href="http://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at http://eccc.hpi-web.de</subtitle>
+<title>ECCC - Reports</title>
+<updated>2013-11-15T15:03:20Z</updated>
+</source>
+</entry>
+<entry xml:lang="en">
+<id>http://agtb.wordpress.com/?p=2624</id>
+<link href="http://agtb.wordpress.com/2013/11/07/author-ordering/" rel="alternate" type="text/html" />
+<title>Author ordering « Turing's Invisible Hand</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Guest post by Felix Brandt We recently had an internal discussion about author ordering within our group and agreed to retain alphabetical ordering (sort of renewing a decision we made some years earlier when the group was composed differently). Author ordering is a surprisingly tricky issue and I think it’s particularly difficult in algorithmic economics […]<img alt="" border="0" height="1" src="http://stats.wordpress.com/b.gif?host=agtb.wordpress.com&amp;blog=6963698&amp;post=2624&amp;subd=agtb&amp;ref=&amp;feed=1" width="1" /></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><strong>Guest post by <a href="http://dss.in.tum.de/staff/brandt.html">Felix Brandt</a></strong></p>
+<p>We recently had an internal discussion about author ordering within our group and agreed to retain alphabetical ordering (sort of renewing a decision we made some years earlier when the group was composed differently). Author ordering is a surprisingly tricky issue and I think it’s particularly difficult in algorithmic economics where the cultures of many different disciplines clash.</p>
+<p>The problem usually starts with the fact that nobody makes a conscious decision at the beginning of one’s career which author ordering policy to use. In most cases, PhD students just publish their first papers using whatever convention is used in their group. Once they have published papers, they are reluctant to change the convention for the sake of consistency and, perhaps more importantly, because changing the convention can have negative effects on previous coauthors (by making their contribution appear less). Whenever authors with different authorship conventions write a joint paper, they need to decide which convention to use (and if it’s not the alphabetical convention, they also need to agree on a particular ordering for the paper).</p>
+<p>The two predominant conventions are alphabetical ordering and ordering by contribution. (Another interesting convention I heard about, but that I have rarely seen, is to list authors by age from youngest to oldest.) Alphabetical ordering is the standard in mathematics, economics, and theoretical computer science. In most other disciplines, including AI, it is not. Sometimes, the head of a group is listed as an author even though he did not contribute anything and, in some areas, there is a special meaning to being the first, the last, or even the second-to-last author (like <a href="http://www.phdcomics.com/comics/archive.php?comicid=562">here)</a>. Let’s assume for simplicity that in theoretical areas such as algorithmic economics, only people who significantly contributed to a paper are actually listed as authors (even though that might not always be the case).</p>
+<p>At first glance, ordering by contribution seems to be the fairest solution. <em>Measuring</em> relative contribution, however, is a source of great dispute that can hamper productivity. Studies have shown that authors almost always disagree with respect to their relative contributions. Another problem arises when using a default ordering in case the contribution of all or some authors is roughly equivalent (which is mostly the case in our group). Even if one uses non-alphabetical ordering <em>only</em> if the contribution of one author was significantly larger than those of the others, the asymmetry remains: If the authors are listed alphabetically, the first author <em>may</em> have contributed more. If the authors are listed non-alphabetically, the first <em>must</em> have contributed more.</p>
+<p>About two years ago, I had the privilege to write a joint paper with Paul Seymour and asked him to move my name further back because I had contributed less. His reply was that “it’s quite standard to be alphabetical and no-one reads anything else into it (and that is a treasure worth preserving)”. I think that’s a very good point because once non-alphabetical ordering is used, it indicates that some information can be deduced from the author orderings in general. The fact that authors have to be ordered in some way can be seen as an unwanted by-product of the sequential nature of language. Whenever I read papers myself, I never put any meaning into the ordering of authors. This is, however, not the case in general and sometimes researchers are denied awards, fellowships, or tenure because the committee in charge expects them to be “first authors”. In order to avoid this problem, some authors put a disclaimer on their webpage or on their papers, explaining which ordering convention is used and sometimes even listing the contribution of individual authors. An alternative, perhaps more elegant, solution to neutralize the author ordering in CVs or on personal homepages (places where it may actually matter) is to list publications as “&lt;paper title&gt; (with coauthor x and coauthor y)”. Despite all these efforts, author ordering remains a controversial issue simply because the cultures of fields, the principles of authors, and the expectations of readers differ so much.</p>
+<p>Other articles on author ordering:</p>
+<ul>
+<li>A statement by the <a href="http://www.ams.org/comm-prof/CultureStatement04.pdf">AMS</a> about author ordering. In mathematics, alphabetical author ordering is also known as the <em>Hardy-Littlewood rule</em>.</li>
+<li>A paper in the <em>Journal of Politicial Economy</em> by Engers, Gans, Grant, and King (<a href="http://www.jstor.org/discover/10.1086/250082?uid=3739864&amp;uid=2&amp;uid=4&amp;uid=3739256&amp;sid=21102896200023">First-Author Conditions</a>) finds that “it is an equilibrium for papers to use alphabetical ordering whereas it is never an equilibrium for authors always to be listed in order of relative contribution”.</li>
+<li>A recent arxiv paper by Ackerman and Brânzei (<a href="http://arxiv.org/abs/1208.3391">Research Quality, Fairness, and Authorship Order</a>) analyzes the “phenomenon that alphabetical ordering is correlated with higher research quality”. They cite several studies providing empirical evidence for this claim.</li>
+<li>Blog posts by <a href="http://mat.tepper.cmu.edu/blog/?p=1117">Michael Trick</a> and <a href="http://mybiasedcoin.blogspot.de/2010/04/more-on-authorship.html">Michael Mitzenmacher</a>.</li>
+</ul><br /> <a href="http://feeds.wordpress.com/1.0/gocomments/agtb.wordpress.com/2624/" rel="nofollow"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/agtb.wordpress.com/2624/" /></a> <img alt="" border="0" height="1" src="http://stats.wordpress.com/b.gif?host=agtb.wordpress.com&amp;blog=6963698&amp;post=2624&amp;subd=agtb&amp;ref=&amp;feed=1" width="1" /></div>
+</content>
+<updated>2013-11-07T05:06:12Z</updated>
+<published>2013-11-07T05:06:12Z</published>
+<category term="Uncategorized"></category>
+<author>
+<name>Ariel Procaccia</name>
+</author>
+<source>
+<id>http://agtb.wordpress.com</id>
+<logo>http://1.gravatar.com/blavatar/52ef314e11e379febf97d1a97547f4cd?s=96&amp;d=http%3A%2F%2Fs2.wp.com%2Fi%2Fbuttonw-com.png</logo>
+<link href="http://agtb.wordpress.com/feed/" rel="self" type="application/atom+xml" />
+<link href="http://agtb.wordpress.com" rel="alternate" type="text/html" />
+<link href="http://agtb.wordpress.com/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="http://agtb.wordpress.com/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>Computation, Economics, and Game Theory</subtitle>
+<title>Turing's Invisible Hand</title>
+<updated>2013-11-15T15:03:06Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-6555947.post-6666034195193250959</id>
+<link href="http://geomblog.blogspot.com/feeds/6666034195193250959/comments/default" rel="replies" type="application/atom+xml" />
+<link href="http://www.blogger.com/comment.g?blogID=6555947&amp;postID=6666034195193250959" rel="replies" type="text/html" />
+<link href="http://www.blogger.com/feeds/6555947/posts/default/6666034195193250959?v=2" rel="edit" type="application/atom+xml" />
+<link href="http://www.blogger.com/feeds/6555947/posts/default/6666034195193250959?v=2" rel="self" type="application/atom+xml" />
+<link href="http://feedproxy.google.com/~r/TheGeomblog/~3/R4mZew3-X3k/soda-2014-travel-awards-and-other-news.html" rel="alternate" type="text/html" />
+<title>SODA 2014 travel awards and other news « The Geomblog</title>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Via Cliff Stein and Kirsten Wilden:<br />
+<br />
+<blockquote class="tr_bq">
+The SIAM Symposium on Discrete Algorithms (SODA14) will be held January 5-7, 2014 at the Hilton Portland &amp; Executive Tower in Portland, Oregon, USA. Algorithm Engineering and Experiments (ALENEX14) and Analytic Algorithmics and Combinatorics (ANALCO14) will be co-located with the conference on January 5 and 6, respectively.<br /><b> </b><b>The deadline for students to apply for travel support is approaching!  </b><b> </b>The NSF, Google, IBM Research, and Microsoft Corporation have provided generous travel support for <span class="s1">students</span> interested in attending SODA14 or its associated meetings, ALENEX14 and ANALCO14.<b> </b>Application materials and a letter of recommendation from your advisor are due by November 15. Please visit <a href="http://www.siam.org/meetings/da14/tsupport.php"><span class="s2">http://www.siam.org/meetings/da14/tsupport.php</span></a> for detailed funding information and application procedures.<br /><br />Pre-registration for all three meetings is also available at <a href="http://www.siam.org/meetings/da14/reginfo.php"><span class="s2">http://www.siam.org/meetings/da14/reginfo.php</span></a>.<br /><br />Additional conference information is available at the following websites:<br /><span class="s3">SODA14:  <a href="http://www.siam.org/meetings/da14/index.php"><span class="s1">http://www.siam.org/meetings/da14/</span></a></span><span class="s3">ANALCO14: <a href="http://www.siam.org/meetings/analco14/"><span class="s1">http://www.siam.org/meetings/analco14/</span></a></span><span class="s3">ALENEX14: <a href="http://www.siam.org/meetings/alenex14/"><span class="s1">http://www.siam.org/meetings/alenex14/</span></a></span></blockquote>
+<img height="1" src="http://feeds.feedburner.com/~r/TheGeomblog/~4/R4mZew3-X3k" width="1" /></div>
+<div class="commentbar">
+<p></p>
+<span class="commentbutton" href="http://geomblog.blogspot.com/feeds/6666034195193250959/comments/default"></span>
+<a href="http://geomblog.blogspot.com/feeds/6666034195193250959/comments/default">
+<img class="commenticon" src="/images/feed-icon.png" /> Subscribe to comments
+        </a>  | 
+        <a href="http://www.blogger.com/comment.g?blogID=6555947&amp;postID=6666034195193250959">
+<img class="commenticon" src="/images/post-icon.png" /> Post a comment
+        </a>
+</div>
+</content>
+<updated>2013-11-05T18:19:00Z</updated>
+<published>2013-11-05T18:19:00Z</published>
+<category scheme="http://www.blogger.com/atom/ns#" term="soda2014"></category>
+<category scheme="http://www.blogger.com/atom/ns#" term="travel"></category>
+<category scheme="http://www.blogger.com/atom/ns#" term="funding"></category><feedburner:origlink xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0">http://geomblog.blogspot.com/2013/11/soda-2014-travel-awards-and-other-news.html</feedburner:origlink>
+<author>
+<name>Suresh Venkatasubramanian</name>
+<email>noreply@blogger.com</email>
+<uri>https://plus.google.com/112165457714968997350</uri>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-6555947</id>
+<category term="journals"></category>
+<category term="clustering"></category>
+<category term="deadline"></category>
+<category term="big-data"></category>
+<category term="workshops"></category>
+<category term="icdm"></category>
+<category term="barriers"></category>
+<category term="rajeev motwani"></category>
+<category term="seminars"></category>
+<category term="jeff phillips"></category>
+<category term="books"></category>
+<category term="soda2014"></category>
+<category term="accountability"></category>
+<category term="latex"></category>
+<category term="duality"></category>
+<category term="funding"></category>
+<category term="polymath"></category>
+<category term="fonts"></category>
+<category term="MOOC"></category>
+<category term="community"></category>
+<category term="math.ST"></category>
+<category term="polytopes"></category>
+<category term="column"></category>
+<category term="game theory"></category>
+<category term="ecml-pkdd"></category>
+<category term="cs.DC"></category>
+<category term="quantum"></category>
+<category term="classification"></category>
+<category term="PPAD"></category>
+<category term="soda"></category>
+<category term="simons foundation"></category>
+<category term="travel"></category>
+<category term="combinatorial geometry"></category>
+<category term="xkcd"></category>
+<category term="memes"></category>
+<category term="stoc2012"></category>
+<category term="madalgo"></category>
+<category term="society"></category>
+<category term="polymath research"></category>
+<category term="bregman"></category>
+<category term="bibtex"></category>
+<category term="k-12"></category>
+<category term="video"></category>
+<category term="cs.CG"></category>
+<category term="social-networking"></category>
+<category term="postdocs"></category>
+<category term="guitar"></category>
+<category term="fellowships"></category>
+<category term="acceptances"></category>
+<category term="p-vs-nc"></category>
+<category term="embarrassing"></category>
+<category term="cfp"></category>
+<category term="p-vs-np"></category>
+<category term="humor"></category>
+<category term="obituary"></category>
+<category term="expanders"></category>
+<category term="academy"></category>
+<category term="focs2013"></category>
+<category term="models"></category>
+<category term="acm"></category>
+<category term="IMA"></category>
+<category term="fwcg"></category>
+<category term="misc"></category>
+<category term="beamer"></category>
+<category term="geometry"></category>
+<category term="gpu"></category>
+<category term="8f-cg"></category>
+<category term="soda2011"></category>
+<category term="sdm2011"></category>
+<category term="software"></category>
+<category term="current-distance"></category>
+<category term="esa"></category>
+<category term="reviewing"></category>
+<category term="nsf"></category>
+<category term="topology"></category>
+<category term="nih"></category>
+<category term="blogging"></category>
+<category term="dimacs"></category>
+<category term="conferences"></category>
+<category term="talks"></category>
+<category term="shape"></category>
+<category term="svn"></category>
+<category term="randomness"></category>
+<category term="theory.SE"></category>
+<category term="partha niyogi"></category>
+<category term="media"></category>
+<category term="potd"></category>
+<category term="technology"></category>
+<category term="ipe"></category>
+<category term="gct"></category>
+<category term="SDM"></category>
+<category term="shonan"></category>
+<category term="jmm"></category>
+<category term="utah"></category>
+<category term="cricket"></category>
+<category term="memorial"></category>
+<category term="alenex"></category>
+<category term="cs.DS"></category>
+<category term="massive"></category>
+<category term="active-learning"></category>
+<category term="graphs"></category>
+<category term="eda"></category>
+<category term="cs.LG"></category>
+<category term="complexity"></category>
+<category term="conf-blogs"></category>
+<category term="arxiv"></category>
+<category term="socg-2010"></category>
+<category term="announcement"></category>
+<category term="cstheory"></category>
+<category term="ams"></category>
+<category term="metrics"></category>
+<category term="dimensionality-reduction"></category>
+<category term="focs2012"></category>
+<category term="DBR"></category>
+<category term="posters"></category>
+<category term="coding-theory"></category>
+<category term="women-in-theory"></category>
+<category term="kernels"></category>
+<category term="productivity"></category>
+<category term="conjecture"></category>
+<category term="stoc"></category>
+<category term="cs.CC"></category>
+<category term="teaching"></category>
+<category term="GIA"></category>
+<category term="cra"></category>
+<category term="empirical"></category>
+<category term="miscellaneous"></category>
+<category term="research"></category>
+<category term="personal"></category>
+<category term="distributions"></category>
+<category term="nips"></category>
+<category term="submissions"></category>
+<category term=".02"></category>
+<category term="programming"></category>
+<category term="wads"></category>
+<category term="focs2010"></category>
+<category term="streaming"></category>
+<category term="implementation"></category>
+<category term="multicore"></category>
+<category term="data-mining"></category>
+<category term="knuth"></category>
+<category term="alenex2011"></category>
+<category term="ICS"></category>
+<category term="graph minors"></category>
+<category term="analco"></category>
+<category term="deolalikar"></category>
+<category term="quant-ph"></category>
+<category term="math.PR"></category>
+<category term="publishing"></category>
+<category term="socg2012"></category>
+<category term="focs"></category>
+<category term="turing"></category>
+<category term="hirsch"></category>
+<category term="candes"></category>
+<category term="jobs"></category>
+<category term="blogosphere"></category>
+<category term="twitter"></category>
+<category term="surveys"></category>
+<category term="advising"></category>
+<category term="godel"></category>
+<category term="morris"></category>
+<category term="history"></category>
+<category term="awards"></category>
+<category term="parallelism"></category>
+<category term="hangouts"></category>
+<category term="distributed-learning"></category>
+<category term="coffee"></category>
+<category term="career"></category>
+<category term="traffic"></category>
+<category term="sabbatical"></category>
+<category term="writing"></category>
+<category term="socg"></category>
+<category term="large-data"></category>
+<category term="outreach"></category>
+<category term="sampling"></category>
+<author>
+<name>Suresh Venkatasubramanian</name>
+<email>noreply@blogger.com</email>
+<uri>https://plus.google.com/112165457714968997350</uri>
+</author>
+<link href="http://geomblog.blogspot.com/feeds/posts/default" rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml" />
+<link href="http://geomblog.blogspot.com/" rel="alternate" type="text/html" />
+<link href="http://www.blogger.com/feeds/6555947/posts/default?start-index=26&amp;max-results=25&amp;redirect=false&amp;v=2" rel="next" type="application/atom+xml" />
+<link href="http://feeds.feedburner.com/TheGeomblog" rel="self" type="application/atom+xml" />
+<link href="http://pubsubhubbub.appspot.com/" rel="hub" type="text/html" />
+<subtitle>Ruminations on computational geometry, algorithms, theoretical computer science and life</subtitle>
+<title>The Geomblog</title>
+<updated>2013-11-15T01:06:48Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-27705661.post-377728691293446310</id>
+<link href="http://processalgebra.blogspot.com/feeds/377728691293446310/comments/default" rel="replies" type="application/atom+xml" />
+<link href="http://www.blogger.com/comment.g?blogID=27705661&amp;postID=377728691293446310" rel="replies" type="text/html" />
+<link href="http://www.blogger.com/feeds/27705661/posts/default/377728691293446310" rel="edit" type="application/atom+xml" />
+<link href="http://www.blogger.com/feeds/27705661/posts/default/377728691293446310" rel="self" type="application/atom+xml" />
+<link href="http://processalgebra.blogspot.com/2013/11/web-site-for-icalp-2014.html" rel="alternate" type="text/html" />
+<title>Web site for ICALP 2014 « Process Algebra Diary</title>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">The <a href="http://icalp2014.itu.dk/" target="_blank">web site for ICALP 2014</a> is now live. There you will find the call for papers and further details on the conference tracks. The deadline for submitting a paper is February 14, 2014. <br /><br /><br /></div>
+<div class="commentbar">
+<p></p>
+<span class="commentbutton" href="http://processalgebra.blogspot.com/feeds/377728691293446310/comments/default"></span>
+<a href="http://processalgebra.blogspot.com/feeds/377728691293446310/comments/default">
+<img class="commenticon" src="/images/feed-icon.png" /> Subscribe to comments
+        </a>  | 
+        <a href="http://www.blogger.com/comment.g?blogID=27705661&amp;postID=377728691293446310">
+<img class="commenticon" src="/images/post-icon.png" /> Post a comment
+        </a>
+</div>
+</content>
+<updated>2013-11-05T14:45:00Z</updated>
+<published>2013-11-05T14:45:00Z</published>
+<author>
+<name>Luca Aceto</name>
+<email>noreply@blogger.com</email>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-27705661</id>
+<author>
+<name>Luca Aceto</name>
+<email>noreply@blogger.com</email>
+</author>
+<link href="http://processalgebra.blogspot.com/feeds/posts/default" rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml" />
+<link href="http://www.blogger.com/feeds/27705661/posts/default" rel="self" type="application/atom+xml" />
+<link href="http://processalgebra.blogspot.com/" rel="alternate" type="text/html" />
+<link href="http://pubsubhubbub.appspot.com/" rel="hub" type="text/html" />
+<link href="http://www.blogger.com/feeds/27705661/posts/default?start-index=26&amp;max-results=25" rel="next" type="application/atom+xml" />
+<subtitle>Papers I find interesting---mostly, but not solely, in Process Algebra---, and some fun stuff in Mathematics and Computer Science at large and on general issues related to research, teaching and academic life.</subtitle>
+<title>Process Algebra Diary</title>
+<updated>2013-11-14T00:33:43Z</updated>
+</source>
+</entry>
+<entry>
+<id>tag:blogger.com,1999:blog-3722233.post-6045026428895866080</id>
+<link href="http://blog.computationalcomplexity.org/2013/11/my-pope-number-is-2-smaller-world.html" rel="alternate" type="text/html" />
+<title>My Pope Number is 2: The Smaller World Hypothesis « Computational Complexity</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">I proofread Piergiogrio Odilfreddi's book (which is on Lance's List of <a href="http://www.amazon.com/lm/22R1UX0Y9YRT2/ref=cm_aya_lm_title.more">Favorite Complexity Books</a>) for which I got a generous acknowledgment. I have also<br />
+visited him in Italy, though not for a while.  <br />
+<br />
+Benedict.Pope Emeritus (I think that's what he is still called) broke his silence with a letter to Odilfreddi, see <a href="http://www.heraldsun.com.au/news/world/pope-benedict-breaks-his-silence-to-engage-atheist-mathematician-piergiorgio-odifreddi/story-fni0xs61-1226726585334">here</a>.<br />
+<br />
+Hence I am two handshakes away from Pope Benedict.  It used to be said that there were <a href="http://en.wikipedia.org/wiki/Six_degrees_of_separation">Six degrees of separation</a>-- for all people a,b there is a path of length at most 6 that links them. The graph varies with you you ask, but it tries to pin down that a and b know each other.<br />
+<br />
+Is six now too big? One measure is how many Google hits<br />
+`X degrees of separation' gets<br />
+<ul>
+<li>Six degrees gets 1,760,000 hits</li>
+<li>Five degrees gets 97,300 hits</li>
+<li>Four degrees gets 159,000 hits</li>
+<li>Three degrees gets 605,000 hits</li>
+<li>Two degrees gets 843,000 hits</li>
+</ul>
+The last one may not be quite fair- there was an episode of Pokemon<br />
+with the title `Two degrees of Separation' and also a company with that name.<br />
+<br />
+<br />
+How well two people know each other has to be defined carefully.<br />
+<br />
+<ol>
+<li>Erdos Numbers- Put an edge between a and b if they have a paper together.</li>
+<li>Bacon Numbers- Put an edge between a and b if they appear in the same movie.</li>
+<li>Handshake Numbers (I am not sure its every been called that)- Put an edge between a and b if they have shaken hands.</li>
+<li>knows-number (likely not defined). Put a DIRECTED edge from a to b if a will return b's phone calls and/or email.</li>
+<li>Twitter Numbers (Not sure if its ever been defined). But a directed edge between a and b if a follows b on twitter. </li>
+</ol>
+Odilfreddi may be an articulation point in the handshake graph or the knows-graph since he is in math AND known to the public (at least in Italy) as an outspoken atheist, so he connects two worlds. Another articulation point might be <a href="http://en.wikipedia.org/wiki/David_Seetapun">David Seetapun</a> who has a PhD in computability theory (he worked on Recursive Ramsey Theory which is how I know of him), Finance (Goldman Sacks), Gambling in Las Vegas, and swordfish fishing (he won the Golden Fly Tarpon Tournament). He may be the key to connecting mathematicians to fisherman.<br />
+<br />
+The following is probably known but I couldn't find it- what is the longest distance between two websites (number-of-links to go from one to the other)?<br />
+The average? Are these numbers getting larger or smaller?<br />
+<br />
+ADDED LATER: Christian Sommer emailed me the following two<br />
+RELEVENT links:<br />
+<br />
+<a href="http://www3.nd.edu/%7Enetworks/Publication%20Categories/03%20Journal%20Articles/Computer/Diameter_Nature%20401,%20130-131%20%281999%29.pdf">Diameter of the web</a> and<br />
+<br />
+<a href="http://webgraph.di.unimi.it/">Tools to study the web graph</a><br />
+<br />
+The first link claims the avg diameter of the web is 19. <br />
+<br />
+<br /></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-05T13:43:00Z</updated>
+<published>2013-11-05T13:43:00Z</published>
+<author>
+<name>GASARCH</name>
+<email>noreply@blogger.com</email>
+</author>
+<source>
+<id>tag:blogger.com,1999:blog-3722233</id>
+<category term="typecast"></category>
+<category term="focs metacomments"></category>
+<author>
+<name>Lance Fortnow</name>
+<email>noreply@blogger.com</email>
+</author>
+<link href="http://blog.computationalcomplexity.org/" rel="alternate" type="text/html" />
+<link href="http://weblog.fortnow.com/rss.xml" rel="self" type="application/atom+xml" />
+<subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle>
+<title>Computational Complexity</title>
+<updated>2013-11-15T15:01:40Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://eccc.hpi-web.de/report/2013/150</id>
+<link href="http://eccc.hpi-web.de/report/2013/150" rel="alternate" type="text/html" />
+<title>TR13-150 |  An Improved Deterministic #SAT Algorithm for  Small  De Morgan Formulas | 
+
+	Valentine Kabanets, 
+
+	Ruiwen Chen, 
+
+	Nitin Saurabh « ECCC - Reports</title>
+<summary>We give a  deterministic #SAT algorithm for de Morgan formulas of size up to $n^{2.63}$, which runs in time $2^{n-n^{\Omega(1)}}$. This improves upon the  deterministic #SAT algorithm of \cite{CKKSZ13}, which has similar running time but works only for formulas of size less than $n^{2.5}$.
+
+Our new algorithm is based on the shrinkage of de Morgan formulas under random restrictions, shown by Paterson and Zwick~\cite{PZ93}. We prove a concentrated and constructive version of their shrinkage result. Namely, we give a deterministic polynomial-time algorithm that selects variables in a given de Morgan formula so that,  over the random assignments to the chosen variables, the original formula shrinks in size, when simplified using a deterministic polynomial-time formula-simplification algorithm.
+      <div class="commentbar">
+<p></p>
+</div>
+</summary>
+<updated>2013-11-04T20:33:20Z</updated>
+<published>2013-11-04T20:33:20Z</published>
+<source>
+<id>http://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="http://example.com/" rel="alternate" type="text/html" />
+<link href="http://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at http://eccc.hpi-web.de</subtitle>
+<title>ECCC - Reports</title>
+<updated>2013-11-15T15:03:20Z</updated>
+</source>
+</entry>
+<entry xml:lang="en">
+<id>http://rjlipton.wordpress.com/?p=10980</id>
+<link href="http://rjlipton.wordpress.com/2013/11/03/a-really-scary-thought/" rel="alternate" type="text/html" />
+<title>A Really Scary Thought « Gödel's Lost Letter and P=NP</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">A scary question, a really scary question Vincent Price was just featured last Thursday night with a series of his movies, scary horror ones shown on Turner Classic Movies. Price was known for his distinctive voice and special smirk, which was perfect for these movies. The series was in honor of Halloween. October 31 is […]<img alt="" border="0" height="1" src="http://stats.wordpress.com/b.gif?host=rjlipton.wordpress.com&amp;blog=6472207&amp;post=10980&amp;subd=rjlipton&amp;ref=&amp;feed=1" width="1" /></div>
+<div class="commentbar">
+<p></p>
+</div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><font color="”#0066cc?"><br />
+<em> A scary question, a really scary question </em><br />
+<font color="”#000000?"></font></font></p><font color="”#0066cc?"><font color="”#000000?">
+</font></font><p><a href="http://rjlipton.files.wordpress.com/2013/11/unknown.jpeg"><img alt="Unknown" class="alignright  wp-image-10982" src="http://rjlipton.files.wordpress.com/2013/11/unknown.jpeg?w=130" width="130" /></a></p>
+<p>
+Vincent Price was just featured last Thursday night with a series of his movies, scary horror ones shown on Turner Classic Movies. Price was known for his distinctive voice and special smirk, which was perfect for these movies. The series was in honor of Halloween. October 31 is the day of trick-or-treating, wearing costumes, going door-to-door to get candy, telling scary stories, and watching horror films. </p>
+<p>
+Today Ken and I want to raise a simple fundamental, and scary question.<span id="more-10980"></span></p>
+<p>
+No it’s not about the world economy, the possibility that my NFL Giants could lose the rest of their games, or any other mundane problem. It’s about the most fundamental question there is:</p>
+<blockquote><p>
+Is there <i>some</i> substantial logical theory that is consistent?
+</p></blockquote>
+<p>
+This might almost sound silly, a joke, or a late Halloween prank, but it is a real question. It is one that I previously never thought about, but I think it is <strong>the</strong> question to ask in logic. Can we answer it?</p>
+<p>
+Let’s turn and look carefully at what we are asking.</p>
+<p>
+</p><h2> The Question </h2>
+<p></p><p>
+David Hilbert started this all with his famous program to prove by finite methods that mathematics is consistent. This program was turned aside by Kurt Gödel’s proof of his First and Second Incompleteness Theorems. These theorems show, of course, that any formal theory <img alt="{T}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BT%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{T}" /> that is <b>strong</b> enough—more on this in a moment—cannot prove its own consistency. More precisely if <img alt="{T}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BT%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{T}" /> proves its own consistency, then <img alt="{T}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BT%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{T}" /> is able to prove everything, that is <img alt="{T}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BT%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{T}" /> is inconsistent. </p>
+<p>
+Thus, we know that Penao Arithmetic (PA) and Zermelo-Fraenkel Set Theory (ZF) are both unable to prove their own consistency. Well not quite. They cannot prove their own consistency provided they are consistent. How do we know that they are consistent? This is a well-known state of affairs, that Gödel created—or did he discover it? It is anyway very unappealing. We all work at proving theorems, usually working implicitly in PA or perhaps ZF, yet we could be proving nonsense. A scary thought—an old scary thought.</p>
+<p>
+So what is our new scary thought? Since it is impossible to show that PA is consistent without appeal to a stronger theory, perhaps we can at least try to prove this:  </p>
+<blockquote><p>
+There is some theory <img alt="{T}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BT%7D&amp;bg=e8e8e8&amp;fg=000000&amp;s=0" title="{T}" /> that is consistent.
+</p></blockquote>
+<p>
+Well the empty theory is consistent. If a theory has a finite model, then its consistency can be checked “by hand.” There are very weak theories with no finite models that are still easily seen to be consistent. So we mean strong enough theories that at least encode a substantial piece of mathematics. This means at least having arithmetic, which also is enough to make the theory undecidable—that is, that there is no decision procedure for deciding whether <img alt="{T}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BT%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{T}" /> can prove a given sentence <img alt="{S}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BS%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0" title="{S}" />. So the real question is:</p>
+<blockquote><p>
+Can we prove that there exists a theory of arithmetic <img alt="{T}" class="latex" src="http://s0.wp.com/latex.php?latex=%7BT%7D&amp;bg=e8e8e8&amp;fg=000000&amp;s=0" title="{T}" /> that is consistent and undecidable?
+</p></blockquote>
+<p>
+Of course ZF proves that PA is consistent, and there are subsets of ZF doing this that ZF can prove are consistent, but this hasn’t been enough to <a href="http://rjlipton.wordpress.com/2011/10/01/what-if-peano-is-inconsistent/">convince</a> everyone—see <a href="http://math.stackexchange.com/questions/186506/consistency-of-peano-axioms-hilberts-second-problem">this too</a>. But perhaps we can make an <i>existence proof</i> that is immune to even these concerns?</p>
+<p>
+Throughout mathematics and complexity theory we have existence proofs. We know, for example, that there are Boolean functions that require super-linear circuit complexity, yet all proofs are existence ones. We know that such functions exist, but have no explicit examples. Mathematics in general is filled with similar existence results, where we can prove that there are objects with property X but no one knows a single explicit example.</p>
+<p>
+Behind the scenes we have been discussing a possibility that raises the spectre of a ‘no’ answer. Well maybe we have been seeing a ghost. We don’t know, and we are looking for the best way to express it—and maybe “ghostbust” it. This has been part of our delay with a Halloween post, though we could pretend that the “pretending” post was it. But for our further purposes too, we first want to put out this form of the idea that a formal theory might be able to prove the existence of something, even the existence of a proof, without being able to construct the theory or carry the proof out by itself.</p>
+<p>
+</p><h2> Open Problems </h2>
+<p></p><p>
+Does a consistent undecidable theory exist? Can we prove this? How would we prove this? Belated happy Halloween. Boo.</p>
+<p><br /> <a href="http://feeds.wordpress.com/1.0/gocomments/rjlipton.wordpress.com/10980/" rel="nofollow"><img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/rjlipton.wordpress.com/10980/" /></a> <img alt="" border="0" height="1" src="http://stats.wordpress.com/b.gif?host=rjlipton.wordpress.com&amp;blog=6472207&amp;post=10980&amp;subd=rjlipton&amp;ref=&amp;feed=1" width="1" /></p></div>
+</content>
+<updated>2013-11-03T23:08:00Z</updated>
+<published>2013-11-03T23:08:00Z</published>
+<category term="People"></category>
+<category term="Proofs"></category>
+<category term="consistent"></category>
+<category term="decidable"></category>
+<category term="Incompleteness"></category>
+<category term="Proof"></category>
+<category term="Theory"></category>
+<author>
+<name>rjlipton</name>
+</author>
+<source>
+<id>http://rjlipton.wordpress.com</id>
+<logo>http://s2.wp.com/i/buttonw-com.png</logo>
+<link href="http://rjlipton.wordpress.com/feed/" rel="self" type="application/atom+xml" />
+<link href="http://rjlipton.wordpress.com" rel="alternate" type="text/html" />
+<link href="http://rjlipton.wordpress.com/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="http://rjlipton.wordpress.com/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>a personal view of the theory of computation</subtitle>
+<title>Gödel's Lost Letter and P=NP</title>
+<updated>2013-11-15T15:02:59Z</updated>
+</source>
+</entry>
+</feed>
+

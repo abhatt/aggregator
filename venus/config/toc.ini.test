@@ -1,0 +1,180 @@
+# Planet configuration file based on the 'fancy' Planet 2.0 example.
+#
+# This illustrates some of Planet's fancier features with example.
+
+# Every planet needs a [Planet] section
+[Planet]
+# name: Your planet's name
+# link: Link to the main page
+# owner_name: Your name
+# owner_email: Your e-mail address
+name = Theory of Computing Blog Aggregator
+link = http://feedworld.net/toc-test/
+owner_name = randomwalker
+owner_email = randomwalker@gmail.com
+
+# cache_directory: Where cached feeds are stored
+# log_level: One of DEBUG, INFO, WARNING, ERROR or CRITICAL
+# feed_timeout: number of seconds to wait for any given feed
+cache_directory = /var/cache/venus/
+log_level = DEBUG
+feed_timeout = 20
+
+# output_theme: "theme" of the output
+# output_dir: Directory to place output files
+# items_per_page: How many items to put on each page
+output_theme = toc-test
+output_dir = /var/www/feedworld.net/html/toc-test/
+items_per_page = 40
+module = toc-test
+
+# additional files to copy (note the wildcards!)
+#bill_of_materials:
+#  images/toc/#{face} 
+
+filters=comments.py
+
+[DEFAULT]
+
+
+# Any other section defines a feed to subscribe to.  The section title
+# (in the []s) is the URI of the feed itself.  A section can also be
+# have any of the following options:
+# 
+# name: Name of the feed (defaults to the title found in the feed)
+#
+# Additionally any other option placed here will be available in
+# the template (prefixed with channel_ for the Items loop).  We use
+# this trick to make the faces work -- this isn't something Planet
+# "natively" knows about.  Look at fancy-examples/index.html.tmpl
+# for the flip-side of this.
+[http://weblog.fortnow.com/rss.xml]
+name=Computational Complexity
+face=gasarch.png
+[http://scottaaronson.com/blog/?feed=atom]
+name=Shtetl-Optimized
+face=aaronson.jpeg
+#[http://in-theory.blogspot.com/feeds/posts/default]
+[http://lucatrevisan.wordpress.com/feed]
+name=in theory
+face=trevisan.jpeg
+[http://mybiasedcoin.blogspot.com/feeds/posts/default]
+name=My Biased Coin
+face=mitzenmacher.jpeg
+[http://tcsmath.wordpress.com/feed/]
+name=tcs math
+face=jrl.jpeg
+[http://andysresearch.blogspot.com/feeds/posts/default]
+name=Andy's Math/CS page
+face=andy.jpeg
+[http://11011110.livejournal.com/data/atom]
+name=David Eppstein
+face=eppstein.jpeg
+filters=category.py?cats=$%20not%20"family"%20and%20not%20"photography"
+[http://feeds.feedburner.com/TheGeomblog]
+name=The Geomblog
+face=suresh.png
+[http://feeds.feedburner.com/WebdiariosDeMotocicleta]
+name=WebDiarios de Motocicleta
+face=mihai.jpg
+[http://mysliceofpizza.blogspot.com/feeds/posts/default]
+name=my slice of pizza
+filters=category.py?cats=aggregator
+face=pizza.jpeg
+[http://3dpancakes.typepad.com/ernie/atom.xml]
+name=Ernie's 3D Pancakes
+face=erickson.jpeg
+[http://valis.cs.uiuc.edu/blog/?feed=rss2]
+name=Vanity of Vanities, all is Vanity
+face=sariel.jpeg
+filters=category.py?cats=research
+[http://export.arxiv.org/rss/cs.CC]
+name=arXiv.org: Computational complexity
+filters=arXiv.py
+face=corr.jpeg
+[http://export.arxiv.org/rss/cs.DS]
+name=arXiv.org: Data structures and Algorithms
+filters=arXiv.py
+face=corr.jpeg
+#[http://export.arxiv.org/rss/cs.IT]
+#name=arXiv.org: Information theory
+#filters=arXiv.py
+#face=corr.jpeg
+[http://export.arxiv.org/rss/cs.CG]
+name=arXiv.org: Computational geometry
+filters=arXiv.py
+face=corr.jpeg
+[http://eccc.hpi-web.de/feeds/reports/]
+name=ECCC papers
+#filters=eccc.py
+face=eccc.png
+[http://blog.oddhead.com/feed/atom/]
+name=David Pennock
+face=pennock.png
+filters=category.py?cats=research,publication
+[http://processalgebra.blogspot.com/feeds/posts/default]
+name=Luca Aceto
+face=aceto.jpeg
+[http://bit-player.org/feed/atom/]
+name=bit-player
+face=hayes.png
+filters=category.py?cats=computing
+[http://aaronsadventures.blogspot.com/feeds/posts/default]
+name=Aaron Roth
+[http://gilkalai.wordpress.com/feed/]
+name=Gil Kalai
+face=kalai.jpeg
+#[http://algorithmicgrindtheory.blogspot.com/feeds/posts/default]
+#name=Algorithmic Grind Theory
+#filters=category.py?cats=theory
+[http://kdphd.blogspot.com/feeds/posts/default]
+name=kd-phd
+#!filters=category.py?cats=$"women%20in%20cs"%20or%20"women%20in%20theory"%20or%20"research"%20or%20"computational%20geometry"%20or%20"cs%20enrollments"
+filters=category.py?cats=cs
+[http://agtb.wordpress.com/feed/]
+name=Noam Nisan
+face=nisan.jpg
+[http://rjlipton.wordpress.com/feed/]
+name=Richard Lipton
+face=lipton.jpeg
+[http://paulwgoldberg.blogspot.com/feeds/posts/default]
+name=Paul Goldberg
+face=goldberg.jpg
+filters=category.py?cats=aggregator
+[http://jonkatz.wordpress.com/category/tcs/feed/]
+name=Jonathan Katz
+face=katz.png
+[http://ontopo.wordpress.com/feed/]
+name=John Moeller
+filters=category.py?cats=aggregator
+[http://jsaia.wordpress.com/feed/]
+filters=category.py?cats=theory
+name=Jared Saia
+face=saia.png
+[http://intractability.princeton.edu/feed/]
+name=Center for Computational Intractability
+[http://intractability.princeton.edu/jobs/feed/]
+name=CCI: jobs
+[http://kintali.wordpress.com/feed/]
+name=Shiva Kintali
+face=kintali.jpeg
+[http://www.glencora.org/tag/tcs/feed/]
+name=Glencora Borradaile
+face=glencora.jpg
+[http://polylogblog.wordpress.com/feed/]
+name=Andrew McGregor
+face=mcgregor.jpg
+[http://people.csail.mit.edu/madry/blog/?feed=rss2]
+name=Aleksander Madry
+face=madry.png
+[http://crypto.cs.uiuc.edu/blog/?feed=rss2]
+name=Manoj Prabhakaran
+face=manoj.jpeg
+[http://adamdsmith.wordpress.com/feed/]
+name=Adam Smith
+face=smith.jpg
+[http://feedworld.net/toc/scripts/stackexchange.py/main]
+name=CSTheory StackExchange
+#[http://www.eatcs.org/index.php?format=feed&type=rss]
+#name=EATCS
+#face=eatcs.png

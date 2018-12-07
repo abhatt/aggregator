@@ -1,0 +1,1597 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/" xmlns:indexing="urn:atom-extension:indexing" indexing:index="no"><access:restriction xmlns:access="http://www.bloglines.com/about/specs/fac-1.0" relationship="deny">
+<title>Theory of Computing Blog Aggregator</title>
+<updated>2018-11-22T22:41:38Z</updated>
+<generator uri="http://intertwingly.net/code/venus/">Venus</generator>
+<author>
+<name>randomwalker</name>
+<email>randomwalker@gmail.com</email>
+</author>
+<id>http://feedworld.net/toc/atom.xml</id>
+<link href="http://feedworld.net/toc/atom.xml" rel="self" type="application/atom+xml" />
+<link href="http://feedworld.net/toc/" rel="alternate" />
+<entry xml:lang="en-US">
+<id>https://www.scottaaronson.com/blog/?p=3997</id>
+<link href="https://www.scottaaronson.com/blog/?p=3997" rel="alternate" type="text/html" />
+<link href="https://www.scottaaronson.com/blog/?p=3997#comments" rel="replies" type="text/html" />
+<link href="https://www.scottaaronson.com/blog/?feed=atom&amp;p=3997" rel="replies" type="application/atom+xml" />
+<title xml:lang="en-US">Teaching quantum in junior high: special Thanksgiving guest post by Terry Rudolph « Shtetl-Optimized</title>
+<summary xml:lang="en-US">Happy Thanksgiving! People have sometimes asked me: “how do you do it?  how do you do your research, write papers, teach classes, mentor grad students, build up the quantum center at UT, travel and give talks every week or two, serve on program committees, raise two rambunctious young kids, and also blog and also participate […]
+      <div class="commentbar">
+<p>
+<span class="commentbutton" href="https://www.scottaaronson.com/blog/?feed=atom&amp;p=3997">
+<a href="https://www.scottaaronson.com/blog/?feed=atom&amp;p=3997">
+<img class="commenticon" src="/images/feed-icon.png" /> Subscribe to comments
+        </a>  | 
+        <a href="https://www.scottaaronson.com/blog/?p=3997#comments">
+<img class="commenticon" src="/images/post-icon.png" /> Post a comment
+        </a>
+</span></p></div>
+</summary>
+<content type="xhtml" xml:lang="en-US"><div xmlns="http://www.w3.org/1999/xhtml"><p>Happy <a href="http://slatestarcodex.com/2013/11/28/the-story-of-thanksgiving-is-a-science-fiction-story/">Thanksgiving</a>!</p>
+<p>People have sometimes asked me: “how do you do it?  how do you do your research, write papers, teach classes, mentor grad students, build up the quantum center at UT, travel and give talks every week or two, serve on program committees, raise two rambunctious young kids, and <em>also</em> blog and <em>also</em> participate in the comments and <em>also</em> get depressed about people saying mean things on social media?”  The answer is that increasingly I don’t.  <em>Something</em> has to give, and this semester, alas, that something has often been blogging.</p>
+<p>And that’s why, today, I’m delighted to have a special guest post by my good friend <a href="https://www.imperial.ac.uk/people/t.rudolph">Terry Rudolph</a>.  Terry, who happens to be Erwin Schrödinger’s grandson, has done lots of fascinating work over the years in quantum computing and the foundations of quantum mechanics, and previously came up on this blog in the context of the <a href="https://en.wikipedia.org/wiki/PBR_theorem">PBR (Pusey-Barrett-Rudolph) Theorem</a>.  Today, he’s a cofounder and chief architect at <a href="https://psiquantum.com/">PsiQuantum</a>, a startup in Palo Alto that’s trying to build silicon-photonic quantum computers.</p>
+<p>Terry’s guest post is about the prospects for teaching quantum theory at the junior high school level—something he thought about a lot in the context of writing his interesting recent book <a href="https://www.amazon.com/Q-Quantum-Terry-Rudolph/dp/0999063502">Q is for Quantum</a>.  I should stress that the opinions in this post are Terry’s, and don’t necessarily reflect the official editorial positions of <em>Shtetl-Optimized</em>.  Personally, I <em>have</em> <a href="https://www.scottaaronson.com/writings/highschool.html">taught the basics of quantum information</a> to sharp junior high and high school students, so I certainly know that it’s possible.  (By undergrad, it’s not only <a href="https://www.scottaaronson.com/blog/?p=3943">possible</a>, but maybe should become standard for both physics and CS majors.)  But I would also say that, given the current state of junior high and high school education in the US, it would be a huge step up if most students graduated fully understanding what’s a probability, what’s a classical bit, what’s a complex number, and any of dozens of other topics that feed into quantum information—so why not start by teaching the simpler stuff well?  And also, if students don’t learn the rules of classical probability first, then how will they be properly shocked when they come to quantum? <img alt="🙂" class="wp-smiley" src="https://s.w.org/images/core/emoji/11/72x72/1f642.png" style="height: 1em;" /></p>
+<p>But without further ado, here’s Terry—who’s also graciously agreed to stick around and answer some comments.</p>
+<hr />
+<p><b>Can we/should we teach Quantum Theory in Junior High?</b><b></b></p>
+<p>by Terry Rudolph</p>
+<p><strong>Should we?</strong></p>
+<p>Reasons which suggest the answer is “yes” include:</p>
+<p><i>Economic:</i> We are apparently <a href="https://www.nytimes.com/2018/10/21/technology/quantum-computing-jobs-immigration-visas.html">into a labor market shortage in quantum engineers</a>.  We should not, however, need the recent hype around quantum computing to make the economic case – the frontier of many disparate regions of the modern science and technology landscape is quantum.  Surely if students do decide to drop out of school at 16 they should at least be equipped to get an entry-level job as a quantum physicist?</p>
+<p><i>Educational:</i> If young peoples’ first exposures to science are counterintuitive and “cutting edge,” it could help excite them into STEM.  The strong modern quantum information theoretic connections between quantum physics, computer science and math can help all three subjects constructively generate common interest.</p>
+<p><i>Pseudo-Philosophical:</i> Perhaps our issues with understanding/accepting quantum theory are because we come to it late and have lost the mental plasticity for a “quantum reset” of our brain when we eventually require it late in an undergraduate degree.  It may be easier to achieve fluency in the “language of quantum” with early exposure.</p>
+<p><b>Can we?</b></p>
+<p>There are two distinct aspects to this question: Firstly, is it possible at the level of “fitting it in” – training teachers, adjusting curricula and so on?  Secondly, can a nontrivial, worthwhile fraction of quantum theory even be taught at all to pre-calculus students?</p>
+<p>With regards to the first question, as the child of two schoolteachers I am very aware that an academic advocating for such disruption will not be viewed kindly by all.  As I don’t have relevant experience to say anything useful about this aspect, I have to leave it for others to consider.</p>
+<p>Let me focus for the remainder of this post on the second aspect, namely whether it is even possible to appropriately simplify the content of the theory.  This month it is exactly 20 years since I lectured the first of many varied quantum courses I have taught at multiple universities. For most of that period I would have said it simply wasn’t possible to teach any but the most precocious of high school students nontrivial technical content of quantum theory – despite some brave attempts like Feynman’s use of arrows in <i>QED: The Strange Theory of Light and Matter</i> (a technique that cannot easily get at the mysteries of two-particle quantum theory, which is where the fun really starts).  I now believe, however, that it <i>is</i> actually possible.</p>
+<p><b>A pedagogical method covering nontrivial quantum theory using only basic arithmetic </b></p>
+<p>My experience talking about quantum theory to 12-15 year olds has only been in the idealized setting of spending a few hours with them at science fairs, camps and similar.  In fact it was on the way to a math camp for very young students, desperately trying to plan something non-trivial to engage them with, that I came up with a pedagogical method which I (and a few colleagues) have found does work.</p>
+<p>I eventually wrote the method into a short book <a href="http://www.qisforquantum.org">Q is for Quantum</a>, but if you don’t want to <a href="https://www.amazon.com/Q-Quantum-Terry-Rudolph/dp/0999063502">purchase the book</a> then <a href="http://qisforquantum.org/wp-content/uploads/2018/11/PART-I-draft-Q-is-for-Quantum.pdf">here is a pdf of Part I,</a>, which takes a student knowing only the rules of basic arithmetic through to learning enough quantum computing they can understand the <a href="https://en.wikipedia.org/wiki/Deutsch–Jozsa_algorithm">Deutsch–Jozsa algorithm</a>.  In fact not only can they do a calculation to see how it works in detail, they can appreciate conceptual nuances often under-appreciated in popular expositions, such as why gate speed doesn’t matter – it’s all about the number of steps, why classical computing also can have exponential growth in “possible states” so interference is critical, why quantum computers do not compute the uncomputable and so on.</p>
+<p>Before pointing out a few features of the approach, here are some rules I set myself while writing the book:</p>
+<ul>
+<li>No analogies, no jargon – if it can’t be explained quantitatively then leave it out.</li>
+<li>No math more than basic arithmetic and distribution across brackets.</li>
+<li>Keep clear the distinction between mathematical objects and the observed physical events they are describing.</li>
+<li>Be interpretationally neutral.</li>
+<li>No soap opera: Motivate by intriguing with science, not by regurgitating quasi-mythological stories about the founders of the theory.</li>
+<li>No using the word “quantum” in the main text! This was partly to amuse myself, but I also thought if I was succeeding in the other points then I should be able to avoid a word almost synonymous with “hard and mysterious.”</li>
+</ul>
+<p>One of the main issues to confront is how to represent and explain superposition.  It is typical in popular expositions to draw analogies between a superposition of, say, a cat which is dead and a cat which is alive by saying it is dead “and” alive.  But if superposition was equivalent to logical “and”, or, for that matter, logical “or”, then quantum computing wouldn’t be interesting, and in this and other ways the analogy is ultimately misleading.  The approach I use is closer to the latter – an unordered list of possible states for a system (which is most like an “or”) can be used to represent a superposition. Using a list has some advantages – it is natural to apply a transformation to all elements of a list, for instance doubling the list of ingredients in a recipe.  More critically, given two independent lists of possibilities the new joint list of combined possibilities is a natural concept.  This makes teaching the equivalent of the Kronecker (tensor) product for multiple systems easy, something often a bit tricky even for undergrads to become comfortable with.</p>
+<p>Conceptually the weirdest part of the whole construction, particularly for someone biased by the standard formalism, is that I use a standard mathematical object (a negative or minus sign) applied to a <i>diagram</i> of a physical object (a black or white ball).  Moreover, positive and negative balls in a diagram can cancel out (interfere).  This greatly simplifies the exposition, by removing a whole level of abstraction in the standard theory (we do not need to use a vector containing entries whose specific ordering must be remembered in order to equate them to the physical objects).  While it initially seemed odd to me personally to do this, I have yet to have any young person think of it as any more weird than using the negative sign on a number.  And if it is always kept clear that drawing and manipulating the whole diagram is an abstract thing we do, which may or may not have any correspondence to what is “really going on” in the physical setups we are describing, then there really is no difference.</p>
+<p>There are some subtleties about the whole approach – while the formalism is universal for quantum computing, it can only make use of unitary evolution which is <i>proportional</i> to a matrix with integer entries.  Thus the <a href="https://en.wikipedia.org/wiki/Quantum_logic_gate#Hadamard_(H)_gate">Hadamard gate</a> (PETE box) is ok, the <a href="https://en.wikipedia.org/wiki/Quantum_logic_gate#Controlled_(cX_cY_cZ)_gates">Controlled-NOT</a> and <a href="https://en.wikipedia.org/wiki/Toffoli_gate">Toffoli</a> likewise, but a seemingly innocuous gate like the controlled-Hadamard is not capable of being incorporated (without adding a whole bunch of unintuitive and unjustified rules).  The fact the approach covers a universal gate set means some amazing things can be explained in this simple diagrammatic language.  For example, the recent paper <a href="https://www.nature.com/articles/s41467-018-05739-8">Quantum theory cannot consistently describe the use of itself</a>, which led to <a href="https://www.scottaaronson.com/blog/?p=3975">considerable discussion on this blog</a>, can be fully reproduced.  That is, a high school student can in principle understand the technical details of a contemporary argument between professional physicists.  I find this amazing.</p>
+<p>Based on communication with readers I have come to realize the people at most risk of being confused by the book are actually those already with a little knowledge – someone who has done a year or two’s worth of undergraduate quantum courses, or someone who has taken things they read in pop-sci books too literally.  Initially, as I was developing the method, I thought it would be easy to keep “touching base” with the standard vector space formalism.  But in fact it becomes very messy to do so (and irrelevant for someone learning quantum theory for the first time).  In the end I dropped that goal, but now realize I need to develop some supplementary notes to help someone in that situation.</p>
+<p><i>Q is for Quantum</i> is certainly not designed to be used as a classroom text – if nothing else my particular style and choice of topics will not be to others’ tastes, and I haven’t included all the many, many simple examples and exercises I have students doing along with me in class when I actually teach this stuff.  It should be thought of as more a “proof of principle,” that the expository challenge can be met.  Several colleagues have used parts of these ideas already for teaching, and they have given me some great feedback.  As such I am planning on doing a revised and slightly expanded version at some point, so if you read it and have thoughts for improvement please send me them.</p></div>
+</content>
+<updated>2018-11-22T19:45:17Z</updated>
+<published>2018-11-22T19:45:17Z</published>
+<category scheme="https://www.scottaaronson.com/blog" term="Nerd Interest">
+</category><category scheme="https://www.scottaaronson.com/blog" term="Quantum">
+<author>
+<name>Scott</name>
+<uri>http://www.scottaaronson.com</uri>
+</author>
+<source>
+<id>https://www.scottaaronson.com/blog/?feed=atom</id>
+<link href="https://www.scottaaronson.com/blog" rel="alternate" type="text/html" />
+<link href="https://www.scottaaronson.com/blog/?feed=atom" rel="self" type="application/atom+xml" />
+<subtitle xml:lang="en-US">The Blog of Scott Aaronson</subtitle>
+<title xml:lang="en-US">Shtetl-Optimized</title>
+<updated>2018-11-22T19:45:17Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en-us">
+<id>https://eccc.weizmann.ac.il/report/2018/197</id>
+<link href="https://eccc.weizmann.ac.il/report/2018/197" rel="alternate" type="text/html" />
+<title>TR18-197 |  Approximate degree of AND via Fourier analysis | 
+
+	Andrej Bogdanov « ECCC - Reports</title>
+<summary>We give a new proof that the approximate degree of the AND function over $n$ inputs is $\Omega(\sqrt{n})$.  Our proof extends to the notion of weighted degree, resolving a conjecture of Kamath and Vasudevan.  As a consequence we confirm that the approximate degree of any read-once depth-2 De Morgan formula is the square root of the formula size up to constant.  This generalizes a result of Sherstov (TOC 2013) and Bun and Thaler (Inf. Comput. 2015).
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-22T04:46:10Z</updated>
+<published>2018-11-22T04:46:10Z</published>
+<source>
+<id>https://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="https://example.com/" rel="alternate" type="text/html" />
+<link href="https://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at https://eccc.weizmann.ac.il</subtitle>
+<title>ECCC - Reports</title>
+<updated>2018-11-22T22:40:32Z</updated>
+</source>
+</entry>
+<entry xml:lang="en">
+<id>http://tcsplus.wordpress.com/?p=330</id>
+<link href="https://tcsplus.wordpress.com/2018/11/21/tcs-talk-wednesday-november-28-eric-balkanski-harvard-university/" rel="alternate" type="text/html" />
+<title>TCS+ talk: Wednesday, November 28 — Eric Balkanski, Harvard University « TCS+</title>
+<summary>The next TCS+ talk will take place this coming Wednesday, November 28th at 1:00 PM Eastern Time (10:00 AM Pacific Time, 19:00 Central European Time, 18:00 UTC). Eric Balkanski from Harvard University will speak about “The Adaptive Complexity of Maximizing a Submodular Function” (abstract below). Please make sure you reserve a spot for your group […]
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>The next TCS+ talk will take place this coming Wednesday, November 28th at 1:00 PM Eastern Time (10:00 AM Pacific Time, 19:00 Central European Time, 18:00 UTC). <strong>Eric Balkanski</strong> from Harvard University will speak about “<em>The Adaptive Complexity of Maximizing a Submodular Function</em>” (abstract below).</p>
+<p>Please make sure you reserve a spot for your group to join us live by signing up on <a href="https://sites.google.com/site/plustcs/livetalk/live-seat-reservation">the online form</a>. As usual, for more information about the TCS+ online seminar series and the upcoming talks, or to <a href="https://sites.google.com/site/plustcs/suggest">suggest</a> a possible topic or speaker, please see <a href="https://sites.google.com/site/plustcs/">the website</a>.</p>
+<blockquote><p>Abstract: We introduce the study of submodular optimization in the adaptive complexity model to quantify the information theoretic complexity of black-box optimization in a parallel computation model. Informally, the adaptivity of an algorithm is the number of sequential rounds it makes when each round can execute polynomially-many function evaluations in parallel. Since submodular optimization is regularly applied on large datasets we seek algorithms with low adaptivity to enable speedups via parallelization. For the canonical problem of maximizing a monotone submodular function under a cardinality constraint, all that was known until recently is that the adaptivity needed to obtain a constant approximation is between 1 and <img alt="\Omega(n)" class="latex" src="https://s0.wp.com/latex.php?latex=%5COmega%28n%29&amp;bg=fff&amp;fg=444444&amp;s=0" title="\Omega(n)" />. Our main result is a tight characterization showing that the adaptivity needed is, up to lower order terms, <img alt="\Theta(\log n)" class="latex" src="https://s0.wp.com/latex.php?latex=%5CTheta%28%5Clog+n%29&amp;bg=fff&amp;fg=444444&amp;s=0" title="\Theta(\log n)" />:</p>
+<ul>
+<li>We describe an algorithm which requires <img alt="O(\log n)" class="latex" src="https://s0.wp.com/latex.php?latex=O%28%5Clog+n%29&amp;bg=fff&amp;fg=444444&amp;s=0" title="O(\log n)" /> sequential rounds and achieves an approximation that is arbitrarily close to 1/3;</li>
+<li>We show that no algorithm can achieve an approximation better than <img alt="O(1/\log n)" class="latex" src="https://s0.wp.com/latex.php?latex=O%281%2F%5Clog+n%29&amp;bg=fff&amp;fg=444444&amp;s=0" title="O(1/\log n)" /> with fewer than <img alt="O(\log n/\log\log n)" class="latex" src="https://s0.wp.com/latex.php?latex=O%28%5Clog+n%2F%5Clog%5Clog+n%29&amp;bg=fff&amp;fg=444444&amp;s=0" title="O(\log n/\log\log n)" /> rounds.<br />
+Thus, when allowing for parallelization, our algorithm achieves a constant factor approximation exponentially faster than any previous algorithm for submodular maximization. I will conclude the talk by surveying very recent results on submodular optimization in the adaptive complexity model.</li>
+</ul>
+<p>Joint work with Yaron Singer.</p></blockquote>
+<p> </p></div>
+</content>
+<updated>2018-11-22T02:40:57Z</updated>
+<published>2018-11-22T02:40:57Z</published>
+<category term="Announcements">
+<author>
+<name>plustcs</name>
+</author>
+<source>
+<id>https://tcsplus.wordpress.com</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://tcsplus.wordpress.com/feed/" rel="self" type="application/atom+xml" />
+<link href="https://tcsplus.wordpress.com" rel="alternate" type="text/html" />
+<link href="https://tcsplus.wordpress.com/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://tcsplus.wordpress.com/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>A carbon-free dissemination of ideas across the globe.</subtitle>
+<title>TCS+</title>
+<updated>2018-11-22T22:41:33Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.08850</id>
+<link href="http://arxiv.org/abs/1811.08850" rel="alternate" type="text/html" />
+<title>CoPaR: An Efficient Generic Partition Refiner « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542844800</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/d/Deifel:Hans=Peter.html">Hans-Peter Deifel</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/m/Milius:Stefan.html">Stefan Milius</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Schr=ouml=der:Lutz.html">Lutz Schröder</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/w/Wi=szlig=mann:Thorsten.html">Thorsten Wißmann</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.08850">PDF</a><br /><b>Abstract: </b>Partition refinement is a method for minimizing automata and transition
+systems of various types. We present a tool implementing a recently developed
+partition refinement algorithm that is generic in the transition type of the
+given system and typically runs in time either $\mathcal{O}(m\cdot \log n)$ or
+$\mathcal{O}(m\cdot \log n\cdot\log m)$ for systems with $m$ edges and $n$
+states. This matches the runtime of the best known algorithms for several fixed
+types of systems, e.g. deterministic automata as well as ordinary, weighted,
+and probabilistic (labelled) transition systems, and in the case of weighted
+systems over non-cancellative monoids, such as (the additive monoid of) the
+tropical semiring, even improves the asymptotic runtime. Genericity is achieved
+by modelling transition types as endofunctors on sets and state-based systems
+as coalgebras. In addition to thus obtaining an efficient partion refiner for
+the mentioned types of systems, we demonstrate how the user can quickly obtain
+a partition refiner for new types of systems by composing pre-implemented basic
+functors, and how the tool can easily be extended with new basic functors by
+implementing a refinement interface.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-22T02:08:43Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-22T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.08811</id>
+<link href="http://arxiv.org/abs/1811.08811" rel="alternate" type="text/html" />
+<title>$k$-Cut: A Simple Approximately-Uniform Method for Sampling Ballots in Post-Election Audits « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542844800</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b>Mayuri Sridhar, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/r/Rivest:Ronald_L=.html">Ronald L. Rivest</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.08811">PDF</a><br /><b>Abstract: </b>We present an approximate sampling framework and discuss how risk-limiting
+audits can compensate for these approximations, while maintaining their
+"risk-limiting" properties. Our framework is general and can compensate for
+counting mistakes made during audits.
+</p>
+<p>Moreover, we present and analyze a simple approximate sampling
+method,"$k$-cut", for picking a ballot randomly from a stack, without counting.
+Our method involves doing $k$ "cuts", each involving moving a random portion of
+ballots from the top to the bottom of the stack, and then picking the ballot on
+top. Unlike conventional methods of picking a ballot at random, $k$-cut does
+not require identification numbers on the ballots or counting many ballots per
+draw. We analyze how close the distribution of chosen ballots is to the uniform
+distribution, and design different mitigation procedures. We show that $k=6$
+cuts is enough for an risk-limiting election audit, based on empirical data,
+which would provide a significant increase in efficiency.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-22T02:05:35Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-22T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.08539</id>
+<link href="http://arxiv.org/abs/1811.08539" rel="alternate" type="text/html" />
+<title>Breaking symmetries to rescue Sum of Squares: The case of makespan scheduling « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542844800</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/v/Verdugo:Victor.html">Victor Verdugo</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/v/Verschae:Jos=eacute=.html">José Verschae</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.08539">PDF</a><br /><b>Abstract: </b>The Sum of Squares (SoS) hierarchy gives an automatized technique to create a
+family of increasingly tight convex relaxations for binary programs. There are
+several problems for which a constant number of rounds of the hierarchy give
+integrality gaps matching the best known approximation algorithm. In many
+other, however, ad-hoc techniques give significantly better approximation
+ratios. Notably, the lower bounds instances, in many cases, are invariant under
+the action of a large permutation group. The main purpose of this paper is to
+study how the presence of symmetries on a formulation degrades the performance
+of the relaxation obtained by the SoS hierarchy. We do so for the special case
+of the minimum makespan problem on identical machines. Our first result is to
+show that a linear number of rounds of SoS applied over the \emph{configuration
+linear program} yields an integrality gap of at least $1.0009$. This improves
+on the recent work by Kurpisz et al. [Math. Program. '18] that shows an
+analogous result for the weaker LS$_+$ and SA hierarchies. Then, we consider
+the weaker \emph{assignment linear program} and add a well chosen set of
+symmetry breaking inequalities that removes a subset of the machine permutation
+symmetries. We show that applying the SoS hierarchy for $O_\varepsilon(1)$
+rounds to this linear program reduces the integrality gap to $(1+\varepsilon)$.
+This is the first PTAS for this problem based purely on a convex optimization
+techniques. Our results suggest that for this classical problem the symmetries
+of the natural assignment linear program were the main barrier preventing the
+SoS hierarchy to give relaxations with integrality gap $(1+\varepsilon)$ after
+a constant number of rounds. We leave as an open question whether this
+phenomenon occurs for different problems where the SoS hierarchy yields weak
+relaxations.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-22T02:12:50Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-22T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.08532</id>
+<link href="http://arxiv.org/abs/1811.08532" rel="alternate" type="text/html" />
+<title>On compact representations of Voronoi cells of lattices « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542844800</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/h/Hunkenschr=ouml=der:Christoph.html">Christoph Hunkenschröder</a>, Gina Reuland, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Schymura:Matthias.html">Matthias Schymura</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.08532">PDF</a><br /><b>Abstract: </b>In a seminal work, Micciancio &amp; Voulgaris (2010) described a deterministic
+single-exponential time algorithm for the Closest Vector Problem (CVP) on
+lattices. It is based on the computation of the Voronoi cell of the given
+lattice and thus may need exponential space as well. We address the major open
+question whether there exists such an algorithm that requires only polynomial
+space.
+</p>
+<p>To this end, we define a lattice basis to be $c$-compact if every facet
+normal of the Voronoi cell is a linear combination of the basis vectors using
+coefficients that are bounded by $c$ in absolute value. Given such a basis, we
+get a polynomial space algorithm for CVP whose running time naturally depends
+on $c$. Thus, our main focus is the behavior of the smallest possible value of
+$c$, with the following results: There always exist $c$-compact bases, where
+$c$ is bounded by $n^2$ for an $n$-dimension lattice; there are lattices not
+admitting a $c$-compact basis with $c$ growing sublinearly with the dimension;
+and every lattice with a zonotopal Voronoi cell has a $1$-compact basis.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-22T02:08:22Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-22T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.08506</id>
+<link href="http://arxiv.org/abs/1811.08506" rel="alternate" type="text/html" />
+<title>Tight Approximation Ratio for Minimum Maximal Matching « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542844800</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/d/Dudycz:Szymon.html">Szymon Dudycz</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/l/Lewandowski:Mateusz.html">Mateusz Lewandowski</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/m/Marcinkowski:Jan.html">Jan Marcinkowski</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.08506">PDF</a><br /><b>Abstract: </b>We study a combinatorial problem called Minimum Maximal Matching, where we
+are asked to find in a general graph the smallest that can not be extended. We
+show that this problem is hard to approximate with a constant smaller than 2,
+assuming the Unique Games Conjecture.
+</p>
+<p>As a corollary we show, that Minimum Maximal Matching in bipartite graphs is
+hard to approximate with constant smaller than $\frac{4}{3}$, with the same
+assumption. With a stronger variant of the Unique Games Conjecture --- that is
+Small Set Expansion Hypothesis --- we are able to improve the hardness result
+up to the factor of $\frac{3}{2}$.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-22T00:00:00Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-22T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.08097</id>
+<link href="http://arxiv.org/abs/1811.08097" rel="alternate" type="text/html" />
+<title>Improved Quantum Multicollision-Finding Algorithm « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542844800</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/h/Hosoyamada:Akinori.html">Akinori Hosoyamada</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Sasaki:Yu.html">Yu Sasaki</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/t/Tani:Seiichiro.html">Seiichiro Tani</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/x/Xagawa:Keita.html">Keita Xagawa</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.08097">PDF</a><br /><b>Abstract: </b>The current paper improves the number of queries of the previous quantum
+multi-collision finding algorithms presented by Hosoyamada et al. at Asiacrypt
+2017. Let an $l$-collision be a tuple of $l$ distinct inputs that result in the
+same output of a target function. The previous algorithm finds $l$-collisions
+by recursively calling the algorithm for finding $(l-1)$-collisions, and it
+achieves the query complexity of $O(N^{(3^{l-1}-1) / (2 \cdot 3^{l-1})})$. The
+new algorithm removes the redundancy of the previous recursive algorithm so
+that \tnote{different recursive calls} can share a part of computations. The
+new algorithm achieves the query complexity of $\tilde{O}(N^{(2^{l-1}-1) /
+(2^{l}-1)})$. Moreover, it finds multiclaws for random functions, which are
+harder to find than multicollisions.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-22T00:00:00Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-22T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1808.03713</id>
+<link href="http://arxiv.org/abs/1808.03713" rel="alternate" type="text/html" />
+<title>Simple versus Optimal Contracts « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542844800</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/d/D=uuml=tting:Paul.html">Paul Dütting</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/r/Roughgarden:Tim.html">Tim Roughgarden</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/t/Talgam=Cohen:Inbal.html">Inbal Talgam-Cohen</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1808.03713">PDF</a><br /><b>Abstract: </b>We consider the classic principal-agent model of contract theory, in which a
+principal designs an outcome-dependent compensation scheme to incentivize an
+agent to take a costly and unobservable action. When all of the model
+parameters---including the full distribution over principal rewards resulting
+from each agent action---are known to the designer, an optimal contract can in
+principle be computed by linear programming. In addition to their demanding
+informational requirements, such optimal contracts are often complex and
+unintuitive, and do not resemble contracts used in practice.
+</p>
+<p>This paper examines contract theory through the theoretical computer science
+lens, with the goal of developing novel theory to explain and justify the
+prevalence of relatively simple contracts, such as linear (pure commission)
+contracts. First, we consider the case where the principal knows only the first
+moment of each action's reward distribution, and we prove that linear contracts
+are guaranteed to be worst-case optimal, ranging over all reward distributions
+consistent with the given moments. Second, we study linear contracts from a
+worst-case approximation perspective, and prove several tight parameterized
+approximation bounds.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-22T02:02:49Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-22T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en">
+<id>http://windowsontheory.org/?p=6305</id>
+<link href="https://windowsontheory.org/2018/11/21/highlights-beyond-ec-call-for-nominations/" rel="alternate" type="text/html" />
+<title>Highlights beyond EC: Call for nominations « Windows On Theory</title>
+<summary>[Guest post by Moshe Babaioff –Boaz] “Highlights Beyond EC” Session at EC 2019: Call for Nominations Committee: Mohammad Akbarpour, Moshe Babaioff, Shengwu Li and Ariel Procaccia Following a new tradition started last year, the 2019 ACM Conference on Economics and Computation (EC’19) will host a special session highlighting some of the best work in economics […]
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><em>[Guest post by Moshe Babaioff –Boaz]</em></p>
+<p style="font-weight: 400;"><strong>“Highlights Beyond EC” Session at EC 2019: Call for Nominations</strong></p>
+<p style="font-weight: 400;"><strong><u>Committee</u></strong>: Mohammad Akbarpour, Moshe Babaioff, Shengwu Li and Ariel Procaccia</p>
+<p style="font-weight: 400;">Following a new tradition started last year, the 2019 ACM Conference on Economics and Computation (EC’19) will host a special session highlighting some of the best work in economics and computation that appears in conferences and journals other than EC. The intention of this session is to expose EC attendees to related work just beyond the boundary of their current awareness.</p>
+<p style="font-weight: 400;">We seek nominations for papers on Economics and Computation that have made breakthrough advances, opened up new questions or areas, made unexpected connections, or had significant impact on practice or other sciences. Examples of conferences and journals that publish papers relevant for the special session include STOC/FOCS/SODA/ITCS, AAAI/IJCAI/AAMAS, NIPS/ICML/COLT, WWW/KDD, AER/Econometrica/JPE/QJE/RESTUD/TE/AEJ Micro/JET/GEB, and Math of OR/Management Science/Operations Research. Please email nominations to<u><a href="mailto:HighlightsBeyondEC@gmail.com">HighlightsBeyondEC@gmail.com</a></u>. Anyone is welcome to contact us, but we especially invite members of PCs or editorial boards in various venues to send us suggestions. Nominations should include:</p>
+<ol>
+<li style="font-weight: 400;"> Name of paper and authors.</li>
+<li style="font-weight: 400;">Publication venue or online working version. Preference will be given to papers that have appeared in a related conference or journal within the past two years, or have a working version circulated within the past two years.</li>
+<li style="font-weight: 400;">Short (2-3 paragraph) explanation of the paper and its importance.</li>
+<li style="font-weight: 400;">(Optional) Names of 1-3 knowledgeable experts on the area of the paper.</li>
+</ol>
+<p style="font-weight: 400;">Note that at least one of the authors of a selected paper will be required to present their paper at EC 2019 and so should be available to travel to the conference, which is taking place in Phoenix, AZ on June 25-27, 2019.</p>
+<p style="font-weight: 400;">To ensure maximum consideration, please send all nominations by December 15, 2018.</p>
+<p style="font-weight: 400;"></p></div>
+</content>
+<updated>2018-11-21T19:14:58Z</updated>
+<published>2018-11-21T19:14:58Z</published>
+<category term="Uncategorized">
+<author>
+<name>Boaz Barak</name>
+</author>
+<source>
+<id>https://windowsontheory.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://windowsontheory.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://windowsontheory.org" rel="alternate" type="text/html" />
+<link href="https://windowsontheory.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://windowsontheory.org/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>A Research Blog</subtitle>
+<title>Windows On Theory</title>
+<updated>2018-11-22T22:41:12Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en">
+<id>http://cstheory-events.org/2018/11/21/pcp-fest-2018/</id>
+<link href="https://cstheory-events.org/2018/11/21/pcp-fest-2018/" rel="alternate" type="text/html" />
+<title>PCP-fest 2018 « CS Theory Events</title>
+<summary>December 18-20, 2018 Tel Aviv, Israel https://sites.google.com/view/pcpfest The PCP-fest is a PCP centered workshop, aiming to bring together researchers from around the world. The workshop will focus on the state of the art theoretical results on PCPs and future directions, as well as recent applications with regards to Blockchain technology.
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-21T09:40:34Z</updated>
+<published>2018-11-21T09:40:34Z</published>
+<category term="workshop">
+<author>
+<name>shacharlovett</name>
+</author>
+<source>
+<id>https://cstheory-events.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://cstheory-events.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://cstheory-events.org" rel="alternate" type="text/html" />
+<link href="https://cstheory-events.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://cstheory-events.org/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>Aggregator for CS theory workshops, schools, and so on</subtitle>
+<title>CS Theory Events</title>
+<updated>2018-11-22T22:41:35Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en">
+<id>http://cstheory-jobs.org/2018/11/20/postdoc-in-algorithms-at-university-of-bergen-apply-by-january-15-2019/</id>
+<link href="https://cstheory-jobs.org/2018/11/20/postdoc-in-algorithms-at-university-of-bergen-apply-by-january-15-2019/" rel="alternate" type="text/html" />
+<title>Postdoc in Algorithms at University of Bergen (apply by January 15, 2019) « Theoretical Computer Science Jobs</title>
+<summary>One year research position at postdoctoral level is available at Algorithms research group, University of Bergen, Norway. Topic: fine-grained analysis of (parameterized, approximation, polynomial, dynamic, streaming, etc.) algorithms on various objects (graphs, points, vectors, spaces, matrices, matroids, strings, etc.). Website: https://www.jobbnorge.no/en/available-jobs/job/160087/researcher-position-in-algorithms Email: fomin@ii.uib.no
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>One year research position at postdoctoral level is available at Algorithms research group, University of Bergen, Norway. Topic: fine-grained analysis of (parameterized, approximation, polynomial, dynamic, streaming, etc.) algorithms on various objects (graphs, points, vectors, spaces, matrices, matroids, strings, etc.).</p>
+<p>Website: <a href="https://www.jobbnorge.no/en/available-jobs/job/160087/researcher-position-in-algorithms">https://www.jobbnorge.no/en/available-jobs/job/160087/researcher-position-in-algorithms</a><br />
+Email: fomin@ii.uib.no</p></div>
+</content>
+<updated>2018-11-20T10:07:57Z</updated>
+<published>2018-11-20T10:07:57Z</published>
+<category term="Uncategorized">
+<author>
+<name>shacharlovett</name>
+</author>
+<source>
+<id>https://cstheory-jobs.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://cstheory-jobs.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://cstheory-jobs.org" rel="alternate" type="text/html" />
+<link href="https://cstheory-jobs.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://cstheory-jobs.org/?pushpress=hub" rel="hub" type="text/html" />
+<title>Theoretical Computer Science Jobs</title>
+<updated>2018-11-22T22:40:52Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en">
+<id>http://cstheory-jobs.org/2018/11/19/faculty-at-quics-apply-by-december-15-2018/</id>
+<link href="https://cstheory-jobs.org/2018/11/19/faculty-at-quics-apply-by-december-15-2018/" rel="alternate" type="text/html" />
+<title>Faculty at QuICS (apply by December 15, 2018) « Theoretical Computer Science Jobs</title>
+<summary>The Joint Center for Quantum Information and Computer Science (QuICS) is currently seeking outstanding quantum information researchers to join the Center faculty as QuICS Fellows. QuICS is a research partnership between the University of Maryland and the National Institute of Standards and Technology, with faculty from both institutions. Website: http://quics.umd.edu/join-quics/new-faculty Email: quics-coordinator@umiacs.umd.edu
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>The Joint Center for Quantum Information and Computer Science (QuICS) is currently seeking outstanding quantum information researchers to join the Center faculty as QuICS Fellows. QuICS is a research partnership between the University of Maryland and the National Institute of Standards and Technology, with faculty from both institutions.</p>
+<p>Website: <a href="http://quics.umd.edu/join-quics/new-faculty">http://quics.umd.edu/join-quics/new-faculty</a><br />
+Email: quics-coordinator@umiacs.umd.edu</p></div>
+</content>
+<updated>2018-11-19T22:01:10Z</updated>
+<published>2018-11-19T22:01:10Z</published>
+<category term="Uncategorized">
+<author>
+<name>shacharlovett</name>
+</author>
+<source>
+<id>https://cstheory-jobs.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://cstheory-jobs.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://cstheory-jobs.org" rel="alternate" type="text/html" />
+<link href="https://cstheory-jobs.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://cstheory-jobs.org/?pushpress=hub" rel="hub" type="text/html" />
+<title>Theoretical Computer Science Jobs</title>
+<updated>2018-11-22T22:40:53Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en">
+<id>http://cstheory-jobs.org/2018/11/19/tenure-track-faculty-assistant-or-associate-at-university-of-victoria-apply-by-december-21-2018/</id>
+<link href="https://cstheory-jobs.org/2018/11/19/tenure-track-faculty-assistant-or-associate-at-university-of-victoria-apply-by-december-21-2018/" rel="alternate" type="text/html" />
+<title>Tenure-track faculty (assistant or associate) at University of Victoria (apply by December 21, 2018) « Theoretical Computer Science Jobs</title>
+<summary>The Department of Computer Science at the University of Victoria is seeking applicants for up to four positions at the Assistant or Associate rank. Candidates with research in AI, Systems, Theory, or Interdisciplinary Areas, as broadly defined by csrankings.org, are encouraged to apply. Another position at the Assistant or Associate rank, with a preference for […]
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>The Department of Computer Science at the University of Victoria is seeking applicants for up to four positions at the Assistant or Associate rank. Candidates with research in AI, Systems, Theory, or Interdisciplinary Areas, as broadly defined by csrankings.org, are encouraged to apply. Another position at the Assistant or Associate rank, with a preference for female applicants, is available.</p>
+<p>Website: <a href="https://www.uvic.ca/engineering/computerscience/people/employment-opportunities/index.php">https://www.uvic.ca/engineering/computerscience/people/employment-opportunities/index.php</a><br />
+Email: search@csc.uvic.ca</p></div>
+</content>
+<updated>2018-11-19T21:49:53Z</updated>
+<published>2018-11-19T21:49:53Z</published>
+<category term="Uncategorized">
+<author>
+<name>shacharlovett</name>
+</author>
+<source>
+<id>https://cstheory-jobs.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://cstheory-jobs.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://cstheory-jobs.org" rel="alternate" type="text/html" />
+<link href="https://cstheory-jobs.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://cstheory-jobs.org/?pushpress=hub" rel="hub" type="text/html" />
+<title>Theoretical Computer Science Jobs</title>
+<updated>2018-11-22T22:40:52Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en-us">
+<id>https://eccc.weizmann.ac.il/report/2018/196</id>
+<link href="https://eccc.weizmann.ac.il/report/2018/196" rel="alternate" type="text/html" />
+<title>TR18-196 |  Testing local properties of arrays | 
+
+	Omri Ben-Eliezer « ECCC - Reports</title>
+<summary>We study testing of local properties in one-dimensional and multi-dimensional arrays. A property of $d$-dimensional arrays $f:[n]^d \to \Sigma$ is $k$-local if it can be defined by a family of $k \times \ldots \times k$ forbidden consecutive patterns. This definition captures numerous interesting properties. For example, monotonicity, Lipschitz continuity and submodularity are $2$-local; convexity is (usually) $3$-local; and many typical problems in computational biology and computer vision involve $o(n)$-local properties.
+
+In this work, we present a generic approach to test all local properties of arrays over any finite (and not necessarily bounded size) alphabet. We show that any $k$-local property of $d$-dimensional arrays is testable by a simple canonical one-sided error non-adaptive $\varepsilon$-test, whose query complexity is $O(\epsilon^{-1}k \log{\frac{\epsilon n}{k}})$ for $d = 1$ and $O(c_d \epsilon^{-1/d} k \cdot n^{d-1})$ for $d &gt; 1$. The queries made by the canonical test constitute sphere-like structures of varying sizes, and are completely independent of the property and the alphabet $\Sigma$. The query complexity is optimal for a wide range of parameters: For $d=1$, this matches the query complexity of many previously investigated local properties, while for $d &gt; 1$ we design and analyze new constructions of $k$-local properties whose one-sided non-adaptive query complexity matches our upper bounds. For some previously studied properties, our method provides the first known sublinear upper bound on the query complexity.
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T19:11:22Z</updated>
+<published>2018-11-19T19:11:22Z</published>
+<source>
+<id>https://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="https://example.com/" rel="alternate" type="text/html" />
+<link href="https://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at https://eccc.weizmann.ac.il</subtitle>
+<title>ECCC - Reports</title>
+<updated>2018-11-22T22:40:32Z</updated>
+</source>
+</entry>
+<entry xml:lang="en">
+<id>http://cstheory-jobs.org/2018/11/19/211-0015-18-2n-tenure-track-assistant-professor-within-algorithms-at-department-of-computer-science-university-of-copenhagen-apply-by-january-1-2019/</id>
+<link href="https://cstheory-jobs.org/2018/11/19/211-0015-18-2n-tenure-track-assistant-professor-within-algorithms-at-department-of-computer-science-university-of-copenhagen-apply-by-january-1-2019/" rel="alternate" type="text/html" />
+<title>(211-0015/18-2N) Tenure-track assistant Professor within Algorithms at Department of Computer Science, University of Copenhagen  (apply by January 1, 2019) « Theoretical Computer Science Jobs</title>
+<summary>The Algorithms and Complexity Section at DIKU is headed by Professor Mikkel Thorup. The group is prolific at the topmost conferences like STOC, FOCS, and SODA (we had 10 papers accepted for SODA’18 and Thorup is PC chair for FOCS’18). Adding to the excitement, we have the center Basic Algorithms Research Copenhagen (BARC) which also […]
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>The Algorithms and Complexity Section at DIKU is headed by Professor Mikkel Thorup. The group is prolific at the topmost conferences like STOC, FOCS, and SODA (we had 10 papers accepted for SODA’18 and Thorup is PC chair for FOCS’18). Adding to the excitement, we have the center Basic Algorithms Research Copenhagen (BARC) which also involves the IT-University of Copenhagen.</p>
+<p>Website: <a href="https://employment.ku.dk/tenure-track/?show=148428">https://employment.ku.dk/tenure-track/?show=148428</a><br />
+Email: madsn@di.ku.dk</p></div>
+</content>
+<updated>2018-11-19T07:47:15Z</updated>
+<published>2018-11-19T07:47:15Z</published>
+<category term="Uncategorized">
+<author>
+<name>shacharlovett</name>
+</author>
+<source>
+<id>https://cstheory-jobs.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://cstheory-jobs.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://cstheory-jobs.org" rel="alternate" type="text/html" />
+<link href="https://cstheory-jobs.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://cstheory-jobs.org/?pushpress=hub" rel="hub" type="text/html" />
+<title>Theoretical Computer Science Jobs</title>
+<updated>2018-11-22T22:40:52Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06933</id>
+<link href="http://arxiv.org/abs/1811.06933" rel="alternate" type="text/html" />
+<title>Efficient Construction of a Complete Index for Pan-Genomics Read Alignment « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/Kuhnle:Alan.html">Alan Kuhnle</a>, Taher Mun, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Boucher:Christina.html">Christina Boucher</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/g/Gagie:Travis.html">Travis Gagie</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/l/Langmead:Ben.html">Ben Langmead</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/m/Manzini:Giovanni.html">Giovanni Manzini</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06933">PDF</a><br /><b>Abstract: </b>While short read aligners, which predominantly use the FM-index, are able to
+easily index one or a few human genomes, they do not scale well to indexing
+databases containing thousands of genomes. To understand why, it helps to
+examine the main components of the FM-index in more detail, which is a rank
+data structure over the Burrows-Wheeler Transform (BWT) of the string that will
+allow us to find the interval in the string's suffix array (SA) containing
+pointers to starting positions of occurrences of a given pattern; second, a
+sample of the SA that --- when used with the rank data structure --- allows us
+access the SA. The rank data structure can be kept small even for large genomic
+databases, by run-length compressing the BWT, but until recently there was no
+means known to keep the SA sample small without greatly slowing down access to
+the SA. Now that Gagie et al. (SODA 2018) have defined an SA sample that takes
+about the same space as the run-length compressed BWT --- we have the design
+for efficient FM-indexes of genomic databases but are faced with the problem of
+building them. In 2018 we showed how to build the BWT of large genomic
+databases efficiently (WABI 2018) but the problem of building Gagie et al.'s SA
+sample efficiently was left open. We compare our approach to state-of-the-art
+methods for constructing the SA sample, and demonstrate that it is the fastest
+and most space-efficient method on highly repetitive genomic databases. Lastly,
+we apply our method for indexing partial and whole human genomes, and show that
+it improves over Bowtie with respect to both memory and time.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:05:39Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06898</id>
+<link href="http://arxiv.org/abs/1811.06898" rel="alternate" type="text/html" />
+<title>A Spanner for the Day After « cs.CG updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Buchin:Kevin.html">Kevin Buchin</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/h/Har=Peled:Sariel.html">Sariel Har-Peled</a>, Daniel Olah <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06898">PDF</a><br /><b>Abstract: </b>We show how to construct $(1+\varepsilon)$-spanner over a set $P$ of $n$
+points in $\mathbb{R}^d$ that is resilient to a catastrophic failure of nodes.
+Specifically, for prescribed parameters $\vartheta,\varepsilon \in (0,1)$, the
+computed spanner $G$ has $O(n \varepsilon^{-c} \vartheta^{-6} \log^{c} n )$
+edges, where $c= O(d)$. Furthermore, for any $k$, and any deleted set $B
+\subseteq P$ of $k$ points, the residual graph $G \setminus B$ is
+$(1+\varepsilon)$-spanner for all the points of $P$ except for $(1+\vartheta)k$
+of them. No previous constructions, beyond the trivial clique with $O(n^2)$
+edges, were known such that only a tiny additional fraction (i.e., $\vartheta$)
+lose their distance preserving connectivity.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T00:00:00Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Geometry">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CG" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Geometry (cs.CG) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CG updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06892</id>
+<link href="http://arxiv.org/abs/1811.06892" rel="alternate" type="text/html" />
+<title>A tight kernel for computing the tree bisection and reconnection distance between two phylogenetic trees « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/Kelk:Steven.html">Steven Kelk</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/l/Linz:Simone.html">Simone Linz</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06892">PDF</a><br /><b>Abstract: </b>In 2001 Allen and Steel showed that, if subtree and chain reduction rules
+have been applied to two unrooted phylogenetic trees, the reduced trees will
+have at most 28k taxa where k is the TBR (Tree Bisection and Reconnection)
+distance between the two trees. Here we reanalyse Allen and Steel's
+kernelization algorithm and prove that the reduced instances will in fact have
+at most 15k-9 taxa. Moreover we show, by describing a family of instances which
+have exactly 15k-9 taxa after reduction, that this new bound is tight. These
+instances also have no common clusters, showing that a third
+commonly-encountered reduction rule, the cluster reduction, cannot further
+reduce the size of the kernel in the worst case. To achieve these results we
+introduce and use "unrooted generators" which are analogues of rooted
+structures that have appeared earlier in the phylogenetic networks literature.
+Using similar argumentation we show that, for the minimum hybridization problem
+on two rooted trees, 9k-2 is a tight bound (when subtree and chain reduction
+rules have been applied) and 9k-4 is a tight bound (when, additionally, the
+cluster reduction has been applied) on the number of taxa, where k is the
+hybridization number of the two trees.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:09:41Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06871</id>
+<link href="http://arxiv.org/abs/1811.06871" rel="alternate" type="text/html" />
+<title>Nearly ETH-Tight Algorithms for Planar Steiner Tree with Terminals on Few Faces « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/Kisfaludi=Bak:S=aacute=ndor.html">Sándor Kisfaludi-Bak</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/n/Nederlof:Jesper.html">Jesper Nederlof</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/l/Leeuwen:Erik_Jan_van.html">Erik Jan van Leeuwen</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06871">PDF</a><br /><b>Abstract: </b>The Planar Steiner Tree problem is one of the most fundamental NP-complete
+problems as it models many network design problems. Recall that an instance of
+this problem consists of a graph with edge weights, and a subset of vertices
+(often called terminals); the goal is to find a subtree of the graph of minimum
+total weight that connects all terminals. A seminal paper by Erickson et al.
+[Math. Oper. Res., 1987] considers instances where the underlying graph is
+planar and all terminals can be covered by the boundary of $k$ faces. Erickson
+et al. show that the problem can be solved by an algorithm using $n^{O(k)}$
+time and $n^{O(k)}$ space, where $n$ denotes the number of vertices of the
+input graph. In the past 30 years there has been no significant improvement of
+this algorithm, despite several efforts.
+</p>
+<p>In this work, we give an algorithm for Planar Steiner Tree with running time
+$2^{O(k)} n^{O(\sqrt{k})}$ using only polynomial space. Furthermore, we show
+that the running time of our algorithm is almost tight: we prove that there is
+no $f(k)n^{o(\sqrt{k})}$ algorithm for Planar Steiner Tree for any computable
+function $f$, unless the Exponential Time Hypothesis fails.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:08:30Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06823</id>
+<link href="http://arxiv.org/abs/1811.06823" rel="alternate" type="text/html" />
+<title>Information Complexity of Treasure Hunt in Geometric Terrains « cs.CG updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/p/Pelc:Andrzej.html">Andrzej Pelc</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/y/Yadav:Ram_Narayan.html">Ram Narayan Yadav</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06823">PDF</a><br /><b>Abstract: </b>Treasure hunt is the task of finding an inert target by a mobile agent in an
+unknown environment. We consider treasure hunt in geometric terrains with
+obstacles. Both the terrain and the obstacles are modeled as polygons and both
+the agent and the treasure are modeled as points. The agent navigates in the
+terrain, avoiding obstacles, and finds the treasure when there is a segment of
+length at most 1 between them, unobstructed by the boundary of the terrain or
+by the obstacles. The cost of finding the treasure is the length of the
+trajectory of the agent. We investigate the amount of information that the
+agent needs a priori in order to find the treasure at cost $O(L)$, where $L$ is
+the length of the shortest path in the terrain from the initial position of the
+agent to the treasure, avoiding obstacles. Following the paradigm of algorithms
+with advice, this information is given to the agent in advance as a binary
+string, by an oracle cooperating with the agent and knowing the whole
+environment: the terrain, the position of the treasure and the initial position
+of the agent. Information complexity of treasure hunt is the minimum length of
+the advice string (up to multiplicative constants) that enables the agent to
+find the treasure at cost $O(L)$.
+</p>
+<p>We first consider treasure hunt in regular terrains which are defined as
+convex polygons with convex $c$-fat obstacles, for some constant $c&gt;1$. A
+polygon is $c$-fat if the ratio of the radius of the smallest disc containing
+it to the radius of the largest disc contained in it is at most $c$. For the
+class of regular terrains, we establish the exact information complexity of
+treasure hunt. We then show that information complexity of treasure hunt for
+the class of arbitrary terrains (even for non-convex polygons without
+obstacles, and even for those with only horizontal or vertical sides) is
+exponentially larger than for regular terrains.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T00:00:00Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Geometry">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CG" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Geometry (cs.CG) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CG updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06803</id>
+<link href="http://arxiv.org/abs/1811.06803" rel="alternate" type="text/html" />
+<title>A ($4/3+\epsilon$)-Approximation Algorithm for Arboricity From Pseudoforest Partitions « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Blumenstock:Markus.html">Markus Blumenstock</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06803">PDF</a><br /><b>Abstract: </b>The arboricity of a graph is the minimum number of forests it can be
+partitioned into. Previous approximation schemes only approximated this value
+without computing a corresponding forest partition, as they operate on the
+related pseudoforest partitions or the dual problem.
+</p>
+<p>We propose a linear-time algorithm for converting a partition of $k$
+pseudoforests into a partition of $\lceil 4k/3 \rceil$ forests. For every fixed
+$\epsilon &gt; 0$, this implies an $O(m\log n)$-time algorithm that constructively
+approximates the arboricity within a factor of $(4/3+\epsilon)$ plus a small
+additive constant. We also make several remarks on approximation algorithms for
+the pseudoarboricity and the equivalent graph orientations with smallest
+maximum indegree, and correct some mistakes made in the literature.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:00:50Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06787</id>
+<link href="http://arxiv.org/abs/1811.06787" rel="alternate" type="text/html" />
+<title>PRAMs over integers do not compute maxflow efficiently « cs.CC updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/p/Pellissier:Luc.html">Luc Pellissier</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Seiller:Thomas.html">Thomas Seiller</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06787">PDF</a><br /><b>Abstract: </b>Finding lower bounds in complexity theory has proven to be an extremely
+difficult task. In this article, we analyze two proofs of complexity lower
+bound: Ben-Or's proof of minimal height of algebraic computational trees
+deciding certain problems and Mulmuley's proof that restricted Parallel Random
+Access Machines (prams) over integers can not decide P-complete problems
+efficiently. We present the aforementioned models of computation in a framework
+inspired by dynamical systems and models of linear logic : graphings.
+</p>
+<p>This interpretation allows to connect the classical proofs to topological
+entropy, an invariant of these systems; to devise an algebraic formulation of
+parallelism of computational models; and finally to strengthen Mulmuley's
+result by separating the geometrical insights of the proof from the ones
+related to the computation and blending these with Ben-Or's proof. Looking
+forward, the interpretation of algebraic complexity theory as dynamical system
+might shed a new light on research programs such as Geometric Complexity
+Theory.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:00:27Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Complexity">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CC" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Complexity (cs.CC) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CC updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06749</id>
+<link href="http://arxiv.org/abs/1811.06749" rel="alternate" type="text/html" />
+<title>Compact I/O-Efficient Representation of Separable Graphs and Optimal Tree Layouts « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b>Tomáš Gavenčiak, Jakub Tětek <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06749">PDF</a><br /><b>Abstract: </b>Compact and I/O-efficient data representations play an important role in
+efficient algorithm design, as memory bandwidth and latency can present a
+significant performance bottleneck, slowing the computation by orders of
+magnitude. While this problem is very well explored in e.g. uniform numerical
+data processing, structural data applications (e.g. on huge graphs) require
+different algorithm-dependent approaches. Separable graph classes (i.e. graph
+classes with balanced separators of size $\mathcal{O}(n^c)$ with $c &lt; 1$)
+include planar graphs, bounded genus graphs, and minor-free graphs.
+</p>
+<p>In this article we present two generalizations of the separator theorem, to
+partitions with small regions only on average and to weighted graphs. Then we
+propose I/O-efficient succinct representation and memory layout for random
+walks in(weighted) separable graphs in the pointer machine model, including an
+efficient algorithm to compute them. Finally, we present a worst-case
+I/O-optimal tree layout algorithm for root-leaf path traversal, show an
+additive (+1)-approximation of optimal compact layout and contrast this with
+NP-completeness proof of finding an optimal compact layout.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:09:13Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06719</id>
+<link href="http://arxiv.org/abs/1811.06719" rel="alternate" type="text/html" />
+<title>Robust recoverable 0-1 optimization problems under polyhedral uncertainty « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b>Mmikita Hradovich, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/Kasperski:Adam.html">Adam Kasperski</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/z/Zielinski:Pawel.html">Pawel Zielinski</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06719">PDF</a><br /><b>Abstract: </b>This paper deals with a robust recoverable approach to 0-1 programming
+problems. It is assumed that a solution constructed in the first stage can be
+modified to some extent in the second stage. This modification consists in
+choosing a solution in some prescribed neighborhood of the current solution.
+The second stage solution cost can be uncertain and a polyhedral structure of
+uncertainty is used. The resulting robust recoverable problem is a min-max-min
+problem, which can be hard to solve when the number of variables is large. In
+this paper we provide a framework for solving robust recoverable 0-1
+programming problems with a specified polyhedral uncertainty and propose
+several lower bounds and approximate solutions, which can be used for a wide
+class of 0-1 optimization problems. The results of computational tests for two
+problems, namely the assignment and the knapsack ones, are also presented.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:09:13Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06603</id>
+<link href="http://arxiv.org/abs/1811.06603" rel="alternate" type="text/html" />
+<title>Unconstrained Submodular Maximization with Constant Adaptive Complexity « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/c/Chen:Lin.html">Lin Chen</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/f/Feldman:Moran.html">Moran Feldman</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/Karbasi:Amin.html">Amin Karbasi</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06603">PDF</a><br /><b>Abstract: </b>In this paper, we consider the unconstrained submodular maximization problem.
+We propose the first algorithm for this problem that achieves a tight
+$(1/2-\varepsilon)$-approximation guarantee using $\tilde{O}(\varepsilon^{-1})$
+adaptive rounds and a linear number of function evaluations. No previously
+known algorithm for this problem achieves an approximation ratio better than
+$1/3$ using less than $\Omega(n)$ rounds of adaptivity, where $n$ is the size
+of the ground set. Moreover, our algorithm easily extends to the maximization
+of a non-negative continuous DR-submodular function subject to a box constraint
+and achieves a tight $(1/2-\varepsilon)$-approximation guarantee for this
+problem while keeping the same adaptive and query complexities.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:00:54Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1810.11332</id>
+<link href="http://arxiv.org/abs/1810.11332" rel="alternate" type="text/html" />
+<title>A fast algorithm for computing distance correlation « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542585600</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/c/Chaudhuri:Arin.html">Arin Chaudhuri</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/h/Hu:Wenhao.html">Wenhao Hu</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1810.11332">PDF</a><br /><b>Abstract: </b>Classical dependence measures such as Pearson correlation, Spearman's $\rho$,
+and Kendall's $\tau$ can detect only monotonic or linear dependence. To
+overcome these limitations, Szekely et al.(2007) proposed distance covariance
+as a weighted $L_2$ distance between the joint characteristic function and the
+product of marginal distributions. The distance covariance is $0$ if and only
+if two random vectors ${X}$ and ${Y}$ are independent. This measure has the
+power to detect the presence of a dependence structure when the sample size is
+large enough. They further showed that the sample distance covariance can be
+calculated simply from modified Euclidean distances, which typically requires
+$\mathcal{O}(n^2)$ cost. The quadratic computing time greatly limits the
+application of distance covariance to large data. In this paper, we present a
+simple exact $\mathcal{O}(n\log(n))$ algorithm to calculate the sample distance
+covariance between two univariate random variables. The proposed method
+essentially consists of two sorting steps, so it is easy to implement.
+Empirical results show that the proposed algorithm is significantly faster than
+state-of-the-art methods. The algorithm's speed will enable researchers to
+explore complicated dependence structures in large datasets.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-19T02:00:41Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-19T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en">
+<id>http://rjlipton.wordpress.com/?p=15402</id>
+<link href="https://rjlipton.wordpress.com/2018/11/18/a-mathematical-auction/" rel="alternate" type="text/html" />
+<title>A Mathematical Auction « Gödel’s Lost Letter and P=NP</title>
+<summary>A real auction that is happening soon. Crop from BestArts auction history source Samuel Baker and James Christie founded the two premier auction houses in the world. The latter is of course known as Christie’s and dates to 1766. The former dates to 1744 but is not known as Baker’s. It is called Sotheby’s after […]
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>
+<font color="#0044cc"><br />
+<em>A real auction that is happening soon.</em><br />
+<font color="#000000"></font></font></p><font color="#0044cc"><font color="#000000">
+<table class="image alignright">
+<tbody>
+<tr>
+<td>
+<a href="https://rjlipton.files.wordpress.com/2018/11/bakerchristie.png"><img alt="" class="alignright wp-image-15405" height="120" src="https://rjlipton.files.wordpress.com/2018/11/bakerchristie.png?w=190&amp;h=120" width="190" /></a>
+</td>
+</tr>
+<tr>
+<td class="caption alignright"><font size="-2">Crop from BestArts auction history <a href="https://bestarts.org/history-of-auction-houses/">source</a></font></td>
+</tr>
+</tbody>
+</table>
+</font></font><p>
+Samuel Baker and James Christie founded the two premier auction houses in the world. The latter is of course known as <a href="https://www.christies.com">Christie’s</a> and dates to 1766. The former dates to 1744 but is not known as Baker’s. It is called <a href="https://www.sothebys.com/en/">Sotheby’s</a> after Baker’s nephew John Sotheby, who <a href="https://www.sothebys.com/en/about/our-history">took over</a> the business from Baker’s later-partner George Leigh. </p>
+<p>
+Today I want to note an interesting auction that is happening shortly at Sotheby’s.</p>
+<p>
+We were alerted about the auction by Scott Guthery. He is involved with the SIGMAA on History of Mathematics group. He is a well published author of mathematical texts—for example his <a href="https://www.amazon.com/Motif-Mathematics-History-Application-Sequence/dp/1453810579">book</a> titled <em>A Motif of Mathematics: History and Application of the Mediant and the Farey Sequence.</em></p>
+<p>
+<a href="https://rjlipton.files.wordpress.com/2018/11/scott_book.jpg"><img alt="" class="aligncenter size-full wp-image-15406" src="https://rjlipton.files.wordpress.com/2018/11/scott_book.jpg?w=600" /></a></p>
+<p>
+By the way it may be interesting to note that there is a way to state the Riemann Hypothesis, which we have discussed at length recently, as a question about <a href="https://en.wikipedia.org/wiki/Farey_sequence">Farey sequences</a>. </p>
+<p>
+<a href="https://rjlipton.files.wordpress.com/2018/11/farey.png"><img alt="" class="aligncenter size-full wp-image-15407" src="https://rjlipton.files.wordpress.com/2018/11/farey.png?w=600" /></a></p>
+<p>
+Mathematical theorems often have good names, but many are not named after the discoverer. The Law of Eponyms: states that </p>
+<blockquote><p><b>Theorem 1</b> <em> If Theorem X bears the name of Y, then it was probably first stated by and proved by Z. </em>
+</p></blockquote>
+<p>See <a href="https://www.cut-the-knot.org/blue/FareyHistory.shtml">this</a> for a more detailed discussion. Suffice it to say that John Farey is immortal because “he failed to understand a theorem which [Charles] Haros had proved perfectly fourteen years before.”</p>
+<p>
+</p><p><h2> The Auction </h2></p><p>
+</p><p></p><p>
+The comment from Scott was:</p>
+<blockquote><p><b> </b> <em> For those interested in such things, an upcoming auction at Sotheby’s includes an eye-candy collection of mathematical instruments as well as mathematical texts and, to my surprise, Richard Feynman’s Nobel Prize. </em>
+</p></blockquote>
+<p>See this 144-page <a href="http://www.sothebys.com/pdf/2018/N09886/index.html">guide</a> for more information: </p>
+<p>
+<a href="https://rjlipton.files.wordpress.com/2018/11/feynman_cover.png"><img alt="" class="aligncenter size-medium wp-image-15408" height="300" src="https://rjlipton.files.wordpress.com/2018/11/feynman_cover.png?w=240&amp;h=300" width="240" /></a></p>
+<p>
+The auction is part of a larger “<a href="https://www.sothebys.com/en/series/geek-week">Geek Week</a>” event. Besides Feynman’s Nobel Prize, two interesting items are an Enigma machine and a King James Bible <a href="http://www.sothebys.com/en/auctions/ecatalogue/2018/history-of-science-technology-n09886/lot.56.html">inscribed</a> by Albert Einstein as a gift to a friend. Colm Mulcahy, also of the SIGMAA group, pointed out that Mick Jagger allegedly owns an Enigma machine. Here is another cipher machine that is also for sale:</p>
+<p>
+<a href="https://rjlipton.files.wordpress.com/2018/11/cipher.png"><img alt="" class="aligncenter size-medium wp-image-15409" height="273" src="https://rjlipton.files.wordpress.com/2018/11/cipher.png?w=300&amp;h=273" width="300" /></a></p>
+<p>
+It is a Swiss NEMA Model 45 cipher machine, serial number 311. Very cool. </p>
+<p>
+</p><p><h2> In The Future? </h2></p><p>
+</p><p></p><p>
+I have wondered what will happen in the future. The issue is that in the future all important things are going to be digital. Will people buy a digital object? How will museums display things that are all digital? Hmmm. </p>
+<p>
+We find a transitional example in last month’s wild <a href="https://en.wikipedia.org/wiki/Art_intervention">art</a> <a href="https://www.sothebys.com/en/articles/latest-banksy-artwork-love-is-in-the-bin-created-live-at-auction">intervention</a> pulled off by the artist Banksy during an auction at the Sotheby’s HQ in London. An authorized painting of his 2002 <a href="https://en.wikipedia.org/wiki/Girl_with_Balloon">mural</a> <em>Girl With Balloon</em>, which was <a href="https://www.theguardian.com/artanddesign/2017/jul/26/banksy-balloon-girl-hay-wain-favourite-uk-work-of-art-constable-poll-nation">voted</a> Britain’s favorite work of art, was partly shredded by a mechanism in its custom frame. The shredder was activated by remote control just after Sotheby’s had sold it at auction for 860,000 pounds plus the buyer’s premium.</p>
+<p>
+The morphed <a href="https://en.wikipedia.org/wiki/Love_is_in_the_Bin">piece</a> has been renamed, “Love is in the Bin,” and the buyer was content to keep it. Our point is to ask, how will the whole work be exhibited in the future? The “work” is really split into the artifact, a <a href="https://news.sky.com/story/who-is-mystery-man-who-films-at-banksy-auction-11519745">video</a> of the event as it unspooled, and Banksy’s own “Director’s cut” <a href="https://youtu.be/vxkwRNIZgdY">video</a>, which has its own title, “Shred the Love.” These photos, too, are art: </p>
+<p></p><p>
+<table style="margin: auto;">
+<tbody><tr>
+<td>
+<a href="https://rjlipton.files.wordpress.com/2018/11/lovebinhandssothebysgetty1051962962and25821.jpg"><img alt="" class="aligncenter wp-image-15416" height="180" src="https://rjlipton.files.wordpress.com/2018/11/lovebinhandssothebysgetty1051962962and25821.jpg?w=580&amp;h=180" width="580" /></a>
+</td>
+</tr>
+<tr>
+<td class="caption alignright">
+<font size="-2">Getty Images (Jack Taylor, Tristan Fewings), <em>Arch. Digest</em> <a href="https://www.architecturaldigest.com/story/banksys-self-shredded-painting-is-now-a-new-piece-called-love-is-in-the-bin">src</a><br />
+</font>
+</td>
+</tr>
+</tbody></table>
+</p><p>
+For completeness an exhibit would have to include the digital components as well as the physical artifacts to convey the work’s entire nature.</p>
+<p>
+Coming back to mathematical memorabilia, we have had journals and conference proceedings with no printed editions for several decades already. Surely some papers in them are destined to keep the highest levels of fame. How can we value them as artifacts? Is there an “original file” as received by ArXiv or EasyChair? Will computer keyboards be preserved the way some <a href="https://cw.ua.edu/46451/top-stories/typewriter-exhibit-brings-spirits-of-famous-authors-to-tuscaloosa/">typewriters</a> used by stars of the last century have been? We guess instead that like Banksy’s “Love” they’ll be in the bin.</p>
+<p>
+</p><p><h2> Open Problems </h2></p><p>
+</p><p>
+What will auctions be like a century from now?</p></div>
+</content>
+<updated>2018-11-18T18:41:37Z</updated>
+<published>2018-11-18T18:41:37Z</published>
+<author>
+<name>RJLipton+KWRegan</name>
+</author>
+<source>
+<id>https://rjlipton.wordpress.com</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://rjlipton.wordpress.com/feed/" rel="self" type="application/atom+xml" />
+<link href="https://rjlipton.wordpress.com" rel="alternate" type="text/html" />
+<link href="https://rjlipton.wordpress.com/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://rjlipton.wordpress.com/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>a personal view of the theory of computation</subtitle>
+<title>Gödel’s Lost Letter and P=NP</title>
+<updated>2018-11-22T22:40:41Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>https://eccc.weizmann.ac.il/report/2018/195</id>
+<link href="https://eccc.weizmann.ac.il/report/2018/195" rel="alternate" type="text/html" />
+<title>TR18-195 |  Erasures versus Errors in Local Decoding and Property Testing | 
+
+	Sofya Raskhodnikova, 
+
+	Noga Ron-Zewi, 
+
+	Nithin Varma « ECCC - Reports</title>
+<summary>We initiate the study of the role of erasures in local decoding and use our understanding to prove a separation between erasure-resilient and tolerant property testing. Local decoding in the presence of errors has been extensively studied, but has not been considered explicitly in the presence of erasures.
+
+
+Motivated by applications in property testing, we begin our investigation with local list decoding in the presence of erasures. We prove an analog of a famous result of Goldreich and Levin on local list decodability of the Hadamard code. Specifically, we show that the Hadamard code is locally list decodable in the presence of a constant fraction of erasures, arbitrary close to 1, with list sizes and query complexity better than in the Goldreich-Levin theorem. We use this result to exhibit a property which is testable with a number of queries independent of the length of the input in the presence of erasures, but requires a number of queries that depends on the input length, n, for tolerant testing. We further study approximate locally list decodable codes that work against erasures and use them to strengthen our separation by constructing a property which is testable with a constant number of queries in the presence of erasures, but requires n^{Omega(1)} queries for tolerant testing.
+
+Next, we study the general relationship between local decoding in the presence of errors and in the presence of erasures. We observe that every locally (uniquely or list) decodable code that works in the presence of errors also works in the presence of twice as many erasures (with the same parameters up to constant factors). We show that there is also an implication in the other direction for locally decodable codes (with unique decoding): specifically, that the existence of a locally decodable code that works in the presence of erasures implies the existence of a locally decodable code that works in the presence of errors and has related parameters. However, it remains open whether there is an implication in the other direction for locally list decodable codes. We relate this question to other open questions in local decoding.
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-18T17:56:04Z</updated>
+<published>2018-11-18T17:56:04Z</published>
+<source>
+<id>https://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="https://example.com/" rel="alternate" type="text/html" />
+<link href="https://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at https://eccc.weizmann.ac.il</subtitle>
+<title>ECCC - Reports</title>
+<updated>2018-11-22T22:40:32Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>https://eccc.weizmann.ac.il/report/2018/194</id>
+<link href="https://eccc.weizmann.ac.il/report/2018/194" rel="alternate" type="text/html" />
+<title>TR18-194 |  Anti-concentration in most directions | 
+
+	Amir Yehudayoff « ECCC - Reports</title>
+<summary>We prove anti-concentration for the inner product of two independent random vectors in the discrete cube. Our results imply Chakrabarti and Regev's lower bound on the randomized communication complexity of the gap-hamming problem. They are also meaningful in the context of randomness extraction. The proof provides a framework for establishing anti-concentration in discrete domains. The argument has two different components. A local component that uses harmonic analysis, and a global ("information theoretic") component.
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-18T16:01:11Z</updated>
+<published>2018-11-18T16:01:11Z</published>
+<source>
+<id>https://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="https://example.com/" rel="alternate" type="text/html" />
+<link href="https://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at https://eccc.weizmann.ac.il</subtitle>
+<title>ECCC - Reports</title>
+<updated>2018-11-22T22:40:32Z</updated>
+</source>
+</entry>
+<entry xml:lang="en-us">
+<id>https://eccc.weizmann.ac.il/report/2018/193</id>
+<link href="https://eccc.weizmann.ac.il/report/2018/193" rel="alternate" type="text/html" />
+<title>TR18-193 |  The Hidden Subgroup Problem and MKTP | 
+
+	Nicollas Sdroievski, 
+
+	Murilo Silva, 
+
+	André Vignatti « ECCC - Reports</title>
+<summary>We show that the Hidden Subgroup Problem for black-box groups is in $\mathrm{BPP}^\mathrm{MKTP}$ (where $\mathrm{MKTP}$ is the Minimum $\mathrm{KT}$ Problem) using the techniques of Allender et al (2018). We also show that the problem is in $\mathrm{ZPP}^\mathrm{MKTP}$ provided that there is a \emph{pac overestimator} computable in $\mathrm{ZPP}^\mathrm{MKTP}$ for the logarithm of the order of the given black-box group. This last result implies that for permutation groups, the dihedral group and many types of matrix groups the problem is in $\mathrm{ZPP}^\mathrm{MKTP}$. Lastly, we also show that two decision versions of the problem admit statistical zero knowledge proofs. These results help classify the relative difficulty of the Hidden Subgroup Problem.
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-18T05:11:37Z</updated>
+<published>2018-11-18T05:11:37Z</published>
+<source>
+<id>https://example.com/</id>
+<author>
+<name>ECCC papers</name>
+</author>
+<link href="https://example.com/" rel="alternate" type="text/html" />
+<link href="https://example.com/feeds/reports/" rel="self" type="application/atom+xml" />
+<subtitle>Latest Reports published at https://eccc.weizmann.ac.il</subtitle>
+<title>ECCC - Reports</title>
+<updated>2018-11-22T22:40:32Z</updated>
+</source>
+</entry>
+<entry xml:lang="en">
+<id>http://cstheory-jobs.org/2018/11/17/lecturer-in-theoretical-computer-science-or-machine-learning-at-mit-eecs-apply-by-december-15-2018/</id>
+<link href="https://cstheory-jobs.org/2018/11/17/lecturer-in-theoretical-computer-science-or-machine-learning-at-mit-eecs-apply-by-december-15-2018/" rel="alternate" type="text/html" />
+<title>Lecturer in Theoretical Computer Science or Machine Learning at MIT EECS (apply by December 15, 2018) « Theoretical Computer Science Jobs</title>
+<summary>LECTURER (multiple positions) for discrete mathematics, algorithms, and/or machine learning. Participate in educational activities during the academic year. Responsibilities include interacting with students (e.g., lecturing, leading recitations, holding office hours), creating course content, and course administration. Research supervision opportunities are also available. Website: https://careers.peopleclick.com/careerscp/client_mit/external/jobDetails/jobDetail.html?jobPostId=14249&amp;localeCode=en-us Email: ireneh79@mit.edu
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>LECTURER (multiple positions) for discrete mathematics, algorithms, and/or machine learning. Participate in educational activities during the academic year. Responsibilities include interacting with students (e.g., lecturing, leading recitations, holding office hours), creating course content, and course administration. Research supervision opportunities are also available.</p>
+<p>Website: <a href="https://careers.peopleclick.com/careerscp/client_mit/external/jobDetails/jobDetail.html?jobPostId=14249&amp;localeCode=en-us">https://careers.peopleclick.com/careerscp/client_mit/external/jobDetails/jobDetail.html?jobPostId=14249&amp;localeCode=en-us</a><br />
+Email: ireneh79@mit.edu</p></div>
+</content>
+<updated>2018-11-17T20:47:49Z</updated>
+<published>2018-11-17T20:47:49Z</published>
+<category term="Uncategorized">
+<author>
+<name>shacharlovett</name>
+</author>
+<source>
+<id>https://cstheory-jobs.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://cstheory-jobs.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://cstheory-jobs.org" rel="alternate" type="text/html" />
+<link href="https://cstheory-jobs.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://cstheory-jobs.org/?pushpress=hub" rel="hub" type="text/html" />
+<title>Theoretical Computer Science Jobs</title>
+<updated>2018-11-22T22:40:52Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en">
+<id>http://cstheory-jobs.org/2018/11/16/postdoc-at-uc-san-diego-apply-by-january-1-2019/</id>
+<link href="https://cstheory-jobs.org/2018/11/16/postdoc-at-uc-san-diego-apply-by-january-1-2019/" rel="alternate" type="text/html" />
+<title>postdoc at UC San Diego (apply by January 1, 2019) « Theoretical Computer Science Jobs</title>
+<summary>UCSD has several postdoctoral fellowships focused on data science. This includes algorithms, machine learning, and complexity aspects of data science. Data Science Fellows are expected to teach one data-science related class per year, and will be given a research budget and a faculty-type office. Exceptional, self-motivated candidates with outstanding research records are encouraged to apply. […]
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>UCSD has several postdoctoral fellowships focused on data science. This includes algorithms, machine learning, and complexity aspects of data science. Data Science Fellows are expected to teach one data-science related class per year, and will be given a research budget and a faculty-type office. Exceptional, self-motivated candidates with outstanding research records are encouraged to apply.</p>
+<p>Website: <a href="http://qi.ucsd.edu/dsfellows/">http://qi.ucsd.edu/dsfellows/</a><br />
+Email: shachar.lovett@gmail.com</p></div>
+</content>
+<updated>2018-11-16T21:21:41Z</updated>
+<published>2018-11-16T21:21:41Z</published>
+<category term="Uncategorized">
+<author>
+<name>shacharlovett</name>
+</author>
+<source>
+<id>https://cstheory-jobs.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://cstheory-jobs.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://cstheory-jobs.org" rel="alternate" type="text/html" />
+<link href="https://cstheory-jobs.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://cstheory-jobs.org/?pushpress=hub" rel="hub" type="text/html" />
+<title>Theoretical Computer Science Jobs</title>
+<updated>2018-11-22T22:40:53Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en">
+<id>http://windowsontheory.org/?p=6301</id>
+<link href="https://windowsontheory.org/2018/11/16/halg-2019-call-for-nominations/" rel="alternate" type="text/html" />
+<title>HALG 2019 Call for nominations « Windows On Theory</title>
+<summary>[Guest post by Piotr Sankowski –Boaz] Call for Nominations – 4th Highlights of Algorithms conference (HALG 2019) Copenhagen, June 14-16, 2019 http://www.halgdiku.dk/ The HALG 2019 conference seeks high-quality nominations for invited talks that will highlight recent advances in algorithmic research. Similarly to previous years, there are two categories of invited talks: A. survey (60 minutes): a […]
+      <div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><em>[Guest post by Piotr Sankowski –Boaz]</em></p>
+<p><strong>Call for Nominations – </strong><strong>4th Highlights of Algorithms conference (HALG 2019)</strong></p>
+<p><strong>Copenhagen, June 14-16, 2019</strong></p>
+<p><a href="http://www.halgdiku.dk/" rel="noopener noreferrer" target="_blank">http://www.halgdiku.dk/</a></p>
+<p>The HALG 2019 conference seeks high-quality nominations for invited talks that will highlight recent advances in algorithmic research. Similarly to previous years, there are two categories of invited talks:</p>
+<p><strong>A. survey (60 minutes):</strong> a survey of an algorithmic topic that has seen exciting developments in last couple of years.</p>
+<p><strong>B. paper (30 minutes):</strong> a significant algorithmic result appearing in a paper in 2018 or later.</p>
+<p>To nominate, please email  <a href="mailto:halg2019.nominations@gmail.com" rel="noopener" target="_blank">halg2019.nominations@gmail.com</a>  the following information:</p>
+<p><strong>1. Basic details:</strong> speaker name + topic (for survey talk) or paper’s title, authors, conference/arxiv + preferable speaker (for paper talk).</p>
+<p><strong>2. Brief justification:</strong> Focus on the benefits to the audience, e.g., quality of results, importance/relevance of topic, clarity of talk, speaker’s presentation skills.</p>
+<p>All nominations will be reviewed by the Program Committee (PC) to select speakers that will be invited to the conference.</p>
+<p>Nominations deadline: <strong>December 9, 2018</strong> (for full consideration).</p>
+<p>Please keep in mind that the conference does not provide financial support for the speakers.</p>
+<p>Best regards,<br />
+Piotr Sankowski<br />
+HALG 2019 PC Chair</p></div>
+</content>
+<updated>2018-11-16T14:39:20Z</updated>
+<published>2018-11-16T14:39:20Z</published>
+<category term="Uncategorized">
+<author>
+<name>Boaz Barak</name>
+</author>
+<source>
+<id>https://windowsontheory.org</id>
+<logo>https://s0.wp.com/i/buttonw-com.png</logo>
+<link href="https://windowsontheory.org/feed/" rel="self" type="application/atom+xml" />
+<link href="https://windowsontheory.org" rel="alternate" type="text/html" />
+<link href="https://windowsontheory.org/osd.xml" rel="search" type="application/opensearchdescription+xml" />
+<link href="https://windowsontheory.org/?pushpress=hub" rel="hub" type="text/html" />
+<subtitle>A Research Blog</subtitle>
+<title>Windows On Theory</title>
+<updated>2018-11-22T22:41:12Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en-US">
+<id>http://corner.mimuw.edu.pl/?p=1040</id>
+<link href="http://corner.mimuw.edu.pl/?p=1040" rel="alternate" type="text/html" />
+<title>Call for Nominations - HALG 2019 « Banach's Algorithmic Corner</title>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Call for Nominations  4th Highlights of Algorithms conference (HALG 2019) Copenhagen, June 14-16, 2019 http://http://www.halgdiku.dk/ The HALG 2019 conference seeks high-quality nominations for invited talks that will highlight recent advances in algorithmic research. Similarly to previous years, there are two categories … <a href="http://corner.mimuw.edu.pl/?p=1040">Continue reading <span class="meta-nav">→</span></a></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><span class="il">Call</span> for Nominations</p>
+<p> 4th Highlights of Algorithms conference (HALG 2019)</p>
+<p>Copenhagen, June 14-16, 2019</p>
+<p>http://<a href="http://www.halgdiku.dk/" rel="noopener noreferrer" target="_blank">http://www.halgdiku.dk/</a></p>
+<p>The HALG 2019 conference seeks high-quality nominations for invited<br />
+talks that will highlight recent advances in algorithmic research.<br />
+Similarly to previous years, there are two categories of invited<br />
+talks:</p>
+<p>A. survey (60 minutes): a survey of an algorithmic topic that has seen<br />
+ exciting developments in last couple of years.</p>
+<p>B. paper (30 minutes): a significant algorithmic result appearing in a<br />
+paper in 2018 or later.</p>
+<p> To nominate, please email  <a href="mailto:halg2019.nominations@gmail.com" rel="noopener" target="_blank">halg2019.nominations@gmail.com</a>  the<br />
+following information:</p>
+<p>1. Basic details: speaker name + topic (for survey talk) or paper’s<br />
+title, authors, conference/arxiv + preferable speaker (for paper<br />
+talk).</p>
+<p>2. Brief justification: Focus on the benefits to the audience, e.g.,<br />
+quality of results, importance/relevance of topic, clarity of talk,<br />
+speaker’s presentation skills.</p>
+<p>All nominations will be reviewed by the Program Committee (PC) to<br />
+select speakers that will be invited to the conference.</p>
+<p>Nominations deadline: December 9, 2018 (for full consideration).</p>
+<p>Please keep in mind that the conference does not provide financial<br />
+support for the speakers.</p></div>
+</content>
+<updated>2018-11-16T09:32:35Z</updated>
+<published>2018-11-16T09:32:35Z</published>
+<category term="Uncategorized">
+<author>
+<name>sank</name>
+</author>
+<source>
+<id>http://corner.mimuw.edu.pl</id>
+<link href="http://corner.mimuw.edu.pl/?feed=rss2" rel="self" type="application/atom+xml" />
+<link href="http://corner.mimuw.edu.pl" rel="alternate" type="text/html" />
+<subtitle>University of Warsaw</subtitle>
+<title>Banach's Algorithmic Corner</title>
+<updated>2018-11-16T10:01:16Z</updated>
+</source>
+</category></entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06494</id>
+<link href="http://arxiv.org/abs/1811.06494" rel="alternate" type="text/html" />
+<title>Large-Scale Distributed Algorithms for Facility Location with Outliers « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542326400</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/i/Inamdar:Tanmay.html">Tanmay Inamdar</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/p/Pai:Shreyas.html">Shreyas Pai</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/p/Pemmaraju:Sriram_V=.html">Sriram V. Pemmaraju</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06494">PDF</a><br /><b>Abstract: </b>This paper presents fast, distributed, $O(1)$-approximation algorithms for
+metric facility location problems with outliers in the Congested Clique model,
+Massively Parallel Computation (MPC) model, and in the $k$-machine model. The
+paper considers Robust Facility Location and Facility Location with Penalties,
+two versions of the facility location problem with outliers proposed by
+Charikar et al. (SODA 2001). The paper also considers two alternatives for
+specifying the input: the input metric can be provided explicitly (as an $n
+\times n$ matrix distributed among the machines) or implicitly as the shortest
+path metric of a given edge-weighted graph. The results in the paper are:
+</p>
+<p>- Implicit metric: For both problems, $O(1)$-approximation algorithms running
+in $O(\mbox{poly}(\log n))$ rounds in the Congested Clique and the MPC model
+and $O(1)$-approximation algorithms running in $\tilde{O}(n/k)$ rounds in the
+$k$-machine model.
+</p>
+<p>- Explicit metric: For both problems, $O(1)$-approximation algorithms running
+in $O(\log\log\log n)$ rounds in the Congested Clique and the MPC model and
+$O(1)$-approximation algorithms running in $\tilde{O}(n/k)$ rounds in the
+$k$-machine model.
+</p>
+<p>Our main contribution is to show the existence of Mettu-Plaxton-style
+$O(1)$-approximation algorithms for both Facility Location with outlier
+problems. As shown in our previous work (Berns et al., ICALP 2012,
+Bandyapadhyay et al., ICDCN 2018) Mettu-Plaxton style algorithms are more
+easily amenable to being implemented efficiently in distributed and large-scale
+models of computation.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-16T02:12:43Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-16T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06482</id>
+<link href="http://arxiv.org/abs/1811.06482" rel="alternate" type="text/html" />
+<title>A Note On Universal Point Sets for Planar Graphs « cs.CG updates on arXiv.org</title>
+<feedworld_mtime>1542326400</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Scheucher:Manfred.html">Manfred Scheucher</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Schrezenmaier:Hendrik.html">Hendrik Schrezenmaier</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Steiner:Raphael.html">Raphael Steiner</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06482">PDF</a><br /><b>Abstract: </b>We investigate which planar point sets allow simultaneous straight-line
+embeddings of all planar graphs on a fixed number of vertices. We first show
+that $(1.293-o(1))n$ points are required to find a straight-line drawing of
+each $n$-vertex planar graph (vertices are drawn as the given points); this
+improves the previous best constant $1.235$ by Kurowski (2004).
+</p>
+<p>Our second main result is based on exhaustive computer search: We show that
+no set of 11 points exists, on which all planar 11-vertex graphs can be
+simultaneously drawn plane straight-line. This strengthens the result by
+Cardinal, Hoffmann, and Kusters (2015), that all planar graphs on $n \le 10$
+vertices can be simultaneously drawn on particular `universal' sets of $n$
+points while there are no universal sets for $n \ge 15$. Moreover, we provide a
+set of 23 planar 11-vertex graphs which cannot be simultaneously drawn on any
+set of 11 points. This, in fact, is another step towards a (negative) answer of
+the question, whether every two planar graphs can be drawn simultaneously -- a
+question raised by Brass, Cenek, Duncan, Efrat, Erten, Ismailescu, Kobourov,
+Lubiw, and Mitchell (2007).
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-16T02:17:11Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Geometry">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CG" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Geometry (cs.CG) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CG updates on arXiv.org</title>
+<updated>2018-11-16T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06444</id>
+<link href="http://arxiv.org/abs/1811.06444" rel="alternate" type="text/html" />
+<title>Secretary Ranking with Minimal Inversions « cs.DS updates on arXiv.org</title>
+<feedworld_mtime>1542326400</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/a/Assadi:Sepehr.html">Sepehr Assadi</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Balkanski:Eric.html">Eric Balkanski</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/l/Leme:Renato_Paes.html">Renato Paes Leme</a> <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06444">PDF</a><br /><b>Abstract: </b>We study a twist on the classic secretary problem, which we term the
+secretary ranking problem: elements from an ordered set arrive in random order
+and instead of picking the maximum element, the algorithm is asked to assign a
+rank, or position, to each of the elements. The rank assigned is irrevocable
+and is given knowing only the pairwise comparisons with elements previously
+arrived. The goal is to minimize the distance of the rank produced to the true
+rank of the elements measured by the Kendall-Tau distance, which corresponds to
+the number of pairs that are inverted with respect to the true order.
+</p>
+<p>Our main result is a matching upper and lower bound for the secretary ranking
+problem. We present an algorithm that ranks $n$ elements with only $O(n^{3/2})$
+inversions in expectation, and show that any algorithm necessarily suffers
+$\Omega(n^{3/2})$ inversions when there are $n$ available positions. In terms
+of techniques, the analysis of our algorithm draws connections to linear
+probing in the hashing literature, while our lower bound result relies on a
+general anti-concentration bound for a generic balls and bins sampling process.
+We also consider the case where the number of positions $m$ can be larger than
+the number of secretaries $n$ and provide an improved bound by showing a
+connection of this problem with random binary trees.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-16T02:05:49Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Data Structures and Algorithms">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.DS updates on arXiv.org</title>
+<updated>2018-11-16T01:30:00Z</updated>
+</category></source>
+</entry>
+<entry xml:lang="en-us">
+<id>http://arxiv.org/abs/1811.06418</id>
+<link href="http://arxiv.org/abs/1811.06418" rel="alternate" type="text/html" />
+<title>Adversarial Examples from Cryptographic Pseudo-Random Generators « cs.CC updates on arXiv.org</title>
+<feedworld_mtime>1542326400</feedworld_mtime>
+<summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Bubeck:S=eacute=bastien.html">Sébastien Bubeck</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/l/Lee:Yin_Tat.html">Yin Tat Lee</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/p/Price:Eric.html">Eric Price</a>, Ilya Razenshteyn <br /><b>Download:</b> <a href="http://arxiv.org/pdf/1811.06418">PDF</a><br /><b>Abstract: </b>In our recent work (Bubeck, Price, Razenshteyn, <a href="http://export.arxiv.org/abs/1805.10204">arXiv:1805.10204</a>) we argued
+that adversarial examples in machine learning might be due to an inherent
+computational hardness of the problem. More precisely, we constructed a binary
+classification task for which (i) a robust classifier exists; yet no
+non-trivial accuracy can be obtained with an efficient algorithm in (ii) the
+statistical query model. In the present paper we significantly strengthen both
+(i) and (ii): we now construct a task which admits (i') a maximally robust
+classifier (that is it can tolerate perturbations of size comparable to the
+size of the examples themselves); and moreover we prove computational hardness
+of learning this task under (ii') a standard cryptographic assumption.
+</p></div>
+<div class="commentbar">
+<p>
+</p></div>
+</summary>
+<updated>2018-11-16T02:04:35Z</updated>
+<author>
+<name>
+</name></author>
+<source>
+<id>http://arxiv.org/</id>
+<category term="Computer Science -- Computational Complexity">
+<link href="http://arxiv.org/" rel="alternate" type="text/html" />
+<link href="http://export.arxiv.org/rss/cs.CC" rel="self" type="application/rdf+xml" />
+<subtitle>Computer Science -- Computational Complexity (cs.CC) updates on the arXiv.org e-print archive</subtitle>
+<title>cs.CC updates on arXiv.org</title>
+<updated>2018-11-16T01:30:00Z</updated>
+</category></source>
+</entry>
+</access:restriction></feed>
+

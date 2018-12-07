@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+### Fancy Planet HTML template.
+### 
+### When combined with the stylesheet and images in the output/ directory
+### of the Planet source, this gives you a much prettier result than the
+### default examples template and demonstrates how to use the config file
+### to support things like faces
+### 
+### For documentation on the more boring template elements, see
+### examples/config.ini and examples/index.html.tmpl in the Planet source.
+
+<head>
+<title><TMPL_VAR name></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="<TMPL_VAR generator ESCAPE="HTML">">
+<link rel="stylesheet" href="/css/reset_minimal.css" type="text/css">
+<link rel="stylesheet" href="/css/index.css" type="text/css">
+<link rel="stylesheet" href="/css/blogs.css" type="text/css">
+<link rel="icon" href="/favicon.ico">
+<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"> 
+</script> 
+<script type="text/javascript" src="/js/blogs.js"></script> 
+<TMPL_IF feedtype>
+<link rel="alternate" href="<TMPL_VAR feed ESCAPE="HTML">" title="<TMPL_VAR channel_title_plain ESCAPE="HTML">" type="application/<TMPL_VAR feedtype>+xml">
+</TMPL_IF>
+</head>
+
+<body onload="onLoadCb()">
+<div class="outercontainer">
+<div class="innercontainer">
+<h1 align=center><TMPL_VAR name></h1>
+
+<div class="navbar">
+<a href="/">&laquo; Back to DoNotTrack.Us</a> &nbsp;&nbsp;<span style="color:#888">&bull;</span>&nbsp;&nbsp; <a href="#subscriptions">List of blogs</a>
+</div>
+
+<div class="toptext">
+This page collects blog posts from researchers, privacy advocates and tech companies leading the way on Do Not Track. To be notified of new posts, subscribe to the <A href="atom.xml">RSS feed</a> or follow <b><a href="http://twitter.com/donottrack">@DoNotTrack</a></b>.
+</div>
+
+
+<TMPL_LOOP Items>
+
+### Planet provides template variables for *all* configuration options for
+### the channel (and defaults), even if it doesn't know about them.  We
+### exploit this here to add hackergotchi faces to our channels.  Planet
+### doesn't know about the "face", "facewidth" and "faceheight" configuration
+### variables, but makes them available to us anyway.
+
+
+<div class="channelgroup">
+<div class="entrygroup" 
+	id="<TMPL_VAR id>"<TMPL_IF channel_language> lang="<TMPL_VAR channel_language>"</TMPL_IF>>
+<TMPL_IF title>
+<div class="entryheader">
+<TMPL_IF channel_face>
+	<img class="face" src="images/<TMPL_VAR channel_face ESCAPE="HTML">">
+</TMPL_IF>
+<div class="entryheadertextcontainer">
+<div class="entryheadertext">
+<h3<TMPL_IF title_language> lang="<TMPL_VAR title_language>"</TMPL_IF>><a class="entryheader" href="<TMPL_VAR link ESCAPE="HTML">"><TMPL_VAR title></a></h3>
+<TMPL_IF author>by <TMPL_VAR author> </TMPL_IF>
+(<a class="entryheader" href="<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title_plain ESCAPE="HTML">"><TMPL_VAR channel_name></a>)
+<span class="date">
+<span class="datestr">at <TMPL_VAR date> UTC</span>
+<TMPL_IF category> under <TMPL_VAR category></TMPL_IF>
+</span>
+
+</div>
+</div>
+</TMPL_IF>
+</div>
+<div class="entry">
+<div class="content"<TMPL_IF content_language> lang="<TMPL_VAR content_language>"</TMPL_IF>>
+<TMPL_VAR content>
+</div>
+
+### Planet also makes available all of the information from the feed
+### that it can.  Use the 'planet-cache' tool on the cache file for
+### a particular feed to find out what additional keys it supports.
+### Comment extra fields are 'author' and 'category' which we
+### demonstrate below.
+
+<div class="comments">
+</div>
+</div>
+</div>
+
+</TMPL_LOOP>
+</div>
+<div class="subscriptions">
+<a name="subscriptions"></a>
+<h2>Blogs</h2>
+<div class="subscriptionlist">
+<ul>
+<TMPL_LOOP Channels>
+<li> <span class="li">
+<!--TMPL_VAR author-->
+<TMPL_VAR name>: <a href="<TMPL_VAR link>"><TMPL_VAR title_plain></a>
+</span></li>
+</TMPL_LOOP>
+</ul>
+</div>
+
+</div>
+</div>
+
+
+</body>
+
+</html>

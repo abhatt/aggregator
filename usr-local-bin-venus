@@ -1,0 +1,14 @@
+#!/bin/sh
+
+VENUSDIR=/var/www/feedworld.net/venus
+OUTDIR=/var/www/feedworld.net/html
+
+[ -d ${VENUSDIR} ] || exit 0;
+
+cd $VENUSDIR
+for i in config/*.ini; do
+        python planet.py $i 2> /tmp/planet-error.log
+        python comments.py $i 2> /tmp/planet-comments-error.log
+done;
+
+python reformatfeed.py < $OUTDIR/toc/atom.xml > $OUTDIR/toc/atom-twitter.xml 2> /tmp/planet-reformat-error.log

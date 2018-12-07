@@ -1,0 +1,157 @@
+a{
+	text-decoration: none;
+}
+a:link { 
+	color: #00f;
+}
+a:visited { 
+	color: #84d;
+}
+a:hover { 
+	color: #f0f;
+}
+a img {
+   border-style: none;
+}
+
+a.showhide{
+	text-align:center;
+	background-color:#fd8;
+	padding:4px;
+	line-height:1.5;
+	border:1px solid #b84;
+}
+
+a.showhide:hover{
+	background-color:#ec7;
+	color:black;
+	cursor:pointer;
+}
+
+body{
+/*	opacity:0.9;
+	filter:alpha(opacity=90);
+	-moz-opacity:0.9;
+*/	
+	letter-spacing:0.005em;
+	word-spacing:0.07em;
+	line-height:16pt;
+	color: #222;
+}
+
+div.sidebar{
+	float:right;
+	width:27%;
+	margin-top:5px;
+	margin-right:2%;
+	right:0px;
+	top:10px;
+}
+
+div.maincontent{
+	float:left;
+	width:65%;
+	margin-left:3%;
+	margin-right:3%;
+	overflow: hidden;
+}
+
+div.entryheader{
+	background-color:#e4e4f0;
+	padding-left:5px;
+	padding-top:3px;
+	padding-bottom:3px;
+	margin-top:0px;
+	position:relative;
+	height:106px;
+	border:1px solid #aac;
+	overflow:hidden;
+}
+
+div.entryheadertextcontainer{
+/*IE7 won't vertically align the text in the middle of a div, 
+ * so we need this hack to force it. */
+	*position: absolute;
+	*top: 50%;
+}
+
+div.entryheadertext{
+	*position: relative;
+	*top: -40%;
+}
+
+div.entry{
+	padding-left:3px;
+	padding-top:10px;
+	padding-bottom:10px;
+	text-align:justify
+}
+
+div.subscriptionlist{
+	margin-left:0.8em;
+}
+
+div.commentbar{
+	text-align: right;
+/*	padding:6px;*/
+	width:100%;
+	clear:both;
+}
+
+img.logo{
+	float:right;
+	margin-top:10px;
+}
+
+img.face{
+	float:right;
+	margin-left:1em;
+	margin-right:3px;
+  position: relative;
+  top:0px;
+  left:0px;
+  background-color: #fff;
+  border: 1px solid #a9a9a9;
+  padding: 5px;
+}
+
+img.feedicon{
+	position:relative;
+	top:0.25em;
+}
+
+img.commenticon{
+	position:relative;
+	top:0.25em;
+}
+
+span.showhide{
+	position:absolute; 
+	left:40%;
+	bottom:3px;
+	font-size:0.8em;
+	text-align:center;
+	opacity:0.5;
+	filter:alpha(opacity=50);
+}
+
+table.comment{
+	width:100%;
+	margin:3px;
+}
+
+tr.comment{
+	width:100%;
+}
+
+tr.comment.odd{
+	background-color:#fee;
+}
+
+tr.comment.even{
+	background-color:#fdd;
+}
+
+td.comment{
+	padding:5px;
+}

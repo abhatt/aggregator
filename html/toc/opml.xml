@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<opml version="1.1">
+	<head>
+		<title>Theory of Computing Blog Aggregator</title>
+		<dateModified>Mon, 19 Nov 2007 10:45:38 +0000</dateModified>
+		<ownerName>randomwalker</ownerName>
+		<ownerEmail>randomwalker@gmail.com</ownerEmail>
+	</head>
+	
+	<body>
+		<outline type="rss" text="0xDE" xmlUrl="http://11011110.livejournal.com/data/atom" title="0xDE" />
+		<outline type="rss" text="Andy's Math/CS page" xmlUrl="http://andysresearch.blogspot.com/feeds/posts/default" title="Andy's Math/CS page" />
+		<outline type="rss" text="Computational Complexity" xmlUrl="http://weblog.fortnow.com/rss.xml" title="Computational Complexity" />
+		<outline type="rss" text="Ernie's 3D Pancakes" xmlUrl="http://3dpancakes.typepad.com/ernie/rss.xml" title="Ernie's 3D Pancakes" />
+		<outline type="rss" text="My Biased Coin" xmlUrl="http://mybiasedcoin.blogspot.com/feeds/posts/default?alt=rss" title="My Biased Coin" />
+		<outline type="rss" text="Shtetl-Optimized" xmlUrl="http://scottaaronson.com/blog/?feed=rss2" title="Shtetl-Optimized" />
+		<outline type="rss" text="The Geomblog" xmlUrl="http://feeds.feedburner.com/TheGeomblog" title="The Geomblog" />
+		<outline type="rss" text="Vanity of Vanities, all is Vanity" xmlUrl="http://valis.cs.uiuc.edu/blog/?feed=rss2" title="Vanity of Vanities, all is Vanity" />
+		<outline type="rss" text="WebDiarios de Motocicleta" xmlUrl="http://feeds.feedburner.com/WebdiariosDeMotocicleta" title="WebDiarios de Motocicleta" />
+		<outline type="rss" text="in theory" xmlUrl="http://in-theory.blogspot.com/feeds/posts/default?alt=rss" title="in theory" />
+		<outline type="rss" text="my slice of pizza" xmlUrl="http://mysliceofpizza.blogspot.com/feeds/posts/default" title="my slice of pizza" />
+	</body>
+</opml>
