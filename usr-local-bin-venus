@@ -12,3 +12,7 @@ for i in config/*.ini; do
 done;
 
 python reformatfeed.py < $OUTDIR/atom.xml > $OUTDIR/atom-twitter.xml 2> /tmp/planet-reformat-error.log
+
+cd $OUTDIR
+git commit index.html atom.xml atom-twitter.xml -m "Hourly Updates"
+git push origin master
