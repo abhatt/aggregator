@@ -18,7 +18,6 @@ def splice():
     dir.sort()
     dir.reverse()
 
-    print config.template_files()
     max_items=max([config.items_per_page(templ)
         for templ in config.template_files() or ['Planet']])
 
@@ -71,6 +70,7 @@ def splice():
     count = {}
     new_feed_items = config.new_feed_items()
     for mtime,file in dir:
+        log.info(file +" has timestamp %f", mtime)
         if index != None:
             base = os.path.basename(file)
             if index.has_key(base) and index[base] not in sub_ids: continue
