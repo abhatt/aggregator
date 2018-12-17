@@ -1,7 +1,7 @@
 #!/bin/sh
 
-VENUSDIR=~/aggregator/venus
-OUTDIR=~/abhatt.github.io
+VENUSDIR=/home/a/arnab/aggregator/venus
+OUTDIR=/home/a/arnab/abhatt.github.io
 
 [ -d ${VENUSDIR} ] || exit 0;
 
