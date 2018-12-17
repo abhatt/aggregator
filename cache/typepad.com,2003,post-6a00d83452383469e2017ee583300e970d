@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>tag:typepad.com,2003:post-6a00d83452383469e2017ee583300e970d</id><link href="https://3dpancakes.typepad.com/ernie/2012/11/socg-votes-to-leave-acm.html" rel="alternate" type="text/html"/><link href="https://3dpancakes.typepad.com/ernie/2012/11/socg-votes-to-leave-acm.html" rel="replies" type="text/html"/><title>SOCG votes to leave ACM</title><summary>The following message was recently sent to the computational geometry mailing list by the SOCG steering committee. (SOCG is the Symposium on Computational Geometry, which has been affiliated with ACM since its inception in 1985.) Dear SoCG community, As you...<div class="commentbar"><p/><a href="https://3dpancakes.typepad.com/ernie/2012/11/socg-votes-to-leave-acm.html"><img class="commenticon" src="/images/post-icon.png"/> Post a comment</a></div></summary><content type="xhtml" xml:lang="en-US"><div xmlns="http://www.w3.org/1999/xhtml"><div>The following message was recently sent to the computational geometry mailing list by the SOCG steering committee.  (SOCG is the Symposium on Computational Geometry, which has been affiliated with ACM since its inception in 1985.)
+<blockquote><small>
+<p>Dear SoCG community,</p>
+ 
+<p>As you will recall, we recently held a poll about the ACM affiliation of SoCG. The alternatives were</p>
+ 
+<p>A. I prefer to stay with ACM.</p>
+ 
+<p>B. I prefer to leave ACM, and organize SoCG as an independent conference with proceedings published in LIPIcs and with financial backing provided through other means.</p>
+ 
+<p>In total 87 votes were cast. 1 vote was invalid, the other 86 votes were distributed as follows:</p>
+ 
+<p>Option A: 36 votes (42%)
+<br/>Option B: 50 votes (58%)</p>
+ 
+<p>Some other statistics: of the 86 valid votes, 67 were by faculty, 12 by postdocs, 4 by phd students, and 3 by others.</p>
+ 
+<p>Following this outcome the SoCG Steering Committee will start taking further steps to implement the separation from ACM. (Note that SoCG 2013, and most likely also SoCG 2014, will still be organized with ACM affiliation.) These further steps will be taken by the new Steering Committee, for which there will be elections soon.</p>
+ 
+<p>We would like to thank everyone who participated in the poll.</p>
+ 
+<p>The SoCG Steering Committee: Mark de Berg (secretary), Joe Mitchell, Gunter Rote, Jack Snoeyink (chair), Monique Teillaud.</p>
+</small></blockquote>
+<p>
+
+When I posted this email on Google+, one well-known ACM member <a href="http://cacm.acm.org/magazines/2012/9/154590-why-acm/fulltext">thundered</a>:
+
+</p><blockquote><small><p>
+This is &quot;pretend democracy&quot;, IMHO. There are way more than 87 people who consider themselves to be computational geometers. It is not clear to me that this vote really represent the sense of the community.﻿
+</p></small></blockquote>
+
+I agree that the small number of votes is disappointing, but I believe the vote was fair and reflect the opinion of the community: A majority in favor of leaving ACM, but not an overwhelming one.  This decision has been brewing for at least two years, with several iterations of voting, using precisely the same voting procedures that we use to elect the SOCG steering committee.  Specifically:<p/>
+<ul>
+<li>
+<p>
+Although it had been raised informally before, the issue of whether to leave ACM was first <em>formally</em> raised at the SOCG 2011 business meeting in Paris.  (Among other issues, the local organizers estimated that ACM sponsorship increased the conference registration fee by 100 euros.)  A near-unanimous majority of the attendees supported a motion for the steering committee to investigate moving the proceedings to LIPIcs, drawing up a concrete proposal, and polling the larger computational geometry community via the well-established community mailing list.</p>
+</li>
+<li>
+<p>
+In October 2011, the steering committee sent a detailed message to the computational geometry mailing list, outlining the costs and benefits of ACM membership versus publication through LIPIcs and asking for votes on three options: (A) Stay with ACM. (B) Stay with ACM iff their role can be limited to publishing the proceedings at low cost.  (C) Leave ACM.  The final was 29 for option A, 48 for option B, and 47 for option C.  The steering committee took the vote as a mandate to approach ACM investigating the possibility of a publisher-only relationship.</p>
+</li>
+<li>
+<p>
+At SOCG 2012 in Chapel Hill, the steering committee reported that although ACM was willing to offer some concessions, they were not willing to publish proceedings without formally sponsoring the conference.  They announced at the business meeting that there would be a second and final vote on the community mailing list this fall.  No vote was taken at the business meeting, because it was rightly felt that the attendees at one iteration of SOCG did not constitute a quorum.</p>
+</li>
+<li>
+<p>
+In October 2012, the steering committee sent a detailed proposal to the community mailing list, again outlining costs and benefits, describing the results of their negotiations with ACM, and cautioning that a decision to leave has serious and complex consequences.  The proposal asked for a vote for two options:
+</p>
+<ol>
+<li>
+<p>I prefer to stay with ACM.</p>
+</li>
+<li>
+<p>I prefer to leave ACM, and organize SoCG as an independent conference with proceedings published in LIPIcs and with financial backing provided through other means.</p>
+</li>
+</ol>
+<p>
+The ballot also warned that if the vote was too close or there were too few votes altogether, the steering committee would decide on its own.  The final vote passed both these hurdles.</p>
+</li>
+</ul>
+<p>
+Both votes were publicized at the SOCG business meetings, on the web/blogs/twitter/facebook/google+, and by direct email to more than 800 community members.   You can read the proposals yourself at <a href="http://computational-geometry.org/">http://computational-geometry.org/</a></p>
+<p>
+Others may disagree, but my impression is that the steering committee itself did <em>not</em> push for leaving ACM.  Indeed, some of the staunchest defenders of ACM sponsorship are steering committee members.  Moreover, the transition away from ACM will require significant work on their part.  (More accurately, since we are about to have another steering committee election, on the part of the new steering committee, but there is usually significant overlap from one election cycle to the next.)
+</p>
+<p>
+In short, this is as close to &quot;real democracy&quot; as the SOCG community knows how to enact, and closer than I've seen at any other conference.  For comparison, both SODA's decision to increase the length of camera-ready papers to 20 pages (which has significant effect on later journal publication) and STOC's recent decision to move to a significantly larger, two-tier program committee were enacted with <em>no</em> public vote or discussion.  (Yes, these are much less significant decisions, but similar decisions at SOCG without a vote would raise howls of protest.)</p></div></div></content><updated planet:format="November 22, 2012 07:30 PM">2012-11-22T19:30:34Z</updated><published planet:format="November 22, 2012 07:30 PM">2012-11-22T19:30:34Z</published><author><name>Jeff Erickson</name></author><source><id>tag:typepad.com,2003:weblog-6686</id><link href="https://3dpancakes.typepad.com/ernie/atom.xml" rel="self" type="application/atom+xml"/><link href="https://3dpancakes.typepad.com/ernie/" rel="alternate" type="text/html"/><subtitle>Let Σ be a combinatorial surface with n vertices, genus g, and b boundaries.  Amen.</subtitle><title>Ernie's 3D Pancakes</title><updated planet:format="November 06, 2018 05:41 PM">2018-11-06T17:41:10Z</updated><planet:format>atom10</planet:format><planet:http_location>https://3dpancakes.typepad.com/ernie/atom.xml</planet:http_location><planet:module>toc</planet:module><planet:items_per_page>40</planet:items_per_page><planet:face>erickson.jpeg</planet:face><planet:name>Ernie's 3D Pancakes</planet:name><planet:css-id>ernie-s-3d-pancakes</planet:css-id><planet:bozo>false</planet:bozo><planet:http_last_modified>Tue, 06 Nov 2018 17:41:43 GMT</planet:http_last_modified><planet:http_status>301</planet:http_status></source></entry>

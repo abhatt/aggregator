@@ -114,7 +114,7 @@ def __init__():
     define_planet_list('bill_of_materials')
     define_planet_list('template_directories', '.')
     define_planet_list('filter_directories')
-
+    
     # template options
     define_tmpl_int('days_per_page', 0)
     define_tmpl_int('items_per_page', 60)
@@ -180,6 +180,9 @@ def load(config_file):
         else:
             log.error('Unable to find theme %s', theme)
 
+
+
+            
     # Filter support
     dirs = config.filter_directories()
     filter_dir = os.path.join(sys.path[0],'filters')

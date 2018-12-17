@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>https://blogs.princeton.edu/imabandit/?p=1281</id><link href="https://blogs.princeton.edu/imabandit/2017/10/24/colt-2018-call-for-papers/" rel="alternate" type="text/html"/><title>COLT 2018 call for papers</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Philippe Rigollet and myself will be the program chairs for this year’s edition of COLT. It will be in Stockholm in July, which I hear is absolutely gorgeous at that time of the year. We also have a fantastic lineup … <a href="https://blogs.princeton.edu/imabandit/2017/10/24/colt-2018-call-for-papers/">Continue reading <span class="meta-nav">→</span></a></p></div><div class="commentbar"><p/></div></summary><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><a class="liexternal" href="http://www-math.mit.edu/~rigollet/">Philippe Rigollet</a> and myself will be the program chairs for this year’s edition of <a class="liexternal" href="http://www.learningtheory.org/colt2018/">COLT</a>. It will be in Stockholm in July, which I hear is absolutely gorgeous at that time of the year. We also have a fantastic lineup of invited speakers: <a class="liexternal" href="http://www.cmap.polytechnique.fr/~mallat/">Stephane Mallat</a>, <a class="liinternal" href="https://www.seas.harvard.edu/directory/samurphy">Susan Murphy</a>, and <a class="liinternal" href="https://www.nada.kth.se/~johanh/">Johan Hastad</a>. We believe we will also guarantee high quality reviews for your submissions as we have assembled a great (and extended) program committee to make sure that we cover all aspects of modern learning theory (in particular we expect the number of subreviewers to be minimal). See below for the PC, as well as the call for papers. Looking forward to read all your submissions in February!</p>
+<p><strong>Program Committee:</strong></p>
+<div class="container clearfix">
+<div class="col_one_fourth">Jacob Abernethy (Georgia Tech)<br/>
+Shivani Agarwal (University of Pennsylvania)<br/>
+Shipra Agrawal (Columbia University)<br/>
+Alexandr Andoni (Columbia University)<br/>
+Pranjal Awasthi (Rutgers University)<br/>
+Francis Bach (INRIA)<br/>
+Nina Balcan (Carnegie Mellon University)<br/>
+Afonso Bandeira (New-York University)<br/>
+Mihail Belkin (Ohio State University)<br/>
+Shai Ben-David (University of Waterloo)<br/>
+Quentin Berthet (University of Cambridge)<br/>
+Alina Beygelzimer (Yahoo! Research)<br/>
+Avrim Blum (TTI Chicago)<br/>
+Guy Bresler (MIT)<br/>
+Olivier Cappé (Université Paris-Saclay)<br/>
+Constantine Caramanis (UT Austin)<br/>
+Alexandra Carpentier (OvGU Magdeburg)<br/>
+Nicolo Cesa-Bianchi (University of Milan)<br/>
+Arnak Dalalyan (ENSAE)<br/>
+Amit Daniely (Hebrew University)<br/>
+Ronen Eldan (Weizman Institute)<br/>
+Tim van Erven (Leiden University)</div>
+<div class="col_one_fourth">Vitaly Feldman (IBM Research)<br/>
+Aurelien Garivier (University Paul-Sabatier)<br/>
+Rong Ge (Duke University)<br/>
+Claudio Gentile (Universita degli Studi dell’Insubria)<br/>
+Steve Hanneke<br/>
+Elad Hazan (Princeton University)<br/>
+Daniel Hsu (Columbia University)<br/>
+Prateek Jain (Microsoft Research)<br/>
+Satyen Kale (Google)<br/>
+Varun Kanade (Oxford University) Vladimir Koltchinskii (Georgia Tech)<br/>
+Wouter Koolen (CWI, Amsterdam)<br/>
+Tomer Koren (Google)<br/>
+John Lafferty (Yale University)<br/>
+Po-Ling Loh (UW Madison)<br/>
+Gabor Lugosi (ICREA and Pompeu Fabra University)<br/>
+Shie Mannor (Technion)<br/>
+Yishay Mansour (Tel Aviv University and Google)<br/>
+Ankur Moitra (MIT)<br/>
+Robert Nowak (UW Madison)<br/>
+Vianney Perchet (ENS Paris-Saclay and Criteo)</div>
+<div class="col_one_fourth col_last">Alexandre Proutiere (KTH)<br/>
+Luis Rademacher (UC Davis)<br/>
+Maxim Raginsky (University of Illinois)<br/>
+Sasha Rakhlin (University of Pennsylvania)<br/>
+Lorenzo Rosasco (MIT and Universita’ di Genova)<br/>
+Robert Schapire (Microsoft Research)<br/>
+Ohad Shamir (Weizman Institute)<br/>
+David Steurer (ETH Zurich)<br/>
+Suvrit Sra (MIT)<br/>
+Nathan Srebro (TTI Chicago)<br/>
+Karthik Sridharan (Cornell University)<br/>
+Csaba Szepesvari (University of Alberta)<br/>
+Matus Telgarsky (University of Illinois)<br/>
+Ambuj Tewari (University of Michigan)<br/>
+Alexandre Tsybakov (ENSAE-CREST)<br/>
+Ruth Urner (Max Planck Institute)<br/>
+Santosh Vempala (Georgia Tech)<br/>
+Roman Vershynin (UC Irvine)<br/>
+Manfred Warmuth (UC Santa Cruz)<br/>
+Yihong Wu (Yale University)</div>
+</div>
+<p> </p>
+<p><strong>Call for papers:</strong></p>
+<p>The 31st Annual Conference on Learning Theory (COLT 2018) will take place in Stockholm, Sweden, on July 5-9, 2018 (with a welcome reception on the 4th), immediately before ICML 2018, which takes place in the same city. We invite submissions of papers addressing theoretical aspects of machine learning and related topics. We strongly support a broad definition of learning theory, including, but not limited to:<br/>
+-Design and analysis of learning algorithms<br/>
+-Statistical and computational complexity of learning<br/>
+-Optimization methods for learning<br/>
+-Unsupervised, semi-supervised, online and active learning<br/>
+-Interactions with other mathematical fields<br/>
+-Interactions with statistical physics<br/>
+-Artificial neural networks, including deep learning<br/>
+-High-dimensional and non-parametric statistics<br/>
+-Learning with algebraic or combinatorial structure<br/>
+-Geometric and topological data analysis<br/>
+-Bayesian methods in learning<br/>
+-Planning and control, including reinforcement learning<br/>
+-Learning with system constraints: e.g. privacy, memory or communication budget<br/>
+-Learning from complex data: e.g., networks, time series, etc.<br/>
+-Learning in other settings: e.g. social, economic, and game-theoretic</p>
+<p>Submissions by authors who are new to COLT are encouraged. While the primary focus of the conference is theoretical, the authors may support their analysis by including relevant experimental results.<br/>
+All accepted papers will be presented in a single track at the conference. At least one of each paper’s authors should be present at the conference to present the work. Accepted papers will be published electronically in the Proceedings of Machine Learning Research (PMLR). The authors of accepted papers will have the option of opting-out of the proceedings in favor of a 1-page extended abstract. The full paper reviewed for COLT will then be placed on the arXiv repository.</p>
+<h3 class="call">Paper Awards:</h3>
+<p>COLT will award both best paper and best student paper awards. To be eligible for the best student paper award, the primary contributor(s) must be full-time students at the time of submission. For eligible papers, authors must indicate at submission time if they wish their paper to be considered for a student paper award. The program committee may decline to make these awards, or may split them among several papers.</p>
+<h3 class="call">Dual Submissions:</h3>
+<p>Submissions that are substantially similar to papers that have been previously published, accepted for publication, or submitted in parallel to other peer-reviewed conferences with proceedings may not be submitted to COLT. The same policy applies to journals, unless the submission is a short version of a paper submitted to a journal, and not yet published. Authors must declare such dual submissions either through the Easychair submission form, or via email to the program chairs.</p>
+<h3 class="call">Formatting:</h3>
+<p>Submissions are limited to 12 PMLR-formatted pages, plus unlimited additional pages for references and appendices. All details, proofs and derivations required to substantiate the results must be included in the submission, possibly in the appendices. However, the contribution, novelty and significance of submissions will be judged primarily based on the main text (without appendices), and so enough details, including proof details, must be provided in the main text to convince the reviewers of the submissions’ merits. Formatting and submission instructions can be found here.</p>
+<h3 class="call">Rebuttal Phase:</h3>
+<p>As in previous years, there will be a rebuttal phase during the review process. Initial reviews will be sent to authors before final decisions have been made. Authors will have the opportunity to provide a short response on the PC’s initial evaluation.</p>
+<h3 class="call">Open Problems Session:</h3>
+<p>We also invite submission of open problems. A separate call for open problems will be made available on the conference website.</p>
+<h3 class="call">Important Dates:</h3>
+<p>-Paper submission deadline: February 16, 2018, 11:00 PM EST<br/>
+-Author feedback: April 18-21, 2018<br/>
+-Author notification: May 2, 2018<br/>
+-Conference: July 5-9, 2018 (welcome reception on the 4th)</p>
+<h3 class="call">Submission:</h3>
+<p>Papers should be submitted through EasyChair at <a class="liinternal" href="https://easychair.org/conferences/?conf=colt2018">https://easychair.org/conferences/?conf=colt2018</a></p>
+<p> </p></div></content><updated planet:format="October 24, 2017 10:28 PM">2017-10-24T22:28:30Z</updated><published planet:format="October 24, 2017 10:28 PM">2017-10-24T22:28:30Z</published><category term="Conference/workshop"/><author><name>Sebastien Bubeck</name></author><source><id>https://blogs.princeton.edu/imabandit</id><link href="https://blogs.princeton.edu/imabandit/feed/" rel="self" type="application/atom+xml"/><link href="https://blogs.princeton.edu/imabandit" rel="alternate" type="text/html"/><subtitle>Random topics in optimization, probability, and statistics. By Sébastien Bubeck</subtitle><title>I’m a bandit</title><updated planet:format="December 16, 2018 04:44 PM">2018-12-16T16:44:02Z</updated><planet:http_status>200</planet:http_status><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:name>S&amp;eacute;bastian Bubeck</planet:name><planet:http_last_modified>Fri, 23 Nov 2018 17:03:44 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:http_etag>&quot;7a21033bc747c1eccfdc0e4c416aa3e2&quot;</planet:http_etag><planet:css-id>s-eacute-bastian-bubeck</planet:css-id></source></entry>

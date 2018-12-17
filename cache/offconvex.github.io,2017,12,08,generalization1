@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://offconvex.github.io/2017/12/08/generalization1/</id><link href="http://offconvex.github.io/2017/12/08/generalization1/" rel="alternate" type="text/html"/><title>Generalization Theory and Deep Nets, An introduction</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Deep learning holds many mysteries for theory, as we have discussed on this blog. Lately many ML theorists have become interested in the generalization mystery: why do trained deep nets perform well on previously unseen data, even though they have way more free parameters than the number of datapoints (the classic “overfitting” regime)? Zhang et al.’s  paper  <a href="https://arxiv.org/abs/1611.03530">Understanding Deep Learning requires Rethinking Generalization</a> played some role in bringing attention to this challenge. Their  main experimental finding is that if you take a classic convnet architecture, say <a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">Alexnet</a>, and train it on  images with random labels, then you can still achieve very high accuracy on the training data. (Furthermore, usual regularization strategies, which are believed to promote better generalization, do not help much.) Needless to say, the trained net is subsequently unable to predict the (random) labels of still-unseen images, which means it doesn’t generalize. The paper notes that the ability to fit a classifier to data with random labels is also a traditional measure in machine learning called Rademacher complexity (which we will discuss shortly) and thus Rademacher complexity gives no meaningful bounds on sample complexity.  I found this paper entertainingly written and recommend reading it, despite having given away the punchline. Congratulations to the authors for winning best paper at ICLR 2017.</p>
+
+<p>But I would be remiss if I didn’t report that at the <a href="https://simons.berkeley.edu/programs/machinelearning2017">Simons Institute Semester on theoretical ML in spring 2017</a> generalization theory experts expressed unhappiness about this paper, and especially its title. They felt that similar issues had been extensively studied  in context of simpler models such as kernel SVMs (which, to be fair, is clearly mentioned in the paper). It is trivial to design SVM architectures with high Rademacher complexity which nevertheless train and generalize well on real-life data. Furthermore, theory was developed to explain this generalization behavior (and also for related models like boosting). On a related note, several earlier papers of Behnam Neyshabur and coauthors (see <a href="https://arxiv.org/abs/1605.07154">this paper</a> and for a full account, <a href="https://arxiv.org/abs/1703.11008">Behnam’s thesis</a>)
+had made points fairly similar to Zhang et al. pertaining to deep nets.</p>
+
+<p>But regardless of such complaints, we should be happy about the attention brought by Zhang et al.’s paper to a core theory challenge. Indeed, the passionate discussants at the Simons semester themselves banded up in  subgroups to address this challenge: these resulted in papers by <a href="https://arxiv.org/abs/1703.11008">Dzigaite and Roy</a>, then <a href="https://arxiv.org/abs/1706.08498">Bartlett, Foster, and Telgarsky</a> and finally <a href="https://arxiv.org/abs/1707.09564">Neyshabur, Bhojapalli, MacAallester, Srebro</a>. (The latter two were presented at NIPS’17 this week.)</p>
+
+<p>Before surveying these results let me start by suggesting that some of the controversy over the title of Zhang et al.’s paper stems from some basic confusion about whether or not current generalization theory is prescriptive or merely descriptive. These confusions  arise from the standard treatment of generalization theory in courses and textbooks, as I discovered while teaching the recent developments in <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos597A/">my graduate seminar</a>.</p>
+
+<h3 id="prescriptive-versus-descriptive-theory">Prescriptive versus descriptive theory</h3>
+
+<p>To illustrate the difference, consider a patient who says to his doctor: “Doctor, I wake up often at night and am tired all day.”</p>
+
+<blockquote>
+  <p>Doctor 1 (without any physical examination): “Oh, you have sleep disorder.”</p>
+</blockquote>
+
+<p>I call such a diagnosis <em>descriptive</em>, since it only attaches a label to the patient’s problem, without giving any insight into how to solve the problem. Contrast with:</p>
+
+<blockquote>
+  <p>Doctor 2 (after careful physical examination): “A growth in your sinus is causing sleep apnea. Removing it will resolve your problems.”</p>
+</blockquote>
+
+<p>Such a diagnosis is <em>prescriptive.</em></p>
+
+<h2 id="generalization-theory-descriptive-or-prescriptive">Generalization theory: descriptive or prescriptive?</h2>
+
+<p>Generalization theory notions such as VC dimension, Rademacher complexity, and PAC-Bayes bound, consist of attaching a <em>descriptive label</em> to the basic phenomenon of lack of generalization. They are hard to compute for today’s complicated ML models, let alone to use as a guide in designing learning systems.</p>
+
+<p>Recall what it means for a hypothesis/classifier $h$ to not generalize. Assume the training data consists of a sample $S = {(x_1, y_1), (x_2, y_2),\ldots, (x_m, y_m)}$ of $m$ examples from some distribution ${\mathcal D}$. A <em>loss function</em> $\ell$ describes how well hypothesis $h$ classifies a datapoint: the loss $\ell(h, (x, y))$ is high if the hypothesis didn’t come close to producing the label $y$ on $x$ and low if it came close.  (To give an example,  the <em>regression</em> loss is $(h(x) -y)^2$.) Now let us denote by $\Delta_S(h)$ the average loss on samplepoints in $S$, and by $\Delta_{\mathcal D}(h)$ the expected loss on samples from distribution ${\mathcal D}$. 
+Training  <em>generalizes</em> if the hypothesis $h$ that minimises $\Delta_S(h)$ for a random sample $S$ also achieves very similarly low loss $\Delta_{\mathcal D}(h)$ on the full distribution. When this fails to happen, we have:</p>
+
+<blockquote>
+  <p><strong>Lack of generalization:</strong>  $\Delta_S(h) \ll \Delta_{\mathcal D}(h) \qquad (1). $</p>
+</blockquote>
+
+<p>In practice, lack of generalization is detected by taking a second sample
+ (“held out set”) $S_2$ of size $m$ from ${\mathcal D}$. By concentration bounds expected loss of $h$ on this second sample closely approximates $\Delta_{\mathcal D}(h)$, allowing us to conclude</p>
+
+
+
+<h3 id="generalization-theory-descriptive-parts">Generalization Theory: Descriptive Parts</h3>
+
+<p>Let’s discuss <strong>Rademacher complexity,</strong> which I will simplify a bit for this discussion. (See also  <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos597A/lecnotes/generalize.pdf">scribe notes of my lecture</a>.) For convenience assume in this discussion that labels and loss are $0,1$, and 
+ assume that the badly generalizing $h$ predicts perfectly on the training sample $S$ and is completely wrong on the heldout set $S_2$, meaning</p>
+
+<p>$\Delta_S(h) - \Delta_{S_2}(h) \approx - 1 \qquad (3)$</p>
+
+<p>Rademacher complexity concerns the following thought experiment. Take a single sample of size $2m$   from $\mathcal{D}$, split it into two and call the first half $S$ and the second $S_2$. <em>Flip</em> the labels of points in $S_2$. Now try to find a classifier $C$ that best describes this new sample, meaning one that minimizes $\Delta_S(h)  + 1- \Delta_{S_2}(h)$. This expression follows since flipping the label of a point turns good classification into bad and vice versa, and thus the loss function for $S_2$ is $1$ minus the old loss. We say the class of classifiers has high Rademacher complexity if with high probability this quantity is small, say close to $0$.</p>
+
+<p>But a glance  at (3) shows that it implies high Rademacher complexity: $S, S_2$ were random samples of size $m$  from $\mathcal{D}$, so their combined size is $2m$, and when generalization failed we succeeded in finding a hypothesis $h$ for which $\Delta_S(h)  + 1- \Delta_{S_2}(h)$ is very small.</p>
+
+<p>In other words, returning to our medical analogy, the doctor only had to hear “Generalization didn’t happen” to pipe up with: “Rademacher complexity is high.” This is why I call this result descriptive.</p>
+
+<p>The <strong>VC dimension</strong> bound is similarly descriptive.  VC dimension is defined to be at least $k +1$ if there exists a set of size $k$ such that the following is true. If we look at all possible classifiers in the class, and the sequence of labels each gives to the $k$ datapoints in the sample, then we can find all possible $2^{k}$ sequences of $0$’s and $1$’s.</p>
+
+<p>If generalization does not happen as in (2) or (3) then this turns out to imply that VC dimension is at least around $\epsilon m$ for some $\epsilon &gt;0$. The reason is that the $2m$ data points were split randomly into $S, S_2$, and there are $2^{2m}$ such splittings. When the generalization error is $\Omega(1)$ this can be shown to imply that we can achieve  $2^{\Omega(m)}$ labelings of the $2m$ datapoints using all possible classifiers. Now the classic Sauer’s lemma (see any lecture notes on this topic, such as <a href="https://www.cs.princeton.edu/courses/archive/spring14/cos511/scribe_notes/0220.pdf">Schapire’s</a>) can be used to show that
+ VC dimension is at least $\epsilon m/\log m$ for some constant $\epsilon&gt;0$.</p>
+
+<p>Thus again, the doctor only has to hear “Generalization didn’t happen with sample size $m$” to pipe up with: “VC dimension is higher than $\Omega(m/log m)$.”</p>
+
+<p>One can similarly show that PAC-Bayes bounds are also descriptive, as you can see in <a href="http://www.cs.princeton.edu/courses/archive/fall17/cos597A/lecnotes/generalize.pdf">scribe notes from my lecture</a>.</p>
+
+<blockquote>
+  <p>Why do students get confused and think that such tools of generalization theory gives some powerful technique to guide design of machine learning algorithms?</p>
+</blockquote>
+
+<p>Answer: Probably because  standard presentation in lecture notes and textbooks seems to pretend that we are computationally-omnipotent beings who can <em>compute</em> VC dimension and Rademacher complexity and thus arrive at meaningful bounds on sample sizes needed for training to generalize. While this may have been possible in the old days with simple classifiers, today we have
+complicated classifiers with millions of variables, which furthermore are products of  nonconvex optimization techniques like backpropagation. 
+ The only way to actually lowerbound Rademacher complexity of such complicated learning architectures is to try training a classifier, and detect lack of generalization via a held-out set. Every practitioner in the world already does this (without realizing it), and  kudos to Zhang et al. for highlighting that theory currently offers nothing better.</p>
+
+<h2 id="toward-a-prescriptive-generalization-theory-the-new-papers">Toward a prescriptive generalization theory: the new papers</h2>
+
+<p>In our medical analogy we saw that the doctor needs to at least do a physical examination to have a prescriptive diagnosis. The authors of the new papers intuitively grasp this point, and try to identify properties of real-life deep nets that may lead to better generalization. Such an analysis (related to “margin”) was done for simple 2-layer networks couple decades ago, and the challenge is to find analogs for multilayer networks. Both Bartlett et al. and Neyshabur et al. hone in on <a href="https://nickhar.wordpress.com/2012/02/29/lecture-15-low-rank-approximation-of-matrices/"><em>stable rank</em></a> of the weight matrices of the layers of the deep net. These can be seen as an instance of a “flat minimum” which has been discussed in <a href="http://www.bioinf.jku.at/publications/older/3304.pdf">neural nets literature</a> for many years. I will present my take on these results as well as some improvements in a future post. Note that these methods do not as yet give any nontrivial bounds on the number of datapoints needed for training the nets in question.</p>
+
+<p><a href="https://arxiv.org/abs/1703.11008">Dziugaite and Roy</a> take a slightly different tack. They start with McAllester’s 1999 PAC-Bayes bound, which says that if the algorithm’s prior distribution on the hypotheses is $P$ then for every posterior distributions $Q$ (which could depend on the data) on the hypotheses the generalization error of the average classifier picked according to $Q$ is upper bounded as follows where $D()$ denotes <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">KL divergence</a>:</p>
+
+<div style="text-align: center;">
+ <img src="http://www.cs.princeton.edu/courses/archive/fall17/cos597A/lecnotes/pacbayes.png" style="width: 600px;"/>
+</div>
+
+<p>This allows upperbounds on generalization error (specifically, upperbounds on number of samples that guarantee such an upperbound) by proceeding as in  <a href="http://www.cs.cmu.edu/~jcl/papers/nn_bound/not_bound.pdf">Langford and Caruana’s old paper</a> where $P$ is a uniform gaussian, and $Q$ is a noised version of the trained deep net (whose generalization we are trying to explain). Specifically, if $w_{ij}$ is the weight of edge ${i, j}$ in the trained net, then $Q$ consists of adding a gaussian noise $\eta_{ij}$ to weight $w_{ij}$. Thus a random classifier according to $Q$ is nothing but a noised version of the trained net. Now we arrive at the crucial idea: Use nonconvex optimization to find a choice for the variance of $\eta_{ij}$ that balances two competing criteria: (a) the average classifier drawn from $Q$ has training error not much more than the original trained net (again, this is a quantification of the “flatness” of the minimum found by the optimization) and (b) the right hand side of the above expression is as small as possible.  Assuming (a) and (b) can be suitably bounded, it follows that the average classifier from Q works reasonably well on unseen data.  (Note that this method only proves generalization of a noised version of the trained classifier.)</p>
+
+<p>Applying this method on  simple fully-connected neural nets trained on MNIST dataset, they can prove that the method achieves error $17$ percent error on MNIST (whereas the <em>actual</em> error is much lower at 2-3 percent). Hence the title of their paper, which promises <em>nonvacuous generalization bounds.</em> What I find most interesting about this result is that it uses the power of nonconvex optimization (harnessed above to find a suitable noised distribution $Q$) to cast light on one of the metaquestions about nonconvex optimization, namely, why does deep learning not overfit!</p></div><div class="commentbar"><p/></div></summary><updated planet:format="December 08, 2017 06:00 PM">2017-12-08T18:00:00Z</updated><published planet:format="December 08, 2017 06:00 PM">2017-12-08T18:00:00Z</published><source><id>http://offconvex.github.io/</id><author><name>Off the Convex Path</name></author><link href="http://offconvex.github.io/" rel="alternate" type="text/html"/><link href="http://offconvex.github.io/feed.xml" rel="self" type="application/atom+xml"/><subtitle>Algorithms off the convex path.</subtitle><title>Off the convex path</title><updated planet:format="December 16, 2018 04:44 PM">2018-12-16T16:44:10Z</updated><planet:http_location>http://www.offconvex.org/feed.xml</planet:http_location><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:face>convex.jpeg</planet:face><planet:name>Off the Convex Path</planet:name><planet:css-id>off-the-convex-path</planet:css-id><planet:http_last_modified>Wed, 05 Dec 2018 18:59:46 GMT</planet:http_last_modified><planet:http_etag>W/&quot;5c082022-26c3f&quot;</planet:http_etag><planet:http_status>301</planet:http_status><planet:bozo>false</planet:bozo></source></entry>

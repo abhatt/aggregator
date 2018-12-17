@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>tag:blogger.com,1999:blog-3722233.post-2536467445996425170</id><link href="https://blog.computationalcomplexity.org/2018/12/inverting-onto-functions.html" rel="alternate" type="text/html"/><title>Inverting Onto Functions</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Here's an open question that goes back to a <a href="https://doi.org/10.1016/S0890-5401(03)00119-6">2003 paper</a>  that I wrote with Steve Fenner, John Rogers and Ashish Naik. The <a href="https://doi.org/10.1109/CCC.1996.507683">conference paper</a> goes back to 1996.<br/>
+<br/>
+In that paper we discuss two hypothesis we badly called Q and Q' and it still remains open whether the two hypotheses are equivalent.<br/>
+<br/>
+Q has a number of equivalent definitions, including<br/>
+<br/>
+<ul>
+<li>For all NP machines M that accepting all strings, there is polynomial-time computable function f such that f(x) is an accepting path of M(x) for all x.</li>
+<li>For every onto honest polynomial-time computable function g there is a polynomial-time computable function f such that f finds an inverse of g, more precisely g(f(g(x))) = g(x) for all x.</li>
+<li><a href="https://en.wikipedia.org/wiki/TFNP">TFNP</a> is computable in FP.</li>
+</ul>
+<div>
+For lots more equivalences see <a href="https://lance.fortnow.com/papers/files/q.pdf">the paper</a>. </div>
+<div>
+<br/></div>
+<div>
+Q' is the bit version of Q. For example</div>
+<br/>
+<ul>
+<li>For all NP machines M that accepting all strings, there is polynomial-time computable function f such that f(x) outputs the first bit of an accepting path of M(x) for all x.</li>
+<li>For every onto honest polynomial-time computable function g there is a polynomial-time computable function f such that f finds the first bit of an inverse of g, more precisely for all x there is a y such that g(y) = g(x) and f(x) is the first bit of y.</li>
+</ul>
+<div>
+Now Q implies Q', if you can find an accepting path of M(x) you can just read off the first bit. Does Q' imply Q? </div>
+<div>
+<br/></div>
+<div>
+If P = NP you can find solutions using self-reductions. For Q' self-reduction gets stuck because as you start filling in bits you may lose the &quot;onto&quot; promise. </div>
+<div>
+<br/></div>
+<div>
+On the other hand we don't even know any relativized worlds where Q' is true and Q is false. So either prove that Q' implies Q or show a relativized world where Q' is true and Q is false.</div>
+<div>
+<br/></div>
+<div>
+How often can I dole out 22-year old open problems that don't require deep complexity to understand. Can't promise what techniques you'll need to solve it.</div></div><div class="commentbar"><p/></div></summary><updated planet:format="December 13, 2018 02:53 PM">2018-12-13T14:53:00Z</updated><published planet:format="December 13, 2018 02:53 PM">2018-12-13T14:53:00Z</published><author><name>Lance Fortnow</name><email>noreply@blogger.com</email></author><source><id>tag:blogger.com,1999:blog-3722233</id><category term="typecast"/><category term="focs metacomments"/><author><name>Lance Fortnow</name><email>noreply@blogger.com</email></author><link href="https://blog.computationalcomplexity.org/" rel="alternate" type="text/html"/><link href="https://blog.computationalcomplexity.org/feeds/posts/default?alt=rss" rel="self" type="application/atom+xml"/><subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle><title>Computational Complexity</title><updated planet:format="December 17, 2018 01:56 AM">2018-12-17T01:56:57Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;3c48828af0b9b548c409eba7b894fc342a0679ccd23a3f1db96c1212435d64c9&quot;</planet:http_etag><planet:http_last_modified>Sun, 16 Dec 2018 21:24:54 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>computational-complexity</planet:css-id><planet:face>gasarch.png</planet:face><planet:name>Computational Complexity</planet:name><planet:http_status>200</planet:http_status></source></entry>

@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://windowsontheory.org/?p=6363</id><link href="https://windowsontheory.org/2018/12/16/algorithmic-and-information-theoretic-decoding-thresholds-for-low-density-parity-check-code/" rel="alternate" type="text/html"/><title>Algorithmic and Information Theoretic Decoding Thresholds for Low density Parity-Check Code</title><summary>by Jeremy Dohmann, Vanessa Wong, Venkat Arun Abstract We will discuss error-correcting codes: specifically, low-density parity-check (LDPC) codes. We first describe their construction and information-theoretical decoding thresholds, .  Belief propagation (BP) (see Tom’s notes) can be used to decode these. We analyze BP to find the maximum error-rate upto which BP succeeds. After this point, […]<div class="commentbar"><p/></div></summary><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h3>by Jeremy Dohmann, Vanessa Wong, Venkat Arun</h3>
+
+
+
+<h2>Abstract</h2>
+
+
+
+<p>We will discuss error-correcting codes: specifically, low-density parity-check (LDPC) codes. We first describe their construction and information-theoretical decoding thresholds, <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/>. </p>
+
+
+
+<p>Belief propagation (BP) (<a href="https://d1b10bmlvqabco.cloudfront.net/attach/jjsqup73w3r2s3/ihaz9phexeb6fb/jmch5yx8edqc/229R_Talk_Notes_2.pdf">see Tom’s notes</a>) can be used to decode these. We analyze BP to find the maximum error-rate upto which BP succeeds.</p>
+
+
+
+<p>After this point, BP will reach a suboptimal fixed point with high probability. This is lower than the information-theoretic bound, illustrating a gap between algorithmic and information-theoretic thresholds for decoding.</p>
+
+
+
+<p>Then we outline a proof of a theorem suggesting that any efficient algorithm, not just BP, will fail after the algorithmic threshold. This is because there is a phase transition at the algorithmic threshold, after which there exist an exponentially large number of suboptimal `metastable’ states near the optimal solution. Local search algorithms will tend to get stuck at these suboptimal points.</p>
+
+
+
+<h3>Introduction to Error Correcting Codes</h3>
+
+
+
+<h4>Motivation</h4>
+
+
+
+<p>Alice wants to send a message to Bob, but their channel of communication is such that Bob receives a corrupted version of what Alice sent. Most practical communication devices are imperfect and introduce errors in the messages they are transmitting. For instance, if Alice sends 3V, Bob will really receive three volts plus some noise (we have chosen to ignore some inconvenient practical details here). In many cases, this noise is quite small, e.g. it could be less than 0.5V in 99.99% of cases. So, in principle, Alice could have had <em>very </em>reliable delivery by just choosing to always send 0V for a logical 0 and 5V for logical 1, using checksums to detect the occasional error. But this is wasteful. Alice could have squeezed more levels between 0 and 5V to get a higher bitrate. This causes errors, but Alice can introduce redundancy in the bits she is transmitting which can enable Bob to decode the correct message with high probability. Since it is much easier to control redundancy in encoding than in physical quantities, practical communication devices often choose choose to pack enough bits into their physical signal that errors are relatively quite likely, relying instead on redundancy in their encoding to recover from the errors. Redundancy is also used in storage, where we don’t have the option of detecting an error and retransmitting the message.</p>
+
+
+
+<p>Some errors in communication are caused by thermal noise. These are unpredictable and unavoidable, but the errors they cause can be easily modeled; they cause bit-flips in random positions in the message. There are other sources of error. The clocks on the two devices may not be correctly synchronized,  causing systematic bit-flips in a somewhat predictable pattern. A sudden surge of current (e.g. because someone turned on the lights, and electricity sparked between the contacts) can corrupt a large contiguous segment of bits. Or the cable could simply be cut in which case no information gets through. These other kinds of errors are often harder to model (and easier to detect/mitigate), so we have to remain content with merely detecting them. Thus for the remainder of this blog post, we shall restrict ourselves to an error model where each bit is corrupted with some fixed (but potentially unknown) probability, independent of the other bits. For simplicity, we shall primarily consider the Binary Erasure Channel (BEC), where a bit either goes through successfully, or the receiver <em>knows </em>that there has been an error (though we will introduce some related channels along the way).</p>
+
+
+
+<p>Claude Shannon found that given any channel, there is a bitrate below which it is possible to communicate reliably with vanishing error rate. Reliable communication cannot be achieved above this bitrate. Hence this threshold bitrate is called the channel capacity. He showed that random linear codes are an optimal encoding scheme that achieves channel capacity. We will only briefly discuss random linear codes, but essentially they work by choosing random vectors in the input space and mapping them randomly to vectors in the encoded space. Unfortunately we do not have efficient algorithms for decoding these codes (mostly due to the randomness in their construction), and it is conjectured that one doesn’t exist. Recently Low-Density Parity Check (LDPC) codes have gained in popularity. They are simple to construct, and can be efficiently decoded at error levels quite close to the theoretical limits.</p>
+
+
+
+<p>With LDPC codes, there are three limits of interest for any given channel and design bitrate (M/N): 1) the error level upto which an algorithm can efficiently decode them, <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/>, 2) the error level level upto which they can be decoded by a computationally unbounded decoder, <img alt="\epsilon_c" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_c&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_c"/> and, 3) the error level beyond which <em>no </em>encoding scheme can achieve reliable communication, <img alt="\epsilon_s" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_s&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_s"/>. Obviously, <img alt="\epsilon_d \le \epsilon_c \le \epsilon_s" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d+%5Cle+%5Cepsilon_c+%5Cle+%5Cepsilon_s&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d \le \epsilon_c \le \epsilon_s"/>, and in general these inequalities can be strict. Our goal here is to study the gap between <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/> and <img alt="\epsilon_c" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_c&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_c"/>. We will sometimes refer to these three quantities as <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/>, <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/>, and <img alt="p_{shannon}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bshannon%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{shannon}"/> when discussing channels besides the BEC. This is following the notation of Mezard and Montanari (2009).</p>
+
+
+
+<p>More formally, information theory concerns reliable communication via an unreliable channel. To mitigate the errors in message transmission, error correcting codes introduce some type of systematic redundancy in the transmitted message. Encoding maps are applied to the information sequence to get the encoded message that is transmitted through the channel. The decoding map, on the other hand, is applied to the noisy channel bit (see Figure below). Each message encoded is comprised of <img alt="M" class="latex" src="https://s0.wp.com/latex.php?latex=M&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="M"/> bits and <img alt="N&gt;M" class="latex" src="https://s0.wp.com/latex.php?latex=N%3EM&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N&gt;M"/> redundant sequences of bits in an error correcting code. <img alt="2^M" class="latex" src="https://s0.wp.com/latex.php?latex=2%5EM&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="2^M"/> possible codewords form a “codebook” <img alt="|\mathbb{C}|" class="latex" src="https://s0.wp.com/latex.php?latex=%7C%5Cmathbb%7BC%7D%7C&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="|\mathbb{C}|"/> in binary space <img alt="\{0,1\}" class="latex" src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\{0,1\}"/>.</p>
+
+
+
+<p>Claude Shannon’s code ensembles proved that it is easier to construct stochastic (characterized by good properties and high probability) models vs. deterministic code designs. Stochastic models were able to achieve optimal error correcting code performance in comparison to a more rigidly constructed model, proving that it was possible to communicate with a vanishing error probability as long as the rate of transmission <img alt="R=M/N" class="latex" src="https://s0.wp.com/latex.php?latex=R%3DM%2FN&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="R=M/N"/> is smaller than the channel capacity, a measure of the maximum mutual information between channel input and output.</p>
+
+
+
+<figure class="wp-block-image is-resized"><img alt="" class="wp-image-6366" height="261" src="https://windowsontheory.files.wordpress.com/2018/12/encodedecode.png?w=456&amp;h=261" width="456"/><strong>Fig 1</strong> Schematic of the communication model of information communication.</figure>
+
+
+
+<p>Thus, in order to construct an optimal error correcting code, one must first define the subset of the space of encoding maps, endow the set with probability distributions, and subsequently define the associated decoding map for each of the encoding maps in the codes. We have included a section in the  A that gives a thorough discussion of random code ensembles which are known to achieve optimal decoding, whether via scoring decoding success by bit error rate or decoded word error rate. We will also show a perspective which uses principles from statistical physics to unify the two (often called finite-temperature decoding). From hereon out we will discuss LDPC and explore how the values of <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/>, <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> and <img alt="p_{shannon}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bshannon%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{shannon}"/> for various channels reveal deep things about the structure of the decoding solution space.</p>
+
+
+
+<h3>Low-density Parity Check Code</h3>
+
+
+
+<p>LDPC codes are linear and theoretically excellent error correcting codes that communicate at a rate close to the Shannon capacity. The LDPC codebook is a linear subspace of  <img alt="\{0,1\}^N " class="latex" src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D%5EN+&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\{0,1\}^N "/>. For an MxN sparse matrix  <img alt="\mathbb{H}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BH%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{H}"/>, the codebook is defined as the kernel: </p>
+
+
+
+<p><img alt="\mathbb{C} = { \underline{x} \in \{0,1\}^N:\mathbb{H}\underline{x}=\underline{0}}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D+%3D+%7B+%5Cunderline%7Bx%7D+%5Cin+%5C%7B0%2C1%5C%7D%5EN%3A%5Cmathbb%7BH%7D%5Cunderline%7Bx%7D%3D%5Cunderline%7B0%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{C} = { \underline{x} \in \{0,1\}^N:\mathbb{H}\underline{x}=\underline{0}}"/></p>
+
+
+
+<p><br/>where all the multiplications and sums involved in <br/><img alt="\mathbb{H} \underline{x} " class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BH%7D+%5Cunderline%7Bx%7D+&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{H} \underline{x} "/> are computed modulo 2.<br/></p>
+
+
+
+<p>Matrix  <img alt="\mathbb{H}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BH%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{H}"/>is called the <strong>parity check matrix</strong> and the size of the codebook is  <img alt="2^{N-rank(\mathbb{H})}" class="latex" src="https://s0.wp.com/latex.php?latex=2%5E%7BN-rank%28%5Cmathbb%7BH%7D%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="2^{N-rank(\mathbb{H})}"/>. Given this code, encoding is a linear operation when mapping an  <img alt="N x L" class="latex" src="https://s0.wp.com/latex.php?latex=N+x+L&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N x L"/> binary generating matrix  <img alt="\mathbb{G}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BG%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{G}"/> (the codebook is the image of  <img alt="\mathbb{G}:\mathbb{C}={x=\mathbb{G}\underline{z}, \text{where } \underline{z} \in \{0,1\}^L} " class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BG%7D%3A%5Cmathbb%7BC%7D%3D%7Bx%3D%5Cmathbb%7BG%7D%5Cunderline%7Bz%7D%2C+%5Ctext%7Bwhere+%7D+%5Cunderline%7Bz%7D+%5Cin+%5C%7B0%2C1%5C%7D%5EL%7D+&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{G}:\mathbb{C}={x=\mathbb{G}\underline{z}, \text{where } \underline{z} \in \{0,1\}^L} "/>) such that  <img alt="\underline{z}\rightarrow \underline{x} =\mathbb{G}z" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bz%7D%5Crightarrow+%5Cunderline%7Bx%7D+%3D%5Cmathbb%7BG%7Dz&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{z}\rightarrow \underline{x} =\mathbb{G}z"/>).</p>
+
+
+
+<p>Every coding scheme has three essential properties that determine its utility: the geometry of its codebook and the way it sparsely distributes proper codewords within the encoding space <img alt="\{0,1\}^{N}" class="latex" src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D%5E%7BN%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\{0,1\}^{N}"/> (c.f. our mention of sphere packing as a geometric analogy for RLCs), the ease with which one can <em>construct a code</em> which sparsely distributes codes within the encoding space, and the existence of fast algorithms to perform effective decoding.</p>
+
+
+
+<p>A coding scheme over a given channel (whether it be <a href="https://en.wikipedia.org/wiki/Binary_symmetric_channel">BSC</a>, <a href="https://en.wikipedia.org/wiki/Binary_erasure_channel">BEC</a>, <a href="https://en.wikipedia.org/wiki/Additive_white_Gaussian_noise">AWGN</a>, etc.) also has three parameters of interest, <img alt="p_{d} " class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D+&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d} "/> which is the error rate above which some chosen algorithm cannot perform error-free decoding, <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> above which even exhaustively enumerating over all <img alt="2^{M}" class="latex" src="https://s0.wp.com/latex.php?latex=2%5E%7BM%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="2^{M}"/> codewords in the codebook and calculating the MAP probability does not successfully decode, <img alt="p_{shannon}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bshannon%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{shannon}"/> which is the capacity of the channel, an error rate above which no decoding scheme could perform error-free decoding.</p>
+
+
+
+<h4>LDPC codebook geometry and <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/></h4>
+
+
+
+<p>On the subject of codebook geometry, it is well known that LDPC ensembles, in expectation, produce sparsely distributed codewords. This means that valid codewords (i.e. those that pass all parity checks) are far apart from one another in Hamming space and thus require a relatively large number of bits to be lost in order for one codeword to degenerate into another one. There is an important property called the distance enumerator which determines the expected number of codewords in a tight neighborhood of any given codeword. If for a given distance the expected number is exponentially small, then the coding scheme is robust up to error rates causing that degree of distortion. We discuss a proof of LDPC distance properties in Appendix B and simply state here that LDPCs are good at sparsely distributing valid codewords within the encoding space. The property <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/>, introduced above is intimately related to the geometry of the codebook and the properties of the noisy channel being decoded over. </p>
+
+
+
+<p>The information theoretic threshold, <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> is the noise level above which MAP decoding no longer successfully performs decoding. <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> is important because it is the error value above which we could theoretically always perform (slow) decoding below <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> by enumerating all <img alt="2^{M}" class="latex" src="https://s0.wp.com/latex.php?latex=2%5E%7BM%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="2^{M}"/> codewords in the codebook and calculating the one with the highest MAP probability. </p>
+
+
+
+<p>Every LDPC ensemble has some different <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> for a given channel. WFor now we will simply remark that LDPC ensembles are effective because they can be chosen such that <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> closely approaches the <img alt="p_{shannon}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bshannon%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{shannon}"/> limit for many channels. Even more importantly, we will show that it is <em>likely </em>that there is no fast algorithm for which <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/> = <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> for general LDPCs over a general noisy channel.</p>
+
+
+
+<p>We will not derive the <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> for any LDPC ensembles over any channels (I recommend <a href="https://web.stanford.edu/~montanar/RESEARCH/book.html">chapter 15 of this book for details</a>), but we will, in section 3, present results derived by other researchers.</p>
+
+
+
+<h4>Ease of construction</h4>
+
+
+
+<p>On the subject of ease of construction and ease of decoding, there is a much simpler graphical representation of LDPC codes which can be used to demonstrate LDPC tractability. </p>
+
+
+
+<p>LDPCs can be thought of as bipartite regular graphs, where there are N variable nodes which are connected to M parity check nodes according to randomly chosen edges based on the degree distribution of the LDPC. Though the appendix discusses general degree distributions we will discuss here only (d,k) regular bipartite graphs, in which all variables have d edges and all parity check nodes have k edges, and how to generate them under the configuration model. </p>
+
+
+
+<p>The <a href="https://en.wikipedia.org/wiki/Configuration_model">configuration model</a> can be used to generate a bipartite graph with (d,k) degree distribution by initially assigning all variable nodes d half-edges, all parity check nodes k half-edges, and then randomly linking up half-edges between the two sets, deleting all nodes which end up being paired an even number of times, and collapsing all odd numbered multi-edges into a single edge. This system doesn’t work perfectly but for large N, the configuration model will generate a graph for which most nodes have the proper degree. Thus it is relatively easy to generate random graphs which represent LDPC codes of any desired uniform degree distribution. An example of this graphical representation is in figure 2</p>
+
+
+
+<figure class="wp-block-image"><img alt="" class="wp-image-6382" src="https://windowsontheory.files.wordpress.com/2018/12/graph.png?w=600"/><strong>Fig 2 </strong>Factor graph of a (2,3) regular LDPC code with factor nodes as black squares and variable nodes as white circles, and notation for BP messages.</figure>
+
+
+
+<h2>How the graphical model relates to fast decoding</h2>
+
+
+
+<p>The graphical model of LDPCs is useful because it is both easy to construct and presents a natural way to perform fast decoding. In fact, the fast graph-based decoding algorithm, <a href="http://{https://en.wikipedia.org/wiki/Belief_propagation">Belief Propagation</a>, we use has a <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/> which likely represents the upper limit on fast decoding for LDPCs.</p>
+
+
+
+<p>We have seen <a href="https://windowsontheory.org/2018/10/20/belief-propagation-and-the-stochastic-block-model/">recently </a>that bipartite graphical models <br/>which represent a factorized probability distribution can be used to calculate marginal probabilities of individual variable nodes (what a mouthful!). </p>
+
+
+
+<p>Basically, if the structure of the graph reflects some underlying probability distribution (e.g. the probability that noisy bit <img alt="y_i" class="latex" src="https://s0.wp.com/latex.php?latex=y_i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y_i"/> was originally sent as bit <img alt="x_i" class="latex" src="https://s0.wp.com/latex.php?latex=x_i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x_i"/>) then we can use an iterative algorithm called Belief Propagation (see blog post above) to actually converge to the exact probability distribution for each <img alt="P(y_i~|~x_{i})" class="latex" src="https://s0.wp.com/latex.php?latex=P%28y_i%7E%7C%7Ex_%7Bi%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P(y_i~|~x_{i})"/>.</p>
+
+
+
+<p>This is important because when we perform decoding, we would like to estimate the marginal probability of each individual variable node (bit in our received vector), and simply set the variable to be the most likely value (this is known as bit-MAP decoding, discussed earlier). As mentioned above, under certain conditions the Belief Propagation algorithm correctly calculates those marginal probabilities for noise rates up to an algorithmic threshold <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/>. </p>
+
+
+
+<p>The Belief Propagation algorithm is an iterative message passing algorithm in which messages are passed between variable nodes and parity check/factor nodes such that, if the messages converge to a fixed point, the messages encode the marginal probabilities of each variable node. Thus BP, if it succeeds can perform bit-MAP decoding and thus successfully decode. </p>
+
+
+
+<p>We will show in the next section how the configuration model graphs map to a factorized probability distribution and mention the <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/> for BP. In the following section we will show an example of decoding over the binary erasure channel, then finally we will show motivation to suggest that the <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/> for BP over LDPCs represents a hard upper limit above which no fast decoding algorithms exist.</p>
+
+
+
+<h3>Decoding Errors via Belief Propagation</h3>
+
+
+
+<p>As mentioned above (<a href="https://windowsontheory.org/2018/10/20/belief-propagation-and-the-stochastic-block-model/">again, please see Tom’s excellent blog post for details</a>), the belief propagation algorithm is a useful inference algorithm for stochastic models and sparse graphs derived from computational problems exhibiting thresholding behavior. As discussed, symbol/bit MAP decoding of error correcting codes can be regarded as a statistical inference problem. In this section, we will explore BP decoding to determine the threshold for reliable communication and according optimization for LDPC code ensembles in communication over a binary input output symmetric memoryless channel (BSC or BMS).</p>
+
+
+
+<h4>Algorithm Overview</h4>
+
+
+
+<p>Recall that the conditional distribution of the channel input <img alt="\underline{x}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}"/> given the output <img alt="\underline{y}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7By%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{y}"/> is given by and that we wish to find the <img alt="\underline{x}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}"/> that maximizes the below probability given <img alt="\underline{y}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7By%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{y}"/> </p>
+
+
+
+<p><img alt="p(\underline{x}|\underline{y}) = \frac{1}{Z(y)}\prod_{i=1}^{N}Q(y_i|x_i) \prod_{a=1}^{M} \mathbb{I}(x_{i_{1^{a}}} \otimes ... ~x_{k(a)^a} = 0)" class="latex" src="https://s0.wp.com/latex.php?latex=p%28%5Cunderline%7Bx%7D%7C%5Cunderline%7By%7D%29+%3D+%5Cfrac%7B1%7D%7BZ%28y%29%7D%5Cprod_%7Bi%3D1%7D%5E%7BN%7DQ%28y_i%7Cx_i%29+%5Cprod_%7Ba%3D1%7D%5E%7BM%7D+%5Cmathbb%7BI%7D%28x_%7Bi_%7B1%5E%7Ba%7D%7D%7D%C2%A0%5Cotimes+...+%7Ex_%7Bk%28a%29%5Ea%7D+%3D+0%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p(\underline{x}|\underline{y}) = \frac{1}{Z(y)}\prod_{i=1}^{N}Q(y_i|x_i) \prod_{a=1}^{M} \mathbb{I}(x_{i_{1^{a}}} \otimes ... ~x_{k(a)^a} = 0)"/> (1)<br/></p>
+
+
+
+<p style="text-align: left;"><br/>Where <img alt="Q(y_i~|~x_{i})" class="latex" src="https://s0.wp.com/latex.php?latex=Q%28y_i%7E%7C%7Ex_%7Bi%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="Q(y_i~|~x_{i})"/> is the conditional probability of <img alt="y_{i}" class="latex" src="https://s0.wp.com/latex.php?latex=y_%7Bi%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y_{i}"/> of observing noisy bit <img alt="y_{i}" class="latex" src="https://s0.wp.com/latex.php?latex=y_%7Bi%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y_{i}"/> given that <img alt="x_{i}" class="latex" src="https://s0.wp.com/latex.php?latex=x_%7Bi%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x_{i}"/> was sent. For the BSC we have <img alt="Q(y_{i} = 1 | x_{i} = 1) = Q(y_{i} = 0 | x_{i} = 0) = 1-p" class="latex" src="https://s0.wp.com/latex.php?latex=Q%28y_%7Bi%7D+%3D+1+%7C+x_%7Bi%7D+%3D+1%29+%3D+Q%28y_%7Bi%7D+%3D+0+%7C+x_%7Bi%7D+%3D+0%29+%3D+1-p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="Q(y_{i} = 1 | x_{i} = 1) = Q(y_{i} = 0 | x_{i} = 0) = 1-p"/> and <img alt="Q(y_{i} = 1 | x_{i} = 0) = Q(y_{i} = 0 | x_{i} = 1) = p" class="latex" src="https://s0.wp.com/latex.php?latex=Q%28y_%7Bi%7D+%3D+1+%7C+x_%7Bi%7D+%3D+0%29+%3D+Q%28y_%7Bi%7D+%3D+0+%7C+x_%7Bi%7D+%3D+1%29+%3D+p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="Q(y_{i} = 1 | x_{i} = 0) = Q(y_{i} = 0 | x_{i} = 1) = p"/>. </p>
+
+
+
+<p>Furthermore </p>
+
+
+
+<p><img alt="\mathbb{I} (x_{i_{1^{a}}} \otimes  ... ~x_{k(a)^a} = 0)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BI%7D+%28x_%7Bi_%7B1%5E%7Ba%7D%7D%7D%C2%A0%5Cotimes%C2%A0+...+%7Ex_%7Bk%28a%29%5Ea%7D+%3D+0%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{I} (x_{i_{1^{a}}} \otimes  ... ~x_{k(a)^a} = 0)"/></p>
+
+
+
+<p> is an indicator variable which takes value <img alt="1" class="latex" src="https://s0.wp.com/latex.php?latex=1&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1"/> if <img alt="\underline{x}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}"/> satisfies parity check a and 0 otherwise. In particular, the product of these indicators takes into account the fact that 0 probability should be assigned to hypotheses <img alt="\underline{x}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}"/> which aren’t in the code book (indicated by at least one parity check failing). </p>
+
+
+
+<p>We would like to design a message passing scheme such that the incoming messages for a given variable node encode their marginal probabilities <img alt="p(x_i~|~y_i)" class="latex" src="https://s0.wp.com/latex.php?latex=p%28x_i%7E%7C%7Ey_i%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p(x_i~|~y_i)"/>.</p>
+
+
+
+<p>Note, first and foremost that this probability can be <em>factorized </em>a la BP factor graphs such that there is a factor node for each parity check node <img alt="a" class="latex" src="https://s0.wp.com/latex.php?latex=a&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="a"/> which contributes probability </p>
+
+
+
+<p><img alt="\mathbb{I} (x_{i_{1^{a}}} \otimes ... ~x_{k(a)^a} = 0)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BI%7D+%28x_%7Bi_%7B1%5E%7Ba%7D%7D%7D%C2%A0%5Cotimes+...+%7Ex_%7Bk%28a%29%5Ea%7D+%3D+0%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{I} (x_{i_{1^{a}}} \otimes ... ~x_{k(a)^a} = 0)"/> </p>
+
+
+
+<p>and a factor node for each channel probability term <img alt="Q(y_i~|~x_{i})" class="latex" src="https://s0.wp.com/latex.php?latex=Q%28y_i%7E%7C%7Ex_%7Bi%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="Q(y_i~|~x_{i})"/>. Since each channel probability term is only connected to a single variable, its message never gets updated during BP and so we omit it from the factor graphs (e.g. note that figure 2 only has parity check nodes and variable nodes)</p>
+
+
+
+<p>The message passing scheme ends up taking the form</p>
+
+
+
+<p><img alt="v_{i\rightarrow a}^{(t+1)}(x_i) \propto Q(y_{i} | x_{i}) \prod_{b \in \partial i \setminus a} \hat{v}{b \rightarrow i}^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=v_%7Bi%5Crightarrow+a%7D%5E%7B%28t%2B1%29%7D%28x_i%29+%5Cpropto+Q%28y_%7Bi%7D+%7C+x_%7Bi%7D%29+%5Cprod_%7Bb+%5Cin+%5Cpartial+i+%5Csetminus+a%7D+%5Chat%7Bv%7D%7Bb+%5Crightarrow+i%7D%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="v_{i\rightarrow a}^{(t+1)}(x_i) \propto Q(y_{i} | x_{i}) \prod_{b \in \partial i \setminus a} \hat{v}{b \rightarrow i}^{(t)}"/> (2)</p>
+
+
+
+<p><img alt="\hat{v}_{a \rightarrow i}(x_{i}) \propto \sum_{{x_{j}}} \mathbb{I} (x_{i} \otimes x_{j_{1}} ... x_{j_{k-1}} = 0) \prod_{j \in \partial a \setminus i} v_{j\rightarrow a}^{(t)}(x_j)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Chat%7Bv%7D_%7Ba+%5Crightarrow+i%7D%28x_%7Bi%7D%29+%5Cpropto+%5Csum_%7B%7Bx_%7Bj%7D%7D%7D+%5Cmathbb%7BI%7D+%28x_%7Bi%7D+%5Cotimes+x_%7Bj_%7B1%7D%7D+...+x_%7Bj_%7Bk-1%7D%7D+%3D+0%29+%5Cprod_%7Bj+%5Cin+%5Cpartial+a+%5Csetminus+i%7D+v_%7Bj%5Crightarrow+a%7D%5E%7B%28t%29%7D%28x_j%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\hat{v}_{a \rightarrow i}(x_{i}) \propto \sum_{{x_{j}}} \mathbb{I} (x_{i} \otimes x_{j_{1}} ... x_{j_{k-1}} = 0) \prod_{j \in \partial a \setminus i} v_{j\rightarrow a}^{(t)}(x_j)"/> (3)</p>
+
+
+
+<p>Where <img alt="\partial a" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cpartial+a&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\partial a"/> denotes the neighborhood of factor node <img alt="a" class="latex" src="https://s0.wp.com/latex.php?latex=a&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="a"/> and the sum in (3) is over all possible configurations of the neighbors of <img alt="a" class="latex" src="https://s0.wp.com/latex.php?latex=a&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="a"/> not including <img alt="i" class="latex" src="https://s0.wp.com/latex.php?latex=i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="i"/>. </p>
+
+
+
+<p>Messages are passed along the edges as distributions over binary valued variables described by the log-likelihoods</p>
+
+
+
+<p><img alt="h_{i\rightarrow a} = \frac{1}{2}\log \frac{v_{i\rightarrow a(0)}}{v_{i\rightarrow a (1)}}" class="latex" src="https://s0.wp.com/latex.php?latex=h_%7Bi%5Crightarrow+a%7D+%3D+%5Cfrac%7B1%7D%7B2%7D%5Clog+%5Cfrac%7Bv_%7Bi%5Crightarrow+a%280%29%7D%7D%7Bv_%7Bi%5Crightarrow+a+%281%29%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h_{i\rightarrow a} = \frac{1}{2}\log \frac{v_{i\rightarrow a(0)}}{v_{i\rightarrow a (1)}}"/> (4)</p>
+
+
+
+<p><img alt="u_{i\rightarrow a} = \frac{1}{2}\log \frac{\hat{v}{i\rightarrow a(0)}}{\hat{v}{i\rightarrow a (1)}}" class="latex" src="https://s0.wp.com/latex.php?latex=u_%7Bi%5Crightarrow+a%7D+%3D+%5Cfrac%7B1%7D%7B2%7D%5Clog+%5Cfrac%7B%5Chat%7Bv%7D%7Bi%5Crightarrow+a%280%29%7D%7D%7B%5Chat%7Bv%7D%7Bi%5Crightarrow+a+%281%29%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="u_{i\rightarrow a} = \frac{1}{2}\log \frac{\hat{v}{i\rightarrow a(0)}}{\hat{v}{i\rightarrow a (1)}}"/> (5)</p>
+
+
+
+<p><br/>We also introduce the a priori log likelihood for bit <img alt="i" class="latex" src="https://s0.wp.com/latex.php?latex=i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="i"/> given the received message <img alt="y_i" class="latex" src="https://s0.wp.com/latex.php?latex=y_i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y_i"/>:</p>
+
+
+
+<p><img alt="B_{i} = \frac{1}{2} log \frac{Q(y_{i} | 0)}{Q(y_{i} | 1)}" class="latex" src="https://s0.wp.com/latex.php?latex=B_%7Bi%7D+%3D+%5Cfrac%7B1%7D%7B2%7D+log+%5Cfrac%7BQ%28y_%7Bi%7D+%7C+0%29%7D%7BQ%28y_%7Bi%7D+%7C+1%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="B_{i} = \frac{1}{2} log \frac{Q(y_{i} | 0)}{Q(y_{i} | 1)}"/></p>
+
+
+
+<p>Once we parametrize the messages as log-likelihoods, it turns out we can rewrite our update rules in terms of the parametrized values h and u, making updates much simpler:</p>
+
+
+
+<p><img alt="h_{i \rightarrow a}^{(t+1)} = B_i + \sum_{b \in \partial i \setminus a} u_{b \rightarrow i}^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=h_%7Bi+%5Crightarrow+a%7D%5E%7B%28t%2B1%29%7D+%3D+B_i+%2B+%5Csum_%7Bb+%5Cin+%5Cpartial+i+%5Csetminus+a%7D+u_%7Bb+%5Crightarrow+i%7D%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h_{i \rightarrow a}^{(t+1)} = B_i + \sum_{b \in \partial i \setminus a} u_{b \rightarrow i}^{(t)}"/> (6)</p>
+
+
+
+<p><img alt="u_{b\rightarrow i}^{(t)} = atanh{ \prod_{j \in \partial a \setminus i} tanh(h_{j \rightarrow a}^{(t)})}" class="latex" src="https://s0.wp.com/latex.php?latex=u_%7Bb%5Crightarrow+i%7D%5E%7B%28t%29%7D+%3D+atanh%7B+%5Cprod_%7Bj+%5Cin+%5Cpartial+a+%5Csetminus+i%7D+tanh%28h_%7Bj+%5Crightarrow+a%7D%5E%7B%28t%29%7D%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="u_{b\rightarrow i}^{(t)} = atanh{ \prod_{j \in \partial a \setminus i} tanh(h_{j \rightarrow a}^{(t)})}"/> (7)<br/></p>
+
+
+
+<p>Given a set of messages, we would perform decoding via the overall log likelihood <img alt="h_{i}^{(t+1)} = B_i + \sum_{b \in \partial i} u_{b \rightarrow i}^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=h_%7Bi%7D%5E%7B%28t%2B1%29%7D+%3D+B_i+%2B+%5Csum_%7Bb+%5Cin+%5Cpartial+i%7D+u_%7Bb+%5Crightarrow+i%7D%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h_{i}^{(t+1)} = B_i + \sum_{b \in \partial i} u_{b \rightarrow i}^{(t)}"/>. Where <img alt="x_{i}" class="latex" src="https://s0.wp.com/latex.php?latex=x_%7Bi%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x_{i}"/> gets decoded to 0 for <img alt="h_{i} &gt; 0" class="latex" src="https://s0.wp.com/latex.php?latex=h_%7Bi%7D+%3E+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h_{i} &gt; 0"/> and 1 for <img alt="h_{i} &lt; 0" class="latex" src="https://s0.wp.com/latex.php?latex=h_%7Bi%7D+%3C+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h_{i} &lt; 0"/>.</p>
+
+
+
+<p>Typically BP is run until it converges to a set of messages that decode to a word in the codebook, or until a max number of iterations have occurred. Other stopping criteria exist such as the messages between time step t and t+1 being all within some small <img alt="\epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon"/> of one another.</p>
+
+
+
+<p>It is important to note some properties of BP:</p>
+
+
+
+<ol><li><strong>BP always terminates in <img alt="d" class="latex" src="https://s0.wp.com/latex.php?latex=d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="d"/> steps if the factor graph is a tree of depth <img alt="d" class="latex" src="https://s0.wp.com/latex.php?latex=d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="d"/></strong></li><li><strong>It is not known under what circumstances so called “loopy” BP will converge for non-tree graphs</strong></li></ol>
+
+
+
+<p>Because factor graphs of LDPC codes are relatively sparse, they appear “locally tree-like”, a property which is believed to play a crucial role in BP convergence over the factorized probability distribution used in LDPC MAP decoding (eqn 1). As mentioned above BP manages to converge on many sorts of non tree-like graphs given that they have “nice” probability distributions. For example <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;ved=2ahUKEwic8ozUqoTfAhXLxlkKHWKGDfYQFjABegQICBAC&amp;url=https%3A%2F%2Fstatweb.stanford.edu%2F~souravc%2Ftalk_spin.pdf&amp;usg=AOvVaw0LixaqHUkY6G795LkiyEgX">the SK model</a> is known to converge even though the underlying factor graph is a complete graph! </p>
+
+
+
+<p>It turns out that BP converges under some noise levels for LDPC decoding, and that the threshold at which it fails to converge, <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/>, represents a phase transition to a generically different regime in the solution space of the codebook. It’s been noted elsewhere that the BP threshold is often the threshold of fast solving for many cool problems; e.g. <a href="https://www.amazon.com/Nature-Computation-Cristopher-Moore/dp/0199233217">k-SAT</a>. This is because it is often thought to generically represent the “best” possible local (ergo “fast”) algorithm for those problems</p>
+
+
+
+<p>In appendix C we will show some important properties of BP. The following tables summarize important results for several ensembles and channels. Note how close the information theoretic threshold for LDPCs is to the actual shannon limit <img alt="p_{shannon}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bshannon%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{shannon}"/> for the channels below.</p>
+
+
+
+<p style="text-align: center;"><strong>Table 1</strong>: Thresholds for BSC<br/>Various thresholds for BP over LDPC codes in a Binary Symmetric Channel</p>
+
+
+
+<table class="wp-block-table has-fixed-layout is-style-stripes"><tbody><tr><td>d</td><td>k</td><td><img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/></td><td><img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/></td><td>Shannon limit</td></tr><tr><td>3</td><td>4</td><td>.1669</td><td>.2101</td><td>.2145</td></tr><tr><td>3</td><td>5</td><td>.1138</td><td>.1384</td><td>.1461</td></tr><tr><td>3</td><td>6</td><td>.084</td><td>.101</td><td>.11</td></tr><tr><td>4</td><td>6</td><td>.1169</td><td>.1726</td><td>.174</td></tr></tbody></table>
+
+
+
+<p style="text-align: center;">See Mezard and Montanari, 2009 Chapt 15. for this table </p>
+
+
+
+<p style="text-align: center;"><strong>Table 2</strong>: Thresholds for BEC<br/>Various thresholds for BP over LDPC codes in a Binary Erasure Channel</p>
+
+
+
+<table class="wp-block-table has-fixed-layout is-style-stripes"><tbody><tr><td>d</td><td>k</td><td><img alt="\epsilon_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_{d}"/></td><td><img alt="\epsilon_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_{c}"/></td><td>Shannon limit</td></tr><tr><td>3</td><td>4</td><td>.65</td><td>.746</td><td>.75</td></tr><tr><td>3</td><td>5</td><td>.52</td><td>.59</td><td>.6</td></tr><tr><td>3</td><td>6</td><td>.429</td><td>.4882</td><td>.5</td></tr><tr><td>4</td><td>6</td><td>.506</td><td>.66566</td><td>.6667</td></tr></tbody></table>
+
+
+
+<p style="text-align: center;">
+
+See Mezard and Montanari, 2009 Chapt 15. for this table
+
+</p>
+
+
+
+<p>We will now show exact behavior of the (3,6) LDPC ensemble over the binary erasure channel.</p>
+
+
+
+<h3>Algorithmic Thresholds for Belief Propagation (BP)</h3>
+
+
+
+<h4>Definitions and notation</h4>
+
+
+
+<p><strong>Definition 1.</strong> In a <strong>Binary Erasure Channel (BEC)</strong>, when the transmitter sends a bit <img alt="\in {0, 1}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cin+%7B0%2C+1%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\in {0, 1}"/>, the receiver receives the correct bit with probability <img alt="1 - \epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=1+-+%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1 - \epsilon"/> or an error symbol <img alt="*" class="latex" src="https://s0.wp.com/latex.php?latex=%2A&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="*"/> with probability <img alt="\epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon"/>.</p>
+
+
+
+<p>For BECs, the Shannon capacity—the maximum number of data bits that can be transmitted per encoded bit—is given by <img alt="1 - \epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=1+-+%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1 - \epsilon"/>.<br/></p>
+
+
+
+<p><strong>Definition 2.</strong> An <img alt="N" class="latex" src="https://s0.wp.com/latex.php?latex=N&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N"/>-bit <strong>Error Correcting Code (ECC)</strong> is defined by a codebook <img alt="\mathcal{C} \subset {0, 1}^N" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BC%7D+%5Csubset+%7B0%2C+1%7D%5EN&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathcal{C} \subset {0, 1}^N"/>. The transmitter encodes information as an element of <img alt="\mathcal{C}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BC%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathcal{C}"/>. The receiver receives a corrupted version <img alt="y" class="latex" src="https://s0.wp.com/latex.php?latex=y&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y"/> of the transmitted codeword. To decode, it picks an <img alt="x \in \mathcal{C}" class="latex" src="https://s0.wp.com/latex.php?latex=x+%5Cin+%5Cmathcal%7BC%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x \in \mathcal{C}"/> that is most likely given <img alt="y" class="latex" src="https://s0.wp.com/latex.php?latex=y&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y"/> and the channel characteristics.<br/></p>
+
+
+
+<p>For ease of discourse, we have refrained from defining ECC in full generality.</p>
+
+
+
+<p><strong>Definition 3.</strong> An <img alt="N" class="latex" src="https://s0.wp.com/latex.php?latex=N&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N"/>-bit <img alt="(\lambda, \rho)" class="latex" src="https://s0.wp.com/latex.php?latex=%28%5Clambda%2C+%5Crho%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="(\lambda, \rho)"/> Low Density Parity Check Code (LDPC) is an ECC with <img alt="\mathcal{C} = {x | Hx = 0}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BC%7D+%3D+%7Bx+%7C+Hx+%3D+0%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathcal{C} = {x | Hx = 0}"/>. Here <img alt="H" class="latex" src="https://s0.wp.com/latex.php?latex=H&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="H"/> is an <img alt="M \times N" class="latex" src="https://s0.wp.com/latex.php?latex=M+%5Ctimes+N&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="M \times N"/> matrix and arithmetic is over <img alt="\mathbb{Z}_2" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BZ%7D_2&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{Z}_2"/>. <img alt="H" class="latex" src="https://s0.wp.com/latex.php?latex=H&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="H"/> is a sparse parity-check matrix. <img alt="\lambda(x) = \sum_i\lambda_ix^{i-1}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Clambda%28x%29+%3D+%5Csum_i%5Clambda_ix%5E%7Bi-1%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\lambda(x) = \sum_i\lambda_ix^{i-1}"/> and <img alt="\rho(x) = \sum_i\rho_ix^{i-1}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Crho%28x%29+%3D+%5Csum_i%5Crho_ix%5E%7Bi-1%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\rho(x) = \sum_i\rho_ix^{i-1}"/> are finite polynomials that characterize <img alt="H" class="latex" src="https://s0.wp.com/latex.php?latex=H&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="H"/>; <img alt="\lambda_i" class="latex" src="https://s0.wp.com/latex.php?latex=%5Clambda_i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\lambda_i"/> is the fraction of columns with <img alt="i" class="latex" src="https://s0.wp.com/latex.php?latex=i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="i"/> <img alt="1" class="latex" src="https://s0.wp.com/latex.php?latex=1&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1"/>s and <img alt="\rho_i" class="latex" src="https://s0.wp.com/latex.php?latex=%5Crho_i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\rho_i"/> is the fraction of rows with <img alt="i" class="latex" src="https://s0.wp.com/latex.php?latex=i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="i"/> <img alt="1" class="latex" src="https://s0.wp.com/latex.php?latex=1&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1"/>s. Since these are fractions/probabilities, they must be normalized. Hence <img alt="\lambda(1) = \rho(1) = 1" class="latex" src="https://s0.wp.com/latex.php?latex=%5Clambda%281%29+%3D+%5Crho%281%29+%3D+1&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\lambda(1) = \rho(1) = 1"/>. <img alt="H" class="latex" src="https://s0.wp.com/latex.php?latex=H&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="H"/> is a random matrix, and therefore has full rank with high probability.<br/></p>
+
+
+
+<p>In an LDPC code, <img alt="|\mathcal{C}| = 2^{N - M}" class="latex" src="https://s0.wp.com/latex.php?latex=%7C%5Cmathcal%7BC%7D%7C+%3D+2%5E%7BN+-+M%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="|\mathcal{C}| = 2^{N - M}"/>. Hence every <img alt="N" class="latex" src="https://s0.wp.com/latex.php?latex=N&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N"/> bits contain <img alt="N-M" class="latex" src="https://s0.wp.com/latex.php?latex=N-M&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N-M"/> bits of information, making the rate <img alt="1 - M / N" class="latex" src="https://s0.wp.com/latex.php?latex=1+-+M+%2F+N&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1 - M / N"/>. Over binary erasure channels (BECs), on receiving <img alt="y" class="latex" src="https://s0.wp.com/latex.php?latex=y&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y"/>, the decoder must choose an <img alt="x" class="latex" src="https://s0.wp.com/latex.php?latex=x&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x"/> such that <img alt="x_i = y_i \forall i" class="latex" src="https://s0.wp.com/latex.php?latex=x_i+%3D+y_i+%5Cforall+i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x_i = y_i \forall i"/> such that <img alt="y_i \neq *" class="latex" src="https://s0.wp.com/latex.php?latex=y_i+%5Cneq+%2A&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y_i \neq *"/>, and <img alt="Hx = 0" class="latex" src="https://s0.wp.com/latex.php?latex=Hx+%3D+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="Hx = 0"/> (<img alt="x_i" class="latex" src="https://s0.wp.com/latex.php?latex=x_i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x_i"/>, <img alt="y_i" class="latex" src="https://s0.wp.com/latex.php?latex=y_i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y_i"/> denote the <img alt="i^{th}" class="latex" src="https://s0.wp.com/latex.php?latex=i%5E%7Bth%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="i^{th}"/> bit of <img alt="x" class="latex" src="https://s0.wp.com/latex.php?latex=x&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x"/> and <img alt="y" class="latex" src="https://s0.wp.com/latex.php?latex=y&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y"/> respectively). That is, the bits that were successfully transmitted should be preserved; other bits should be chosen to satisfy the parity check equations. If multiple correct choices of <img alt="x" class="latex" src="https://s0.wp.com/latex.php?latex=x&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x"/> are possible, then <img alt="y" class="latex" src="https://s0.wp.com/latex.php?latex=y&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y"/> cannot be unambiguously decoded.</p>
+
+
+
+<h4>BP/Peeling algorithm</h4>
+
+
+
+<p>In general, decoding can be computationally hard. But there exists an error rate <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/>, a function of <img alt="\lambda" class="latex" src="https://s0.wp.com/latex.php?latex=%5Clambda&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\lambda"/> and <img alt="\rho" class="latex" src="https://s0.wp.com/latex.php?latex=%5Crho&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\rho"/>, below which belief propagation succeeds in decoding. Let <img alt="\epsilon_c" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_c&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_c"/> be the maximum error rate upto which successful decoding is possible (i.e. we can unambiguously determine the transmitted codeword) and <img alt="\epsilon_s" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_s&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_s"/> be the Shannon limit, then <img alt="\epsilon_d \leq \epsilon_c \leq \epsilon_s" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d+%5Cleq+%5Cepsilon_c+%5Cleq+%5Cepsilon_s&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d \leq \epsilon_c \leq \epsilon_s"/>. In general, these inequalities can be strict, illustrating the gap between what is information theoretically possible, and what is computationally feasible.</p>
+
+
+
+<p>Belief propagation (BP) for decoding LDPC-codes is equivalent to a simple peeling algorithm. Let us first describe the factor-graph representation for decoding. This is denoted in figure 3. Variables on the left are the received symbol <img alt="\in {0, 1, *}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cin+%7B0%2C+1%2C+%2A%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\in {0, 1, *}"/>. Factor nodes on the right denote the parity-check constraint (rows of <img alt="H" class="latex" src="https://s0.wp.com/latex.php?latex=H&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="H"/>). The XOR of variables connected to each factor node must be 0.</p>
+
+
+
+<p>BP/the peeling algorithm works as follows. For simplicity of exposition, consider that the all zeros code-word has been transmitted. Since this is a linear code, there is no loss of generality.  At first, only the <img alt="1 - \epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=1+-+%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1 - \epsilon"/> variables that were successfully transmitted are fully determined. In the next round, the factor nodes that have exactly one undetermined variable can determine that variable using their parity-check constraint.</p>
+
+
+
+<figure class="wp-block-image"><img alt="" class="wp-image-6433" src="https://windowsontheory.files.wordpress.com/2018/12/bp-fails.png?w=600"/><strong>Fig 3</strong> An example of a received code-word and corresponding parity-check constraints that is information-theoretically determined (only the all zeros codeword satisfies all constraints), but cannot be decoded by the belief propagation algorithm because no factor node has exactly one unknown variable. Here, only the V0 is correctly received. Constraints F1, F2, F3 and F4 imply that V1=V2=V3=V4=V5. If V0=0, then all the rest must be 0s to satisfy F0 (note, the only other valid codeword is all ones).</figure>
+
+
+
+<h4>BP isn’t perfect</h4>
+
+
+
+<p>This algorithm is not perfect. Figure 3 is an example of a received codeword which <em>can </em>be unambiguously decoded — only the all zeros codeword satisfies all the constraints— but the BP algorithm fails, because at any point, all factor nodes have more than one unknown variable. It seems that the only way to solve problems like that is to exhaustively understand the implications of the parity-check equations. If this examples seems contrived, that is because it is. Decoding becomes harder as the degree and number of constraints increases; we had to add a lot of constraints to make this example work. Fortunately, if the graph is sparse, BP succeeds. We prove this in the following theorem:</p>
+
+
+
+<h4>Phase transitions for BP</h4>
+
+
+
+<p><strong>Theorem 1.</strong> A <img alt="(\lambda, \rho)" class="latex" src="https://s0.wp.com/latex.php?latex=%28%5Clambda%2C+%5Crho%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="(\lambda, \rho)"/> LDPC code can be decoded by BP as <img alt="N \rightarrow \infty" class="latex" src="https://s0.wp.com/latex.php?latex=N+%5Crightarrow+%5Cinfty&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N \rightarrow \infty"/> when the error rate is less than <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/>:</p>
+
+
+
+<p><img alt="\epsilon_d = \mathrm{inf}_{z \in (0, 1)}\left[\frac{z}{\lambda(1 - \rho(1 - z))}\right]" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d+%3D+%5Cmathrm%7Binf%7D_%7Bz+%5Cin+%280%2C+1%29%7D%5Cleft%5B%5Cfrac%7Bz%7D%7B%5Clambda%281+-+%5Crho%281+-+z%29%29%7D%5Cright%5D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d = \mathrm{inf}_{z \in (0, 1)}\left[\frac{z}{\lambda(1 - \rho(1 - z))}\right]"/></p>
+
+
+
+<p><em>Proof.</em> To prove this, let us analyze the density evolution. For BECs, this is particularly simple as we only need to keep track of the fraction of undetermined variables and factor nodes at timestep <img alt="t:~latex z_t" class="latex" src="https://s0.wp.com/latex.php?latex=t%3A%7Elatex+z_t&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="t:~latex z_t"/> and <img alt="\hat{z}_t" class="latex" src="https://s0.wp.com/latex.php?latex=%5Chat%7Bz%7D_t&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\hat{z}_t"/> respectively. As <img alt="N \rightarrow \infty" class="latex" src="https://s0.wp.com/latex.php?latex=N+%5Crightarrow+%5Cinfty&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N \rightarrow \infty"/>, these fractions are probabilities. A factor node is determined when all of its variables are determined (note: if all but one is determined, the last one can be immediately determined). The following recursion relations hold:</p>
+
+
+
+<p><img alt="z_{t+1} = \epsilon\lambda(\hat{z}_t) \:\:\:\mathrm{and}\:\:\: \hat{z}_t = 1 - \rho(1 - z_t)" class="latex" src="https://s0.wp.com/latex.php?latex=z_%7Bt%2B1%7D+%3D+%5Cepsilon%5Clambda%28%5Chat%7Bz%7D_t%29+%5C%3A%5C%3A%5C%3A%5Cmathrm%7Band%7D%5C%3A%5C%3A%5C%3A+%5Chat%7Bz%7D_t+%3D+1+-+%5Crho%281+-+z_t%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="z_{t+1} = \epsilon\lambda(\hat{z}_t) \:\:\:\mathrm{and}\:\:\: \hat{z}_t = 1 - \rho(1 - z_t)"/> (8)</p>
+
+
+
+<p>The first holds because a variable node is undetermined at timestep <img alt="t+1" class="latex" src="https://s0.wp.com/latex.php?latex=t%2B1&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="t+1"/> if it was originally undetermined (which happens with probability <img alt="\epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon"/>) <em>and </em>if it isn’t determined in the last step, which happens with probability say <img alt="p" class="latex" src="https://s0.wp.com/latex.php?latex=p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p"/>. Now,</p>
+
+
+
+<p><img alt="p = \mathbf{P}(degree=2)\hat{z}_t + \mathbf{P}(degree=3)\hat{z}_t^2 + \cdots = \lambda(\hat{z}_t)" class="latex" src="https://s0.wp.com/latex.php?latex=p+%3D+%5Cmathbf%7BP%7D%28degree%3D2%29%5Chat%7Bz%7D_t+%2B+%5Cmathbf%7BP%7D%28degree%3D3%29%5Chat%7Bz%7D_t%5E2+%2B+%5Ccdots+%3D+%5Clambda%28%5Chat%7Bz%7D_t%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p = \mathbf{P}(degree=2)\hat{z}_t + \mathbf{P}(degree=3)\hat{z}_t^2 + \cdots = \lambda(\hat{z}_t)"/></p>
+
+
+
+<p>A similar reasoning holds for the second relation. <img alt="1 - z_t" class="latex" src="https://s0.wp.com/latex.php?latex=1+-+z_t&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1 - z_t"/> is the probability that a given neighboring variable node is determined. <img alt="\rho(1 - z_t)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Crho%281+-+z_t%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\rho(1 - z_t)"/> is the probability that at-most one is undetermined, and hence this function node is determined. <img alt="1 - \rho(1 - z_t)" class="latex" src="https://s0.wp.com/latex.php?latex=1+-+%5Crho%281+-+z_t%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1 - \rho(1 - z_t)"/> is the probability that this function node is undetermined.</p>
+
+
+
+<p>Composing the two relations in equation 8, we get the recursion:</p>
+
+
+
+<p><img alt="z_{t+1} = F_{\epsilon}(z) = \epsilon \lambda(1 - \rho(1 - z_t))" class="latex" src="https://s0.wp.com/latex.php?latex=z_%7Bt%2B1%7D+%3D+F_%7B%5Cepsilon%7D%28z%29+%3D+%5Cepsilon+%5Clambda%281+-+%5Crho%281+-+z_t%29%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="z_{t+1} = F_{\epsilon}(z) = \epsilon \lambda(1 - \rho(1 - z_t))"/></p>
+
+
+
+<p>An example of <img alt="F(z)" class="latex" src="https://s0.wp.com/latex.php?latex=F%28z%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F(z)"/> is shown in Figure~\ref{fig:F-recursion} for <img alt="\lambda(x) = x^2, \rho(x) = x^5" class="latex" src="https://s0.wp.com/latex.php?latex=%5Clambda%28x%29+%3D+x%5E2%2C+%5Crho%28x%29+%3D+x%5E5&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\lambda(x) = x^2, \rho(x) = x^5"/>. That is a (3,6) regular graph where variable nodes and function nodes have 3 and 6 neighbors respectively. On the left, <img alt="F(z)" class="latex" src="https://s0.wp.com/latex.php?latex=F%28z%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F(z)"/> is always below <img alt="z" class="latex" src="https://s0.wp.com/latex.php?latex=z&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="z"/>. Hence the recursion with <img alt="z_0" class="latex" src="https://s0.wp.com/latex.php?latex=z_0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="z_0"/> starting from the far right will converge to the fixed point <img alt="F(z) = z = 0" class="latex" src="https://s0.wp.com/latex.php?latex=F%28z%29+%3D+z+%3D+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F(z) = z = 0"/>. But on the right, <img alt="\epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon"/> is large enough that <img alt="F(z)" class="latex" src="https://s0.wp.com/latex.php?latex=F%28z%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F(z)"/> intersects <img alt="z" class="latex" src="https://s0.wp.com/latex.php?latex=z&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="z"/> at a non-zero point. Hence the recursion will converge to the higher fixed point instead, without ever reaching the `correct’ fixed point. BP therefore gets stuck at a suboptimal solution, though information-theoretically a correct solution exists. This can be interpreted as a glassy state, where many deep local minima are present, and BP will converge to the wrong minimum.</p>
+
+
+
+<p>The condition for BP to converge is <img alt="F_\epsilon(z) \le z \:\: \forall z \in (0, 1)" class="latex" src="https://s0.wp.com/latex.php?latex=F_%5Cepsilon%28z%29+%5Cle+z+%5C%3A%5C%3A+%5Cforall+z+%5Cin+%280%2C+1%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F_\epsilon(z) \le z \:\: \forall z \in (0, 1)"/>. Hence the threshold error rate, <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/>, below which this condition holds is:</p>
+
+
+
+<p><img alt="\epsilon_d = \mathrm{inf}_{z \in (0, 1)}\left[\frac{z}{\lambda(1 - \rho(1 - z))}\right]" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d+%3D+%5Cmathrm%7Binf%7D_%7Bz+%5Cin+%280%2C+1%29%7D%5Cleft%5B%5Cfrac%7Bz%7D%7B%5Clambda%281+-+%5Crho%281+-+z%29%29%7D%5Cright%5D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d = \mathrm{inf}_{z \in (0, 1)}\left[\frac{z}{\lambda(1 - \rho(1 - z))}\right]"/></p>
+
+
+
+<p>For (3, 6) regular graphs, <img alt="\epsilon_d \approx 0.429" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d+%5Capprox+0.429&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d \approx 0.429"/> ∎</p>
+
+
+
+<figure class="wp-block-image is-resized"><img alt="" class="wp-image-6442" height="293" src="https://windowsontheory.files.wordpress.com/2018/12/ldpc-3-6-above.png?w=460&amp;h=293" width="460"/></figure>
+
+
+
+<figure class="wp-block-image is-resized"><img alt="" class="wp-image-6443" height="295" src="https://windowsontheory.files.wordpress.com/2018/12/ldpc-3-6-below.png?w=463&amp;h=295" width="463"/><br/><strong>Fig 4</strong> The recursion relation for a (3,6) regular graph, where <img alt="F_\epsilon(z)" class="latex" src="https://s0.wp.com/latex.php?latex=F_%5Cepsilon%28z%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F_\epsilon(z)"/> is plotted against <img alt="z" class="latex" src="https://s0.wp.com/latex.php?latex=z&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="z"/>. The identity function <img alt="z" class="latex" src="https://s0.wp.com/latex.php?latex=z&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="z"/> is also shown (in blue). Here <img alt="\epsilon_d \approx0.429" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d+%5Capprox0.429&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d \approx0.429"/>. The graph above and below show the case the error rate is below and above <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/> respectively.</figure>
+
+
+
+<p>Another interesting phase transition can be observed. As <img alt="\epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon"/> increases, for some values of <img alt="(\lambda, \rho)" class="latex" src="https://s0.wp.com/latex.php?latex=%28%5Clambda%2C+%5Crho%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="(\lambda, \rho)"/>, the first intersection of <img alt="F(z)" class="latex" src="https://s0.wp.com/latex.php?latex=F%28z%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F(z)"/> and <img alt="F(z)" class="latex" src="https://s0.wp.com/latex.php?latex=F%28z%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F(z)"/> happens at a non-zero point. For others, it starts of at <img alt="z=0" class="latex" src="https://s0.wp.com/latex.php?latex=z%3D0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="z=0"/> and goes up continuously. In the former case, the decoding error rate jumps discontinuously as <img alt="\epsilon" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon"/> increases from 0 to a non-zero values. For the latter, it increases continuously.</p>
+
+
+
+<p>To see the gap between <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/> and what can be information theoretically, we look at what happens when the degrees of the LDPC code is increased while keeping the rate constant. Specifically consider the <img alt="(l, k)" class="latex" src="https://s0.wp.com/latex.php?latex=%28l%2C+k%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="(l, k)"/> regular graph (i.e. <img alt="\lambda(x) = x^{l-1}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Clambda%28x%29+%3D+x%5E%7Bl-1%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\lambda(x) = x^{l-1}"/> and <img alt="\rho(x) = x^{k-1}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Crho%28x%29+%3D+x%5E%7Bk-1%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\rho(x) = x^{k-1}"/>) as <img alt="k \rightarrow \infty" class="latex" src="https://s0.wp.com/latex.php?latex=k+%5Crightarrow+%5Cinfty&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="k \rightarrow \infty"/> while <img alt="l / k = 0.5" class="latex" src="https://s0.wp.com/latex.php?latex=l+%2F+k+%3D+0.5&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="l / k = 0.5"/> is fixed. Note that the rate of the code is <img alt="1 - l / k" class="latex" src="https://s0.wp.com/latex.php?latex=1+-+l+%2F+k&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1 - l / k"/>. This is shown in Figure~\ref{fig:ed-lim-inf}. <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/> decreases toward 0. But as <img alt="k \rightarrow \infty" class="latex" src="https://s0.wp.com/latex.php?latex=k+%5Crightarrow+%5Cinfty&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="k \rightarrow \infty"/>, it should become information-theoretically easier to decode. In fact, as <img alt="k \rightarrow \infty" class="latex" src="https://s0.wp.com/latex.php?latex=k+%5Crightarrow+%5Cinfty&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="k \rightarrow \infty"/>, the code approaches a random linear code, which is known to achieve Shannon capacity. Hence we can believe that the information-theoretically achievable decoding rate is non-decreasing. Thus there is a gap between what is information theoretically possible to decode, and what is computationally feasible using Belief Propagation.</p>
+
+
+
+<figure class="wp-block-image"><img alt="" class="wp-image-6447" src="https://windowsontheory.files.wordpress.com/2018/12/ldpc-ed-lim-inf.png?w=600"/><strong>Fig 5</strong> <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/> decreases as <img alt="k" class="latex" src="https://s0.wp.com/latex.php?latex=k&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="k"/> increases, while the rate <img alt="= 1 - l/k = 0.5" class="latex" src="https://s0.wp.com/latex.php?latex=%3D+1+-+l%2Fk+%3D+0.5&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="= 1 - l/k = 0.5"/> is fixed. In fact <img alt="\mathrm{lim}_{k \rightarrow \infty}\epsilon_d = 0" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7Blim%7D_%7Bk+%5Crightarrow+%5Cinfty%7D%5Cepsilon_d+%3D+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathrm{lim}_{k \rightarrow \infty}\epsilon_d = 0"/>.</figure>
+
+
+
+<p>Finally we would like to mention that it is possible to choose a sequence of polynomials <img alt="(\lambda, \rho)" class="latex" src="https://s0.wp.com/latex.php?latex=%28%5Clambda%2C+%5Crho%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="(\lambda, \rho)"/> such that <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/> approaches the Shannon limit. While it is non-trivial to sample exactly from this distribution, good approximations exist and LDPC codes can achieve close to channel capacity over binary erasure channels.</p>
+
+
+
+<h3>The solution space in <img alt="p_{d}\leq p \leq p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D%5Cleq+p+%5Cleq+p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}\leq p \leq p_{c}"/></h3>
+
+
+
+<h4>The energy landscape of LDPC decoding</h4>
+
+
+
+<p>We have already shown the exact location of the <img alt="p_{MAP} = p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7BMAP%7D+%3D+p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{MAP} = p_{c}"/> threshold above which decoding is not possible for the LDPC ensemble and have also investigated the point at which the BP algorithm fails, <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/>. </p>
+
+
+
+<p>It should not be surprising to us that any given algorithm we attempt to throw at the problem fails at a certain point below <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/>. In fact there are many simple, random algorithms from the class of Markov-chain Monte Carlos which give fast run times but which fail at values far below even <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/>. The failing point of a particular algorithm, per se, is not necessarily very significant. We shouldn’t expect that any given algorithm, besides explicitly calculating the symbol MAP by traversing the entire codebook, would be able to achieve <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/>.</p>
+
+
+
+<p>What is of interest to us here, is that <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/> marks a provable threshold in the solution space of LDPC decoding during which it is likely no locally-based methods, and therefore no <em>fast </em>algorithms can decode with nonzero probability. We will show later precisely the number and energy levels of these metastable states for the BEC. Proof of this transition for other channel types is outside the scope of this lecture.</p>
+
+
+
+<p>In this section we will rephrase decoding as an energy minimization problem and use three techniques to explore the existence of metastable states and their effect on local search algorithms.</p>
+
+
+
+<p>In particular we will first use a generic local search algorithm that attempts to approximately solve energy minimization expression of decoding.</p>
+
+
+
+<p>We will next use a more sophisticated Markov chain Monte Carlo method called simulated annealing. Simulated annealing is useful because it offers a perspective that more closely models real physical processes and that has the property that its convergence behavior closely mimics the structure of the metastable configurations.</p>
+
+
+
+<h4>Energy minimization problem</h4>
+
+
+
+<p>To begin, we will reframe our problem in terms of constraint satisfaction.</p>
+
+
+
+<p>The codewords of an LDPC code are solutions of a CSP. The variables are the bits of the word and the constraints are the parity check equations. Though this means our constraints are a system of linear equations, our problem here is made more complicated by the fact that we are searching for not just ANY solution to the system but for a particular solution, namely the transmitted codeword.</p>
+
+
+
+<p>The received message <img alt="\underbar{\textit{y}}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderbar%7B%5Ctextit%7By%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underbar{\textit{y}}"/> tells us where we should look for the solution. </p>
+
+
+
+<p>Assume we are using the binary-input, memoryless, output-symmetric channel with transition probability <img alt="\mathbf{Q}(y | x)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbf%7BQ%7D%28y+%7C+x%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbf{Q}(y | x)"/>.</p>
+
+
+
+<p>The probability that <img alt="\underbar{\textit{x}}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderbar%7B%5Ctextit%7Bx%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underbar{\textit{x}}"/> was the transmitted codeword, given <img alt="\underbar{\textit{y}}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderbar%7B%5Ctextit%7By%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underbar{\textit{y}}"/> is <img alt="\mathbb{P}(\underbar{\textit{x}} | \underbar{\textit{y}}) = \mu_{y}(\underbar{\textit{x}})" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BP%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D+%7C+%5Cunderbar%7B%5Ctextit%7By%7D%7D%29+%3D+%5Cmu_%7By%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{P}(\underbar{\textit{x}} | \underbar{\textit{y}}) = \mu_{y}(\underbar{\textit{x}})"/></p>
+
+
+
+<p>Where</p>
+
+
+
+<p><img alt="\mu_{y}(\underline{x}|\underline{y}) = \frac{1}{Z(y)}\prod_{i=1}^NQ(y_i|x_i)\prod_{a=1}^M\mathbb{I}(x_{i_1^a}\otimes ... \otimes x_{k(a)^a} = 0)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmu_%7By%7D%28%5Cunderline%7Bx%7D%7C%5Cunderline%7By%7D%29+%3D+%5Cfrac%7B1%7D%7BZ%28y%29%7D%5Cprod_%7Bi%3D1%7D%5ENQ%28y_i%7Cx_i%29%5Cprod_%7Ba%3D1%7D%5EM%5Cmathbb%7BI%7D%28x_%7Bi_1%5Ea%7D%5Cotimes+...+%5Cotimes+x_%7Bk%28a%29%5Ea%7D+%3D+0%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mu_{y}(\underline{x}|\underline{y}) = \frac{1}{Z(y)}\prod_{i=1}^NQ(y_i|x_i)\prod_{a=1}^M\mathbb{I}(x_{i_1^a}\otimes ... \otimes x_{k(a)^a} = 0)"/> (10)</p>
+
+
+
+<p>We can associate an optimization problem with this code. In particular, define <img alt="E(\underbar{\textit{x}})" class="latex" src="https://s0.wp.com/latex.php?latex=E%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="E(\underbar{\textit{x}})"/> to be twice the number of parity check equations violated by <img alt="\underbar{\textit{y}}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderbar%7B%5Ctextit%7By%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underbar{\textit{y}}"/>.</p>
+
+
+
+<p>We have already discussed how symbol MAP computes the marginals of the distribution <img alt="\mu_{y}(\underbar{\textit{x}})" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmu_%7By%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mu_{y}(\underbar{\textit{x}})"/> and how word MAP finds its argmax.</p>
+
+
+
+<p>We shall here discuss two related problems</p>
+
+
+
+<ul><li>optimizing the energy function within a subset of the configuration space defined by the received word</li><li>sampling from a ’tilted’ Boltzmann distribution associated with the energy</li></ul>
+
+
+
+<p>Define the log-likelihood of x being the input given the received y to be</p>
+
+
+
+<p><img alt="L_{\underline{y}}(\underline{x}) = \sum_{i=1}^N Q(y_i|x_i)" class="latex" src="https://s0.wp.com/latex.php?latex=L_%7B%5Cunderline%7By%7D%7D%28%5Cunderline%7Bx%7D%29+%3D+%5Csum_%7Bi%3D1%7D%5EN+Q%28y_i%7Cx_i%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="L_{\underline{y}}(\underline{x}) = \sum_{i=1}^N Q(y_i|x_i)"/> (11)</p>
+
+
+
+<p>If we assume WLOG that the all zero codeword was transmitted, by the law of large numbers, for large N the log-likelihood <img alt="L_{\underbar{\textit{y}}}(\underbar{\textit{x}})" class="latex" src="https://s0.wp.com/latex.php?latex=L_%7B%5Cunderbar%7B%5Ctextit%7By%7D%7D%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="L_{\underbar{\textit{y}}}(\underbar{\textit{x}})"/> of this codeword is close to <img alt="-Nh" class="latex" src="https://s0.wp.com/latex.php?latex=-Nh&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="-Nh"/> where <img alt="h" class="latex" src="https://s0.wp.com/latex.php?latex=h&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h"/> is the channel entropy. The probability of an order-N deviation away from this value is exponentially small.</p>
+
+
+
+<p>This suggests that we should look for the transmitted codeword amongst those <img alt="\underbar{\textit{x}} \in \mathbb{C}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderbar%7B%5Ctextit%7Bx%7D%7D+%5Cin+%5Cmathbb%7BC%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underbar{\textit{x}} \in \mathbb{C}"/> such that <img alt="L_{\underbar{\textit{y}}}(\underbar{\textit{x}})" class="latex" src="https://s0.wp.com/latex.php?latex=L_%7B%5Cunderbar%7B%5Ctextit%7By%7D%7D%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="L_{\underbar{\textit{y}}}(\underbar{\textit{x}})"/> is close to h.</p>
+
+
+
+<p>The constraint version of our decoding strategy – known as typical-pairs decoding – is thus, find <img alt="\underbar{\textit{x}}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderbar%7B%5Ctextit%7Bx%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underbar{\textit{x}}"/> such that <img alt="L_{\underbar{\textit{y}}}(\underbar{\textit{x}}) &gt; -N(h+\delta)" class="latex" src="https://s0.wp.com/latex.php?latex=L_%7B%5Cunderbar%7B%5Ctextit%7By%7D%7D%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29+%3E+-N%28h%2B%5Cdelta%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="L_{\underbar{\textit{y}}}(\underbar{\textit{x}}) &gt; -N(h+\delta)"/>. This constraint will be referred to as the `distance constraint’ and we should consider the situation where if exactly one codeword satisfies the distance constraint, return it.</p>
+
+
+
+<p>Since codewords are global energy minima (<img alt="E(\underbar{\textit{x}}) = 0" class="latex" src="https://s0.wp.com/latex.php?latex=E%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29+%3D+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="E(\underbar{\textit{x}}) = 0"/> for all <img alt="\underbar{\textit{x}} \in \mathbb{C}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderbar%7B%5Ctextit%7Bx%7D%7D+%5Cin+%5Cmathbb%7BC%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underbar{\textit{x}} \in \mathbb{C}"/>), we can phrase typical-pairs decoding as an optimization problem</p>
+
+
+
+<p>Minimize <img alt="E(\underbar{\textit{x}})" class="latex" src="https://s0.wp.com/latex.php?latex=E%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="E(\underbar{\textit{x}})"/> subject to <img alt="L_{\underbar{\textit{y}}}(\underbar{\textit{x}}) &gt; -N(h+\delta)" class="latex" src="https://s0.wp.com/latex.php?latex=L_%7B%5Cunderbar%7B%5Ctextit%7By%7D%7D%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29+%3E+-N%28h%2B%5Cdelta%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="L_{\underbar{\textit{y}}}(\underbar{\textit{x}}) &gt; -N(h+\delta)"/>.</p>
+
+
+
+<p>This decoding succeeds iff the minimum is non-degenerate. This happens with high probability for <img alt="p &lt; p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p+%3C+p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p &lt; p_{c}"/> and with zero probability for <img alt="p &gt; p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p+%3E+p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p &gt; p_{c}"/>. In particular, there are exponentially many degenerate energy minima above <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/>.</p>
+
+
+
+<p>Similar to what we have seen elsewhere in the course, there exists a generically intermediate regime <img alt="p_{d}\leq p \leq p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D%5Cleq+p+%5Cleq+p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}\leq p \leq p_{c}"/> in which the global energy minimum is still the correct codeword bu there is an exponentially large number of local energy minima obscuring it (see figure 6).</p>
+
+
+
+<p>What is so special about BP is that the threshold at which these exponentially many metastable states proliferate is exactly the algorithmic threshold <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/> for BP which we proved earlier.</p>
+
+
+
+<figure class="wp-block-image"><img alt="" class="wp-image-6456" src="https://windowsontheory.files.wordpress.com/2018/12/cartoon.png?w=600"/><strong>Fig 6</strong> A cartoon landscape for the Energy function defined above (number of violated checks). <em>Left</em>: The energy has a unique global minimum with <img alt="E(\underline{x}) = 0" class="latex" src="https://s0.wp.com/latex.php?latex=E%28%5Cunderline%7Bx%7D%29+%3D+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="E(\underline{x}) = 0"/> (the transmitted codeword) and no local minima. <em>Center</em>: many deep local minima appear, although the global minimum is non degenerate. <em>Right</em>: more than one codeword is compatible with the likelihood constraint, the global minimum <img alt="E(\underline{x}) = 0" class="latex" src="https://s0.wp.com/latex.php?latex=E%28%5Cunderline%7Bx%7D%29+%3D+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="E(\underline{x}) = 0"/> is degenerate <em>adapted from Mezard and Montanari, 2009 Chapt 21</em></figure>
+
+
+
+<p>While finding solutions <img alt="E(\underbar{\textit{x}}) = 0" class="latex" src="https://s0.wp.com/latex.php?latex=E%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29+%3D+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="E(\underbar{\textit{x}}) = 0"/> amounts to Gaussian elimination, the constraint <img alt="L_{\underbar{\textit{y}}}(\underbar{\textit{x}}) &gt; -N(h+\delta)" class="latex" src="https://s0.wp.com/latex.php?latex=L_%7B%5Cunderbar%7B%5Ctextit%7By%7D%7D%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29+%3E+-N%28h%2B%5Cdelta%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="L_{\underbar{\textit{y}}}(\underbar{\textit{x}}) &gt; -N(h+\delta)"/> is not a linear constraint. Thus one needs to use some sort of more advanced search procedure to find satisfying vectors <img alt="\underline{x}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}"/>.</p>
+
+
+
+<p>We will show that if one resorts to local-search-based algorithms, the metastable states above <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/> block the algorithm. Furthermore, we suggest that the behavior of the local algorithms discussed below are typical of all local search algorithms (including BP) and that it is very likely the case that no fast algorithm exists capable of finding global energy minima without getting caught in the metastable states which proliferate above <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/>.</p>
+
+
+
+<p>Below is the simplest of local search algorithms, <img alt="\Delta" class="latex" src="https://s0.wp.com/latex.php?latex=%5CDelta&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\Delta"/>-local search.</p>
+
+
+
+<figure class="wp-block-image is-resized"><img alt="" class="wp-image-6457" height="294" src="https://windowsontheory.files.wordpress.com/2018/12/deltasearch.png?w=548&amp;h=294" width="548"/><strong>Fig 7</strong><em> Excerpted from Mezard and Montanari, 2009 Chapt 21</em></figure>
+
+
+
+<p>Delta search typefies local search algorithms. It walks semi-randomly through the landscape searching for low energy configurations. Its parameter is defined such that, when stuck in a metastable state it can climb out of it in polynomial time if the steepness of its energy barrier is <img alt="\leq \Delta" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cleq+%5CDelta&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\leq \Delta"/>. Thus its failure in the <img alt="p \geq p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p+%5Cgeq+p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p \geq p_{d}"/> region suggests that there are no barriers of constant size and that barriers of order N are the norm.</p>
+
+
+
+<h4>MCMC and the relaxation time of a random walk</h4>
+
+
+
+<p>We can understand the geometry of the metastable states in greater detail by reframing our MAP problem as follows: </p>
+
+
+
+<p><img alt="\mu_{y,\beta}(\underline{x}) = \frac{1}{Z(\beta)}exp{-\beta \cdot E(\underline{x})}\prod_{i=1}^N Q(y_i|x_i)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmu_%7By%2C%5Cbeta%7D%28%5Cunderline%7Bx%7D%29+%3D+%5Cfrac%7B1%7D%7BZ%28%5Cbeta%29%7Dexp%7B-%5Cbeta+%5Ccdot+E%28%5Cunderline%7Bx%7D%29%7D%5Cprod_%7Bi%3D1%7D%5EN+Q%28y_i%7Cx_i%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mu_{y,\beta}(\underline{x}) = \frac{1}{Z(\beta)}exp{-\beta \cdot E(\underline{x})}\prod_{i=1}^N Q(y_i|x_i)"/> (12)<br/></p>
+
+
+
+<p>This form is referred to as the `tilted’ Boltzmann because it is a Boltzmann distribution biased by the likelihood function.</p>
+
+
+
+<p>In the low temperature limit this reduces to eqn 10 because it finds support only over words in the codebook.</p>
+
+
+
+<p>This distribution more closely mimics physical systems. For nonzero temperature it allows support over vectors which are not actually in our codebook but still have low distance to our received message and have low energy – this allows us to probe the metastable states which trap our local algorithms. This is referred to as a code with `soft’ parity check constraints as our distribution permits decodings which fail some checks.</p>
+
+
+
+<p>We will use the following algorithm excerpted from Mezard and Montanari Chapt 21:</p>
+
+
+
+<figure class="wp-block-image"><img alt="" class="wp-image-6458" src="https://windowsontheory.files.wordpress.com/2018/12/anneal.png?w=600"/><strong>Fig 8</strong> <em>Excerpted from Mezard and Montanari, 2009 Chapt 21</em></figure>
+
+
+
+<p>Where a Glauber update consists of scanning through the bits of the current proposed configuration and flipping the value of bit <img alt="i" class="latex" src="https://s0.wp.com/latex.php?latex=i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="i"/> with probability </p>
+
+
+
+<p><img alt="w_{i}(\underbar{\textit{x}}) = \frac{\mu_{y,\beta}(\underline{x}^{(i)})}{\mu_{y,\beta}(\underline{x}^{(i)}) + \mu_{y,\beta}(\underline{x})}" class="latex" src="https://s0.wp.com/latex.php?latex=w_%7Bi%7D%28%5Cunderbar%7B%5Ctextit%7Bx%7D%7D%29+%3D+%5Cfrac%7B%5Cmu_%7By%2C%5Cbeta%7D%28%5Cunderline%7Bx%7D%5E%7B%28i%29%7D%29%7D%7B%5Cmu_%7By%2C%5Cbeta%7D%28%5Cunderline%7Bx%7D%5E%7B%28i%29%7D%29+%2B+%5Cmu_%7By%2C%5Cbeta%7D%28%5Cunderline%7Bx%7D%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w_{i}(\underbar{\textit{x}}) = \frac{\mu_{y,\beta}(\underline{x}^{(i)})}{\mu_{y,\beta}(\underline{x}^{(i)}) + \mu_{y,\beta}(\underline{x})}"/> (13)<br/></p>
+
+
+
+<p>Where <img alt="\underline{x}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}"/> is the current configuration and <img alt="\underline{x}^{(i)}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D%5E%7B%28i%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}^{(i)}"/> is the configuration obtained by flipping <img alt="\underline{x}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}"/>‘s <img alt="i^{th}" class="latex" src="https://s0.wp.com/latex.php?latex=i%5E%7Bth%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="i^{th}"/> bit</p>
+
+
+
+<p>This method is a spin-off of traditional Markov chain Monte-Carlo algorithms with the variation that we lower the temperature according to an annealing schedule that initially assigns probability to all states proportional to the likelihood component of equation 12, allowing the chain to randomly sample the configuration space in the neighborhood of the received noisy word, until in the low temperature limit it becomes concentrated near to configurations which are proper codewords.</p>
+
+
+
+<p>This method is useful to us because MCMCs are good models of how randomized methods of local searching for optimal configurations occurs in physical systems. Furthermore, the convergence of MCMCs and the time it takes them to converge tells us both the properties of the energy wells they terminate in and the barriers between minima in the energy landscape.</p>
+
+
+
+<p>Let’s now show a property relating convergence times of MCMCs and energy barriers known as the Arrhenius law.</p>
+
+
+
+<p>If we take the example of using a simple MCMC random walk with the update rule below over the following landscape</p>
+
+
+
+<p><img alt="w(x\rightarrow x') = min \{e^{-\beta [E(x')-E(x)]},~1\}" class="latex" src="https://s0.wp.com/latex.php?latex=w%28x%5Crightarrow+x%27%29+%3D+min+%5C%7Be%5E%7B-%5Cbeta+%5BE%28x%27%29-E%28x%29%5D%7D%2C%7E1%5C%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w(x\rightarrow x') = min \{e^{-\beta [E(x')-E(x)]},~1\}"/></p>
+
+
+
+<figure class="wp-block-image is-resized"><img alt="" class="wp-image-6462" height="291" src="https://windowsontheory.files.wordpress.com/2018/12/fig1311.png?w=540&amp;h=291" width="540"/><strong>Fig 9</strong> This represents a random walk along a line in which there are two ground states separated by an energy barrier of height <img alt="\Delta E" class="latex" src="https://s0.wp.com/latex.php?latex=%5CDelta+E&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\Delta E"/>.  <em>Excerpted from Mezard and Montanari, 2009 Chapt 13</em></figure>
+
+
+
+<p>We find that the expected number of time steps to cross from one well to another is governed by the Arrhenius law <img alt="\tau \approx exp{\beta \Delta E}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Ctau+%5Capprox+exp%7B%5Cbeta+%5CDelta+E%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\tau \approx exp{\beta \Delta E}"/>.</p>
+
+
+
+<p>In general, if there exists a largest energy barrier between any two components of the configuration space (also known as the bottleneck) the time it takes to sample both components, also known as the relaxation time of the MCMC is <img alt="\tau_{exp} \geq O(e^{\beta \Delta E})" class="latex" src="https://s0.wp.com/latex.php?latex=%5Ctau_%7Bexp%7D+%5Cgeq+O%28e%5E%7B%5Cbeta+%5CDelta+E%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\tau_{exp} \geq O(e^{\beta \Delta E})"/></p>
+
+
+
+<p>With this in mind, we can apply our simulated annealing MCMC to LDPC decoding and examine the properties of the bottlenecks, or metastable states, in our configuration landscape.</p>
+
+
+
+<h4>Exact values of the metastable energy states for the BEC</h4>
+
+
+
+<p>It is a well-known consequence of the 1RSB cavity method that the number of metastable states of energy <img alt="Ne" class="latex" src="https://s0.wp.com/latex.php?latex=Ne&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="Ne"/> grows like <img alt="exp(N\Sigma^{e}(e))" class="latex" src="https://s0.wp.com/latex.php?latex=exp%28N%5CSigma%5E%7Be%7D%28e%29%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="exp(N\Sigma^{e}(e))"/> where <img alt="\Sigma^{e}(e)" class="latex" src="https://s0.wp.com/latex.php?latex=%5CSigma%5E%7Be%7D%28e%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\Sigma^{e}(e)"/> is known as the energetic complexity function, a function whose form is implied by the 1RSB cavity equations. This computation can be carried out using a method called Survey Propagation which constructs a factor graph of the messages passed in the original BP factor graph and estimates the values of the marginals of the messages via another round of BP (hence the name 1-step RSB).</p>
+
+
+
+<p>Neglecting the actual form of the calculations I will show the following approximate results for the BEC.</p>
+
+
+
+<figure class="wp-block-image is-resized"><img alt="" class="wp-image-6463" height="254" src="https://windowsontheory.files.wordpress.com/2018/12/fig213.png?w=602&amp;h=254" width="602"/><strong>Fig 10</strong> Metastable states for random elements of the (3,6) regular ensemble used over the BEC (<img alt="\epsilon_d = .4294" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d+%3D+.4294&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d = .4294"/> and <img alt="\epsilon_c = .4882" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_c+%3D+.4882&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_c = .4882"/>. <em>Left</em>: the complexity function as a function of energy density above <img alt="\epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d"/>. <em>Right</em>: the maximum and minimum energy densities of metastable states as a function of the erasure probability. Note that at <img alt="\epsilon_d \leq .45  \leq \epsilon_c " class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_d+%5Cleq+.45++%5Cleq+%5Cepsilon_c+&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_d \leq .45  \leq \epsilon_c "/>latex  the curve is positive only for non zero metastable energy densities. This indicates exponentially many metastable states. At erasure rates above <img alt="\epsilon_c" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon_c&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon_c"/> there are exponentially many degenerate ground states. <em>Excerpted from Mezard and Montanari, 2009 Chapt 21</em></figure>
+
+
+
+<p>In the regime <img alt="p \geq p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p+%5Cgeq+p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p \geq p_{d}"/> there exists a zero-energy word corresponding to the correct solution. On top of this, there exist non-trivial solutions to the 1RSB method yielding a complexity curve positive in the regime (<img alt="e_{c}, e_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=e_%7Bc%7D%2C+e_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="e_{c}, e_{d}"/>). The positive complexity means that there are exponentially many such states and their finite energy means they violate a finite fraction of the parity checks, making their energy wells relatively deep.</p>
+
+
+
+<p>As the error rate of the channel increases above <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> the minimum energy of the metastable state reaches zero continuously. This means at noise levels above <img alt="p_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{c}"/> there are an exponential number of zero-energy states corresponding to configurations which aren’t code words. These codewords are separated by energy barriers <img alt="O(N)" class="latex" src="https://s0.wp.com/latex.php?latex=O%28N%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="O(N)"/> thus making the relaxation-time of local algorithms, by the Arrhenius law <img alt="exp(N)" class="latex" src="https://s0.wp.com/latex.php?latex=exp%28N%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="exp(N)"/> in this regime.</p>
+
+
+
+<figure class="wp-block-image is-resized"><img alt="" class="wp-image-6464" height="229" src="https://windowsontheory.files.wordpress.com/2018/12/fig214.png?w=622&amp;h=229" width="622"/><strong>Fig 11</strong> Decoding random codes from the (3,6) ensemble over the BEC. In both cases <img alt="N = 10^4" class="latex" src="https://s0.wp.com/latex.php?latex=N+%3D+10%5E4&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N = 10^4"/>, and the annealing schedule consists of <img alt="t_max = 1000" class="latex" src="https://s0.wp.com/latex.php?latex=t_max+%3D+1000&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="t_max = 1000"/> equidistant temperatures in <img alt="T = 1 / \beta \in [0,1]" class="latex" src="https://s0.wp.com/latex.php?latex=T+%3D+1+%2F+%5Cbeta+%5Cin+%5B0%2C1%5D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="T = 1 / \beta \in [0,1]"/>. <em>Left</em>: indicates convergence to the correct ground state at <img alt="\epsilon = .4 &lt; \epsilon_d" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon+%3D+.4+%3C+%5Cepsilon_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon = .4 &lt; \epsilon_d"/>. <em>Right</em>: indicates convergence to approximately the energy density of the highest metastable states <img alt="e_d" class="latex" src="https://s0.wp.com/latex.php?latex=e_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="e_d"/> (as calculated by the complexity function via 1RSB) for <img alt="\epsilon = .6 &gt; \epsilon_{c}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cepsilon+%3D+.6+%3E+%5Cepsilon_%7Bc%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\epsilon = .6 &gt; \epsilon_{c}"/>.\  <em>Excerpted from Mezard and Montanari, 2009 Chapt 21</em><br/><br/></figure>
+
+
+
+<p>Here you can see a rough sketch of convergence of the simulated annealing algorithm. As the temperature decreases in the <img alt="p \leq p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p+%5Cleq+p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p \leq p_{d}"/> regime the algorithm converges to a 0 energy ground state. In the figure on the right we can see that simulated annealing converges to the horizontal line here which corresponds to the energy of the highest metastable state <img alt="e_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=e_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="e_{d}"/> for the BEC at <img alt="p = .6" class="latex" src="https://s0.wp.com/latex.php?latex=p+%3D+.6&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p = .6"/>.</p>
+
+
+
+<p>Thus we see our local search algorithms end up being attracted to the highest energy of the metastable state.</p>
+
+
+
+<figure class="wp-block-image"><img alt="" class="wp-image-6465" src="https://windowsontheory.files.wordpress.com/2018/12/fig215.png?w=600"/><strong>Fig 12</strong> Decoding random codes as in figure 11. Here we plot the minimum energy density achieved through simulated annealing plotted as a function of the erasure probability of the BEC. The continuous line indicates the highest lying metastable states as calculated from the complexity function via 1RSB.<br/><em> Excerpted from Mezard and Montanari, 2009 Chapt 21</em></figure>
+
+
+
+<p>Though there is not necessarily an exact correspondence between the residual energy at T=0 for simulated annealing and the highest metastable state <img alt="e_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=e_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="e_{d}"/> we see that across all values of <img alt="p" class="latex" src="https://s0.wp.com/latex.php?latex=p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p"/> that at T=0, <img alt="e_{ann} \approx e_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=e_%7Bann%7D+%5Capprox+e_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="e_{ann} \approx e_{d}"/> suggesting local search tends to get caught in the deepest metastable energy wells.</p>
+
+
+
+<p>This discussion shows that the algorithmic threshold of BP, <img alt="p_{d}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d}"/> indicates the onset of a truly different regime within the energy landscape of the codebook. Metastable states of <img alt="O(N)" class="latex" src="https://s0.wp.com/latex.php?latex=O%28N%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="O(N)"/> hight proliferate and become exponentially difficult to escape from via local search methods. Thus the failure of BP likely indicates a regime in which no fast algorithms can perform decoding, even though decoding is still theoretically possible when below <img alt="p_c" class="latex" src="https://s0.wp.com/latex.php?latex=p_c&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_c"/>, e.g. via exhaustive search of the codebook.</p>
+
+
+
+<h3>Appendix A: Random Code Ensembles</h3>
+
+
+
+<p>In an RCE, encoding maps applied to the information sequence are chosen with uniform probability over a solution space. Two decoding schemes are often used and applied to the noise – word MAP and symbol MAP decoding. MAP, otherwise known as “maximum <em>a priori</em> probability” works by maximizing the probability distribution to output the most probable transmission. Word MAP decoding schemes output the codeword with the highest probability by minimizing the block error probability, which is otherwise known as the probability with respect to the channel distribution that the decoded word is different than the true transmitted word. Symbol MAP decoding, on the other hand, minimizes the fraction of incorrect bits averaged over the transmitted code word (bit error rate).</p>
+
+
+
+<p>RCE code is defined by the codebook in Hamming space, or the set of all binary strings of length <img alt="N" class="latex" src="https://s0.wp.com/latex.php?latex=N&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N"/>. In a Hamming space characterized by uniform probability, the number of codewords at a given Hamming distance are a function of the distance enumerator. Distance enumerators take as parameters different weights, given that probabilities of codewords are independent of each other. The distance enumerator shows that, for small enough fractional distance from the true message <img alt="x_0" class="latex" src="https://s0.wp.com/latex.php?latex=x_0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x_0"/>, the growth rate is negative and the average number of codewords at small distance from <img alt="x_0" class="latex" src="https://s0.wp.com/latex.php?latex=x_0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x_0"/> vanishes exponentially with N. The Gilbert-Varshamov distance, a lower bound threshold, shows that the the average number of codewords is exponentially large at points where the weight numerator is concentrated.</p>
+
+
+
+<p>We look at the performance of RCE code in communication over the Binary Symmetric Channel (BSC), where it is assumed that there is a probability p that transmitted bits will be “flipped” (i.e. with probability p, 1 becomes 0 and 0 becomes 1). With BSCs, channel input and output are the same length N sequences of bits. At larger noise levels, there are an exponential number of codewords closer to <img alt="y" class="latex" src="https://s0.wp.com/latex.php?latex=y&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="y"/> and decoding is unsuccessful. However, decoding via the symbol MAP decoding scheme shows that the <img alt="i" class="latex" src="https://s0.wp.com/latex.php?latex=i&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="i"/>-th bit is decoded by maximizing the marginal probability and amasses contributions from all codewords in the set. Above a threshold, the bit error rate is the same as if the message was transmitted without encoding and decoding, but below this, the RCE seems to work quite well in transmission. </p>
+
+
+
+<p>Finite temperature decoding has also been looked at as an interpolation between the two MAP decoding schemes. At low noise, a completely ordered phase can be observed as compared to a glassy phase at higher noise channels. Similar to the a statistical physics model, we can also note an entropy dominated paramagnetic phase at higher temperatures. </p>
+
+
+
+<p>Each decoding scheme can be analogized to “sphere packing”, where each probability in the Hamming space distribution represents a sphere of radius r. Decoding schemes have partitions in the Hamming space, so these spheres must be disjoint. If not, intersecting spheres must be eliminated. The lower bound of the remaining spheres is then given by Gilbert-Varshamov bound, whereas the upper bound is dictated by the Hamming distance.</p>
+
+
+
+<p>Another random code beside the RCE is the RLC, or random linear code. Encoding in an RLC forms a scheme similar to a linear map, of which all points are equiprobable. The code is specified by an <img alt="N x M" class="latex" src="https://s0.wp.com/latex.php?latex=N+x+M&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N x M"/> binary matrix, otherwise known as the generating matrix, and it is projected to be error-free below the Shannon capacity. </p>
+
+
+
+<p>There are several sources of randomness in codes. Codes are chosen randomly from an ensemble and the codeword to be transmitted is chosen with uniform probability from the code, according to the theorem of source-channel separation. The channel output is then distributed according to a probabilistic process accounting for channel noise and decoding is done by constructing another probability distribution over possible channel inputs and by estimating its signal bit marginal. The decision on the <em>i</em>-th bit is dependent on the distribution. Thus, complications may arise in distinguishing between the two levels of randomness: code, channel input, and noise (“quenched” disorder) versus Boltzmann probability distributions.</p>
+
+
+
+<h3>Appendix B: Weight enumerators and code performance</h3>
+
+
+
+<p>The geometric properties of the LDPC codebooks is given by studying the distance enumerator <img alt="N_{\underline{x}0}(d)" class="latex" src="https://s0.wp.com/latex.php?latex=N_%7B%5Cunderline%7Bx%7D0%7D%28d%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N_{\underline{x}0}(d)"/> to give the number of codewords at Hamming distance <em>d</em> from <img alt="\underline{x}_0" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D_0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}_0"/>. This takes all-zeros codewords as the reference and uses the weight enumerator, <img alt="\mathbb{N}(w)=\mathbb{N}{\underline{x_0}}(d=w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BN%7D%28w%29%3D%5Cmathbb%7BN%7D%7B%5Cunderline%7Bx_0%7D%7D%28d%3Dw%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{N}(w)=\mathbb{N}{\underline{x_0}}(d=w)"/> as the denomination (number of codewords having weight equal to <em>w</em>). To estimate the expected weight enumerator <img alt="\mathcal{N}(w)=\mathbb{E}\mathbb{N}(w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BN%7D%28w%29%3D%5Cmathbb%7BE%7D%5Cmathbb%7BN%7D%28w%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathcal{N}(w)=\mathbb{E}\mathbb{N}(w)"/> for a random code in the <img alt="LDPC_N(\Lambda,P)" class="latex" src="https://s0.wp.com/latex.php?latex=LDPC_N%28%5CLambda%2CP%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="LDPC_N(\Lambda,P)"/> ensemble, we know that <img alt="\mathbb{N}(w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BN%7D%28w%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{N}(w)"/> grows exponentially in block-length <em>N</em>, and that each codeword has a weight <img alt="w=Nw" class="latex" src="https://s0.wp.com/latex.php?latex=w%3DNw&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w=Nw"/> that grows linearly with N. The exponential growth rate <img alt="\phi(w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cphi%28w%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\phi(w)"/> is defined by</p>
+
+
+
+<p><img alt="\mathcal{N}(w=Nw) = e^{N \phi (w)}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BN%7D%28w%3DNw%29+%3D+e%5E%7BN+%5Cphi+%28w%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathcal{N}(w=Nw) = e^{N \phi (w)}"/> (14)<br/></p>
+
+
+
+<p>denoting an ‘annealed average’, or a disordered system that could be dominated by rare instances in the ensemble. This gives an upper bound on the number of ‘colored factor graphs’ that have an even number of weighted incident edges divided by the total number of factor graphs in the ensemble. </p>
+
+
+
+<p>On the other hand, for graphs of fixed degrees with N variable nodes of degree<em> l</em> and M function nodes of degree <em>k</em>, the total number of edges F is given by <img alt="F=Mk=Nl" class="latex" src="https://s0.wp.com/latex.php?latex=F%3DMk%3DNl&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="F=Mk=Nl"/>. A valid colored graph would have <img alt="E=wl" class="latex" src="https://s0.wp.com/latex.php?latex=E%3Dwl&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="E=wl"/> edges, with the number of variable nodes given in <img alt="{N\choose w}" class="latex" src="https://s0.wp.com/latex.php?latex=%7BN%5Cchoose+w%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="{N\choose w}"/> ways, l assignments of weighted sockets to nodes, and l assignments of unweighted sockets to nodes outside the set. If we take <img alt="m_r" class="latex" src="https://s0.wp.com/latex.php?latex=m_r&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="m_r"/> to denote the number of function nodes with weighted sockets under the constraints of <img alt="\Sigma_{r=0}^km_r=M" class="latex" src="https://s0.wp.com/latex.php?latex=%5CSigma_%7Br%3D0%7D%5Ekm_r%3DM&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\Sigma_{r=0}^km_r=M"/> and <img alt="\Sigma_{r=0}^krm_r=lw" class="latex" src="https://s0.wp.com/latex.php?latex=%5CSigma_%7Br%3D0%7D%5Ekrm_r%3Dlw&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\Sigma_{r=0}^krm_r=lw"/>, we find the number of ways to color the function node sockets by</p>
+
+
+
+<p><img alt="\mathbb{C}(k,M,w) = \sum_{m_{0},...m_{k}}^{even}{M\choose m_{0},...,m_{k}}\prod_{r}{k\choose r}^{m_{r}}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%28k%2CM%2Cw%29+%3D+%5Csum_%7Bm_%7B0%7D%2C...m_%7Bk%7D%7D%5E%7Beven%7D%7BM%5Cchoose+m_%7B0%7D%2C...%2Cm_%7Bk%7D%7D%5Cprod_%7Br%7D%7Bk%5Cchoose+r%7D%5E%7Bm_%7Br%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{C}(k,M,w) = \sum_{m_{0},...m_{k}}^{even}{M\choose m_{0},...,m_{k}}\prod_{r}{k\choose r}^{m_{r}}"/> (15)</p>
+
+
+
+<p><img alt="\mathbb{I}\Big(\sum_{r=0}^km_r=M\Big)\mathbb{I}\Big(\sum_{r=0}^krm_r=lw\Big)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BI%7D%5CBig%28%5Csum_%7Br%3D0%7D%5Ekm_r%3DM%5CBig%29%5Cmathbb%7BI%7D%5CBig%28%5Csum_%7Br%3D0%7D%5Ekrm_r%3Dlw%5CBig%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{I}\Big(\sum_{r=0}^km_r=M\Big)\mathbb{I}\Big(\sum_{r=0}^krm_r=lw\Big)"/> (16)<br/></p>
+
+
+
+<p>If we aim to join variable and check nodes so that colorings are matched, knowing that there are <img alt="(lw)!(F-lw)!" class="latex" src="https://s0.wp.com/latex.php?latex=%28lw%29%21%28F-lw%29%21&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="(lw)!(F-lw)!"/> possible matchings in each ensemble element, this yields the following formula: </p>
+
+
+
+<p><img alt="\mathcal{N}(w)=\frac{(lw)!(F-lw)!}{F!}{N\choose w}\mathbb{C}(k,M,w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BN%7D%28w%29%3D%5Cfrac%7B%28lw%29%21%28F-lw%29%21%7D%7BF%21%7D%7BN%5Cchoose+w%7D%5Cmathbb%7BC%7D%28k%2CM%2Cw%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathcal{N}(w)=\frac{(lw)!(F-lw)!}{F!}{N\choose w}\mathbb{C}(k,M,w)"/> (17)<br/></p>
+
+
+
+<p>At low noise limits, code performance depends on the existence of codewords at distances close to the transmitted codeword. Starting with degree 1 and knowing that the parametric representation for weights is given by </p>
+
+
+
+<p><img alt="w = \sum_{l=1}^{l_{max}}\Lambda_l\frac{xy^l}{1+xy^l}" class="latex" src="https://s0.wp.com/latex.php?latex=w+%3D+%5Csum_%7Bl%3D1%7D%5E%7Bl_%7Bmax%7D%7D%5CLambda_l%5Cfrac%7Bxy%5El%7D%7B1%2Bxy%5El%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w = \sum_{l=1}^{l_{max}}\Lambda_l\frac{xy^l}{1+xy^l}"/> (18)</p>
+
+
+
+<p>derive that </p>
+
+
+
+<p><img alt="\phi(w) = -\frac{1}{2}w\log(w/\Lambda_1^2)+O(w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cphi%28w%29+%3D+-%5Cfrac%7B1%7D%7B2%7Dw%5Clog%28w%2F%5CLambda_1%5E2%29%2BO%28w%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\phi(w) = -\frac{1}{2}w\log(w/\Lambda_1^2)+O(w)"/> (19)</p>
+
+
+
+<p> when <img alt="x,y,z" class="latex" src="https://s0.wp.com/latex.php?latex=x%2Cy%2Cz&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="x,y,z"/> scale to <img alt="\sqrt{w}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Csqrt%7Bw%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\sqrt{w}"/>. This shows that the exponential growth rate <img alt="\phi(w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cphi%28w%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\phi(w)"/> is strictly positive when <img alt="w" class="latex" src="https://s0.wp.com/latex.php?latex=w&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w"/> is sufficiently small, and that the expected number of codewords within a small Hamming distance from a given codeword is exponential in N. If we take the logarithm of the expected weight enumerator and plot this versus the reduced weight <img alt="w=w/N" class="latex" src="https://s0.wp.com/latex.php?latex=w%3Dw%2FN&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w=w/N"/> for an irregular code with <img alt="l_{min}=1" class="latex" src="https://s0.wp.com/latex.php?latex=l_%7Bmin%7D%3D1&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="l_{min}=1"/>, we see that <img alt="\phi(w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cphi%28w%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\phi(w)"/> is positive near the origin, but that its dervative diverges as <img alt="w\rightarrow 0" class="latex" src="https://s0.wp.com/latex.php?latex=w%5Crightarrow+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w\rightarrow 0"/>. Since this means that each codeword is surrounded by a large number of very close other codewords, this makes the code a very bad ECC and thus, makes it hard to discriminate between codewords at Hamming distances <img alt="O(1)" class="latex" src="https://s0.wp.com/latex.php?latex=O%281%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="O(1)"/> with noisy observations. Applying this same logic to <img alt="l" class="latex" src="https://s0.wp.com/latex.php?latex=l&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="l"/> of min 2, we still observe that <img alt="\phi(w)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cphi%28w%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\phi(w)"/> tends to 0 more quickly as <img alt="w\rightarrow 0" class="latex" src="https://s0.wp.com/latex.php?latex=w%5Crightarrow+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w\rightarrow 0"/> in the present case. If we assume that this holds beyond the asymptotic regime, we get</p>
+
+
+
+<p><img alt="\bar{\mathcal{N}}(w) = e^{Aw}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cbar%7B%5Cmathcal%7BN%7D%7D%28w%29+%3D+e%5E%7BAw%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\bar{\mathcal{N}}(w) = e^{Aw}"/> (20)<br/></p>
+
+
+
+<p>or that the number of codewords around a particular codeword is <img alt="o(N)" class="latex" src="https://s0.wp.com/latex.php?latex=o%28N%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="o(N)"/> until a Hamming distance <img alt="d_* \simeq \log N/A" class="latex" src="https://s0.wp.com/latex.php?latex=d_%2A+%5Csimeq+%5Clog+N%2FA&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="d_* \simeq \log N/A"/>, otherwise known as the “effective minimum distance”. For <img alt="l_{min} \geq 3" class="latex" src="https://s0.wp.com/latex.php?latex=l_%7Bmin%7D+%5Cgeq+3&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="l_{min} \geq 3"/>, we find: </p>
+
+
+
+<p><br/><img alt="\phi(w) \simeq \Big(\frac{l_{min}-2}{2}\Big)w\log\Big(\frac{w}{\Lambda_{l_min}}\Big)" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cphi%28w%29+%5Csimeq+%5CBig%28%5Cfrac%7Bl_%7Bmin%7D-2%7D%7B2%7D%5CBig%29w%5Clog%5CBig%28%5Cfrac%7Bw%7D%7B%5CLambda_%7Bl_min%7D%7D%5CBig%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\phi(w) \simeq \Big(\frac{l_{min}-2}{2}\Big)w\log\Big(\frac{w}{\Lambda_{l_min}}\Big)"/> (21)<br/></p>
+
+
+
+<p> suggesting that LDPC codes with this property have good short distance behavior. Thus, any error that changes a fraction of the bits smaller than <img alt="w_{*}/2" class="latex" src="https://s0.wp.com/latex.php?latex=w_%7B%2A%7D%2F2&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w_{*}/2"/> can be corrected in the absence of codewords within an extensive distance <img alt="Nw_{*}" class="latex" src="https://s0.wp.com/latex.php?latex=Nw_%7B%2A%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="Nw_{*}"/>. </p>
+
+
+
+<p>Let us now focus on the capacity of LDPC codes to correct typical errors in a probabilistic channel. For binary symmetric channels that flip each transmitted bit independently with probability <img alt="p&lt;\frac{1}{2}" class="latex" src="https://s0.wp.com/latex.php?latex=p%3C%5Cfrac%7B1%7D%7B2%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p&lt;\frac{1}{2}"/>. If the all-zero codeword <img alt="\underline{x}^{(0)} =\underline{0}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7Bx%7D%5E%7B%280%29%7D+%3D%5Cunderline%7B0%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{x}^{(0)} =\underline{0}"/> has been transmitted as <img alt="\underline{y}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7By%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{y}"/>, whose components are iid random variables that take value 0 with probability <img alt="1-p" class="latex" src="https://s0.wp.com/latex.php?latex=1-p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="1-p"/> and value 1 with probability <img alt="p" class="latex" src="https://s0.wp.com/latex.php?latex=p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p"/>, then we use the MAP decoding strategy to minimize the block error rate and output the codeword closest to the channel output <img alt="\underline{y}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7By%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{y}"/>. The expectation value of the code ensemble <img alt="P_B = \mathbb{E}P_B(\mathbb{C})" class="latex" src="https://s0.wp.com/latex.php?latex=P_B+%3D+%5Cmathbb%7BE%7DP_B%28%5Cmathbb%7BC%7D%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P_B = \mathbb{E}P_B(\mathbb{C})"/> is an indicator of code ensemble performances. We will show that, as <img alt="N\rightarrow \infty" class="latex" src="https://s0.wp.com/latex.php?latex=N%5Crightarrow+%5Cinfty&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N\rightarrow \infty"/>, codes with <img alt="l_{min}\geq 3" class="latex" src="https://s0.wp.com/latex.php?latex=l_%7Bmin%7D%5Cgeq+3&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="l_{min}\geq 3"/> will undergo a phase transition separating a low noise from a high noise phase. To derive a lower bound for the capacity of LDPC codes in a BSC channel, we take <img alt="\mathbb{N}=2^{NR}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BN%7D%3D2%5E%7BNR%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{N}=2^{NR}"/> as the size of the codebook <img alt="\mathbb{C}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{C}"/> and, by union bound:</p>
+
+
+
+<p><img alt="P_{B}(\mathbb{C})= \mathbb{P}\Big\{\exists \alpha \neq 0 \text{s.t. } d(\underline{x}^{(\alpha)},\underline{y})\leq d(\underline{0},\underline{y})\Big\}" class="latex" src="https://s0.wp.com/latex.php?latex=P_%7BB%7D%28%5Cmathbb%7BC%7D%29%3D+%5Cmathbb%7BP%7D%5CBig%5C%7B%5Cexists+%5Calpha+%5Cneq+0+%5Ctext%7Bs.t.+%7D+d%28%5Cunderline%7Bx%7D%5E%7B%28%5Calpha%29%7D%2C%5Cunderline%7By%7D%29%5Cleq+d%28%5Cunderline%7B0%7D%2C%5Cunderline%7By%7D%29%5CBig%5C%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P_{B}(\mathbb{C})= \mathbb{P}\Big\{\exists \alpha \neq 0 \text{s.t. } d(\underline{x}^{(\alpha)},\underline{y})\leq d(\underline{0},\underline{y})\Big\}"/> (22)</p>
+
+
+
+<p><img alt="\leq \sum_{\alpha=1}^{\textit{N}-1}\mathbb{P}\Big\{d(\underline{x}^{(\alpha)},\underline{y}) \leq d(\underline{0},\underline{y})\Big\}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cleq+%5Csum_%7B%5Calpha%3D1%7D%5E%7B%5Ctextit%7BN%7D-1%7D%5Cmathbb%7BP%7D%5CBig%5C%7Bd%28%5Cunderline%7Bx%7D%5E%7B%28%5Calpha%29%7D%2C%5Cunderline%7By%7D%29+%5Cleq+d%28%5Cunderline%7B0%7D%2C%5Cunderline%7By%7D%29%5CBig%5C%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\leq \sum_{\alpha=1}^{\textit{N}-1}\mathbb{P}\Big\{d(\underline{x}^{(\alpha)},\underline{y}) \leq d(\underline{0},\underline{y})\Big\}"/> (23)</p>
+
+
+
+<p><img alt="\leq \sum_{w=1}^N \textit{N}(w)e^{-\gamma w}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cleq+%5Csum_%7Bw%3D1%7D%5EN+%5Ctextit%7BN%7D%28w%29e%5E%7B-%5Cgamma+w%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\leq \sum_{w=1}^N \textit{N}(w)e^{-\gamma w}"/> (24)</p>
+
+
+
+<p>This derivation proves that the block error probability depends on the weight enumerator and the <img alt="exp(-\gamma w)" class="latex" src="https://s0.wp.com/latex.php?latex=exp%28-%5Cgamma+w%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="exp(-\gamma w)"/>. This second term shows that an increase in the weight of the codeword corresponds to their contribution being scaled down by an exponential factor. This is because it is less likely that the received message <img alt="\underline{y}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7By%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{y}"/> will be closer to a codeword of large weight than to the all-zero codeword. A geometric construction of this phenomena implies that for large enough <img alt="p" class="latex" src="https://s0.wp.com/latex.php?latex=p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p"/>, Shannon’s Theorem implies that <img alt="P_B" class="latex" src="https://s0.wp.com/latex.php?latex=P_B&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P_B"/> is bounded away from 0 for any non-vanishing rate <img alt="R &gt; 0" class="latex" src="https://s0.wp.com/latex.php?latex=R+%3E+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="R &gt; 0"/> so that at any p less than the ML threshold for which the <img alt="lim_{N\rightarrow \infty}P_B=0" class="latex" src="https://s0.wp.com/latex.php?latex=lim_%7BN%5Crightarrow+%5Cinfty%7DP_B%3D0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="lim_{N\rightarrow \infty}P_B=0"/>, one can communicate with an arbitrarily small error probability. At a probability equal to the lower bound, the upper bound on <img alt="P_B" class="latex" src="https://s0.wp.com/latex.php?latex=P_B&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P_B"/> is dominated by codewords of weight <img alt="w \approx N\Tilde{w}" class="latex" src="https://s0.wp.com/latex.php?latex=w+%5Capprox+N%5CTilde%7Bw%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="w \approx N\Tilde{w}"/>, suggesting that each time an error occurs, a finite fraction of the its are decoded incorrectly and that this fraction doesn’t change very much per transmission. The construction also illustrates that this fraction of incorrectly decoded bits jumps discontinuously from 0 to a finite value when <img alt="p" class="latex" src="https://s0.wp.com/latex.php?latex=p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p"/> crosses the critical value <img alt="p_{ML}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7BML%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{ML}"/>, constituting a “gap.” This gap is close to a factor of 2. </p>
+
+
+
+<h3>Appendix C: BP performance</h3>
+
+
+
+<p>See figure 2 for an illustration of a factor graph illustrating this relationship. Again, recall that for LDPC code ensembles in large block-length limits, the degree distributions of variable nodes and check nodes are given by <img alt="\Lambda = {\Lambda_t}" class="latex" src="https://s0.wp.com/latex.php?latex=%5CLambda+%3D+%7B%5CLambda_t%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\Lambda = {\Lambda_t}"/> and <img alt="P = {P_k}" class="latex" src="https://s0.wp.com/latex.php?latex=P+%3D+%7BP_k%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P = {P_k}"/> respectively, where we assume that messages are initialized to <img alt="u_{a\rightarrow i}^{(0)} = 0" class="latex" src="https://s0.wp.com/latex.php?latex=u_%7Ba%5Crightarrow+i%7D%5E%7B%280%29%7D+%3D+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="u_{a\rightarrow i}^{(0)} = 0"/> for simplicity. This implies that the bit error probability is independent of the transmitted codeword and that therefore, we have the freedom to assume transmission of the all-zero codeword. In analyzing the recursion at the basis of the BP algorithm, we can show that decoding performance improves over time on the basis of symmetry and physical degradation. </p>
+
+
+
+<h4>Symmetry</h4>
+
+
+
+<p>Symmetry of channel log-likelihood and the variables appearing in density evolution are attributes of a desired BMS channel, suggesting that symmetry is preserved by BP operations in evolution. If we assume that the factor graph associated with an LDPC code is “tree-like”, we can apply BP decoding with a symmetric random initial condition and note that the messages <img alt="u_{a\rightarrow i}^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=u_%7Ba%5Crightarrow+i%7D%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="u_{a\rightarrow i}^{(t)}"/> and <img alt="h_{i\rightarrow a}^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=h_%7Bi%5Crightarrow+a%7D%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h_{i\rightarrow a}^{(t)}"/> are symmetric variables at all <img alt="t\geq 0" class="latex" src="https://s0.wp.com/latex.php?latex=t%5Cgeq+0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="t\geq 0"/>. This observance of symmetry is analogous to the Nishimori condition in spin glasses and holds for the MAP log-likelihood of a bit as well.</p>
+
+
+
+<h4>Physical degradation</h4>
+
+
+
+<p>Let’s first define physical degradation with BMS channels. If we take two channels BMS(1) and BMS(2) denoted by transition matrices </p>
+
+
+
+<p><img alt="\{Q_{1}(y|x)\}, \{Q_{2}(y|x)\}" class="latex" src="https://s0.wp.com/latex.php?latex=%5C%7BQ_%7B1%7D%28y%7Cx%29%5C%7D%2C+%5C%7BQ_%7B2%7D%28y%7Cx%29%5C%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\{Q_{1}(y|x)\}, \{Q_{2}(y|x)\}"/> and output alphabets <img alt="\mathbb{Y}_1,\mathbb{Y}_2" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BY%7D_1%2C%5Cmathbb%7BY%7D_2&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{Y}_1,\mathbb{Y}_2"/>, then BMS(2) is physically degraded with respect to BMS(1) if there exists a third channel C with input alphabet <img alt="\mathbb{Y}_1,\mathbb{Y}_2" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BY%7D_1%2C%5Cmathbb%7BY%7D_2&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\mathbb{Y}_1,\mathbb{Y}_2"/> such that BMS(2) is the concatenation of BMS(1) and C. If we represent transition matrix C as <img alt="\{R(y_2|y_1)\}" class="latex" src="https://s0.wp.com/latex.php?latex=%5C%7BR%28y_2%7Cy_1%29%5C%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\{R(y_2|y_1)\}"/> we can represent the above physical degradation as </p>
+
+
+
+<p><img alt="Q_2(y_2|x) = \sum{y_1 \in \textit{Y}_1}R(y_2|y_1)Q_1(y_1|x)" class="latex" src="https://s0.wp.com/latex.php?latex=Q_2%28y_2%7Cx%29+%3D+%5Csum%7By_1+%5Cin+%5Ctextit%7BY%7D_1%7DR%28y_2%7Cy_1%29Q_1%28y_1%7Cx%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="Q_2(y_2|x) = \sum{y_1 \in \textit{Y}_1}R(y_2|y_1)Q_1(y_1|x)"/> (25)<br/></p>
+
+
+
+<p> This is analogous to a Markov chain <img alt="X \rightarrow Y_1 \rightarrow Y_2" class="latex" src="https://s0.wp.com/latex.php?latex=X+%5Crightarrow+Y_1+%5Crightarrow+Y_2&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="X \rightarrow Y_1 \rightarrow Y_2"/> following partial ordering. Channel reliability is then ordered by measures of conditional entropy and bit error rate. This extends to symmetric random variables, which are associated with BMS channels.</p>
+
+
+
+<h4>Thresholds</h4>
+
+
+
+<p>We then fix a particular LDPC code and look at BP messages as random variables due to randomness in the vector <img alt="\underline{y}" class="latex" src="https://s0.wp.com/latex.php?latex=%5Cunderline%7By%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="\underline{y}"/> with regards to the proposition down below, showing that the bit error rate decreases monotonously with time:</p>
+
+
+
+<p><strong>Proposition:</strong><em> If <img alt="B_{i,r}(F)" class="latex" src="https://s0.wp.com/latex.php?latex=B_%7Bi%2Cr%7D%28F%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="B_{i,r}(F)"/> is a tree, then <img alt="h_i^{(0)}\preceq h_i^{(1)} \preceq ... \preceq h_i^{(t-1)} \preceq h_i^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=h_i%5E%7B%280%29%7D%5Cpreceq+h_i%5E%7B%281%29%7D+%5Cpreceq+...+%5Cpreceq+h_i%5E%7B%28t-1%29%7D+%5Cpreceq+h_i%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h_i^{(0)}\preceq h_i^{(1)} \preceq ... \preceq h_i^{(t-1)} \preceq h_i^{(t)}"/> for any <img alt="t\leq r-1" class="latex" src="https://s0.wp.com/latex.php?latex=t%5Cleq+r-1&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="t\leq r-1"/>. Analogously, if <img alt="B_{i\rightarrow a,r}(F)" class="latex" src="https://s0.wp.com/latex.php?latex=B_%7Bi%5Crightarrow+a%2Cr%7D%28F%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="B_{i\rightarrow a,r}(F)"/>, then <img alt="h_{i\rightarrow a}^{(0)}\preceq h_{i\rightarrow a}^{(1)} \preceq ... \preceq h_{i\rightarrow a}^{(t-1)} \preceq h_{i\rightarrow a}^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=h_%7Bi%5Crightarrow+a%7D%5E%7B%280%29%7D%5Cpreceq+h_%7Bi%5Crightarrow+a%7D%5E%7B%281%29%7D+%5Cpreceq+...+%5Cpreceq+h_%7Bi%5Crightarrow+a%7D%5E%7B%28t-1%29%7D+%5Cpreceq+h_%7Bi%5Crightarrow+a%7D%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="h_{i\rightarrow a}^{(0)}\preceq h_{i\rightarrow a}^{(1)} \preceq ... \preceq h_{i\rightarrow a}^{(t-1)} \preceq h_{i\rightarrow a}^{(t)}"/> for any <img alt="t\leq r-1" class="latex" src="https://s0.wp.com/latex.php?latex=t%5Cleq+r-1&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="t\leq r-1"/>.</em> </p>
+
+
+
+<p>Density evolution in this manner is a useful estimate of the number of distributions of density evolution variables <img alt="{h^{(t)},u^{(t)}}" class="latex" src="https://s0.wp.com/latex.php?latex=%7Bh%5E%7B%28t%29%7D%2Cu%5E%7B%28t%29%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="{h^{(t)},u^{(t)}}"/> and <img alt="{h_{*}^{(t)}}" class="latex" src="https://s0.wp.com/latex.php?latex=%7Bh_%7B%2A%7D%5E%7B%28t%29%7D%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="{h_{*}^{(t)}}"/>. By looking again at the bit error rate <img alt="P_{b}^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=P_%7Bb%7D%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P_{b}^{(t)}"/> and the conditional entropy <img alt="H^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=H%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="H^{(t)}"/> as both monotonically decreasing functions of the number of iterations and conversely, monotonically increasing functions of <img alt="p" class="latex" src="https://s0.wp.com/latex.php?latex=p&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p"/>, we can derive a finite limit <img alt="P_b^{BP} \equiv \lim_{t\rightarrow\infty}P_b^{(t)}" class="latex" src="https://s0.wp.com/latex.php?latex=P_b%5E%7BBP%7D+%5Cequiv+%5Clim_%7Bt%5Crightarrow%5Cinfty%7DP_b%5E%7B%28t%29%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P_b^{BP} \equiv \lim_{t\rightarrow\infty}P_b^{(t)}"/>. The corresponding BP threshold can then be defined as</p>
+
+
+
+<p><img alt="p_{d} \equiv \sup \Big\{ p \in [0,1/2] : P_b^{BP}(p)=0 \Big\}" class="latex" src="https://s0.wp.com/latex.php?latex=p_%7Bd%7D+%5Cequiv+%5Csup+%5CBig%5C%7B+p+%5Cin+%5B0%2C1%2F2%5D+%3A+P_b%5E%7BBP%7D%28p%29%3D0+%5CBig%5C%7D&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p_{d} \equiv \sup \Big\{ p \in [0,1/2] : P_b^{BP}(p)=0 \Big\}"/></p>
+
+
+
+<p>For <img alt="p \leq p_d" class="latex" src="https://s0.wp.com/latex.php?latex=p+%5Cleq+p_d&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="p \leq p_d"/>, however, increasing the number of iterations does not help as the bit error rate is asymptotically lower bounded by <img alt="P_{b}^{BP}(p)&gt;0" class="latex" src="https://s0.wp.com/latex.php?latex=P_%7Bb%7D%5E%7BBP%7D%28p%29%3E0&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="P_{b}^{BP}(p)&gt;0"/> for a fixed number of iterations. Good LDPC codes are thus designed with a large BP threshold with design rate <img alt="R_{des}=1-P'(1)/\Lambda '(1)" class="latex" src="https://s0.wp.com/latex.php?latex=R_%7Bdes%7D%3D1-P%27%281%29%2F%5CLambda+%27%281%29&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="R_{des}=1-P'(1)/\Lambda '(1)"/> to maximize the threshold noise level for a given degree distribution pair. This ensemble will have a finite fraction of variable nodes of degree 2 and a large number of codewords with small weight, which ultimately prevent the block error probability from vanishing as <img alt="N\rightarrow \infty" class="latex" src="https://s0.wp.com/latex.php?latex=N%5Crightarrow+%5Cinfty&amp;bg=ffffff&amp;fg=333333&amp;s=0" title="N\rightarrow \infty"/>.</p>
+
+
+
+<h4>References</h4>
+
+
+
+<p>[1] Marc Mezard and Andrea Montanari. <br/><em>Information, Physics, and Computation</em>. <br/>Oxford Graduate Texts, 2009.</p></div></content><updated planet:format="December 17, 2018 01:16 AM">2018-12-17T01:16:55Z</updated><published planet:format="December 17, 2018 01:16 AM">2018-12-17T01:16:55Z</published><category term="Uncategorized"/><category term="Belief propagation"/><category term="coding theory"/><category term="cs229r"/><category term="LDPC"/><category term="statistical physics"/><category term="thresholding behavior"/><author><name>Jeremy Dohmann</name></author><source><id>https://windowsontheory.org</id><logo>https://s0.wp.com/i/buttonw-com.png</logo><link href="https://windowsontheory.org/feed/" rel="self" type="application/atom+xml"/><link href="https://windowsontheory.org" rel="alternate" type="text/html"/><link href="https://windowsontheory.org/osd.xml" rel="search" type="application/opensearchdescription+xml"/><link href="https://windowsontheory.org/?pushpress=hub" rel="hub" type="text/html"/><subtitle>A Research Blog</subtitle><title>Windows On Theory</title><updated planet:format="December 17, 2018 05:29 AM">2018-12-17T05:29:53Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_last_modified>Mon, 17 Dec 2018 01:41:40 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>windows-on-theory</planet:css-id><planet:face>wot.png</planet:face><planet:name>Windows on Theory</planet:name><planet:http_location>https://windowsontheory.org/feed/</planet:http_location><planet:http_status>301</planet:http_status></source></entry>

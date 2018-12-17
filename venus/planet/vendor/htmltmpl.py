@@ -129,7 +129,8 @@ class TemplateManager:
         # These values are not modified by any method.
         self._include = include
         self._max_include = max_include
-        self._precompile = precompile
+#        self._precompile = precompile
+        self._precompile = False
         self._comments = comments
         self._gettext = gettext
         self._debug = debug

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>https://eccc.weizmann.ac.il/report/2018/203</id><link href="https://eccc.weizmann.ac.il/report/2018/203" rel="alternate" type="text/html"/><title>TR18-203 |  Non-Interactive Non-Malleability from Quantum Supremacy | 
+
+	Yael Kalai, 
+
+	Dakshita Khurana</title><summary>We construct non-interactive non-malleable commitments with respect to replacement, without setup in the plain model, under well-studied assumptions.
+
+First, we construct non-interactive non-malleable commitments with respect to commitment for $\epsilon \log \log n$ tags for a small constant $\epsilon&gt;0$, under the following assumptions:
+
+- Sub-exponential hardness of factoring or discrete log.
+
+- Quantum sub-exponential hardness of learning with errors (LWE).
+
+Second, as our key technical contribution, we introduce a new tag amplification technique. We show how to convert any non-interactive non-malleable commitment with respect to commitment for $\epsilon \log \log n$ tags (for any constant $\epsilon&gt;0$) into a non-interactive non-malleable commitment with respect to replacement for $2^n$ tags. This part only assumes the existence of sub-exponentially secure non-interactive witness indistinguishable (NIWI) proofs, which can be based on sub-exponential security of the decisional linear assumption.
+
+Interestingly, for the tag amplification technique, we crucially rely on the leakage lemma due to Gentry and Wichs (STOC 2011). For the construction of non-malleable commitments for $\epsilon \log \log n$ tags, we rely on quantum supremacy. This use of quantum supremacy in classical cryptography is novel, and we believe it will have future applications. We provide one such application to two-message witness indistinguishable (WI) arguments based on the polynomial hardness of factoring and quantum polynomial hardness of LWE.<div class="commentbar"><p/></div></summary><updated planet:format="December 01, 2018 06:29 PM">2018-12-01T18:29:39Z</updated><published planet:format="December 01, 2018 06:29 PM">2018-12-01T18:29:39Z</published><source><id>https://example.com/</id><author><name>ECCC papers</name></author><link href="https://example.com/" rel="alternate" type="text/html"/><link href="https://example.com/feeds/reports/" rel="self" type="application/atom+xml"/><subtitle>Latest Reports published at https://eccc.weizmann.ac.il</subtitle><title>ECCC - Reports</title><updated planet:format="December 17, 2018 05:29 AM">2018-12-17T05:29:16Z</updated><planet:bozo>false</planet:bozo><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:face>eccc.png</planet:face><planet:name>ECCC papers</planet:name><planet:css-id>eccc-papers</planet:css-id><planet:http_status>301</planet:http_status><planet:http_location>https://eccc.weizmann.ac.il//feeds/reports/</planet:http_location></source></entry>

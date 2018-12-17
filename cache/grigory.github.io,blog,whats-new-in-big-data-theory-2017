@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://grigory.github.io/blog/whats-new-in-big-data-theory-2017</id><link href="http://grigory.github.io/blog/whats-new-in-big-data-theory-2017/" rel="alternate" type="text/html"/><title xml:lang="en">What's New in the Big Data Theory 2017</title><content type="xhtml" xml:lang="en"><div xmlns="http://www.w3.org/1999/xhtml"><div align="center"><img alt="Happy 2018!" src="http://grigory.github.io/blog/pics/o2017.png"/> </div>
+
+<p><br/></p>
+
+<p>This year I will continue the <a href="http://grigory.us/blog/whats-new-in-big-data-theory-2016/">tradition started last year</a> and summarize a few papers on efficient algorithms for big data that caught my attention last year.
+Same disclaimers as last year apply and this is by no means supposed to be the list of “best” papers in the field which is quite loosely defined anyway (e.g. I will intentionally avoid deep learning and gradient descent methods here as I am not actively working in these areas myself and there are a lot of resources on these topics already).
+In particular, this year it was even harder to pick clear favorites so it is even more likely that I have missed some excellent work. 
+Below I will assume familiary with the basics of streaming algorithms and the massively parallel computation model (MPC) discussed in an <a href="http://grigory.us/blog/mapreduce-model/">earlier post</a>.</p>
+
+<p>Before we begin let me quickly plug some of my own work from last year.
+With my student Adithya Vadapalli we have a new paper ``<a href="https://arxiv.org/pdf/1710.01431.pdf">Massively Parallel Algorithms and Hardness of Single-Linkage Clustering under -distances</a>’’. As it turns out, while single-linkage clustering and minimum spanning tree problems are the same for exact computation, for vector data round complexity of approximating these two problems in the MPC model is quite different.
+In <a href="http://grigory.us/files/approx-linsketch.pdf">another paper</a> I introduce a study of approximate binary linear sketching of valuation functions.
+This is an extension of our <a href="https://eccc.weizmann.ac.il/report/2016/174/">recent study</a> of binary linear sketching to the case when the function of interest should only be computed approximately.</p>
+
+<!--
+Lack of clear favorites probably means that we might not see all of these results taught in advanced algorithms classes but rather used for reading groups, etc.
+Many of the papers listed below have been discussed in detail in our ``algorithms for big data'' reading group here at IU.
+-->
+<h2>New Massively Parallel Algorithms for Matchings</h2>
+
+<p>Search for new algorithms for matchings has lead to development of new algorithmic ideas for many decades (motivating the study of the class P of polynomial-time algorithms) and this year is no exception.
+Two related papers on matchings caught my attention this year:</p>
+<ul>
+  <li>“<a href="https://arxiv.org/abs/1707.03478">Round Compression for Parallel Matching Algorithms</a>” by Czumaj, Lacki, Madry, Mitrovic, Onak and Sankowski.</li>
+  <li>“<a href="https://arxiv.org/abs/1711.03076">Coresets Meet EDCS: Algorithms for Matching and Vertex Cover on Massive Graphs</a>” by Assadi, Bateni, Bernstein, Mirrokni and Stein.</li>
+</ul>
+
+<p>Both papers are highly technical but achieve similar results.
+The first paper gives an -round MPC algorithm for the maximum matching problem that uses  memory per machine. The second paper improves the number of rounds down to  using slightly larger memory  per machine.
+Using a standard reduction mentioned in the latter paper both papers can achieve multiplicative -approximation for any constant .
+These results should be contrasted with the <a href="http://theory.stanford.edu/~sergei/papers/spaa11-matchings.pdf">previous work</a> by Lattanzi, Moseley, Suri and Vassilvitskii who give -round algorithms at the expense of using  memory per machine for any constant .
+Overall, this is remarkable progress but likely not the end of the story.</p>
+
+<h2>Massively Parallel Methods for Dynamic Programming</h2>
+<p>Dynamic programming, <a href="https://www.rand.org/content/dam/rand/pubs/papers/2008/P550.pdf">pioneered by Bellman at RAND</a>, is one of the key techniques in algorithm design. Some would even go as far as saying that there are only two algorithmic tecniques and dynamic programming is one of them.
+However, dynamic programming programming is notoriously sequential and difficult to use for sublinear time/space computation.
+Most successful stories of speeding up dynamic programming so far have been problem-specific and often highly non-trivial.</p>
+
+<p>In their paper “<a href="http://www.andrew.cmu.edu/user/moseleyb/papers/stoc17-main279.pdf">Efficient Massively Parallel Methods for Dynamic Programming</a>” (STOC’17) Im, Moseley and Sun suggest a fairly generic approach for designing massively parallel dynamic programming algorithms.
+Three textbook dynamic programming problems can be handled within their framework:</p>
+
+<ul>
+  <li>Longest Increasing Subsequence: multiplicative -approximation in  rounds of MPC.</li>
+  <li>Optimal Binary Search Tree: multiplicative -approximation in  rounds of MPC.</li>
+  <li>Weighted Interval Scheduling: multiplicative -approxiamtion in  rounds of MPC.</li>
+</ul>
+
+<p>On a technical level this paper identifies two key properties that these problems have in common: monotonicity and decmoposability. Montonicity just requires that the answer to a subproblem should always be at most (for maximization)/at least(for minimization) the answer to the problem itself.
+Decomposability is more subtle and requires that the problem can be decomposed into a two-level recursive family of subproblems where entries of the top level are called groups and entries of the bottom level are called blocks. 
+It should then be possible to 1) construct a nearly optimal solution for the entire problem by concatenating solutions for subproblems, 2) construct a nearly optimal solution for each group from only a constant number of blocks.
+While monotonicity holds for many standard dynamic problems, decomposability seems much more restrictive so it is interesting to see whether this technique can be extended to some other problems.</p>
+
+<p>See Ben Moseley’s <a href="http://caml.indiana.edu/slides/ben.pdf">presentation</a> at the Midwest Theory Day for more details.</p>
+
+<h2>Randomized Composable Coresets for Matching and Vertex Cover</h2>
+<p>The simplest massively parallel algorithm one can think of can be described as follows: partition the data between  machines, let each machine select a small subset of the data points, collect these locally selected data points on one central machine and compute the solution there. 
+The hardest part here is the design of the local subset selection procedures.
+Such subsets are called coresets and have received a lot of attention the study of algorihtms for high-dimensional vectors, see e.g. <a href="http://sarielhp.org/p/04/survey/survey.pdf">this survey</a> by Agarwal, Har-Peled and Varadarajan.</p>
+
+<p>Note that in the distributed setting construction of coresets can be affected by the initial distribution of data.
+In fact, for the maximum mathcings problem non-trivially small coresets can’t be used to approximate the maximum matching up to a reasonable error (see <a href="http://grigory.us/files/soda16.pdf">our paper</a> with Assadi, Khanna and Li for the exact statement which in fact rules out not just coresets but any small-space representations) if no assumptions about the distribution of the data is made.</p>
+
+<p>However, if the initial distribution of data is uniformly random then the situation changes quite dramatically.
+As shown in “<a href="http://www.seas.upenn.edu/~sassadi/stuff/papers/randomized-coreset_matching-vc.pdf">Randomized Composable Coresets for Matching and Vertex Cover</a>” by Assadi and Khanna (best paper at SPAA’17) for uniformly distributed data coresets of size  can be computed locally and then combined to obtain -approximation.</p>
+
+<h2>Optimal Lower Bounds for L<sub>p</sub>-Samplers, etc </h2>
+<p>Consider the following problem: a vector  (initially consisting of all zeros) is changed by a very long sequence of updates that can flip an arbitrary coordinate of this vector. After seeing this sequence of updates can we retrieve some non-zero entry of this vector without storing all  bits used to represent ?
+Surprisingly, the answer is “yes” and this can be done with only  space.
+If we are required to generate a uniformly random non-zero entry of  then the corresponding problem is called -sampling.</p>
+
+<p>-sampling turns out to be a remarkably useful primitive in the design of small-space algorithms. Almost all known streaming algorithms for dynamically changing graphs are based on -sampling or its relaxation where the uniformity requirement is removed.</p>
+
+<p>While almost optimal upper and lower bounds on the amount of space necessary for -sampling have been known since <a href="https://arxiv.org/pdf/1012.4889.pdf">the work</a> of Jowhari, Saglam and Tardos, there were still gaps in terms of the dependence on success probability.
+If our recovery of a non-zero entry of  has to be successful with probability  then the tight bound on space turns out to be .
+This is one of the results of the <a href="http://people.seas.harvard.edu/~minilek/publications/papers/sampler_lb_merged.pdf">recent FOCS’17 paper</a> by Kapralov, Nelson, Pahocki, Wang, Woodruff and Yahyazadeh.</p>
+
+<h2>Looking forward to more results in 2018!</h2>
+<p>Please, let me know if there are any other interesting papers that I missed.
+Also here is a quick shout out goes to some other papers that were close to making the above list:</p>
+
+<ul>
+  <li>“<a href="https://nips.cc/Conferences/2017/Schedule?showEvent=9453">Affinity Clustering: Hierarchical Clustering at Scale</a>” by Bateni, Behnezhad, Derakhshan, Hajiaghayi, Kiveris, Lattanzi and Mirrokni (NIPS’17).</li>
+  <li>“<a href="https://www.ilyaraz.org/static/papers/lshforest.pdf">LSH Forest: Practical Algorithms Made Theoretical</a>” by Andoni, Razenshteyn and Shekel Nosatzki (SODA’17).</li>
+  <li>“<a href="https://arxiv.org/abs/1610.08096">Almost Optimal Streaming Algorithms for Coverage Problems</a>” by Bateni, Esfandiari and Mirrokni (SPAA’17).</li>
+  <li>“<a href="http://www.cs.utexas.edu/~ecprice/papers/compressed-generative.pdf">Compressed Sensing using Generative Models</a> by Bora, Jalal, Price and Dimakis (ICML’17).</li>
+  <li>“<a href="https://arxiv.org/pdf/1707.08484.pdf">MST in O(1) Rounds of Congested Clique</a>” by Jurdzinski and Nowicki (SODA’18).</li>
+</ul>
+
+  <p><a href="http://grigory.github.io/blog/whats-new-in-big-data-theory-2017/">What's New in the Big Data Theory 2017</a> was originally published by Grigory Yaroslavtsev at <a href="http://grigory.github.io/blog">The Big Data Theory</a> on January 27, 2018.</p></div><div class="commentbar"><p/></div></content><updated planet:format="January 27, 2018 12:00 AM">2018-01-27T00:00:00Z</updated><published planet:format="January 27, 2018 12:00 AM">2018-01-27T00:00:00Z</published><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog</uri></author><source><id>http://grigory.github.io/blog/</id><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog/</uri></author><link href="http://grigory.github.io/blog/feed.xml" rel="self" type="application/atom+xml"/><link href="http://grigory.github.io/blog" rel="alternate" type="text/html"/><title xml:lang="en">The Big Data Theory</title><updated planet:format="May 27, 2018 09:46 AM">2018-05-27T09:46:42Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;5b0a7e85-194be&quot;</planet:http_etag><planet:http_last_modified>Sun, 27 May 2018 09:46:45 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>grigory-yaroslavtsev</planet:css-id><planet:face>yaroslavtsev.jpeg</planet:face><planet:name>Grigory Yaroslavtsev</planet:name><planet:http_status>200</planet:http_status></source></entry>

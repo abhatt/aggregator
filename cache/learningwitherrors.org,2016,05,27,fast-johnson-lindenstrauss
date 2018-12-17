@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://learningwitherrors.org/2016/05/27/fast-johnson-lindenstrauss</id><link href="http://learningwitherrors.org/2016/05/27/fast-johnson-lindenstrauss/" rel="alternate" type="text/html"/><title>Fast Johnson-Lindenstrauss</title><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><div style="display: none;"/>
+<p>
+The Johnson-Lindenstrauss (JL) Transform says that, informally, we can embed high-dimensional points into a much lower dimension, while still preserving their pairwise distances. In this post we'll start with the classical JL transform, then focus on the Fast JL Transform (FJLT) by Ailon and Chazelle [<a href="http://learningwitherrors.org/atom.xml#ref-AC09">AC09</a>], which achieves the JL embedding more efficiently (w.r.t. runtime and randomness). We'll look at the FJLT from the perspective of “preconditioning” a sparse estimator, which comes with nice intuition from Fourier duality. We conclude by mentioning more recent developments in this area (faster/sparser/derandomizeder).
+<!--more-->
+</p><p>
+<b>Motivation.</b> It's an interesting structural result, and the JL transform also has algorithmic and machine-learning applications. Eg, any application that only depends on approximate pairwise distances (such as nearest-neighbors), or even on pairwise inner-products<sup><a href="http://learningwitherrors.org/atom.xml#footnote1">1</a></sup><span class="sidenote" id="footnote1"><a href="http://learningwitherrors.org/atom.xml#footnote1" name="footnote1">1.</a> Because, if the norms $||x_i-x_j||$, $||x_i||$, and $||x_j||$ are approximately preserved, then so is the inner-product $\innp{x_i,x_j}$.  </span> (such as kernel methods) may equivalently work with the dimensionality-reduced version of their input. This also has applications in sketching and scarification.
+</p><p>
+</p><h2 class="tex">1. Classical JL </h2> The JL embedding theorem is:
+<p>
+
+</p><blockquote><b>Theorem 1</b> <em> Given points $x_1, \dots, x_n \in \R^d$, and $\epsilon &gt; 0$, there exists an embedding $f: \R^d \to \R^k$ such that \[\forall i, j: \quad (1-\epsilon) ||x_i - x_j||_2 \leq ||f(x_i) - f(x_j)||_2 \leq (1+\epsilon) ||x_i - x_j||_2 \] and $k = O(\epsilon^{-2}\log n)$. </em></blockquote>
+
+<p>
+
+ That is, the embedding roughly preserves pairwise distances in $\ell_2$. Think of the regime $n \gg d \gg k$. Note that the target dimension $k = O(\epsilon^{-2}\log n)$ is (perhaps surprisingly) independent of the source dimension $d$, and only logarithmic in the number of points $n$.
+</p><p>
+In fact, a random linear map works as an embedding (w.h.p.). This is established by the following lemma.
+</p><p>
+
+</p><blockquote><b>Lemma 2</b> <em> <a name="lemjl"/> For any $\delta &gt; 0$, set $k = O(\epsilon^{-2}\log(1/\delta))$, and let $A \in \R^{k \x d}$ be a random matrix with iid normal $\N(0, 1/k)$ entries. Then \[\forall x \in \R^d: \quad \Pr_{A}\left[~ ||Ax||_2^2 \in (1 \pm \epsilon)||x||_2^2 ~\right] \geq 1- \delta\] </em></blockquote>
+
+<p>
+
+ That is, a random matrix preserves the norm of vectors with good probability. To see that this implies the JL Theorem, consider applying the matrix $A$ on the $O(n^2)$ vectors of pairwise differences $(x_i - x_j)$. For fixed $i,j$, the lemma implies that $||A(x_i - x_j)|| \approx ||x_i - x_j||$ except w.p. $\delta$. Thus, setting $\delta = 1/n^3$ and union bounding, we have that $A$ preserves the norm of <em>all</em> differences $(x_i - x_j)$ with high probability. Letting the embedding map $f = A$, we have \[\forall i,j: \quad ||f(x_i) - f(x_j)|| = ||Ax_i - Ax_j|| = ||A(x_i - x_j)|| \approx ||x_i - x_j||\] as desired. <sup><a href="http://learningwitherrors.org/atom.xml#footnote2">2</a></sup><span class="sidenote" id="footnote2"><a href="http://learningwitherrors.org/atom.xml#footnote2" name="footnote2">2.</a> Note that it was important that $f$ be linear for us to reduce preserving pairwise-distances to preserving norms. </span>
+</p><p>
+<b>Runtime.</b> The runtime of embedding a single vector with this construction (setting $\delta=1/n^3$ and $\epsilon=O(1)$) is $O(dk) = O(d \log n)$. In the Fast JL below, we will show how to do this in time almost $O(d \log d)$.
+</p><p>
+We will now prove Lemma <a href="http://learningwitherrors.org/atom.xml#lemjl">2</a>. First, note that our setting is scale-invariant, so it suffices to prove the lemma for all unit vectors $x$.
+</p><p>
+As a warm-up, let $g \in \R^d$ be a random vector with entires iid $\N(0, 1)$, and consider the inner-product \[Y := \innp{g, x}\] (for a fixed unit vector $x \in \R^d$). Notice the random variable $Y$ has expectation $\E[Y] = 0$, and variance \[\E[Y^2] = \E[\innp{g,x}^2] = ||x||^2\] <b>Thus, $Y^2$ is an unbiased estimator for $||x||^2$.</b> Further, it concentrates well: assuming (wlog) that $||x||=1$, we have $Y \sim \N(0, 1)$, so $Y^2$ has constant variance (and more generally, is subguassian<sup><a href="http://learningwitherrors.org/atom.xml#footnote3">3</a></sup><span class="sidenote" id="footnote3"><a href="http://learningwitherrors.org/atom.xml#footnote3" name="footnote3">3.</a>  Subguassian with parameter $\sigma$ basically means tail probabilities behave as a guassian with variance $\sigma^2$ would behave. Formally, a zero-mean random variable $X$ is “subgaussian with parameter $\sigma$” if: $\E[e^{\lambda X}] \leq e^{\sigma^2\lambda^2/2}$ for all $\lambda \in \R$.  </span> with a constant parameter).
+</p><p>
+This would correspond to a random linear projection into 1 dimension, where the matrix $A$ in Lemma <a href="http://learningwitherrors.org/atom.xml#lemjl">2</a> is just $A = g^T$. Then $||Ax||^2 = \innp{g, x}^2 = Y^2$. However, this estimator does not concentrate well enough (we want tail probability $\delta$ to eventually be inverse-poly, not a constant).
+</p><p>
+We can get a better estimator for $||x||^2$ by averaging many iid copies. In particular, for any iid subgaussian random variables $Z_i$, with expectation $1$ and subguassian parameter $\sigma$, the Hoeffding bound gives \[\Pr\left[ \left|\left(\frac{1}{k}\sum_{i=1}^k Z_i \right) - 1 \right| &gt; \epsilon \right] \leq e^{-\Omega(k\epsilon^2/\sigma^2)}\] Applying this for $Z_i = Y_i^2$ and $\sigma = O(1)$, we can set $k = O(\epsilon^{-2}\log(1/\delta))$ so the above tail probability is bounded by $\delta$.
+</p><p>
+This is exactly the construction of Lemma <a href="http://learningwitherrors.org/atom.xml#lemjl">2</a>. Each row of $A$ is $\frac{1}{\sqrt{k}} g_i^T$, where $g_i \in \R^d$ is iid $\N(0, 1)$. Then \[||A x||^2 = \sum_{i=1}^k \innp{\frac{1}{\sqrt{k}} g_i, x}^2 = \frac{1}{k} \sum_{i=1}^k \innp{g_i, x}^2 = \frac{1}{k} \sum_{i=1}^k Y_i^2\]
+</p><p>
+And thus, for $||x||=1$, \[\Pr\left[ \left| ||A x||^2 - 1 \right| &gt; \epsilon\right] \leq \delta\] as desired in Lemma <a href="http://learningwitherrors.org/atom.xml#lemjl">2</a>. $$\tag*{$\blacksquare$}$$
+</p><p>
+To recap, the key observation was that if we draw $g \sim N(0, I_d)$, then $\innp{g, x}^2$ is a “good” estimator of $||x||^2$, so we can average $O(\epsilon^{-2}\log(1/\delta))$ iid copies and get an estimator within a multiplicative factor $(1 \pm \epsilon)$ with probability $\geq 1-\delta$. Filling the transform matrix $A$ with guassians is clearly not necessary; any distribution with iid entries that are subguassian would work, with the same proof as above. For example, picking each entry in $A$ as iid $\pm \frac{1}{\sqrt k}$ would work.
+</p><p>
+We can now think of different JL transforms as constructing different estimators of $||x||^2$. For example, can we draw from a distribution such that $g$ is sparse? (Not quite, but with some “preconditioning” this will work, as we see below).
+</p><p>
+</p><h2 class="tex">2. Fast JL </h2>
+<p>
+</p><h3 class="tex">2.1. First Try: Coordinate Sampling</h3> As a (bad) first try, consider the estimator that randomly samples a coordinate of the given vector $x$, scaled appropriately. That is, \[Y := \sqrt{d} ~x_j \quad\text{for uniformly random coordinate $j \in [d]$}\] Equivalently, draw a random standard basis vector $e_j$, and let $Y := \sqrt{d} \innp{e_j, x}$.
+<p>
+Notice that $Y^2$ has the right expectation: \[\E[Y^2] = \E_j[(\sqrt{d} x_j)^2] = d \E_j[x_j^2] = ||x||^2\] However, it does not concentrate well. The variance is $Var[Y^2] = Var[d x_j^2] = d^2 Var[x_j]$. If $x$ is a standard basis vector (say $x = e_1$), then this could be as bad as $Var[Y^2] \approx d$. This is bad, because it means we would need to average $\Omega(d)$ iid samples to get a sufficiently good estimator, which does not help us in reducing the dimension of $x \in \R^d$.
+</p><p>
+The bad case in the above analysis is when $x$ is very concentrated/sparse, so sampling a random coordinate of $x$ is a poor estimator of its magnitude. However, if $x$ is very “spread out”, then sampling a random coordinate would work well. For example, if all entries of $x$ are bounded by $\pm O(\sqrt{\frac{1}{d}})$, then $Var[Y^2] = O(1)$, and taking iid copies of this estimator would work. This would be nice for runtime, since randomly sampling a coordinate can be done quickly (it is not a dense inner-product).
+</p><p>
+Thus, if we can (quickly) “precondition” our vector $x$ to have $||x||_{\infty} \leq O(\sqrt{\frac{1}{d}})$, we could then use coordinate sampling to achieve a fast JL embedding. We won't quite achieve this, but we will be able to precondition such that $||x||_\infty \leq O(\sqrt{\frac{\log(d/\delta)}{d}})$, as described in the next section. With this in mind, we will need the following easy claim (that with the weaker bound on $\ell_\infty$, coordinate sampling works to reduce the dimension to almost our target dimension).
+</p><p>
+
+</p><blockquote><b>Lemma 3</b> <em> <a name="lemS"/> Let $t = \Theta(\epsilon^{-2}\log(1/\delta)\log(d/\delta))$. Let $S \in \R^{t \x d}$ be a matrix with rows $s_i := \sqrt{\frac{d}{t}} e^{(i)}_{j_i}$, where each $j_i \in [d]$ is an iid uniform index. (That is, each row of $S$ randomly samples a coordinate, scaled appropriately). Then, for all $x$ s.t $||x||_2=1$ and $||x||_\infty \leq O(\sqrt{\frac{\log(d/\delta)}{d}})$, we have
+</em><p><em>
+ \[\Pr_{S}[ ||Sx||^2 \in 1 \pm \epsilon] \geq 1-\delta\] </em></p></blockquote>
+
+<p>
+
+ <em>Proof:</em>  \[||Sx||^2 = \sum_{i=1}^t \innp{\sqrt{\frac{d}{t}} e_{j_i}, x}^2 = \frac{1}{t}\sum_{i=1}^t d (x_{j_i})^2\] Then, the r.vs $\{d (x_{j_i})\}$ are iid and absolutely bounded by $O(\sqrt{\log(d/\delta)})$, so by Chernoff-Hoeffding and our choice of $t$, \[\Pr[ |\frac{1}{t}\sum_{i=1}^t d (x_{j_i})^2 - 1| &gt; \epsilon] \leq e^{-\Omega(\epsilon^2 t / \log(d/\delta))} \leq \delta\] $$\tag*{$\blacksquare$}$$
+</p><p>
+</p><h3 class="tex">2.2. FJLT: Preconditioning with random Hadamard</h3> The main idea of FJLT is that we can quickly precondition vectors to be “smooth”, by using the Fast Hadamard Transform.
+<p>
+Recall the $d \x d$ Hadamard transform $H_d$ (for $d$ a power of 2) is defined recursively as \[H_1 := 1 ,\quad H_{2d} := \frac{1}{\sqrt{2}} \bmqty{H_d &amp; H_d\\H_d &amp; -H_d}\] More explicitly, $H_d[i,j] = \frac{1}{\sqrt{d}} (-1)^{\innp{i, j}}$ where indices $i,j \in \{0, 1\}^{\log d}$, and the inner-product is mod 2. The Hadamard transform is just like the discrete Fourier transform<sup><a href="http://learningwitherrors.org/atom.xml#footnote4">4</a></sup><span class="sidenote" id="footnote4"><a href="http://learningwitherrors.org/atom.xml#footnote4" name="footnote4">4.</a> Indeed, it is exactly the Fourier transform over the group $(\Z_2)^n$. For more on Fourier transforms over abelian groups, see for example <a href="https://lucatrevisan.wordpress.com/2016/03/16/cs294-lecture-15-abelian-cayley-graphs/">Luca's notes</a>. </span> : it can be computed in time $O(d\log d)$ by recursion, and it is an orthonormal transform.
+</p><p>
+Intuitively, the Hadamard transform may be useful to “spread out” vectors, since Fourier transforms take things that are sparse/concentrated in time-domain to things that are spread out in frequency domain (by time-frequency duality/Uncertainty principle). Unfortunately this won't quite work, since duality goes both ways: It will also take vectors that are already spread out and make them sparse.
+</p><p>
+To fix this, it turns out we can first randomize the signs, then apply the Hadamard transform.
+</p><p>
+
+</p><blockquote><b>Lemma 4</b> <em> <a name="lemHadamard"/> Let $H_d$ be the $d \x d$ Hadamard transform, and let $D$ be a random diagonal matrix with iid $\pm 1$ entries on the diagonal. Then, \[\forall x \in \R^d, ||x||=1: \quad \Pr_{D}[ ||H_d D x||_\infty &gt; \Omega(\sqrt{\frac{\log(d/\delta)}{d}}) ] \leq \delta\] </em></blockquote>
+
+<p>
+
+
+</p><p>
+We may expect something like this to hold: randomizing the signs of $x$ corresponds to pointwise-multiplying by random white noise. White noise is spectrally flat, and multiplying by it in time-domain corresponds to convolving by its (flat) spectrum in frequency domain. Thus, multiplying by $D$ should “spread out” the spectrum of $x$. Applying $H_d$ computes this spectrum, so should yield a spread-out vector.
+</p><p>
+The above intuition seems messy to formalize but the proof is surprisingly simple. <sup><a href="http://learningwitherrors.org/atom.xml#footnote5">5</a></sup><span class="sidenote" id="footnote5"><a href="http://learningwitherrors.org/atom.xml#footnote5" name="footnote5">5.</a> This proof presented slightly differently from the one in Alon-Chazelle, but the idea is the same. </span>
+</p><p>
+<em>Proof:</em> } Consider the first entry of $H_d D x$. Let $D = diag(a_1, a_2, \dots, a_d)$ where $a_i$ are iid $\pm 1$. The first row of $H_d$ is $\frac{1}{\sqrt{d}} \bmqty{1 &amp; 1 &amp; \dots &amp; 1}$, so \[(H_d D x)[1] = \frac{1}{\sqrt{d}} \sum_i a_ix_i\] Here, the $x_i$ are fixed s.t. $||x||_2=1$, and the $a_i = \pm 1$ iid. Thus we can again bound this by Hoeffding <sup><a href="http://learningwitherrors.org/atom.xml#footnote6">6</a></sup><span class="sidenote" id="footnote6"><a href="http://learningwitherrors.org/atom.xml#footnote6" name="footnote6">6.</a>  The following form of Hoeffding bound is useful (it follows directly from Hoeffding for subgaussian variables, but is also a corollary of Azuma-Hoeffding): For iid zero-mean random variables $Z_i$, absolutely bounded by $1$, $\Pr[|\sum c_i Z_i| &gt; \epsilon] \leq 2exp(-\frac{\epsilon^2}{2 \sum_i c_i^2})$.  </span> (surprise), \[ \Pr[ | \sum_{i=1}^d a_i \frac{x_i}{\sqrt{d}}| &gt; \eta] \leq e^{-\Omega(\eta^2 d / ||x||_2^2)} \] For $\eta = \Omega(\sqrt{\frac{\log(d/\delta)}{d}})$, this probability is bounded by $(\frac{\delta}{d})$. Moreover, the same bound applies for all coordinates of $H_d Dx$, since all rows of $H_d$ have the form $\frac{1}{\sqrt{d}} \bmqty{\pm 1 &amp; \pm1 &amp; \dots &amp; \pm1}$. Thus, union bound over $d$ coordinates establishes the lemma. $$\tag*{$\blacksquare$}$$
+</p><p>
+</p><h3 class="tex">2.3. The Full Fast JL Transform</h3> <i>This presentation of FJLT is due to Jelani Nelson; see the notes [<a href="http://learningwitherrors.org/atom.xml#ref-Nel10">Nel10</a>].</i>
+<p>
+Putting all the pieces together, the FJLT is defined as: \[A = J S H_d D\] or, \[ A: \quad \R^d \overset{D}{\longrightarrow} \R^d \overset{H_d}{\longrightarrow} \R^d \overset{S}{\longrightarrow} \R^t \overset{J}{\longrightarrow} \R^k \] where
+
+</p><ul> <li> $S$: the sparse coordinate-sampling matrix of Lemma <a href="http://learningwitherrors.org/atom.xml#lemS">3</a> </li><li> $H_d$: the $d \x d$ Hadamard transform. </li><li> $D$: diagonal iid $\pm 1$. </li><li> $J$: a dense “normal” JL matrix (iid Gaussian entries).
+</li></ul>
+
+ For parameters
+
+<ul> <li> $t = \Theta(\epsilon^{-2}\log(1/\delta)\log(d / \delta))$ </li><li> $k = \Theta(\epsilon^{-2}\log(1/\delta))$
+</li></ul>
+
+
+<p>
+That is, we first precondition with the randomized Hadamard transform, then sample random coordinates (which does most of the dimensionality reduction), then finally apply a normal JL transform to get rid of the last $\log(d/\delta)$ factor in the dimension.
+</p><p>
+<b>Correctness.</b> Since the matrix $D$ and the Hadamard transform are isometric, they do not affect the norms of vectors. Then, after the preconditioning, Lemma <a href="http://learningwitherrors.org/atom.xml#lemS">3</a> guarantees that $S$ only affects norms by $(1 \pm \epsilon)$, and Lemma <a href="http://learningwitherrors.org/atom.xml#lemjl">2</a> guarantees that the final step is also roughly isometric. These steps fail w.p. $\delta$, so the final transform affects norms by at most say $(1\pm 3\epsilon)$ except w.p. $3\delta$. This is sufficient to establish the JL embedding.
+</p><p>
+<b>Runtime.</b> For computing a JL embedding (ie, setting $\delta = 1/n^3, \epsilon=O(1)$), the time to embed a single vector is $O(d \log d + \log^3 n)$.
+</p><p>
+</p><h2 class="tex">3. Closing Remarks </h2>
+<p>
+<b>Optimality.</b> The target dimension given by the JL construction is known to be optimal. That is, one cannot embed $n$ points into dimension less than $k=\Omega(\epsilon^{-2}\log n)$ with distortion $\epsilon$. The first near-optimal lower-bound, in [<a href="http://learningwitherrors.org/atom.xml#ref-Alo03">Alo03</a>, Section 9] works by showing upper-bounds on the number of nearly-orthogonal vectors in a given dimension (so a too-good embedding of orthogonal vectors would violate this bound). A more recent, optimal bound, is in [<a href="http://learningwitherrors.org/atom.xml#ref-KMN11">KMN11</a>, Section 6]. They actually show optimality of the JL Lemma (that is, restricting to linear embeddings), which works (roughly) by arguing that if the target dimension is too small, then the kernel is too big, so a random vector is likely to be very distorted.
+</p><p>
+<b>Recent Advances.</b> Note that the FJLT is fast, but is not <em>sparse</em>. We may hope that embedding a sparse vector $x$ will take time proportional to the sparsity of $x$. A major result in this area was the sparse JL construction of [<a href="http://learningwitherrors.org/atom.xml#ref-KN14">KN14</a>]; see also the notes [<a href="http://learningwitherrors.org/atom.xml#ref-Nel10">Nel10</a>]. There is also work in derandomized JL, see for example [<a href="http://learningwitherrors.org/atom.xml#ref-KMN11">KMN11</a>].
+</p><p>
+<i>I'll stop here, since I haven't read these works yet, but perhaps we will revisit this another time.<br/>
+ This post was derived from my talk at Berkeley theory retreat, on the theme of “theoretical guarantees for machine learning.” </i>
+</p><p>
+<br/></p><hr/><h3>References</h3>
+<p>
+<a name="ref-AC09">[AC09]</a> Nir Ailon and Bernard Chazelle.
+ The fast johnson-lindenstrauss transform and approximate nearest
+  neighbors.
+ <em>SIAM Journal on Computing</em>, 39(1):302--322, 2009.
+ URL:
+  <a href="https://www.cs.princeton.edu/~chazelle/pubs/FJLT-sicomp09.pdf">https://www.cs.princeton.edu/~chazelle/pubs/FJLT-sicomp09.pdf</a>.
+</p><p>
+
+</p><p>
+<a name="ref-Alo03">[Alo03]</a> Noga Alon.
+ Problems and results in extremal combinatorics, part i.
+ <em>Discrete Math</em>, 273:31--53, 2003.
+ URL: <a href="http://www.tau.ac.il/~nogaa/PDFS/extremal1.pdf">http://www.tau.ac.il/~nogaa/PDFS/extremal1.pdf</a>.
+</p><p>
+
+</p><p>
+<a name="ref-KMN11">[KMN11]</a> Daniel Kane, Raghu Meka, and Jelani Nelson.
+ Almost optimal explicit johnson-lindenstrauss families.
+ In <em>Approximation, Randomization, and Combinatorial Optimization.
+  Algorithms and Techniques</em>, pages 628--639. Springer, 2011.
+ URL:
+  <a href="http://people.seas.harvard.edu/~minilek/papers/derand_jl.pdf">http://people.seas.harvard.edu/~minilek/papers/derand_jl.pdf</a>.
+</p><p>
+
+</p><p>
+<a name="ref-KN14">[KN14]</a> Daniel~M Kane and Jelani Nelson.
+ Sparser johnson-lindenstrauss transforms.
+ <em>Journal of the ACM (JACM)</em>, 61(1):4, 2014.
+ URL: <a href="https://arxiv.org/pdf/1012.1577v6.pdf">https://arxiv.org/pdf/1012.1577v6.pdf</a>.
+</p><p>
+
+</p><p>
+<a name="ref-Nel10">[Nel10]</a> Jelani Nelson.
+ Johnson-lindenstrauss notes.
+ Technical report, Technical report, MIT-CSAIL, 2010.
+ URL: <a href="http://web.mit.edu/minilek/www/jl_notes.pdf">http://web.mit.edu/minilek/www/jl_notes.pdf</a>.
+</p><p/></div><div class="commentbar"><p/></div></content><updated planet:format="May 27, 2016 12:00 AM">2016-05-27T00:00:00Z</updated><published planet:format="May 27, 2016 12:00 AM">2016-05-27T00:00:00Z</published><author><name>Preetum Nakkiran</name></author><source><id>http://learningwitherrors.org/atom.xml</id><link href="http://learningwitherrors.org/atom.xml" rel="self" type="application/atom+xml"/><link href="http://learningwitherrors.org" rel="alternate" type="text/html"/><title>Learning With Errors</title><updated planet:format="January 04, 2017 04:27 AM">2017-01-04T04:27:34Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:http_etag>W/&quot;586c79b7-2a1fe&quot;</planet:http_etag><planet:face>lwe.jpeg</planet:face><planet:name>Learning with Errors: Student Theory Blog</planet:name><planet:css-id>learning-with-errors-student-theory-blog</planet:css-id><planet:bozo>false</planet:bozo><planet:http_last_modified>Wed, 04 Jan 2017 04:27:35 GMT</planet:http_last_modified><planet:http_status>200</planet:http_status></source></entry>

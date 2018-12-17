@@ -18,6 +18,7 @@ def splice():
     dir.sort()
     dir.reverse()
 
+    print config.template_files()
     max_items=max([config.items_per_page(templ)
         for templ in config.template_files() or ['Planet']])
 

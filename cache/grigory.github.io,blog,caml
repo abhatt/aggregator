@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://grigory.github.io/blog/caml</id><link href="http://grigory.github.io/blog/caml/" rel="alternate" type="text/html"/><title xml:lang="en">Center for Algorithms and Machine Learning</title><content type="xhtml" xml:lang="en"><div xmlns="http://www.w3.org/1999/xhtml"><div align="center"><img alt="CAML" src="http://grigory.github.io/blog/pics/caml.png" width="400"/></div>
+
+<p>This Friday we had the official kickoff event for the new <a href="http://caml.indiana.edu">Center for Algorithms and Machine Learning</a> here at IU.
+Huge thanks to my wonderful co-director <a href="https://www.cs.indiana.edu/~djcran/">David Crandall</a> whose wisdom and support have been instrumental in forming CAML!</p>
+
+<p>This has been in the works since the day I accepted an offer from IU almost two years ago (some things at universities take longer than you might expect).
+Also thanks to our board members, both internal 
+(<a href="https://www.cs.indiana.edu/~vgucht/">Dirk van Gucht</a>, 
+<a href="http://shiffrin.cogs.indiana.edu/">Richard Shiffrin</a>, 
+<a href="https://www.informatics.indiana.edu/hatang/">Haixu Tang</a>, 
+<a href="http://mypage.iu.edu/~stanwass/">Stanley Wasserman</a>) and external (<a href="http://hunch.net/~jl/">John Langford</a><a>, 
+</a><a href="https://edoliberty.github.io/">Edo Liberty</a>, 
+<a href="https://people.csail.mit.edu/mirrokni/Welcome.html">Vahab Mirrokni</a><a>, 
+</a><a href="https://www.linkedin.com/in/maxim-sviridenko-44822991/">Maxim Sviridenko</a>)
+for their advice and readiness to serve.
+Quite a few other people were involved behind the scenes, thanks to everyone!</p>
+
+<p>Among other things we have a <a href="http://grigory.us/blog/caml-postdoc-18/">postdoc position</a> open.</p>
+
+<p>Photo credits: <a href="https://www.cs.indiana.edu/~djcran/">David Crandall</a> and <a href="http://michaelryoo.com/">Michael S. Ryoo</a>.
+<br/></p>
+<div align="center"><img alt="CAML" src="http://grigory.github.io/blog/pics/caml-kickoff.jpeg"/></div>
+<p><img alt="CAML" src="http://grigory.github.io/blog/pics/pic4.jpg" style="float: left;" width="50%"/><img alt="CAML" src="http://grigory.github.io/blog/pics/pic6.jpg" style="float: left;" width="50%"/>
+<img alt="CAML" src="http://grigory.github.io/blog/pics/pic3.jpg" style="float: left;" width="50%"/> <img alt="CAML" src="http://grigory.github.io/blog/pics/pic7.jpg" style="float: left;" width="50%"/>
+<img alt="CAML" src="http://grigory.github.io/blog/pics/pic5.jpg" style="float: left;" width="50%"/><img alt="CAML" src="http://grigory.github.io/blog/pics/pic2.jpg" style="float: left;" width="50%"/>
+<img alt="CAML" src="http://grigory.github.io/blog/pics/pic8.jpg" style="float: left;" width="100%"/></p>
+
+  <p><a href="http://grigory.github.io/blog/caml/">Center for Algorithms and Machine Learning</a> was originally published by Grigory Yaroslavtsev at <a href="http://grigory.github.io/blog">The Big Data Theory</a> on March 11, 2018.</p></div><div class="commentbar"><p/></div></content><updated planet:format="March 11, 2018 12:00 AM">2018-03-11T00:00:00Z</updated><published planet:format="March 11, 2018 12:00 AM">2018-03-11T00:00:00Z</published><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog</uri></author><source><id>http://grigory.github.io/blog/</id><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog/</uri></author><link href="http://grigory.github.io/blog/feed.xml" rel="self" type="application/atom+xml"/><link href="http://grigory.github.io/blog" rel="alternate" type="text/html"/><title xml:lang="en">The Big Data Theory</title><updated planet:format="May 27, 2018 09:46 AM">2018-05-27T09:46:42Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;5b0a7e85-194be&quot;</planet:http_etag><planet:http_last_modified>Sun, 27 May 2018 09:46:45 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>grigory-yaroslavtsev</planet:css-id><planet:face>yaroslavtsev.jpeg</planet:face><planet:name>Grigory Yaroslavtsev</planet:name><planet:http_status>200</planet:http_status></source></entry>

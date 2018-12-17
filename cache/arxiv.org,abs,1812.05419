@@ -1,0 +1,20 @@
+<entry xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://arxiv.org/abs/1812.05419</id><link href="http://arxiv.org/abs/1812.05419" rel="alternate" type="text/html"/><title>Shortest Reconfiguration of Matchings</title><feedworld_mtime>1544918400</feedworld_mtime><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/b/Bousquet:Nicolas.html">Nicolas Bousquet</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/h/Hatanaka:Tatsuhiko.html">Tatsuhiko Hatanaka</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/i/Ito:Takehiro.html">Takehiro Ito</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/m/M=uuml=hlenthaler:Moritz.html">Moritz Mühlenthaler</a> <br/><b>Download:</b> <a href="http://arxiv.org/pdf/1812.05419">PDF</a><br/><b>Abstract: </b>Imagine that unlabelled tokens are placed on the edges of a graph, such that
+no two tokens are placed on incident edges. A token can jump to another edge if
+the edges having tokens remain independent. We study the problem of determining
+the distance between two token configurations (resp., the corresponding
+matchings), which is given by the length of a shortest transformation. We give
+a polynomial-time algorithm for the case that at least one of the two
+configurations is not inclusion-wise maximal and show that otherwise, the
+problem admits no polynomial-time sublogarithmic-factor approximation unless P
+= NP. Furthermore, we show that the distance of two configurations in bipartite
+graphs is fixed-parameter tractable parameterized by the size $d$ of the
+symmetric difference of the source and target configurations, and obtain a
+$d^\varepsilon$-factor approximation algorithm for every $\varepsilon &gt; 0$ if
+additionally the configurations correspond to maximum matchings. Our two main
+technical tools are the Edmonds-Gallai decomposition and a close relation to
+the Directed Steiner Tree problem. Using the former, we also characterize those
+graphs whose corresponding configuration graphs are connected. Finally, we show
+that deciding if the distance between two configurations is equal to a given
+number $\ell$ is complete for the class $D^P$, and deciding if the diameter of
+the graph of configurations is equal to $\ell$ is $D^P$-hard.
+</p></div><div class="commentbar"><p/></div></summary><updated planet:format="December 16, 2018 04:35 PM">2018-12-16T16:35:05Z</updated><author><name></name></author><source><id>http://arxiv.org/</id><category term="Computer Science -- Data Structures and Algorithms"/><link href="http://arxiv.org/" rel="alternate" type="text/html"/><link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml"/><subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle><title>cs.DS updates on arXiv.org</title><updated planet:format="December 14, 2018 01:30 AM">2018-12-14T01:30:00Z</updated><planet:module>toc</planet:module><planet:format>rss10</planet:format><planet:http_etag>&quot;Fri, 14 Dec 2018 01:30:00 GMT&quot;, &quot;1544751000&quot;</planet:http_etag><planet:filters>arXiv.py</planet:filters><planet:name>arXiv.org: Data structures and Algorithms</planet:name><planet:http_last_modified>Fri, 14 Dec 2018 01:30:00 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:css-id>arxiv-org-data-structures-and-algorithms</planet:css-id><planet:items_per_page>40</planet:items_per_page><planet:face>corr.jpeg</planet:face><planet:http_status>200</planet:http_status></source></entry>

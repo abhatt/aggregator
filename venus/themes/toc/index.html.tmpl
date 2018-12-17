@@ -15,20 +15,23 @@
 <title><TMPL_VAR name></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="generator" content="<TMPL_VAR generator ESCAPE="HTML">">
-<link rel="stylesheet" href="/css/twocolumn.v1.css" type="text/css" media="screen">
-<link rel="stylesheet" href="/css/singlecolumn.css" type="text/css" media="handheld, print">
+<link rel="stylesheet" href="css/twocolumn.css" type="text/css" media="screen">
+<link rel="stylesheet" href="css/singlecolumn.css" type="text/css" media="handheld, print">
 <link rel="stylesheet" href="css/main.css" type="text/css" media="@all">
 <link rel="icon" href="/favicon.ico">
-<script type="text/javascript" src="/library/MochiKit.js"></script> 
-<script type="text/javascript" src="/js/main.js"></script> 
+<script type="text/javascript" src="library/MochiKit.js"></script> 
+<script type="text/javascript" src="js/main.js"></script> 
 <script type="text/javascript" src="js/main.js"></script> 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    "HTML-CSS": { availableFonts: [],
+      webFont: 'TeX' }
 });
 </script>
- <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+ <script type="text/javascript" 
+	 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML-full">
+ </script>
 
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -56,21 +59,21 @@ Stay up to date
 <h3>Blogs/feeds</h3>
 <div class="subscriptionlist">
 <TMPL_LOOP Channels>
-<a class="feedlink" href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"> <img src="/images/feed-icon.png" width=20 height=20 alt="(feed)" class="feedicon" border=0></a> 
+<a class="feedlink" href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"> <img src="images/feed-icon.png" width=20 height=20 alt="(feed)" class="feedicon" border=0></a> 
 <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF><TMPL_IF message>class="message" title="<TMPL_VAR message ESCAPE="HTML">"</TMPL_IF><TMPL_UNLESS message>title="<TMPL_VAR title_plain ESCAPE="HTML">"</TMPL_UNLESS>><TMPL_VAR name></a>
 <br>
 </TMPL_LOOP>
 </div>
 
 <p>
-Maintained by <A href="http://randomwalker.info/">Arvind Narayanan</a> (<a href="mailto:arvindn@cs.princeton.edu">email</a>).
+Maintained by <A href="http://randomwalker.info/">Arnab Bhattacharyya &amp; Suresh Venkatasubramanian</a> (<a href="mailto:arbhat+cstheoryfeed@gmail.com">email</a>).
 </p>
 
 <p>
 Last updated <span class="datestr">at <TMPL_VAR date> UTC</span>.
 <p>
 Powered by<br>
-<a href="http://www.planetplanet.org/"><img src="/images/planetplanet.png" alt="Planet" border="0"></a>
+<a href="http://www.intertwingly.net/code/venus/planet/"><img src="images/planet.png" alt="Planet Venus" border="0"></a>
 <p/><br/><br/>
 </div>
 <div class="maincontent">

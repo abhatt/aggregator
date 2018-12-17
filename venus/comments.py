@@ -36,7 +36,7 @@ def getUrls(opts=opts):
 	return list(urls)
 
 def updateCache(urls, opts=opts):
-	cachefile = opts.cache_directory + "/comments"
+	cachefile = opts.cache_directory + "comments"
 	try: postcache = pickle.load(open(cachefile))
 	except: postcache = {}
 	for url in urls:
@@ -73,7 +73,7 @@ def updateCache(urls, opts=opts):
 				return ""
 			return text
 		#TODO: delete everything from this directory
-		open(opts.output_dir + "/comments/" + postcache[url].hash + ".json", "w").write(json.dumps([\
+		open(opts.output_dir + "comments/" + postcache[url].hash + ".json", "w").write(json.dumps([\
 			dict((tag, tag2Text(tag, e[1])) for tag in "title author content published".split())\
 				for e in postcache[url].entries]))
 	try:
@@ -89,7 +89,7 @@ def main():
 	postcache = updateCache(urls)
 	
 	index = dict((url, {'length':len(postcache[url].entries), 'hash':postcache[url].hash}) for url in urls if url in postcache) 
-	open(opts.output_dir + "/comments/index.json", "w").write(json.dumps(index))
+	open(opts.output_dir + "comments/index.json", "w").write(json.dumps(index))
 
 def processUrl(url):
 	try: entries = parse(urllib2.urlopen(url)).getElementsByTagName("entry")

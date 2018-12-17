@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>tag:blogger.com,1999:blog-3722233.post-4491418763182334686</id><link href="https://blog.computationalcomplexity.org/2018/10/muffin-math.html" rel="alternate" type="text/html"/><title>Muffin Math</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><b>Lance: </b>It's Friday afternoon and the Dagstuhl workshop has ended. We have some time before we need take off so how about one final typecast.<br/>
+<br/>
+<b>Bill: </b>Always a good idea.<br/>
+<br/>
+<b>Lance: </b>First the exciting news, Nitin Saxena won the <a href="http://ssbprize.gov.in/">Shanti Swarup Bhatnagar prize</a> for 2018, <br/>
+<table cellpadding="0" cellspacing="0" class="tr-caption-container" style="float: right; margin-left: 1em; text-align: right;"><tbody>
+<tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-SaGHaelCUQU/W7KK8Yy3mtI/AAAAAAABjjQ/6Qw1qL8YAz4gXTfMv9qvqD-EU9sXhDMEgCKgBGAs/s1600/IMG_20180926_180801.jpg" style="clear: right; margin-bottom: 1em; margin-left: auto; margin-right: auto;"><img border="0" height="200" src="https://1.bp.blogspot.com/-SaGHaelCUQU/W7KK8Yy3mtI/AAAAAAABjjQ/6Qw1qL8YAz4gXTfMv9qvqD-EU9sXhDMEgCKgBGAs/s200/IMG_20180926_180801.jpg" width="150"/></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Nitin Saxena</td></tr>
+</tbody></table>
+according to the many Indians at Dagstuhl, the most prestigious science prize in the country. The awards were announced on Wednesday during the workshop. He's the S in AKS.<br/>
+<br/>
+<b>Bill: </b>That's really impressive. He was only two-years old when AKS had log-depth sorting networks.<br/>
+<br/>
+<b>Lance: </b>Bill, you moron. You're thinking of <a href="https://doi.org/10.1145/800061.808726">Ajtai-Komlós-Szemerédi</a>. I'm talking Agrawal-Kayal-Saxena <a href="http://annals.math.princeton.edu/2004/160-2/p12">Primes in P</a>, topic of my <a href="https://blog.computationalcomplexity.org/2002/08/this-has-been-exciting-summer-for.html">second ever blog post</a>. Nitin, an undergrad at that time, didn't just sit on his laurels--he has had awesome results on algebraic circuit complexity that truly justify this prize.<br/>
+<br/>
+<b>Bill: </b>Well congrats to Nitin. Moving on, let's talk math.<br/>
+<br/>
+<b>Lance: </b>We're at Dagstuhl so we have to call it computer science.<br/>
+<br/>
+<b>Bill: </b>Ronen Shaltiel gave a great but depressing talk, <a href="https://eccc.weizmann.ac.il/report/2018/061/">Indistinguishability by adaptive procedures with advice, and lower bounds on hardness amplification proofs</a>.<br/>
+<br/>
+<b>Lance: </b>Nobody sings the <a href="https://www.youtube.com/watch?v=aDunXIMNE7A">Dagstuhl Blues</a>.<br/>
+<br/>
+<b>Bill: </b>Suppose you had a hard function and want to covert it to a harder function, known in the biz as hardness amplification. For constant depth circuits we have hardness results but no known process for amplification. For larger classes, like constant depth circuits with threshold gates, we do know ways to amplify.<br/>
+<br/>
+<b>Lance: </b>But we have not hardness results there? Where are you going with this?<br/>
+<br/>
+<b>Bill: </b>Ronen put it nicely, &quot;We can only amplify hardness where we don't have it&quot;. Ronen and his colleagues proved results along those lines. Lance, does that depress you.<br/>
+<br/>
+<b>Lance: </b>Not as much as the sprained ankle that made me miss that talk. My turn to pick a favorite talk. I loved Michael Forbes <a href="https://doi.org/10.1145/3188745.3188792">Hitting Sets for the Closure of Small Circuits</a>. You take algebraic circuits with a parameter epsilon and take the limit as epsilon goes to zero. Forbes and Amir Shpilka show a PSPACE algorithm to find small sets containing non-zeros of these functions. These kinds of functions are studied in the <a href="https://arxiv.org/abs/1304.6333">GCT approach</a> to lower bounds.<br/>
+<br/>
+<b>Bill: </b>What lower bounds is this aiming to solve?<br/>
+<br/>
+<b>Lance: </b>Showing the computation difference between the determinant and the permanent.<br/>
+<br/>
+<b>Josh Alman: </b>You've left out the most exciting part of the conference.<br/>
+<br/>
+<b>Bill and Lance: </b>So Josh, what was that?<br/>
+<br/>
+<b>Josh Alman: </b>The world debut debut performance of Stud Muffin and Smilin' Sam singing &quot;<a href="https://www.youtube.com/watch?v=4xQFlsK7jKg">Do You Work on Muffin Math?</a>&quot;<br/>
+<br/>
+<br/>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<br/>
+<b>Lance: </b>That awesome duo looks familiar Bill. Where I have seen them before?<br/>
+<br/>
+<b>Bill: </b>That Sam can really tickle the ivories.<br/>
+<br/>
+<b>Lance: </b>And Stud was definitely in the room.<br/>
+<br/>
+<b>Bill: </b>On that note, take us out.<br/>
+<br/>
+<b>Lance: </b>In a complex world, keep it simple.</div><div class="commentbar"><p/></div></summary><updated planet:format="October 01, 2018 09:06 PM">2018-10-01T21:06:00Z</updated><published planet:format="October 01, 2018 09:06 PM">2018-10-01T21:06:00Z</published><author><name>Lance Fortnow</name><email>noreply@blogger.com</email></author><source><id>tag:blogger.com,1999:blog-3722233</id><category term="typecast"/><category term="focs metacomments"/><author><name>Lance Fortnow</name><email>noreply@blogger.com</email></author><link href="https://blog.computationalcomplexity.org/" rel="alternate" type="text/html"/><link href="https://blog.computationalcomplexity.org/feeds/posts/default?alt=rss" rel="self" type="application/atom+xml"/><subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle><title>Computational Complexity</title><updated planet:format="December 17, 2018 01:56 AM">2018-12-17T01:56:57Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;3c48828af0b9b548c409eba7b894fc342a0679ccd23a3f1db96c1212435d64c9&quot;</planet:http_etag><planet:http_last_modified>Sun, 16 Dec 2018 21:24:54 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>computational-complexity</planet:css-id><planet:face>gasarch.png</planet:face><planet:name>Computational Complexity</planet:name><planet:http_status>200</planet:http_status></source></entry>

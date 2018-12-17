@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>https://eccc.weizmann.ac.il/report/2018/209</id><link href="https://eccc.weizmann.ac.il/report/2018/209" rel="alternate" type="text/html"/><title>TR18-209 |  AC0 unpredictability | 
+
+	Emanuele Viola</title><summary>We prove that for every distribution $D$ on $n$ bits with Shannon
+entropy $\ge n-a$ at most $O(2^{d}a\log^{d+1}g)/\gamma{}^{5}$ of
+the bits $D_{i}$ can be predicted with advantage $\gamma$ by an
+AC$^{0}$ circuit of size $g$ and depth $d$ that is a function of
+all the bits of $D$ except $D_{i}$. This answers a question by Meir
+and Wigderson (2017) who proved a corresponding result for decision
+trees.
+
+We also show that there are distributions $D$ with entropy $\ge n-O(1)$
+such that any subset of $O(n/\log n)$ bits of $D$ on can be distinguished
+from uniform by a circuit of depth $2$ and size $\poly(n)$. This
+separates the notions of predictability and distinguishability in
+this context.<div class="commentbar"><p/></div></summary><updated planet:format="December 08, 2018 12:28 AM">2018-12-08T00:28:19Z</updated><published planet:format="December 08, 2018 12:28 AM">2018-12-08T00:28:19Z</published><source><id>https://example.com/</id><author><name>ECCC papers</name></author><link href="https://example.com/" rel="alternate" type="text/html"/><link href="https://example.com/feeds/reports/" rel="self" type="application/atom+xml"/><subtitle>Latest Reports published at https://eccc.weizmann.ac.il</subtitle><title>ECCC - Reports</title><updated planet:format="December 17, 2018 05:29 AM">2018-12-17T05:29:16Z</updated><planet:bozo>false</planet:bozo><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:face>eccc.png</planet:face><planet:name>ECCC papers</planet:name><planet:css-id>eccc-papers</planet:css-id><planet:http_status>301</planet:http_status><planet:http_location>https://eccc.weizmann.ac.il//feeds/reports/</planet:http_location></source></entry>

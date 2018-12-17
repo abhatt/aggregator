@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://grigory.github.io/blog/the-simple-economics-of-algorithms-for-big-data</id><link href="http://grigory.github.io/blog/the-simple-economics-of-algorithms-for-big-data/" rel="alternate" type="text/html"/><title xml:lang="en">The Simple Economics of Algorithms for Big Data</title><content type="xhtml" xml:lang="en"><div xmlns="http://www.w3.org/1999/xhtml"><p>
+In this blog post I want to suggest a simple reason why you should study your algorithms <b>really</b> well if you want to design algorithms that deal with big data.
+This reason comes from <b>the way billings offered by cloud services work</b>.
+</p>
+<p>
+Maybe you remember yourself taking that algorithms class and thinking: “Who really cares if that algorithm uses a bit more time? Can't we just wait a little longer?”.
+Or “Ok, we can save some space here, but if it all fits into my RAM anyway then why bother?”.
+These are both great reasons not to care too much about efficiency of your algorithms if your data is small, fits into RAM and the running times aren't significant enough to matter anyway.
+So you would go on to program your favorite video game and not care about that professor talking about all that big-Oh nonsense.
+And in the short run you would be right. While you are developing a prototype of your favorite video game you shouldn't care.
+When I was working at a startup I remember myself learning the hard way that <a href="http://c2.com/cgi/wiki?PrematureOptimization">premature optimization is the root of all evil</a>.
+
+</p>
+<div align="center"><img alt="abstruse-goose-video-games" src="http://grigory.github.io/blog/pics/abstruse-goose-video-games.png"/> </div>
+
+<p><br/></p>
+<p>
+However, once your video game becomes successful and you get to deal with big data that has to be stored and processed in the cloud this reasoning starts to fall short.
+Let's say you developed <a href="https://en.wikipedia.org/wiki/Candy_Crush_Saga">Candy Crush Saga</a> (<a href="http://www.standard.co.uk/business/business-news/candy-crush-saga-owner-king-digital-entertainment-valued-at-7bn-9216058.html">valued at $7bn in 2014</a>) and now you are interested in doing some data analytics about your &gt;10 million active users.
+You are now considering outsourcing your data storage and computation to the cloud.
+Here is where you might want to learn why the design of space and time-efficient algorithms matters for the bottom line of your future business. 
+
+</p><h1>100x more efficient algorithms = 100x less money in billings</h1>
+
+So that time and space your professor was talking about – what does it have to do with your spending on the cloud services?
+The answer is surprisingly simple – <b>if you need 100x more time and space then your billing increases 100 times</b>.
+Below I used the pricing calculator that comes with Google Compute Engine to see how the cost scales if I want to use 100/1000/10000 identical machines for a year.
+<div align="center"><img alt="abstruse-goose-video-games" src="http://grigory.github.io/blog/pics/cloud-pricings.png"/> </div>
+<br/>
+<p>
+I was myself surprised to find this out since I expected some economy of scale to kick in. In fact, sometimes it does but usually is quite negligible. Say, you can get an X% discount but that doesn't help much against linear scaling.
+</p>
+
+
+
+
+
+<p/>
+
+  <p><a href="http://grigory.github.io/blog/the-simple-economics-of-algorithms-for-big-data/">The Simple Economics of Algorithms for Big Data</a> was originally published by Grigory Yaroslavtsev at <a href="http://grigory.github.io/blog">The Big Data Theory</a> on January 20, 2016.</p></div><div class="commentbar"><p/></div></content><updated planet:format="January 20, 2016 12:00 AM">2016-01-20T00:00:00Z</updated><published planet:format="January 20, 2016 12:00 AM">2016-01-20T00:00:00Z</published><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog</uri></author><source><id>http://grigory.github.io/blog/</id><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog/</uri></author><link href="http://grigory.github.io/blog/feed.xml" rel="self" type="application/atom+xml"/><link href="http://grigory.github.io/blog" rel="alternate" type="text/html"/><title xml:lang="en">The Big Data Theory</title><updated planet:format="May 27, 2018 09:46 AM">2018-05-27T09:46:42Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;5b0a7e85-194be&quot;</planet:http_etag><planet:http_last_modified>Sun, 27 May 2018 09:46:45 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>grigory-yaroslavtsev</planet:css-id><planet:face>yaroslavtsev.jpeg</planet:face><planet:name>Grigory Yaroslavtsev</planet:name><planet:http_status>200</planet:http_status></source></entry>

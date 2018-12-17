@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://learningwitherrors.org/2016/08/12/pseudocalibration-for-planted-clique-sos</id><link href="http://learningwitherrors.org/2016/08/12/pseudocalibration-for-planted-clique-sos/" rel="alternate" type="text/html"/><title>Pseudo-calibration for Planted Clique Sum-of-Squares Lower Bound</title><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><div style="display: none;"/>
+<p>
+
+</p><p>
+ Recently, Barak, Hopkins, Kelner, Kothari, Moitra and Potechin [<a href="http://learningwitherrors.org/atom.xml#ref-BHKKMP16">BHKKMP16</a>] proved an essentially tight Sum-of-Squares lower bound for the <em>planted clique</em> problem. Their result can be divided into two main parts: coming up with the <em>pseudo-distribution</em> and proving positivity of such pseudo-distribution. In this short blog, we summarize the first part of the paper, which provides a general systematic way to come up with pseudo-distributions for problems other than the planted clique problem, without going into details of the proof. We do not touch on the second part, which is more technically involved, here but we will hopefully do so in future posts.
+<!--more-->
+</p><p>
+</p><h2 class="tex">1. SoS Lower Bounds and the Planted Clique Problem </h2>
+<p>
+In this section, we provide some background for readers unfamiliar with proving Sum-of-Squares lower bounds and the planted clique problem. Those who are accustomed to the topic can skip this section. For SoS, we use notations from <a href="http://learningwitherrors.org/2016/06/23/intro-sos/">Tselil's blog</a> on Sum-of-Squares Hierarchy, which is also a good place to start for those unfamiliar with SoS Hierarchy.
+</p><p>
+In this blog, we do not need the optimization version of SoS Hierarchy but we will only use a feasibility one. Recall that, given a polynomial feasibility problem of the form \[Q = \left\{x \in \mathbb{R}^n : \forall i \in [m], g_i(x) = 0\right\},\] the degree-$2d$ Sum-of-Squares relaxation of the problem, which can be solved in $n^{O(d)}$ time, is<sup class="footnotemark"><a href="http://learningwitherrors.org/atom.xml#footnote1">1</a></sup><span class="sidenote" id="footnote1"><a href="http://learningwitherrors.org/atom.xml#footnote1" name="footnote1">1.</a> Note that, in Tselil's blog, the positivity condition is written as the pseudo-moment matrix being positive semidefinite but it is not hard to see that this is the same as requiring that $\tE[q^2] \geq 0$ for every $q$ with $\deg(q) \leq d$. </span> \begin{align} \label{eq:sos} \sos_d(Q) = \left\{\tE : \begin{array}{lr} {\tE}: \{q: \deg(q) \leq 2d\} \rightarrow \mathbb{R} \text{ is a linear operator with } \tE[1] = 1, \\ \forall q \text{ with } \deg(q) \leq d, \tE[q^2] \geq 0, \\ \forall i \in [m] \forall q \text{ with } \deg(q) \leq 2d - \deg(g_i), \tE[g_i q] = 0. \end{array} \right\}. \end{align}
+</p><p>
+Roughly speaking, if we want to show that degree-$2d$ SoS fails to certify that a polynomial feasibility problem $Q$ is infeasible, we need to come up with a degree-$2d$ pseudo-distribution $\tE$ that satisfies the conditions in (\ref{eq:sos}). For concreteness, let us consider the <em>planted clique</em> problem defined as follows.
+</p><p>
+
+</p><blockquote><b>Definition 1 (Planted Clique$(n, k)$)</b> <em> Given as an input a graph $G = (V, E)$ drawn from one of the two following distributions (each with probability $1/2$):
+
+<ol> <li> $\cG(n, 1/2)$: the Erdos-Renyi random graph of $n$ vertices where each edge is included with probability 1/2, </li><li> $\cG(n, 1/2, k)$: the planted distribution, in which a graph $G$ is first drawn from $\cG(n, 1/2)$. Then, $k$ vertices of $G$ are chosen uniformly at random and an edge between each pair of chosen vertices are added to $G$.
+</li></ol>
+
+ The goal is to determine, with correctness probability $1/2 + \varepsilon$ for some constant $\varepsilon &gt; 0$, which distribution $G$ is drawn from. </em></blockquote>
+
+<p>
+
+
+</p><p>
+In this blog, we always restrict ourselves to the case where $k \gg \log n$ so that the maximum clique sizes of the two cases are different. Since the largest clique in $\cG(n, 1/2)$ is of size $O(\log n)$ with high probability, brute-force search solves the planted clique problem with high probability in $n^{O(\log n)}$ time. On the other hand, the best known polynomial-time algorithm works only when $k = \Omega(\sqrt{n})$ [<a href="http://learningwitherrors.org/atom.xml#ref-AKS98">AKS98</a>]. A natural question is of course whether the SoS Hierarchy can do any better than this.
+</p><p>
+The most widely-used formulation of planted clique in terms of polynomial feasibility, and the one used in [<a href="http://learningwitherrors.org/atom.xml#ref-BHKKMP16">BHKKMP16</a>], is to formulate it as “does $G$ have a clique of size $k$?”. For convenience, let $V = [n] = \{1, \dots, n\}$. This formulation can be written as follows.
+</p><p>
+\begin{align*} \cli_k(G) = \left\{x \in \mathbb{R}^n : \begin{array}{lr} \forall i \in [n], x_i^2 = x_i, \\ \forall (i, j) \notin E, x_ix_j = 0, \\ \sum_{i \in [n]} x_i = k \end{array} \right\} \end{align*}
+</p><p>
+When the constraints are satisfied, $x_i$ is simply a boolean indicator variable whether $i$ is included in the clique. If we can solve $\cli_k(G)$ in polynomial time, then we are done because $G \sim \cG(n, 1/2, k)$ always has clique of size $k$ whereas the maximum clique of $G \sim \cG(n, 1/2)$ is of size $O(\log n)$ w.h.p. Thus, there is always a solution in $\cli_k(G)$ for $G \sim \cG(n, 1/2, k)$ but, w.h.p., there is no feasible solution for $G \sim \cG(n, 1/2)$. But of course solving $\cli_k(G)$ is NP-hard so we will try to relax it using degree-$2d$ SoS which we can solve in $n^{2d}$ time.
+</p><p>
+Again, when $G \sim \cG(n, 1/2, k)$, $\sos_d(\cli_k(G))$ remains feasible. If we want to tell which distribution $G$ is drawn from by looking only at whether $\sos_d(\cli_k(G))$ is feasible, we need that, when $G \sim \cG(n, 1/2)$, $\sos_d(\cli_k(G))$ is infeasible with probability at least $\varepsilon$. The main result of [<a href="http://learningwitherrors.org/atom.xml#ref-BHKKMP16">BHKKMP16</a>] is that this is impossible. In particular, they show the following:
+</p><p>
+
+</p><blockquote><b>Theorem 2</b> <em> <a name="thmmain-clique"/> For every $d \ll \log n$, when $k \leq n^{1/2 - O(\sqrt{d/\log n})}$ and $G$ is drawn from $\cG(n, 1/2)$, $\sos_d(\cli_k(G))$ is feasible with high probability. </em></blockquote>
+
+<p>
+
+
+</p><p>
+In other words, Barak et al.'s result says that the SoS approach to planted clique is no better (up to the $O(\sqrt{d/\log n})$ factor in the exponent) than the known algorithm from [<a href="http://learningwitherrors.org/atom.xml#ref-AKS98">AKS98</a>].
+</p><p>
+From how $\sos_d(\cli_k(G))$ is defined, proving Theorem <a href="http://learningwitherrors.org/atom.xml#thmmain-clique">2</a> boils down to find a linear operator ${\tE}_G: \{q: \deg(q) \leq 2d\} \rightarrow \mathbb{R}$ for each graph $G$ such that, if $G = ([n], E)$ is drawn from $\cG(n, 1/2)$, the following conditions are satisfied with high probability:
+
+</p><ol> <li> $\tE_G[1] = 1$, </li><li> $\forall i \in [n] \forall q$ with $ \deg(q) \leq 2d - 2, \tE_G[x_i^2q] = \tE_G[x_iq]$, </li><li> $\forall (i, j) \notin E \forall q$ with $\deg(q) \leq 2d - 2,\tE_G[x_ix_jq] = 0$, </li><li> $\tE_G[\sum_{i \in [n]} x_i] = k$, </li><li> $\forall q$ with $\deg(q) \leq d, \tE_G[q^2] \geq 0$.
+</li></ol>
+
+
+<p>
+</p><h2 class="tex">2. Pseudo-calibration for Planted Clique </h2>
+<p>
+Coming up with degree-$2d$ pseudo-distribution $\tE_G$ with desired properties stated in the previous section is particularly hard for planted clique and past attempts often involve some ad-hoc fixes that prevent them from getting tight bound for large $d$. This is where Barak et al.'s so-called <em>pseudo-calibration</em> method, which is a systematic way to derive $\tE_G$, comes in. Since the method is more of an intuitive heuristic rather than a provable approach, we will be informal here. We also note that the explanation given here is somewhat different than that in [<a href="http://learningwitherrors.org/atom.xml#ref-BHKKMP16">BHKKMP16</a>] and the readers should consult the full paper for a more thorough view of pseudo-calibration.
+</p><p>
+Let us take a step back and think about our algorithm for planted clique for a moment. Given $G$, we try to solve $\sos_d(\cli_k(G))$. If it is infeasible, then we know for certain that $G$ is drawn from $\cG(n, 1/2)$. Otherwise, we do not seem to gain anything. However, this may not be entirely true; we actually get back $\tE_G$. One thing we can do here is to pick $f_G$ (which can depend on $G$) of degree (with respect to $x$) at most $2d$ as a test function and ask for $\tE_G[f_G]$. If the distributions of $\tE_G[f_G]$ under $G \sim \cG(n, 1/2)$ and $G \sim \cG(n, 1/2, k)$ are “very different”<sup class="footnotemark"><a href="http://learningwitherrors.org/atom.xml#footnote2">2</a></sup><span class="sidenote" id="footnote2"><a href="http://learningwitherrors.org/atom.xml#footnote2" name="footnote2">2.</a> In other words, they are distinguishable in polynomial time. </span>, then we should be able to tell $G$'s from the two distributions apart by just looking at $\tE_G[f_G]$. Hence, not only that $\sos_d(\cli_k(G))$ must be feasible with high probability when $G \sim \cG(n, 1/2)$ but the distributions of $\tE_G[f_G]$ when $G \sim \cG(n, 1/2)$ and when $G \sim \cG(n, 1/2, k)$ must also be indistinguishable in polynomial time for every test function $f_G$. An implication of this is that the expectation of $\tE_G[f_G]$ over the two distributions are roughly equal, i.e., \begin{align*} \E_{G \sim \cG(n, 1/2)} \tE_G[f_G] \approx \E_{G \sim \cG(n, 1/2, k)} \tE_G[f_G]. \end{align*}
+</p><p>
+We of course do not know what $\tE_G$ is even when $G$ is drawn from $\cG(n, 1/2, k)$ so the above equality does not tell us much yet. But recall that $\tE_G$ is our fake solution and we want it to resemble the actual solution as much as possible. Hence, a reasonable heuristic here is to try to make $\E_{G \sim \cG(n, 1/2, k)} \tE_G[f_G]$ roughly equal to $\E_{G \sim \cG(n, 1/2, k)} f_G(x_G)$ where $x_G$ denote the actual solution, i.e., the indicator vector for the maximum clique in $G$.
+</p><p>
+For convenience, let us write $(G, x) \sim \cG(n, 1/2, k)$ to denote $G$ drawn from $\cG(n, 1/2, k)$ and $x$ being the indicator vector whether each vertex is included as part of the planted $k$-clique. Under this notation, the aforementioned condition can be written as \begin{align*} \E_{G \sim \cG(n, 1/2, k)} \tE_G[f_G] \approx \E_{(G, x) \sim \cG(n, 1/2, k)} f_G(x). \end{align*}
+</p><p>
+Combining the above two equations, we get \begin{align} \label{eq:calib} \E_{G \sim \cG(n, 1/2)} \tE_G[f_G] \approx \E_{(G, x) \sim \cG(n, 1/2, k)} f_G(x). \end{align}
+</p><p>
+Condition (\ref{eq:calib}) is what Barak et al. called <em>pseudo-calibration</em><sup class="footnotemark"><a href="http://learningwitherrors.org/atom.xml#footnote3">3</a></sup><span class="sidenote" id="footnote3"><a href="http://learningwitherrors.org/atom.xml#footnote3" name="footnote3">3.</a> In [<a href="http://learningwitherrors.org/atom.xml#ref-BHKKMP16">BHKKMP16</a>], the pseudo-calibration condition is in fact slightly stronger that stated here; equality is required instead of approximate equality. However, it does not matter anyway since there will be approximations in subsequent calculations. </span>. As noted in the paper, this condition is quite strong. For example, for fixed $i, j \in [n]$ and $q$ with $\deg(q) \leq 2d - 2$, if we define $f$ as \begin{align*} f_G(x) = \begin{cases} 0 &amp; \text{ if } (i, j) \in E, \\ x_ix_jq(x) &amp; \text{ otherwise}, \end{cases} \end{align*} then $f_G(x)$ is always zero on the right hand side. Hence, $\E_{G \sim \cG(n, 1/2)} \tE_G[f_G] \approx 0$. If we assume that $\tE_G[f_G]$ is non-negative, then Condition 3 at the end of the previous section is almost immediately satisfied. In fact, as we will see next, Condition (\ref{eq:calib}) almost fully determines $\tE_G$ for every $G$.
+</p><p>
+</p><h3 class="tex">2.1. From Pseudo-Calibration to Pseudo-Distribution</h3>
+<p>
+We will now see how to arrive at $\tE_G$ from the pseudo-calibration condition. As stated earlier, the condition is quite strong; in fact, it is too that it cannot hold for every $f_G$. For instance, we can pick $f_G$ to simply be the indicator function of whether $G$ has a clique of size $k$. By doing so, the left hand side of (\ref{eq:calib}) is approximately zero whereas the right hand side is one. However, we are “cheating” by picking such $f_G$ because we do not even know how to compute this test function in polynomial time! Hence, roughly speaking, we need to restrict $f_G$ to only those that are not more “powerful” that the SoS relaxation itself.
+</p><p>
+To state the exact condition we enforce on $f_G$, let us think of $f_G(x)$ as a function $f(G, x)$ of both $G$ and $x$ where the graph $G$ is encoded naturally as a string in $\{\pm 1\}^{[n] \choose 2}$, i.e., the $(i, j)$-index of the input is $+1$ if there is an edge between $i$ and $j$ and $-1$ otherwise. Now, we can write $f$ as a polynomial on both $G$ and $x$: \begin{align*} f(G, x) = \sum_{T \subseteq {[n] \choose 2}, S \subseteq [n]} a_{(T, S)} \chi_T(G) x_S \end{align*} where $\chi_T(G)$ and $x_S$ denote $\prod_{e \in T} G_e$ and $\prod_{i \in S} x_i$ respectively, and, $a_{(T, S)}$'s are the coefficients of the polynomial. We will require the pseudo-calibration condition to hold only for $f_G$ such that each monomial depends on at most $\tau$ vertices where $\tau = O(d)$ is a truncation threshold. In other words, we only restrict ourselves to $f$ that can be written as \begin{align*} f(G, x) = \sum_{T \subseteq {[n] \choose 2}, S \subseteq [n] \atop |\cV(T) \cup S| \leq \tau} a_{(T, S)} \chi_T(G) x_S \end{align*} where $\cV(T)$ is the set of all vertices which are endpoints of edges in $T$. The intuition behind this heuristic is that, in the conditions on $\tE_G$ imposed by the SoS relaxation, each monomial involves at most $2d$ vertices because $\tE_G$ is defined only on polynomials on $x$ of degree at most $2d$. As a result, each monomial appearing in $f(G, x)$ should involve no more than $O(d)$ vertices in order to limit its “power” to be not much more than the SoS relaxation.
+</p><p>
+Now, let us use the pseudo-calibration condition to determine $\tE_G$. Fixed a subset $S \subseteq [n]$ of size at most $2d$, we will compute $\tE_G[x_S]$ for the monomial $x_S$. Note that, since $\tE_G$ is linear and $\tE_G[x_i^2] = x_i$ for all $i \in [n]$, these $\tE_G[x_S]$'s uniquely determine $\tE_G$. By viewing $\tE_G[x_S]$ as a function of $G$, $\tE_G[x_S]$ can be written as fourier expansion \begin{align*} \tE_G[x_S] = \sum_{T \subseteq {[n] \choose 2}} \widehat{\tE_G[x_S]}(T) \chi_T(G). \end{align*} The final heuristic employed by Barak et al. is to enforce $\tE_G[x_S]$ to be low degree by letting $\widehat{\tE_G[x_S]}(T) = 0$ for every $T$ with $|\cV(T) \cup S| &gt; \tau$. This heuristic makes sense since $\tE_G$ must be output by the SoS relaxation solver, which runs in $n^{O(d)}$ time; hence, $\tE_G$ cannot be too hard to compute. More importantly, as we will see shortly, this condition allows us to almost uniquely determine $\tE_G$ from the pseudo-calibration condition.
+</p><p>
+Recall that each fourier coefficient $\widehat{\tE_G[x_S]}(T)$ is simply equal to $\E_{G \sim \cG(n, 1/2)} \tE_G[x_S \chi_T(G)].$ Plugging in the pseudo-calibration condition with $f = x_S\chi_T(G)$, this is approximately $\E_{(G, x) \sim \cG(n, 1/2, k)} [x_S\chi_T(G)]$. It is not hard to see that this expression is equal to the probability that every vertex in $\cV(T) \cup S$ is in the planted clique, which is roughly $(k/n)^{|\cV(T) \cup S|}$ when $|\cV(T) \cup S|$ is small. Indeed, we will set $\widehat{\tE_G[x_S]}(T)$ to be exactly this. In other words, the final pseudo-distribution is \begin{align*} \tE_G[x_S] = \sum_{T \subseteq {[n] \choose 2} \atop |\cV(T) \cup S| \leq \tau} \left(\frac{k}{n}\right)^{|\cV(T) \cup S|} \chi_T(G). \end{align*}
+</p><p>
+It is not hard to see that $\tE_G$ indeed satisfies the pseudo-calibration condition for $f$'s of our interest. As explained right before the beginning of this subsection, this almost immediately implies that the third condition required for $\tE_G$ is satisfied; it is also pretty easy to check that the condition is indeed true (see Lemma 5.5 in the paper). Using concentration inequalities, Barak et al. also show that $\tE_G[1] = 1 \pm o(1)$ and $\tE_G[\sum_{i \in [n]} x_i] = k \pm o(1)$ (see full proof in Appendix A.2 of the paper). Note that while these two conditions are only approximately satisfied, $\tE_G$ can be scaled so that they are exactly satisfied as well. As mentioned briefly earlier, the proof of the positivity condition $\tE_G[q^2] \geq 0$ is much harder and is the paper's main technical contribution. We do not attempt to discuss it here but we will try to blog about it in the future.
+</p><p>
+</p><h2 class="tex">3. Further Reading </h2>
+<p>
+The authors of [<a href="http://learningwitherrors.org/atom.xml#ref-BHKKMP16">BHKKMP16</a>] have given talks on the paper and some of them are available online, such as <a href="https://www.youtube.com/watch?v=ZmFOsAB7Y1k">Moitra's</a> and <a href="https://www.youtube.com/watch?v=H2C2ZdgynX4">Kothari's</a>. Barak also wrote <a href="https://windowsontheory.org/2016/04/13/bayesianism-frequentism-and-the-planted-clique-or-do-algorithms-believe-in-unicorns/">a blog</a> regarding pseudo-calibration. All the materials mentioned discuss the pseudo-calibration in much more detail than in this post. Moitra's talk also contains the proof sketch of positivity of the pseudo-distribution, which is not covered in this blog post.
+</p><p>
+Apart from the paper, I am not aware of the pseudo-calibration technique being used to prove new lower bounds for other problems yet. I will update this section when I come across new results based on pseudo-calibration.
+</p><p>
+<br/></p><hr/><h3>References</h3>
+<p>
+<a name="ref-AKS98">[AKS98]</a> Noga Alon, Michael Krivelevich, and Benny Sudakov.
+ Finding a large hidden clique in a random graph.
+ <em>Random Struct. Algorithms</em>, 13(3-4):457--466, 1998.
+</p><p>
+
+</p><p>
+<a name="ref-BHKKMP16">[BHKKMP16]</a> Boaz Barak, Samuel~B. Hopkins, Jonathan~A. Kelner, Pravesh Kothari, Ankur
+  Moitra, and Aaron Potechin.
+ A nearly tight sum-of-squares lower bound for the planted clique
+  problem.
+ <em>CoRR</em>, abs/1604.03084, 2016.
+</p><p/></div><div class="commentbar"><p/></div></content><updated planet:format="August 12, 2016 12:00 AM">2016-08-12T00:00:00Z</updated><published planet:format="August 12, 2016 12:00 AM">2016-08-12T00:00:00Z</published><author><name>Pasin Manurangsi</name></author><source><id>http://learningwitherrors.org/atom.xml</id><link href="http://learningwitherrors.org/atom.xml" rel="self" type="application/atom+xml"/><link href="http://learningwitherrors.org" rel="alternate" type="text/html"/><title>Learning With Errors</title><updated planet:format="January 04, 2017 04:27 AM">2017-01-04T04:27:34Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:http_etag>W/&quot;586c79b7-2a1fe&quot;</planet:http_etag><planet:face>lwe.jpeg</planet:face><planet:name>Learning with Errors: Student Theory Blog</planet:name><planet:css-id>learning-with-errors-student-theory-blog</planet:css-id><planet:bozo>false</planet:bozo><planet:http_last_modified>Wed, 04 Jan 2017 04:27:35 GMT</planet:http_last_modified><planet:http_status>200</planet:http_status></source></entry>

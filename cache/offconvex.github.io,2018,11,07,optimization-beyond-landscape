@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://offconvex.github.io/2018/11/07/optimization-beyond-landscape/</id><link href="http://offconvex.github.io/2018/11/07/optimization-beyond-landscape/" rel="alternate" type="text/html"/><title>Understanding optimization in deep learning by analyzing trajectories of gradient descent</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Neural network optimization is fundamentally non-convex, and yet simple gradient-based algorithms seem to consistently solve such problems.
+This phenomenon is one of the central pillars of deep learning, and forms a mystery many of us theorists are trying to unravel. 
+In this post I’ll survey some recent attempts to tackle this problem, finishing off with a discussion on my <a href="https://arxiv.org/pdf/1810.02281.pdf">new paper with Sanjeev Arora, Noah Golowich and Wei Hu</a>, which for the case of gradient descent over deep linear neural networks, provides a guarantee for convergence to global minimum at a linear rate.</p>
+
+<h2 id="landscape-approach-and-its-limitations">Landscape Approach and Its Limitations</h2>
+
+<p>Many papers on optimization in deep learning implicitly assume that a rigorous understanding will follow from establishing geometric properties of the loss <em>landscape</em>, and in particular, of <em>critical points</em> (points where the gradient vanishes).
+For example, through an analogy with the spherical spin-glass model from condensed matter physics, <a href="http://proceedings.mlr.press/v38/choromanska15.pdf">Choromanska et al. 2015</a> argued for what has become a colloquial conjecture in deep learning:</p>
+
+<blockquote>
+  <p><strong>Landscape Conjecture:</strong>
+In neural network optimization problems, suboptimal critical points are very likely to have negative eigenvalues to their Hessian. 
+In other words, there are almost <em>no poor local minima</em>, and nearly all <em>saddle points are strict</em>.</p>
+</blockquote>
+
+<p>Strong forms of this conjecture were proven for loss landscapes of various simple problems involving <strong>shallow</strong> (two layer) models, e.g. <a href="https://papers.nips.cc/paper/6271-global-optimality-of-local-search-for-low-rank-matrix-recovery.pdf">matrix sensing</a>, <a href="https://papers.nips.cc/paper/6048-matrix-completion-has-no-spurious-local-minimum.pdf">matrix completion</a>, <a href="http://proceedings.mlr.press/v40/Ge15.pdf">orthogonal tensor decomposition</a>, <a href="https://arxiv.org/pdf/1602.06664.pdf">phase retrieval</a>, and <a href="http://proceedings.mlr.press/v80/du18a/du18a.pdf">neural networks with quadratic activation</a>.
+There was also work on establishing convergence of gradient descent to global minimum when the Landscape Conjecture holds, as described in the excellent posts on this blog by <a href="http://www.offconvex.org/2016/03/22/saddlepoints/">Rong Ge</a>, <a href="http://www.offconvex.org/2016/03/24/saddles-again/">Ben Recht</a> and <a href="http://www.offconvex.org/2017/07/19/saddle-efficiency/">Chi Jin and Michael Jordan</a>. 
+They describe how gradient descent can arrive at a second order local minimum (critical point whose Hessian is positive semidefinite) by escaping all strict saddle points, and how this process is efficient given that perturbations are added to the algorithm. 
+Note that under the Landscape Conjecture, i.e. when there are no poor local minima and non-strict saddles, second order local minima are also global minima.</p>
+
+<p style="text-align: center;">
+<img alt="Local minima and saddle points" src="http://www.offconvex.org/assets/optimization-beyond-landscape-points.png" width="100%"/>
+</p>
+
+<p>However, it has become clear that the landscape approach (and the Landscape Conjecture) cannot be applied as is to <strong>deep</strong> (three or more layer) networks, for several reasons.
+First, deep networks typically induce non-strict saddles (e.g. at the point where all weights are zero, see <a href="https://papers.nips.cc/paper/6112-deep-learning-without-poor-local-minima.pdf">Kawaguchi 2016</a>).
+Second, a landscape perspective largely ignores algorithmic aspects that empirically are known to greatly affect convergence with deep networks — for example the <a href="http://proceedings.mlr.press/v28/sutskever13.html">type of initialization</a>, or <a href="http://proceedings.mlr.press/v37/ioffe15.pdf">batch normalization</a>.
+Finally, as I argued in my <a href="http://www.offconvex.org/2018/03/02/acceleration-overparameterization/">previous blog post</a>, based upon <a href="http://proceedings.mlr.press/v80/arora18a/arora18a.pdf">work with Sanjeev Arora and Elad Hazan</a>, adding (redundant) linear layers to a classic linear model can sometimes accelerate gradient-based optimization, without any gain in expressiveness, and despite introducing non-convexity to a formerly convex problem. 
+Any landscape analysis that relies on properties of critical points alone will have difficulty explaining this phenomenon, as through such lens, nothing is easier to optimize than a convex objective with a single critical point which is the global minimum.</p>
+
+<h2 id="a-way-out">A Way Out?</h2>
+
+<p>The limitations of the landscape approach for analyzing optimization in deep learning suggest that it may be abstracting away too many important details.
+Perhaps a more relevant question than “is the landscape graceful?” is “what is the behavior of specific optimizer <strong>trajectories</strong> emanating from specific initializations?”.</p>
+
+<p style="text-align: center;">
+<img alt="Different trajectories lead to qualitatively different results" src="http://www.offconvex.org/assets/optimization-beyond-landscape-trajectories.png" width="66%"/>
+</p>
+
+<p>While the trajectory-based approach is seemingly much more burdensome than landscape analyses, it is already leading to notable progress.
+Several recent papers (e.g. <a href="http://proceedings.mlr.press/v70/brutzkus17a/brutzkus17a.pdf">Brutzkus and Globerson 2017</a>; <a href="https://papers.nips.cc/paper/6662-convergence-analysis-of-two-layer-neural-networks-with-relu-activation.pdf">Li and Yuan 2017</a>; <a href="http://proceedings.mlr.press/v70/zhong17a/zhong17a.pdf">Zhong et al. 2017</a>; <a href="http://proceedings.mlr.press/v70/tian17a/tian17a.pdf">Tian 2017</a>; <a href="https://openreview.net/pdf?id=rJ33wwxRb">Brutzkus et al. 2018</a>; <a href="http://proceedings.mlr.press/v75/li18a/li18a.pdf">Li et al. 2018</a>; <a href="https://arxiv.org/pdf/1806.00900.pdf">Du et al. 2018</a>; <a href="http://romaincouillet.hebfree.org/docs/conf/nips_GDD.pdf">Liao et al. 2018</a>) have adopted this strategy, successfully analyzing different types of shallow models.
+Moreover, trajectory-based analyses are beginning to set foot beyond the realm of the landscape approach — for the case of linear neural networks, they have successfully established convergence of gradient descent to global minimum under <strong>arbitrary depth</strong>.</p>
+
+<h2 id="trajectory-based-analyses-for-deep-linear-neural-networks">Trajectory-Based Analyses for Deep Linear Neural Networks</h2>
+
+<p>Linear neural networks are fully-connected neural networks with linear (no) activation.
+Specifically, a depth $N$ linear network with input dimension $d_0$, output dimension $d_N$, and hidden dimensions $d_1,d_2,\ldots,d_{N-1}$, is a linear mapping from $\mathbb{R}^{d_0}$ to $\mathbb{R}^{d_N}$ parameterized by $x \mapsto W_N W_{N-1} \cdots W_1 x$, where $W_j \in \mathbb{R}^{d_j \times d_{j-1}}$ is regarded as the weight matrix of layer $j$.
+Though trivial from a representational perspective, linear neural networks are, somewhat surprisingly, complex in terms of optimization — they lead to non-convex training problems with multiple minima and saddle points.
+Being viewed as a theoretical surrogate for optimization in deep learning, the application of gradient-based algorithms to linear neural networks is receiving significant attention these days.</p>
+
+<p>To my knowledge, <a href="https://arxiv.org/pdf/1312.6120.pdf">Saxe et al. 2014</a> were the first to carry out a trajectory-based analysis for deep (three or more layer) linear networks, treating gradient flow (gradient descent with infinitesimally small learning rate) minimizing $\ell_2$ loss over whitened data.
+Though a very significant contribution, this analysis did not formally establish convergence to global minimum, nor treat the aspect of computational complexity (number of iterations required to converge).
+The recent work of <a href="http://proceedings.mlr.press/v80/bartlett18a.html">Bartlett et al. 2018</a> makes progress towards addressing these gaps, by applying a trajectory-based analysis to gradient descent for the special case of linear residual networks, i.e. linear networks with uniform width across all layers ($d_0=d_1=\cdots=d_N$) and identity initialization ($W_j=I$, $\forall j$).
+Considering different data-label distributions (which boil down to what they refer to as “targets”), Bartlett et al. demonstrate cases where gradient descent provably converges to global minimum at a linear rate — loss is less than $\epsilon&gt;0$ from optimum after $\mathcal{O}(\log\frac{1}{\epsilon})$ iterations — as well as situations where it fails to converge.</p>
+
+<p>In a <a href="https://arxiv.org/pdf/1810.02281.pdf">new paper with Sanjeev Arora, Noah Golowich and Wei Hu</a>, we take an additional step forward in virtue of the trajectory-based approach.
+Specifically, we analyze trajectories of gradient descent for any linear neural network that does not include “bottleneck layers”, i.e. whose hidden dimensions are no smaller than the minimum between the input and output dimensions ($d_j \geq \min\{d_0,d_N\}$, $\forall j$), and prove convergence to global minimum, at a linear rate, provided that initialization meets the following two conditions:
+<em>(i)</em> <em>approximate balancedness</em> — $W_{j+1}^\top W_{j+1} \approx W_j W_j^\top$, $\forall j$;
+and <em>(ii)</em> <em>deficiency margin</em> — initial loss is smaller than the loss of any rank deficient solution.
+We show that both conditions are necessary, in the sense that violating any one of them may lead to a trajectory that fails to converge.
+Approximate balancedness at initialization is trivially met in the special case of linear residual networks, and also holds for the customary setting of initialization via small random perturbations centered at zero.
+The latter also leads to deficiency margin with positive probability.
+For the case $d_N=1$, i.e. scalar regression, we provide a random initialization scheme under which both conditions are met, and thus convergence to global minimum at linear rate takes place, with constant probability.</p>
+
+<p>Key to our analysis is the observation that if weights are initialized to be approximately balanced, they will remain that way throughout the iterations of gradient descent.
+In other words, trajectories taken by the optimizer adhere to a special characterization:</p>
+
+<blockquote>
+  <p><strong>Trajectory Characterization:</strong> <br/></p>
+
+  <p>,</p>
+</blockquote>
+
+<p>which means that throughout the entire timeline, all layers have (approximately) the same set of singular values, and the left singular vectors of each layer (approximately) coincide with the right singular vectors of the layer that follows.
+We show that this regularity implies steady progress for gradient descent, thereby demonstrating that even in cases where the loss landscape is complex as a whole (includes many non-strict saddle points), it may be particularly well-behaved around the specific trajectories taken by the optimizer.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Tackling the question of optimization in deep learning through the landscape approach, i.e. by analyzing the geometry of the objective independently of the algorithm used for training, is conceptually appealing.
+However this strategy suffers from inherent limitations, predominantly as it requires the entire objective to be graceful, which seems to be too strict of a demand.
+The alternative approach of taking into account the optimizer and its initialization, and focusing on the landscape only along the resulting trajectories, is gaining more and more traction.
+While landscape analyses have thus far been limited to shallow (two layer) models only, the trajectory-based approach has recently treated arbitrarily deep models, proving convergence of gradient descent to global minimum at a linear rate.
+Much work however remains to be done, as this success covered only linear neural networks.
+I expect the trajectory-based approach to be key in developing our formal understanding of gradient-based optimization for deep non-linear networks as well.</p>
+
+<p><a href="http://www.cohennadav.com/">Nadav Cohen</a></p></div><div class="commentbar"><p/></div></summary><updated planet:format="November 07, 2018 12:00 PM">2018-11-07T12:00:00Z</updated><published planet:format="November 07, 2018 12:00 PM">2018-11-07T12:00:00Z</published><source><id>http://offconvex.github.io/</id><author><name>Off the Convex Path</name></author><link href="http://offconvex.github.io/" rel="alternate" type="text/html"/><link href="http://offconvex.github.io/feed.xml" rel="self" type="application/atom+xml"/><subtitle>Algorithms off the convex path.</subtitle><title>Off the convex path</title><updated planet:format="December 16, 2018 04:44 PM">2018-12-16T16:44:10Z</updated><planet:http_location>http://www.offconvex.org/feed.xml</planet:http_location><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:face>convex.jpeg</planet:face><planet:name>Off the Convex Path</planet:name><planet:css-id>off-the-convex-path</planet:css-id><planet:http_last_modified>Wed, 05 Dec 2018 18:59:46 GMT</planet:http_last_modified><planet:http_etag>W/&quot;5c082022-26c3f&quot;</planet:http_etag><planet:http_status>301</planet:http_status><planet:bozo>false</planet:bozo></source></entry>

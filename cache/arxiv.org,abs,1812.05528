@@ -1,0 +1,28 @@
+<entry xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://arxiv.org/abs/1812.05528</id><link href="http://arxiv.org/abs/1812.05528" rel="alternate" type="text/html"/><title>3-Manifold triangulations with small treewidth</title><feedworld_mtime>1544918400</feedworld_mtime><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/h/Husz=aacute=r:Krist=oacute=f.html">Kristóf Huszár</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/s/Spreer:Jonathan.html">Jonathan Spreer</a> <br/><b>Download:</b> <a href="http://arxiv.org/pdf/1812.05528">PDF</a><br/><b>Abstract: </b>Motivated by fixed-parameter tractable (FPT) problems in computational
+topology, we consider the treewidth of a compact, connected 3-manifold $M$
+defined by \[
+</p>
+<p>\operatorname{tw}(M) =
+\min\{\operatorname{tw}(\Gamma(\mathcal{T})):\mathcal{T}~\text{is a
+triangulation of }M\}, \] where $\Gamma(\mathcal{T})$ denotes the dual graph of
+$\mathcal{T}$. In this setting the relationship between the topology of a
+3-manifold and its treewidth is of particular interest.
+</p>
+<p>First, as a corollary of work of Jaco and Rubinstein, we prove that for any
+closed, orientable 3-manifold $M$ the treewidth $\operatorname{tw}(M)$ is at
+most $4\mathfrak{g}(M)-2$ where $\mathfrak{g}(M)$ denotes the Heegaard genus of
+$M$. In combination with our earlier work with Wagner, this yields that for
+non-Haken manifolds the Heegaard genus and the treewidth are within a constant
+factor.
+</p>
+<p>Second, we characterize all 3-manifolds of treewidth one: These are precisely
+the lens spaces and a single other Seifert fibered space. Furthermore, we show
+that all remaining orientable Seifert fibered spaces over the 2-sphere or a
+non-orientable surface have treewidth two. In particular, for every spherical
+3-manifold we exhibit a triangulation of treewidth at most two.
+</p>
+<p>Our results further validate the parameter of treewidth (and other related
+parameters such as cutwidth, or congestion) to be useful for topological
+computing, and also shed more light on the scope of existing FPT algorithms in
+the field.
+</p></div><div class="commentbar"><p/></div></summary><updated planet:format="December 16, 2018 04:41 PM">2018-12-16T16:41:55Z</updated><author><name></name></author><source><id>http://arxiv.org/</id><category term="Computer Science -- Computational Geometry"/><link href="http://arxiv.org/" rel="alternate" type="text/html"/><link href="http://export.arxiv.org/rss/cs.CG" rel="self" type="application/rdf+xml"/><subtitle>Computer Science -- Computational Geometry (cs.CG) updates on the arXiv.org e-print archive</subtitle><title>cs.CG updates on arXiv.org</title><updated planet:format="December 14, 2018 01:30 AM">2018-12-14T01:30:00Z</updated><planet:module>toc</planet:module><planet:format>rss10</planet:format><planet:http_etag>&quot;Fri, 14 Dec 2018 01:30:00 GMT&quot;, &quot;1544751000&quot;</planet:http_etag><planet:filters>arXiv.py</planet:filters><planet:name>arXiv.org: Computational geometry</planet:name><planet:http_last_modified>Fri, 14 Dec 2018 01:30:00 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:css-id>arxiv-org-computational-geometry</planet:css-id><planet:items_per_page>40</planet:items_per_page><planet:face>corr.jpeg</planet:face><planet:http_status>200</planet:http_status></source></entry>

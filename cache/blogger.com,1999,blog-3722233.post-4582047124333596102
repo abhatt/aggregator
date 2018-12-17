@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>tag:blogger.com,1999:blog-3722233.post-4582047124333596102</id><link href="https://blog.computationalcomplexity.org/2018/11/is-secret-sharing-really-really-really.html" rel="alternate" type="text/html"/><title>Is Secret sharing REALLY REALLY REALLY used?</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Since I am teaching Cryptography this semester I am teaching things people REALLY REALLY REALLY (RRR) use. For some topics this is RRR true, like RSA (that it is used to transmit a private key that is then used is FINE.)<br/>
+<br/>
+I was wondering if Information-Theoretic Secret Sharing is RRR used. I am asking non-cynically and non-rhetorically. So I want to be taken seriously AND literally.<br/>
+<br/>
+  I Googled and got some answers but could not verify them.<br/>
+<br/>
+1) At this site: <a href="https://cstheory.stackexchange.com/questions/899/what-are-some-examples-of-secret-sharing-schemes-actually-being-used-in-real-wor">here</a> we can read<br/>
+<br/>
+<i>Every modern HSM (hardware secure module, for crypto applications) uses Shamir's secret sharing</i>.<br/>
+<br/>
+I tried to verify this but was unable to.<br/>
+<br/>
+I also read<br/>
+<br/>
+<i>The DNSSEC root key is 5-out-of-7 shared see, e.g</i>., <a href="https://www.popsci.com/technology/article/2010-07/order-seven-cyber-guardians-around-world-now-hold-keys-internet">here</a> or <a href="https://www.cloudflare.com/dns/dnssec/root-signing-ceremony/">here</a><br/>
+<br/>
+The link leads to a story about how there are 7 people and if any 5 get together they can shut down the internet. The story does not say they use secret sharing.<br/>
+<br/>
+2) Threshold cryptography (see <a href="https://en.wikipedia.org/wiki/Threshold_cryptosystem">here</a>) would seem to use it, but is Threshold crypto used? There is a startup who is trying to use it: see <a href="https://sepior.com/thresholdsig/">here</a>. I don't count that as RRR since they don't have customers yet. Not sure what the threshold is for whether I count it.<br/>
+<br/>
+3) Some papers mention that secret sharing COULD be used if you want to make sure nuclear missiles are not launched unless x out of y people say so. But I doubt it really is used. If so this might be very hard to verify.<br/>
+<br/>
+4) Shamir's secret sharing scheme is pretty simple and does not have big constants so if there is a need it really could be used. But is there a need?<br/>
+<br/>
+I am not quite sure what I count as proof that someone RRR  using it. A random person at a random website just saying that HSM uses it does not seem convincing. A Wikipedia article saying its being used I would find convincing (should I? Until recently Wikipedia couldn't even get my year of birth straight, see <a href="https://blog.computationalcomplexity.org/2018/09/still-typecasting-from-dagstuhl.html">here</a>)<br/>
+<br/>
+If some companies website said they used Shamir's Secret Sharing I would believe that-- but a companies website is not likely to say that. NOT for reasons of company secrets but because its not what most customers go to the website to find.<br/>
+<br/>
+SO- if someone RRR knows that Secret Sharing is RRR being used then please leave a comment.</div><div class="commentbar"><p/></div></summary><updated planet:format="November 20, 2018 05:43 AM">2018-11-20T05:43:00Z</updated><published planet:format="November 20, 2018 05:43 AM">2018-11-20T05:43:00Z</published><author><name>GASARCH</name><email>noreply@blogger.com</email></author><source><id>tag:blogger.com,1999:blog-3722233</id><category term="typecast"/><category term="focs metacomments"/><author><name>Lance Fortnow</name><email>noreply@blogger.com</email></author><link href="https://blog.computationalcomplexity.org/" rel="alternate" type="text/html"/><link href="https://blog.computationalcomplexity.org/feeds/posts/default?alt=rss" rel="self" type="application/atom+xml"/><subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle><title>Computational Complexity</title><updated planet:format="December 17, 2018 01:56 AM">2018-12-17T01:56:56Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;3c48828af0b9b548c409eba7b894fc342a0679ccd23a3f1db96c1212435d64c9&quot;</planet:http_etag><planet:http_last_modified>Sun, 16 Dec 2018 21:24:54 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>computational-complexity</planet:css-id><planet:face>gasarch.png</planet:face><planet:name>Computational Complexity</planet:name><planet:http_status>200</planet:http_status></source></entry>

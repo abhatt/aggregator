@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://grigory.github.io/blog/foundations-of-data-science-class</id><link href="http://grigory.github.io/blog/foundations-of-data-science-class/" rel="alternate" type="text/html"/><title xml:lang="en">Teaching Foundations of Data Science</title><content type="xhtml" xml:lang="en"><div xmlns="http://www.w3.org/1999/xhtml"><p>This week I started teaching a graduate class called “<a href="http://grigory.us/data-science-class.html">Foundations of Data Science</a>” that will be mostly based on an eponymous book by <a href="https://en.wikipedia.org/wiki/Avrim_Blum">Avrim Blum</a>, <a href="https://en.wikipedia.org/wiki/John_Hopcroft">John Hopcroft</a> and <a href="https://en.wikipedia.org/wiki/Ravindran_Kannan">Ravi Kannan</a>.
+The book is still a draft and I am using <a href="http://grigory.us/files/bhk-book.pdf">this version</a>.
+Target audience includes advanced undergraduate and graduate level students.
+We had some success using this book as a core material for an undergraduate class at Penn this Spring (<a href="http://www.thedp.com/article/2016/02/cis-399-students">link to the news article</a>).
+The draft has been around for a while and in fact I ran a reading group that used it four years back when I was in grad school and the book was called 
+“Computer Science Theory for the Information Age”.</p>
+
+<div align="center"><img alt="Keep calm and dig foundations of Data Science" src="http://grigory.github.io/blog/pics/b609-poster-homepage.png" width="200px"/> </div>
+
+<p>“Data Science” is one of those buzzwords that can mean very different things to different people.
+In particular, a new graduate <a href="http://www.soic.indiana.edu/graduate/degrees/data-science/index.html">Masters program in Data Science here at IU</a> attracts hundreds of students from diverse backgrounds. 
+What I personally really like about the Blum-Hopcroft-Kannan book is that it doesn’t go into any philosophy about the meaning of data science but rather offers a collection of mathematical tools and topics that can be considered as foundational for data science as seen from computer science perspective.
+It should be noted that just as any “Foundations of Computing” class has little to do with finding bugs in your code so do this class and book have little to do with data cleaning and other data analysis routine.</p>
+
+<h1>Topics</h1>
+
+<p>While the jury is still out on what topics should be considered as fundamental for data science I think that the Blum-Hopcroft-Kannan book makes a good first step in this direction.</p>
+
+<p>Let’s look at the table of contents:</p>
+<ul>
+<li>Chapter 2 introduces basic properties of the high-dimensional space, focusing on concentration of measure, properties of high-dimensional Gaussians and basic dimension reduction. </li>
+<li>Chapter 3 covers the Singular Value Decomposition (SVD) and its applications (principal component analysis, clustering mixture of Gaussians, etc.).</li>
+<li>Chapter 4 focuses on random graphs (primarily in the Erdos-Renyi model).</li>
+<li>Chapter 5 introduces random walks and Markov chains, including Markov Chain Monte Carlo methods, random works on graphs and applications such as Page Rank.</li>
+<li>Chapter 6 covers the very basics of machine learning theory, including learning basic function classes, perceptron algorithm, regularization, kernelization, support vector machines, VC-dimension bounds, boosting, stochastic gradient descent and a bunch of other topics. </li>
+<li>Chapter 7 describes a couple of streaming and sampling methods for big data: frequency moments in streaming and matrix sampling.</li>
+<li>Chapter 8 is about clustering methods: k-means, k-center, spectral clustring, cut-based clustering, etc.</li>
+<li>Chapters 9 through 11 cover a very diverse set of topics that includes hidden Markov processes, graphical models, belief propagation, topic models, voting systems, compressed sensing, optimization methods and wavelets among others.</li>
+</ul>
+
+<h1>Discussion</h1>
+<p>Overall this looks like a good stab at the subject and a big advantage of this book is that unlike some of its competitors it treats its topics with mathematical rigor.
+The only chapter that I personally don’t really see fit into a “data science” class is Chapter 4. Because of its focus on the Erdos-Renyi model that I haven’t seen being used realistically for graph modeling applications this chapter seems to be mostly of purely mathematical interest.</p>
+
+<p>Selection of some of the smaller topics is a matter of personal taste, especially when it comes to those that are missing.
+A couple of quick suggestions is to cover new sketching algorithms for <a href="http://researcher.watson.ibm.com/researcher/files/us-dpwoodru/wNow.pdf">high-dimensional linear regression</a>, <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing">locality-sensitive hashing</a> and possibly <a href="http://groups.csail.mit.edu/netmit/sFFT/index.html">Sparse FFT</a>.</p>
+
+<p>Slides will be posted <a href="http://grigory.us/data-science-class.html#lectures">here</a> and I will write a report on the final selection of topics and my experience in the end of semester. Stay tuned :)</p>
+
+  <p><a href="http://grigory.github.io/blog/foundations-of-data-science-class/">Teaching Foundations of Data Science</a> was originally published by Grigory Yaroslavtsev at <a href="http://grigory.github.io/blog">The Big Data Theory</a> on August 27, 2016.</p></div><div class="commentbar"><p/></div></content><updated planet:format="August 27, 2016 12:00 AM">2016-08-27T00:00:00Z</updated><published planet:format="August 27, 2016 12:00 AM">2016-08-27T00:00:00Z</published><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog</uri></author><source><id>http://grigory.github.io/blog/</id><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog/</uri></author><link href="http://grigory.github.io/blog/feed.xml" rel="self" type="application/atom+xml"/><link href="http://grigory.github.io/blog" rel="alternate" type="text/html"/><title xml:lang="en">The Big Data Theory</title><updated planet:format="May 27, 2018 09:46 AM">2018-05-27T09:46:42Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;5b0a7e85-194be&quot;</planet:http_etag><planet:http_last_modified>Sun, 27 May 2018 09:46:45 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>grigory-yaroslavtsev</planet:css-id><planet:face>yaroslavtsev.jpeg</planet:face><planet:name>Grigory Yaroslavtsev</planet:name><planet:http_status>200</planet:http_status></source></entry>

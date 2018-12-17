@@ -49,6 +49,7 @@ if __name__ == "__main__":
         else:
             config_file = arg
 
+
     from planet import config
     config.load(config_file)
 

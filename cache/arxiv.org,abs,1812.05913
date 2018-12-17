@@ -1,0 +1,23 @@
+<entry xml:lang="en-us" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://arxiv.org/abs/1812.05913</id><link href="http://arxiv.org/abs/1812.05913" rel="alternate" type="text/html"/><title>Graph classes and forbidden patterns on three vertices</title><feedworld_mtime>1545004800</feedworld_mtime><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Authors: </b><a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/f/Feuilloley:Laurent.html">Laurent Feuilloley</a>, <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/h/Habib:Michel.html">Michel Habib</a> <br/><b>Download:</b> <a href="http://arxiv.org/pdf/1812.05913">PDF</a><br/><b>Abstract: </b>This paper deals with graph classes characterization and recognition. A
+popular way to characterize a graph class is to list a minimal set of forbidden
+induced subgraphs. Unfortunately this strategy usually does not lead to an
+efficient recognition algorithm. On the other hand, many graph classes can be
+efficiently recognized by techniques based on some interesting orderings of the
+nodes, such as the ones given by traversals.
+</p>
+<p>We study specifically graph classes that have an ordering avoiding some
+ordered structures. More precisely, we consider what we call patterns on three
+nodes, and the recognition complexity of the associated classes. In this
+domain, there are two key previous works. Damashke started the study of the
+classes defined by forbidden patterns, a set that contains interval, chordal
+and bipartite graphs among others. On the algorithmic side, Hell, Mohar and
+Rafiey proved that any class defined by a set of forbidden patterns can be
+recognized in polynomial time. We improve on these two works, by characterizing
+systematically all the classes defined sets of forbidden patterns (on three
+nodes), and proving that among the 23 different classes (up to complementation)
+that we find, 21 can actually be recognized in linear time.
+</p>
+<p>Beyond this result, we consider that this type of characterization is very
+useful, leads to a rich structure of classes, and generates a lot of open
+questions worth investigating.
+</p></div><div class="commentbar"><p/></div></summary><updated planet:format="December 17, 2018 01:57 AM">2018-12-17T01:57:46Z</updated><author><name></name></author><source><id>http://arxiv.org/</id><category term="Computer Science -- Data Structures and Algorithms"/><link href="http://arxiv.org/" rel="alternate" type="text/html"/><link href="http://export.arxiv.org/rss/cs.DS" rel="self" type="application/rdf+xml"/><subtitle>Computer Science -- Data Structures and Algorithms (cs.DS) updates on the arXiv.org e-print archive</subtitle><title>cs.DS updates on arXiv.org</title><updated planet:format="December 17, 2018 01:30 AM">2018-12-17T01:30:00Z</updated><planet:module>toc</planet:module><planet:format>rss10</planet:format><planet:http_etag>&quot;Mon, 17 Dec 2018 01:30:00 GMT&quot;, &quot;1545010200&quot;</planet:http_etag><planet:filters>arXiv.py</planet:filters><planet:name>arXiv.org: Data structures and Algorithms</planet:name><planet:http_last_modified>Mon, 17 Dec 2018 01:30:00 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:css-id>arxiv-org-data-structures-and-algorithms</planet:css-id><planet:items_per_page>40</planet:items_per_page><planet:face>corr.jpeg</planet:face><planet:http_status>200</planet:http_status></source></entry>

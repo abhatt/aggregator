@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>tag:typepad.com,2003:post-6a00d83452383469e2019103c239ed970c</id><link href="https://3dpancakes.typepad.com/ernie/2013/06/three-talks-at-socg.html" rel="alternate" type="text/html"/><link href="https://3dpancakes.typepad.com/ernie/2013/06/three-talks-at-socg.html" rel="replies" type="text/html"/><title>Three talks at SOCG</title><summary>I just came back from a lovely trip to Rio de Janeiro for SOCG. This year's meeting was quite a bit busier than usual, with three different presentations lasting in total almost three hours. In order of increasing importance: On...<div class="commentbar"><p/><a href="https://3dpancakes.typepad.com/ernie/2013/06/three-talks-at-socg.html"><img class="commenticon" src="/images/post-icon.png"/> Post a comment</a></div></summary><content type="xhtml" xml:lang="en-US"><div xmlns="http://www.w3.org/1999/xhtml"><div>I just came back from a lovely trip to Rio de Janeiro for SOCG.  This year's meeting was quite a bit busier than usual, with three different presentations lasting in total almost three hours.  In order of increasing importance:
+
+<ul>
+<li> On Monday morning, I presented my paper &quot;<a href="http://www.cs.uiuc.edu/~jeffe/pubs/hexmesh.html">Efficiently hex-meshing things with topology</a>&quot; (<a href="http://www.cs.uiuc.edu/~jeffe/pubs/talks/hexmesh-socg.pdf">slides</a>).  The paper answers the following question: When can a polyhedron with quadrilateral faces be partitioned into a complex of topological cubes, without refining the boundary?  It is not hard to see that the number of quads must be even.  For even surface meshes, I prove that the following equivalent conditions are necessary and sufficient:
+<ul>
+<li> No odd cycle in the surface graph is the boundary an <a href="http://en.wikipedia.org/wiki/Immersion_(mathematics)">immersed surface</a> in the interior.
+</li><li> The dual of the surface graph is the boundary of an immersed surface in the interior.
+</li></ul>
+The paper says &quot;null-homologous&quot; instead of &quot;the boundary of an immersed surface&quot;, but these two phrases are synonymous.  This generalizes earlier results by <a href="http://www.ics.uci.edu/~eppstein/gina/Thurston-hexahedra.html">Thurston</a> and <a href="http://www.sandia.gov/~samitch/exist-abstract.html">Mitchell</a> for polyhedra with genus zero, where an even number of quads is sufficient, and by <a href="http://www.ics.uci.edu/~eppstein/pubs/p-hexmesh.html">Eppstein</a> for bipartite surface meshes, which always have an even number of facets.  The proof is constructive.
+
+<p>
+</p></li><li> On Monday afternoon, in  a fantastic <a href="http://zeus.mat.puc-rio.br/~socg2013/index.php/workshops/mesh-generation">workshop on mesh generation</a> organized by <a href="http://www.dimap.ufrn.br/~mfsiqueira/Marcelo_Siqueiras_Web_Spot/Home.html">Marcelo Siqueira</a>, I gave a one-hour survey talk on theoretical hexahedral meshing (<a href="http://www.cs.uiuc.edu/~jeffe/pubs/talks/hexmesh-survey-socg.pdf">slides</a>).  The first chunk of the talk establishes some basic definitions, which are usually left unstated by both computational geometers and mesh generators.  In particular, in <i>actual</i> hexahedral finite-element meshes, the word &quot;hexahedron&quot; does not mean a convex polyhedron with six planar facets, but the multilinear hull of eight labeled points; the facets of a &quot;hex element&quot; are ruled surface patches.  There are <em>lots</em> of good practical heuristics for building hex meshes, but no fully automatic methods, or as I usually call them, <em>algorithms</em>.  If we allow boundary refinement, hex meshing is actually easy — just triangulate and then refine each tet into four hexes — but only if we don't care about mesh quality.  If we don't allow boundary refinement, even the existence of hex meshes is a more subtle open problem, leading to lots of interesting geometry and topology, but again, even where we have algorithms, we have nothing with useful quality guarantees.  The big open problem is to define a general class of input domains, define a useful quality measure, and then describe an algorithm that <em>provably</em> generates a high-quality mesh for <em>any</em> domain in the class, as Bern, Eppstein, Ruppert, Shewchuk, and many others have done for triangular and tetrahedral meshing.
+
+<p>
+</p></li><li> Finally, on Tuesday evening, I ran my first SOCG business meeting as steering commitee chair.  David Eppstein's <a href="http://www.computational-geometry.org/documents/minutes-SoCG13.txt">official minutes</a> and <a href="http://computational-geometry.org/documents/SOCG2013-business.pdf">the complete meeting slides</a> (<a href="http://computational-geometry.org/documents/SOCG2013-business.pdf">mirror</a>) are now available on <a href="http://www.computational-geometry.org">www.computational-geometry.org</a>, but here are some highlights:
+<p>
+</p><ul>
+<li> There were 150 attendees, which is less than Paris in 2011 and Chapel Hill in 2012, but more than the six years before that.  Thanks to incredibly low student registration fees, there were 66 registered students.
+<p>
+</p></li><li> The Best Paper award went to <a href="http://www.victoralvarez.net/">Victor Alvarez</a> and <a href="http://www-tcs.cs.uni-saarland.de/">Raimund Seidel</a>, for their excellent paper &quot;<a href="http://www.victoralvarez.net/papers/A%20Simple%20Aggregative%20Algorithm%20for%20Counting%20Triangulations%20of%20Planar%20Point%20Sets%20and%20Related%20Problems%20-%20SoCG%202013.pdf">A simple aggregative algorithm for counting triangulations of planar point sets and related problems</a>&quot;.
+<p>
+</p></li><li> The video and multimedia committee raised the awesomeness standard for submissions.  They also distributed this year's videos much more widely, not only on the <a href="http://www.computational-geometry.org/SoCG-videos/socg13video/">SOCG web page</a> and in the <a href="http://dl.acm.org/citation.cfm?id=2493132&amp;CFID=223876648&amp;CFTOKEN=92751645">Digital Library</a>, but also on YouTube and at <a href="http://imaginary.org/">imaginary.org</a>.
+<p>
+</p></li><li> The SOCG 2014 PC chairs are <a href="http://www.cse.ust.hk/~scheng/">Siu-Wing Cheng</a> and <a href="http://www-sop.inria.fr/members/Olivier.Devillers/">Olivier Devillers</a>.
+<p>
+</p></li><li> Starting with Victor and Raimund this year, SOCG Best Paper Award winners will be invited to submit a full version of their paper to <cite>Journal of the ACM</cite>.
+<p>
+</p></li><li> Starting next year, we expect to offer NSF travel support to SOCG for US students and postdocs.
+<p> 
+</p></li><li> There was strong support for the idea of co-locating SOCG with STOC in 2016, moderated by lots of pertinent logistical questions.  I said &quot;I don't know yet; we'll have to work that out&quot; a lot.
+<p>
+</p></li><li> SOCG 2015 will be held at TU Eindhoven, in the Netherlands.  The other bidders, which all tied for second place in the first voting round, were Braunschweig, Germany; Brisbane, Australia; and Portland, Oregon.
+<p>
+</p></li><li> There will be a third and final vote regarding the future relationship between SOCG and ACM, which will take place in October.  I've set up a <a href="http://makingsocg.wordpress.org">discussion blog</a>, where I will describe issues related to the vote.  I will also invite posts from other members of the SOCG community, ACM representatives, and organizers of other conferences.  My goal is to ensure that all relevant stakeholders have a voice before voting begins.<p/>
+</li></ul>
+<p>
+Whew!
+
+</p><p>
+One important item was not announced at the business meeting.  The Best Student Presentation award was shared by two students:
+</p><ul>
+<li> <a href="http://zeus.mat.puc-rio.br/jarpao/">João Peixão</a>, for his presentation of &quot;<a href="http://arxiv.org/abs/1303.7037">Parameterized Complexity of Discrete Morse Theory</a>&quot;
+
+</li><li> <a href="http://cg.scs.carleton.ca/~lfbarba/">Luis Barba</a>, for his presentation of &quot;<a href="http://arxiv.org/abs/1207.2375">Bichromatic Compatible Matchings</a>&quot;<p/>
+</li></ul>
+
+<p>
+These two winners were announced Thursday morning, after all student speakers had presented their papers.  The award is based on audience evaluations.
+</p></li></ul></div></div></content><updated planet:format="June 24, 2013 06:24 AM">2013-06-24T06:24:03Z</updated><published planet:format="June 24, 2013 06:24 AM">2013-06-24T06:24:03Z</published><category term="Computational Geometry"/><author><name>Jeff Erickson</name></author><source><id>tag:typepad.com,2003:weblog-6686</id><link href="https://3dpancakes.typepad.com/ernie/atom.xml" rel="self" type="application/atom+xml"/><link href="https://3dpancakes.typepad.com/ernie/" rel="alternate" type="text/html"/><subtitle>Let Σ be a combinatorial surface with n vertices, genus g, and b boundaries.  Amen.</subtitle><title>Ernie's 3D Pancakes</title><updated planet:format="November 06, 2018 05:41 PM">2018-11-06T17:41:10Z</updated><planet:format>atom10</planet:format><planet:http_location>https://3dpancakes.typepad.com/ernie/atom.xml</planet:http_location><planet:module>toc</planet:module><planet:items_per_page>40</planet:items_per_page><planet:face>erickson.jpeg</planet:face><planet:name>Ernie's 3D Pancakes</planet:name><planet:css-id>ernie-s-3d-pancakes</planet:css-id><planet:bozo>false</planet:bozo><planet:http_last_modified>Tue, 06 Nov 2018 17:41:43 GMT</planet:http_last_modified><planet:http_status>301</planet:http_status></source></entry>

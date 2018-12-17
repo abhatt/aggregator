@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://xrds.acm.org/blog/?p=1065</id><link href="https://blog.xrds.acm.org/2014/01/the-thesis/" rel="alternate" type="text/html"/><title>The Thesis</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>All PhD candidates around the world know about the thesis. You always knew about the thesis. It marks the beginning of the end for your career as a PhD and if you actually do it, you can have that  cool … <a href="https://blog.xrds.acm.org/2014/01/the-thesis/">Continue reading <span class="meta-nav">→</span></a></p>
+<p>The post <a href="https://blog.xrds.acm.org/2014/01/the-thesis/" rel="nofollow">The Thesis</a> appeared first on <a href="https://blog.xrds.acm.org" rel="nofollow">XRDS</a>.</p></div><div class="commentbar"><p/></div></summary><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>All PhD candidates around the world know about the thesis. You always knew about the thesis. It marks the beginning of the end for your career as a PhD and if you actually do it, you can have that  cool “Dr.” title that you always wanted in your business card. What is the problem then? Why it seems so frustrating when you are sitting down to do it? The following is based on a true story, actually my story. How I managed to write it down and track my progress.<span id="more-1065"/></p>
+<p><strong>Problem Definition</strong></p>
+<p>A typical PhD follows a simple process: read, think, propose, publish, and the <i>thesis</i>. It is straightforward and one can imagine that if you are already there with the rest of the stuff, the write up would be rather easy. But it is not.</p>
+<p>The problem lies, mostly in that writing the thesis is a lengthy and lonely act. You have to do it, nobody will come to your aid, except maybe from your advisor.</p>
+<p>In my case, I faced the following problem; for quite some time, I could not motivate myself to write it down. I began writing and half page later, I always stopped. I tried everything, but nothing seemed to motivate me. My advisor got uncomfortable and we began talking about a method to track my progress that would motivate me.</p>
+<p><strong>The Idea</strong></p>
+<p>Then I saw it, Georgios Gousios’s Thesis-o-meter (see link below). This was a couple of scripts that posted every day the progress of the PhD in each chapter. I decided to do it myself, introducing some alterations that would work better for me.</p>
+<p>First, I had to find a tangible way to measure the progress. I thought that was easy, the number of pages. The number of pages of a document is nice, if you want to measure the size of the text, but surely it cannot act as a day-to-day key performance indicator (KPI). And why is that? Because simply if you bootstrap your thesis in LaTeX and you put all the standard chapters, bibliography, etc you will find yourself with at least 15 pages. So, that day I would have an enormous progress. The next day, I would write only text. I think one or two pages. The other day text and I would put on some charts. This will count as three of four pages. Better huh? This is the problem.</p>
+<p>If you are a person like me, you could add one or two figures, and say “Ok, I am good for today, I added two pages!”. This is a nice excuse if you want to procrastinate. I needed something that would present the naked truth. That would make me sit there and make some serious progress.</p>
+<p>So, number of pages was out of the question, but I thought that we can actually use it. The number of pages will be the end goal with a minimum and a maximum. In Greece, a PhD usually has 150 to 200 pages length (in my discipline of course, computer science). So, I thought, this is the goal: a large block of text around those limits.</p>
+<p>Then I thought that my metric should be the number of words in the text instead of the number of pages. Since, I wrote my thesis in LaTeX, I just count the words for each file with standard UNIX tools, for example with the command <code>wc -l myfile.tex</code>. So, the algorithm has the following steps:</p>
+<ul>
+<li>The goal is set to 150-200 pages in total</li>
+<li>Each day,
+<ul>
+<li>Count the words for all files</li>
+<li>Count the pages of the actual thesis file, for example the output PDF</li>
+<li>Find the word contribution for that day just by subtracting from the previous’s day word count</li>
+<li>Find an average of words per number of pages</li>
+<li>Finally, provide an estimation for the completion of the thesis</li>
+</ul>
+</li>
+</ul>
+<p><strong>Experience Report</strong></p>
+<p>I implemented this in Python and shell script. The process worked, each day a report was generated and sent to my advisor, but the best thing was that each day, I saw the estimation trimmed down a little. This is the last report I produced:</p>
+<pre>10c10
+     1899 build/2-meta-programming.tex
+13c13
+     1164 build/3-requirements.tex
+60,61c60,61
+&lt;    13931 build/thesis.bib
+    14058 build/thesis.bib
+&gt;    55747 total
+
+---- Progress ----
+Worked for 167 day(s) ... 
+Last submission: 20121025
+Word Count (last version): 55747
+Page Count (last version): 179
+Avg Words per Page (last version): 311
+Last submission effort: 142
+
+---- Estimations ----
+Page Count Range (final version): (min, max) = (150, 200)
+Word Count Range (final version): (min, max) = (46650, 62200)
+Avg Effort (Words per Day): 184
+Estimated Completion in: (min, max) = (-50, 35) days, (-2.50, 1.75) months
+Estimated Completion Date: (best, worst) = (2012-08-11, 2012-12-16)</pre>
+<p>The average words per page was 311 and I wrote almost 184 words each day.</p>
+<p><strong>Epilogue</strong></p>
+<p>I wrote my thesis, but I have not submitted it (at least now, but I hope to soon), for a number of practical reasons. Still, the process succeeded, I found my KPIs and they actually led me to finishing up the work. This is a fact and now I have to find another motivation-driven method to do the rest of the required stuff. C’est la vie.</p>
+<p><strong>Related Links and Availability</strong><br/>
+I plan to release an open source version of my thesis-o-meter in <a href="https://github.com/bkarak">my Github profile</a> soon. I also found various alternative thesis-o-meters:</p>
+<ul>
+<li>Salvatore Scellato, <a href="http://www.cl.cam.ac.uk/~ss824/thesisometer.html">http://www.cl.cam.ac.uk/~ss824/thesisometer.html</a></li>
+<li>Georgios Gousios, <a href="http://www.gousios.gr/sw/tom.html">http://www.gousios.gr/sw/tom.html</a></li>
+<li>Justin Boyan, <a href="http://www.cs.cmu.edu/~jab/tom/">http://www.cs.cmu.edu/~jab/tom/</a></li>
+</ul>
+<p>The post <a href="https://blog.xrds.acm.org/2014/01/the-thesis/" rel="nofollow">The Thesis</a> appeared first on <a href="https://blog.xrds.acm.org" rel="nofollow">XRDS</a>.</p></div></content><updated planet:format="January 31, 2014 10:19 AM">2014-01-31T10:19:25Z</updated><published planet:format="January 31, 2014 10:19 AM">2014-01-31T10:19:25Z</published><category term="Theory"/><category term="Thesis"/><author><name>Vassilios Karakoidas</name></author><source><id>https://blog.xrds.acm.org</id><link href="https://blog.xrds.acm.org/tag/theory/feed/" rel="self" type="application/atom+xml"/><link href="https://blog.xrds.acm.org" rel="alternate" type="text/html"/><subtitle>Crossroads - The ACM Magazine for Students</subtitle><title>Theory – XRDS</title><updated planet:format="December 16, 2018 04:43 PM">2018-12-16T16:43:40Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>&quot;ce816ac0eb47d36445e6791dee738bc7&quot;</planet:http_etag><planet:http_last_modified>Fri, 09 Nov 2018 09:28:27 GMT</planet:http_last_modified><planet:bozo>true</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>acm-crossroads-student-magazine</planet:css-id><planet:face>xrds.jpeg</planet:face><planet:name>ACM Crossroads student magazine</planet:name><planet:http_location>https://blog.xrds.acm.org/tag/theory/feed/</planet:http_location><planet:http_status>301</planet:http_status></source></entry>

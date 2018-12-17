@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://learningwitherrors.org/2016/07/06/deterministic-sparsification</id><link href="http://learningwitherrors.org/2016/07/06/deterministic-sparsification/" rel="alternate" type="text/html"/><title>Deterministic Sparsification</title><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><div style="display: none;"/>
+
+<p>Let $G$ be a dense graph. A sparse graph $H$ is a sparsifier of $G$
+approximation of $G$ that preserves certain properties such as quadratic forms
+of its Laplacian. This post will formally define spectral sparsification, then
+present the intuition behind the deterministic construction of spectral
+sparsifiers by Baston, Spielman and Srivastava [<a href="http://learningwitherrors.org/atom.xml#BSS08">BSS08</a>].</p>
+
+<!--more-->
+
+<p>Benczúr and Karger [<a href="http://learningwitherrors.org/atom.xml#BK96">BK96</a>] introduced the cut sparsifier, which
+ensures that the value of all cuts in $H$ approximates that of all cuts in $G$:</p>
+
+<blockquote>
+  <p><a name="def:cut-sp"/><strong>Definition 1 (Cut Sparsification):</strong> A weighted
+undirected graph $H = (V, E_H)$ is an $\epsilon$-cut sparsifier of a weighted
+undirected graph $G = (V, E_G)$ if for all $S \subset V$,</p>
+
+  
+
+  <p>Where $E_G$ and $E_H$ are the sums of edge weights crossing the cuts in $G$ and
+$H$ respectively.</p>
+</blockquote>
+
+<p>Spielman and Teng [<a href="http://learningwitherrors.org/atom.xml#ST08">ST08</a>] introduced another notion of graph sparsification
+with the quadratic form of the Laplacian:</p>
+
+<blockquote>
+  <p><a name="def:spectral-sp"/><strong>Definition 2 (Spectral Sparsification):</strong> A
+weighted undirected graph $H = (V, E_H)$ is an $\epsilon$-spectral sparsifier
+of a weighted undirected graph $G = (V, E_G)$ if for all $x \in
+\mathbb{R}^{|V|}$,</p>
+
+  
+
+  <p>Where $L_G$ and $L_H$ are the graph Laplacians of $G$ and $H$ respectively.</p>
+</blockquote>
+
+<p>Cut sparsifiers can be used in approximating max-flow (via the max-flow min-cut
+theorem) and spectral sparsifiers are a key ingredient in solving Laplacian
+inear systems in near linear time.</p>
+
+<!-- Add why it's important for H to be weighted? -->
+
+<p>Note that this stronger than cut sparsification, as we can fix $x$ to be the
+indicator vectors of cuts to obtain <a href="http://learningwitherrors.org/atom.xml#def:cut-sp">definition 1</a>. Also note that
+this notion of sparsifiers also provides bounds on Laplacian eigenvalues, and
+thus spectral sparsifiers of complete graphs are also expanders. These
+sparsifiers can be constructed in a randomized manner by sampling edges
+proportional to their effective resistance [<a href="http://learningwitherrors.org/atom.xml#SS08">SS08</a>], but in this post we
+will focus on a deterministic construction presented in [<a href="http://learningwitherrors.org/atom.xml#BSS08">BSS08</a>], as
+stated more precisely in the following theorem:</p>
+
+<blockquote>
+  <p><a name="thm:sparsifier"/><strong>Theorem 1:</strong> For every $d &gt; 1$, every undirected
+graph $G = (V, E)$ on $n$ vertices contains a weighted subgraph $H = (V, F,
+\tilde{w})$ with $\lceil d(n-1) \rceil$ edges that satisfies:</p>
+
+  
+</blockquote>
+
+<h2 id="preliminaries">Preliminaries</h2>
+<p>The Laplacian $L$ of a graph can be seen as a linear transformation relating the
+flow and demand in an electrical flow on the graph where each edge has unit
+resistance. Let $B \in \mathbb{R}^{m \times n}$ be the vertex-edge incidence
+matrix and $W$ is a diagonal matrix of edge weights, then $L = B^TWB$. $L$ also
+has a pseudoinverse which acts like an actual inverse for all vectors
+$x \bot \mathbb 1$, resulting from solving an electrical flow on $G$.</p>
+
+<p>Let $\kappa = \frac{d+1+2\sqrt d}{d+1-2\sqrt d}$, we assume that the graph is
+connected thus $x \bot \mathbf{1}$, and perform a transformation on the
+condition in <a href="http://learningwitherrors.org/atom.xml#thm:sparsifier">Theorem 1</a>:</p>
+
+
+
+<p>Let $b_{e = (u, v)} = \mathbf{1}_u - \mathbf{1}_v$ be a row of incidence matrix
+$B$ , $s_e$ be the weight of edge $e$ in $E_H$ and $A \succeq B$ when $A - B$ is
+a psd matrix. Then the above condition can be rewritten as:</p>
+
+<p><a name="eq:sparse-approx"/>
+</p>
+
+<p>We then define a vector $v_e = L_G^{-1/2}b_e^T$ for each $e \in E_G$. Notice
+that over all edges of $G$, the rank 1 matrices formed by $v_eV_e^T$ sum to the
+identity matrix:</p>
+
+
+
+<p>Then <a href="http://learningwitherrors.org/atom.xml#eq:sparse-approx">equation 1</a> can be interpreted as choosing a sparse
+subset of the edges in $G$, as well as weights $s_e$, so that the matrix
+obtained by summing over the edges of $H$, $\sum_{e \in E_H} s_e v_ev_e^T$, has
+a low condition number (ratio between the largest and smallest eigenvalues):</p>
+
+
+
+<p>If we can find such a sparse set of edges and weights, then we have proved
+<a href="http://learningwitherrors.org/atom.xml#thm:sparsifier">Theorem 1</a>. In [<a href="http://learningwitherrors.org/atom.xml#SS08">SS08</a>] this was done by randomly
+sampling these rank-1 matrices based on their effective resistances of their
+corresponding edges, using a distribution that has the identity matrix as the
+expectation. Convergence is shown using a matrix concentration inequality. The
+construction in [<a href="http://learningwitherrors.org/atom.xml#BSS08">BSS08</a>] deterministically chooses each $v_e$ and
+$s_e$, bounding the increase in $\kappa$ in each step using barrier
+functions. One useful lemma for this procedure is:</p>
+
+<blockquote>
+  <p><a name="lem:matrix-det"/><strong>Lemma 1 (Matrix Determinant Lemma):</strong> If $A$ is
+nonsingular and $v$ is a vector, then:</p>
+
+  
+</blockquote>
+
+<h2 id="main-proof">Main Proof</h2>
+
+<p>Recall from the previous section the main theorem that need to be proved is:</p>
+
+<blockquote>
+  <p><a name="thm:rank1approx"/><strong>Theorem 2:</strong>
+Suppose $d &gt; 1$ and $v_1, \cdots, v_m$ are vectors in $\mathbb{R}^n$ with
+
+Then there exist scalars $s_i &gt; 0$ with $|{i: s_i \ne 0 }| \le dn$ so that
+</p>
+</blockquote>
+
+<p>This is equivalent to bounding the ratio of $\lambda_{\min}$ and
+$\lambda_{\max}$ of the matrix $\sum_{i \le m} s_i v_iv_i^T$.</p>
+
+<p>We start with a matrix $A = 0$, and build it by adding rank-1 updates
+$s_ev_ev_e^T$. One interesting fact is that for any vector $v$, the eigenvalues
+of $A$ and $A + vv^T$ interlace. Consider the characteristic polynomial of $A +
+vv^T$:</p>
+
+
+
+<p>Which can be written in terms of the characteristic polynomial of $A$ using
+<a href="http://learningwitherrors.org/atom.xml#lem:matrix-det">Lemma 1</a>. $u_j$ are the eigenvectors of $A$.  Let $\lambda$ be
+a zero of $p_{A + vv^T}(x)$. It can either:</p>
+
+<ol>
+  <li>Be a zero of $p_A(x)$, so $\lambda$ is equal to an eigenvalue $\lambda_i$
+  of $A$, and the corresponding eigenvector $u_i$ is orthogonal to $v$. In this
+  case, this eigenvalue doesn’t move.</li>
+  <li>Strictly interlace with the old eigenvalues. This happens when
+  $p_A(\lambda) \ne 0$ and
+  
+  This can be interpreted with a physical model. Consider $n$ positive charges
+  arranged vertically with the $j$-th charge’s position corresponding to the
+  $j$-th eigenvalue of $A$, and its charge is $\dotp{v, u_j}^2$. The points
+  where the electric potential is 1 are the new eigenvalues. Since between any
+  two charges the potential changes direction from $+ \infty$ to $- \infty$,
+  there has to be a point between every two charges where the potential is 1,
+  thus the new eigenvalues strictly interlace the old ones.</li>
+</ol>
+
+<p>To get some intuition, we see what happens when we sample $v_i$ uniformly
+randomly. Since $\sum_j v_jv_j^T = I$, $\mathbb{E}_v[\dotp{v, u}^2]$ is constant
+for any normalized vector $u$. Therefore adding the average $v$ increases the
+charges by the same amount in the physical model, causing the new eigenvalues to
+all increase by the same amount. Informally, we expect all the eigenvalues to
+“march forward” at similar rates with each $vv^T$ added, so $\lambda_{\max} /
+\lambda_{\min}$ is bounded.</p>
+
+<p>We construct a sequence of matrices $A^{(0)}, \cdots, A^{(q)}$ by adding rank-1
+updates $t vv^T$. To bound the condition number after each update, we create two
+barriers $l &lt; \lambda_{\min}(A) &lt; \lambda_{\max}(A) &lt; u$ so that the eigenvalues
+of $A$ lie between them. $\Phi_l(A)$ and $\Phi^u(A)$ are defined as the
+potentials at the barriers respectively:</p>
+
+
+
+<p>The crucial step is to show that there exists a $v_i$ and $t$ so that we can
+add $t v_i v_i^T$ to $A$, so that each barrier is shifted by a constant, and the
+potentials at each barrier doesn’t change. We will sketch out the proof briefly,
+readers can pursue the details in [<a href="http://learningwitherrors.org/atom.xml#BSS08">BSS08</a>].</p>
+
+<p>Let constants $\delta_U$ and $\delta_L$ be the maximum amount each barrier can
+increase each round, and constants $\epsilon_U = \Phi^{u_0}(A^{(0)})$ and
+$\epsilon_L = \Phi_{l_0}(A^{(0)})$ be the initial potentials at each
+barrier. The first lemma shows that if $t$ is not too large, adding $t vv^T$ to
+$A$ and shifting the upper barrier by $\delta_U$ will not increase the upper
+potential $\Phi^u$.</p>
+
+<blockquote>
+  <p><strong>Lemma 2 (Upper Barrier Shift):</strong> Suppose $\lambda_{\max}(A) &lt; u$, and $v$ is
+any vector. If
+
+Then:
+</p>
+</blockquote>
+
+<p>The second lemma shows that if $t$ is not too small, adding $t vv^T$ to $A$ and
+shifting the lower barrier by $\delta_L$ will not increase the lower potential
+$\Phi^u$.</p>
+
+<blockquote>
+  <p><strong>Lemma 3 (Lower Barrier Shift):</strong> Suppose $\lambda_{\min}(A) &gt; l$, $\Phi_l(A)
+\le 1/\delta_L$ and $v$ is any vector. If
+
+Then:
+</p>
+</blockquote>
+
+<p>Finally, it can be shown that there exists a $t$ and $v_i$ that satisfy the
+conditions of the above lemmas.</p>
+
+<blockquote>
+  <p><strong>Lemma 3 (Both Barriers):</strong> If $\lambda_{\max}(A) &lt; u$, $\lambda_{\min}(A) &gt;
+l$, $\Phi^u(A) \le \epsilon_U$, $\Phi_l(A) \le \epsilon_L$, and $\epsilon_U$ ,
+$\epsilon_L$, $\delta_U$, $\delta_L$ satisfy:
+
+then there exists a $v_i$ and positive $t$ for which
+</p>
+</blockquote>
+
+<p>This is proved by an averaging argument relating the behavior of vector $v$ to
+the behavior of the expected vector, showing that
+
+therefore there exists a $i$ for which there is a gap between
+$L_A(v_i) - U_A(v_i)$. Choosing the constants carefully, we can get the required
+bound on the condition number.</p>
+
+<h2 id="extension">Extension</h2>
+
+<p>There is a similarity between <a href="http://learningwitherrors.org/atom.xml#thm:rank1approx">Theorem 2</a> and the
+Kadison-Singer conjecture. One formulation of it is stated below:</p>
+
+<blockquote>
+  <p><a name="prop:KSC"/><strong>Proposition 1:</strong> There are universal constants
+$\epsilon, \delta &gt; 0$ and $r \in \mathbb N$ for which the following statement
+holds. If $v_1, \cdots, v_m \in \mathbb{R}^n$ satisfy $||v_i|| \le \delta$ for
+all $i$ and
+
+then there is a partition $X_1, \cdots X_r$ of ${1, \cdots, m }$ for which
+
+for every $j = 1, \cdots, r$.</p>
+</blockquote>
+
+<p>This conjecture was positively resolved in [<a href="http://learningwitherrors.org/atom.xml#MSS13">MSS13</a>], using techniques
+arising from generalizing the barrier function argument used to prove
+<a href="http://learningwitherrors.org/atom.xml#thm:rank1approx">Theorem 2</a> to a multivariate version.</p>
+
+<h2 id="references">References</h2>
+
+<p><a name="BK96">[BK96]</a>
+A. A. Benczúr and D. R. Karger. Approximating s-t minimum cuts in
+$\tilde{O}(n^2)$ time. In <em>STOC ‘96</em>, pages 47-55, 1996.</p>
+
+<p><a name="BSS08">[BSS08]</a>
+J. Baston, D. A. Spielman and N. Srivastava. Twice-Ramanujan
+Sparsifiers. Available at <a href="http://arxiv.org/abs/0808.0163">http://arxiv.org/abs/0808.0163</a>, 2008.</p>
+
+<p><a name="MSS13">[MSS13]</a>
+A. W. Marcus, D. A. Spielman and N. Srivastava. Interlacing Families
+II: Mixed Characteristic Polynomials and The Kadison-Singer Problem. Available
+at <a href="http://arxiv.org/abs/1306.3969">http://arxiv.org/abs/1306.3969</a>, 2013.</p>
+
+<p><a name="SS08">[SS08]</a>
+D. A. Spielman and N. Srivastava. Graph Sparsification by Effective
+Resistances. In <em>STOC ‘08</em>, pages 563-568, 2008.</p>
+
+<p><a name="ST08">[ST08]</a>
+D. A. Spielman and S.-H. Teng. Spectral Sparsification of Graphs. Available at
+<a href="http://arxiv.org/abs/0808.4134">http://arxiv.org/abs/0808.4134</a>, 2008.</p></div><div class="commentbar"><p/></div></content><updated planet:format="July 06, 2016 12:00 AM">2016-07-06T00:00:00Z</updated><published planet:format="July 06, 2016 12:00 AM">2016-07-06T00:00:00Z</published><author><name>Chenyang Yuan</name></author><source><id>http://learningwitherrors.org/atom.xml</id><link href="http://learningwitherrors.org/atom.xml" rel="self" type="application/atom+xml"/><link href="http://learningwitherrors.org" rel="alternate" type="text/html"/><title>Learning With Errors</title><updated planet:format="January 04, 2017 04:27 AM">2017-01-04T04:27:34Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:http_etag>W/&quot;586c79b7-2a1fe&quot;</planet:http_etag><planet:face>lwe.jpeg</planet:face><planet:name>Learning with Errors: Student Theory Blog</planet:name><planet:css-id>learning-with-errors-student-theory-blog</planet:css-id><planet:bozo>false</planet:bozo><planet:http_last_modified>Wed, 04 Jan 2017 04:27:35 GMT</planet:http_last_modified><planet:http_status>200</planet:http_status></source></entry>

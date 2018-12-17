@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://theorydish.blog/?p=1376</id><link href="https://theorydish.blog/2018/06/04/don-knuth-on-general-principles/" rel="alternate" type="text/html"/><title>Don Knuth on General Principles</title><summary>In the last post (at least for now) of our advice-sharing project, we now share the final installment of Don Knuth’s advice (also see his first and second posts). Interestingly (as I mention in the first comment below), these comments are in disagreement with others we shared. Success in your career will be determined more by your weaknesses than by your strengths. Thus, if you imagine plotting a sequence of scores that rate your ability to carry out different kinds of tasks, it’s far better to have a high minimum than a high maximum. Try to identify your weaknesses and to overcome as many as you can. Every large project has parts that are fun and parts that are dull. Learn to get through the dull parts. Never postpone a distasteful-but-necessary portion of work-to-be-done, unless there’s a very good reason why you’ll be able to do it better later. Niels Hendrik Abel gave wonderful advice: “Read the masters!” Take the time to read lots of papers that were written by top researchers when they were first discovering important ideas. Study the works of great computer scientists, and do your best to understand their mindset. In order to do this well, you’ll have [...]<div class="commentbar"><p/></div></summary><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>In the last post (at least for now) of our <a href="https://theorydish.blog/tag/tips/">advice-sharing project</a>, we now share the final installment of Don Knuth’s advice (also see his <a href="https://theorydish.blog/2018/02/01/donald-knuth-on-doing-research/">first </a>and <a href="https://theorydish.blog/2018/02/26/donald-knuth-on-writing-up-research/">second</a> posts). Interestingly (as I mention in the first comment below), these comments are in disagreement with others we shared.</p>
+<hr/>
+<p>Success in your career will be determined more by your weaknesses than<br/>
+by your strengths. Thus, if you imagine plotting a sequence of scores<br/>
+that rate your ability to carry out different kinds of tasks, it’s<br/>
+far better to have a high minimum than a high maximum. Try to identify<br/>
+your weaknesses and to overcome as many as you can.</p>
+<p>Every large project has parts that are fun and parts that are dull.<br/>
+Learn to get through the dull parts. Never postpone a<br/>
+distasteful-but-necessary portion of work-to-be-done, unless<br/>
+there’s a very good reason why you’ll be able to do it better later.</p>
+<p>Niels Hendrik Abel gave wonderful advice: “Read the masters!”<br/>
+Take the time to read lots of papers that were written by top researchers<br/>
+when they were first discovering important ideas. Study the works of<br/>
+great computer scientists, and do your best to understand their mindset.<br/>
+In order to do this well, you’ll have to learn how to put yourself into<br/>
+their place — remembering what they knew and didn’t know at the time,<br/>
+and adjusting to their terminology and notation. The exercise of “getting<br/>
+inside another person’s head” is, in itself, extremely valuable for<br/>
+building your own mental skills.</p>
+<p>Here’s a trick that I often use when reading a technical book or paper:<br/>
+After the author has stated a problem to be solved (or a theorem to be<br/>
+proved, etc.), I cover up the text and spend some time trying to solve<br/>
+that problem by myself. Similarly, before turning the page, I try to<br/>
+guess what’s on the next page. Of course I usually fail … but even<br/>
+in failure, I’m much more ready to understand the author’s solution,<br/>
+than if I hadn’t tried it first. Furthermore, with this modus operandi<br/>
+I’m repeatedly learning new ways to get past stumbling blocks.</p>
+<p>Instead of promoting yourself aggressively, you should try to write so<br/>
+well that others can readily see for themselves the value of what you’ve<br/>
+done. Then they’ll spontaneously also tell their friends, and the<br/>
+word will spread. On the other hand, if a good writer comes to you and<br/>
+wants to publish an account of your work, it never hurts to have a<br/>
+good “press agent”.</p>
+<hr/>
+<p>PS. (from Don) re “reading the masters”</p>
+<p>“The purpose of … reading is precisely to suspend one’s mind<br/>
+in the workings of another sensibility”.<br/>
+— Guy Davenport, quoted in Harvard Magazine Nov-Dec 2017, p54</p>
+<div class="yj6qo"/>
+<div class="adL"/></div></content><updated planet:format="June 04, 2018 06:03 PM">2018-06-04T18:03:41Z</updated><published planet:format="June 04, 2018 06:03 PM">2018-06-04T18:03:41Z</published><category term="Research Life"/><category term="tips"/><author><name>Omer Reingold</name></author><source><id>https://theorydish.blog</id><logo>https://theorydish.files.wordpress.com/2017/03/cropped-nightdish1.jpg?w=32</logo><link href="https://theorydish.blog/feed/" rel="self" type="application/atom+xml"/><link href="https://theorydish.blog" rel="alternate" type="text/html"/><link href="https://theorydish.blog/osd.xml" rel="search" type="application/opensearchdescription+xml"/><link href="https://theorydish.blog/?pushpress=hub" rel="hub" type="text/html"/><subtitle>Stanford's CS Theory Research Blog</subtitle><title>Theory Dish</title><updated planet:format="December 17, 2018 05:30 AM">2018-12-17T05:30:25Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_last_modified>Mon, 19 Nov 2018 02:17:39 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>theory-dish-stanford-blog</planet:css-id><planet:face>theorydish.png</planet:face><planet:name>Theory Dish: Stanford blog</planet:name><planet:http_status>200</planet:http_status></source></entry>

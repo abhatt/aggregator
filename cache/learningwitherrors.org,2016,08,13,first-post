@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://learningwitherrors.org/2016/08/13/first-post</id><link href="http://learningwitherrors.org/2016/08/13/first-post/" rel="alternate" type="text/html"/><title>New Theory Blog</title><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>We’re starting a theory student blog!  The idea is, this is a collaborative blog
+about theoretical computer science, where people can post about interesting
+things they’re learning / have learnt. The goal is to help everyone learn from
+each other, and also have a forum for student discussion.</p>
+
+<p>Hopefully this will help make TCS concepts more accessible: Sometimes reading
+the original paper is not the best / most efficient way to learn something, and
+there are several perspectives or proofs of the same thing that are not
+explicitly written down in the literature, but are known in the community. We
+hope this blog will be a way to share this knowledge among theory students.</p>
+
+<p>One important aspect is, we want this to feel like an informal place to learn
+and discuss – think more like chalk talks than STOC talks. It’s fine to have
+rough calculations, sketched figures, etc – the emphasis is on explaining
+things nicely. And we want to encourage asking clarifying questions and
+discussing in the comments.</p>
+
+<h2 id="on-posts">On posts:</h2>
+<ul>
+  <li>
+    <p>Posts can be about anything technical that other students may find
+interesting or learn from. Anything from current research to classical
+results.</p>
+  </li>
+  <li>
+    <p>The length and thoroughness can vary, anything from “survey of this field” to
+“summary of cool paper” to “interesting technical lemma” to “something cool I
+learnt this week”, etc.</p>
+  </li>
+  <li>
+    <p>You don’t need to be an expert on the topic to write about it (as the name
+suggests, there may be some errors, but hopefully also some learning).</p>
+  </li>
+  <li>
+    <p>The aim is to convey interesting or useful techniques and intuition (e.g. try
+not to just announce a new result without explaining the ideas behind it)</p>
+  </li>
+</ul>
+
+<h2 id="contributing">Contributing:</h2>
+<p>Everyone is welcome (and encouraged!) to contribute – including
+non-students, and generally anyone interested in TCS.</p>
+
+<p>The easiest way is to
+simply write a LaTeX or Markup document, and email it to me (preetum [at]
+berkeley).
+There is also a <a href="http://learningwitherrors.org/contributing/">harder way</a>.</p>
+
+<p>Ideally, both readers and writers would get something out of this blog.
+(Personally, I like to present topics to make sure I understand them
+fully. And of course, we can have an interesting discussion about it.)</p>
+
+<!--(In theory, the entire source code of this blog is public on Github, so you
+can author a new post by compiling and pushing the appropriate files in the
+appropriate places. In practice it's rather messy, but details are here).-->
+
+<h2 id="comments-and-subreddit">Comments and Subreddit:</h2>
+<p>We have comments below each post, which we encourage
+people to use to discuss the post.</p>
+
+<p>We also have the subreddit <a href="https://www.reddit.com/r/LWE">r/LWE</a>,
+which we hope can be used as a more general
+forum among theory students. Feel free to use this for both blog-related things
+and general theory questions. Let’s see how this works.</p>
+
+<h2 id="initial-posts">Initial Posts:</h2>
+<p>We’re launching with posts on:</p>
+
+<ul>
+  <li>
+    <p><a href="http://learningwitherrors.org/2016/06/23/intro-sos/">Intro to the Sum-of-Squares Hierarchy</a>  <br/>
+by Tselil Schramm.</p>
+  </li>
+  <li>
+    <p><a href="http://learningwitherrors.org/2016/08/12/pseudocalibration-for-planted-clique-sos/">Pseudo-calibration for Planted Clique Sum-of-Squares Lower Bounds</a>  <br/>
+by Pasin Manurangsi.</p>
+  </li>
+  <li>
+    <p><a href="http://learningwitherrors.org/2016/07/06/deterministic-sparsification/">Deterministic Sparsification</a>  <br/>
+by Chenyang Yuan.</p>
+  </li>
+  <li>
+    <p><a href="http://learningwitherrors.org/2016/06/03/small-bias/">Simple Lower Bounds for Small-bias Spaces</a> and
+<a href="http://learningwitherrors.org/2016/05/27/fast-johnson-lindenstrauss/">Fast Johnson-Lindenstrauss</a>  <br/>
+by Preetum Nakkiran.</p>
+  </li>
+</ul>
+
+<p>Thanks especially to the above people (and all future authors) for contributing.</p>
+
+<h2 id="conclusion-and-open-questions">Conclusion and Open Questions</h2>
+<p>When conceiving this blog, we had some other
+ideas for things that should exist, such as a set of collaboratively-edited
+pages on “How to best learn topic X”. Are people interested in contributing to
+something like this?  In general, any suggestions for things you would like to
+see (regarding this blog, or otherwise)?</p>
+
+<p>Feel free to use the comments section below.</p></div><div class="commentbar"><p/></div></content><updated planet:format="August 13, 2016 12:00 AM">2016-08-13T00:00:00Z</updated><published planet:format="August 13, 2016 12:00 AM">2016-08-13T00:00:00Z</published><author><name>Preetum Nakkiran</name></author><source><id>http://learningwitherrors.org/atom.xml</id><link href="http://learningwitherrors.org/atom.xml" rel="self" type="application/atom+xml"/><link href="http://learningwitherrors.org" rel="alternate" type="text/html"/><title>Learning With Errors</title><updated planet:format="January 04, 2017 04:27 AM">2017-01-04T04:27:34Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:http_etag>W/&quot;586c79b7-2a1fe&quot;</planet:http_etag><planet:face>lwe.jpeg</planet:face><planet:name>Learning with Errors: Student Theory Blog</planet:name><planet:css-id>learning-with-errors-student-theory-blog</planet:css-id><planet:bozo>false</planet:bozo><planet:http_last_modified>Wed, 04 Jan 2017 04:27:35 GMT</planet:http_last_modified><planet:http_status>200</planet:http_status></source></entry>

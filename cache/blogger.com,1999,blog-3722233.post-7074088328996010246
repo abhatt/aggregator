@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>tag:blogger.com,1999:blog-3722233.post-7074088328996010246</id><link href="https://blog.computationalcomplexity.org/2018/10/practical-consequences-of-rh.html" rel="alternate" type="text/html"/><title>Practical consequences of RH ?</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">When it seemed like Riemann Hypothesis (RH) might be solved (see Lipton-Regan blog entry on RH  <a href="https://rjlipton.wordpress.com/2018/09/26/reading-into-atiyahs-proof/">here</a> and what it points to for more info) I had the following email exchange with Ajeet Gary (not Gary Ajeet, though I will keep his name in mind for when I want to string together names like George Washington, Washington Irving, Irving Berlin,  with the goal of getting back to the beginning) who is an awesome ugrad at UMCP majoring in Math and CS.<br/>
+<br/>
+<i>Ajeet:</i> So Bill, now that RH has been solved should I take my credit cards off of Amazon?<br/>
+<br/>
+<i>Bill:</i> I doubt RH has been solved. And I think you are thinking that from RH you can prove that factoring is in P. That is not known and likely not true.<br/>
+<br/>
+<i>Ajeet</i>: What are my thoughts and why are they wrong?<br/>
+<br/>
+<i>Bill</i>: What am I a mind-reader?<br/>
+<br/>
+<i>Ajeet</i>: Aren't you?<br/>
+<br/>
+<i>Bill: </i>Oh, Yes, you are right, I am. Here is what you are confusing this with and why, even if you were right you would be wrong.<br/>
+<br/>
+<i>Ajeet:</i> It just isn't my day.<br/>
+<br/>
+<i>Bill: </i>Any day you are enlightened is your day. Okay, here are the thoughts you have<br/>
+<br/>
+a) From the Extended RH (a generalization of RH) you can prove that PRIMES are in P. (This algorithm is slow and not used. PRIMES has a fast algorithm in RP that people do use. Primes was eventually proven to be in P anyway, though again that is a slow algorithm). Note- even though we do not know if ERH is true, one could still RUN the algorithm that it depends on. ERH is only used to prove that the algorithm is in P.<br/>
+<br/>
+b) There was an episode of Numb3rs where they claimed (1) RH implies Factoring in P-- not likely but not absurd (2) from the proof of RH you could get a FAST algorithm for factoring in a few hours (absurd). I say absurd for two reasons: (i) Going from basic research to application takes a long time, and (ii) See next thought<br/>
+<br/>
+c) If (RH --&gt; factoring easy) then almost surely the proof would present an algorithm (that can be run even if RH has not been proven) and then a proof that RH --&gt; the algorithm's run time is poly. But I wonder -- is it possible that:<br/>
+<br/>
+RH--&gt; factoring easy, and<br/>
+<br/>
+The proof does not give you the algorithm, and<br/>
+<br/>
+ if you had a proof  or RH then you COULD get the algorithm (though not in a few hours).<br/>
+<br/>
+I doubt this is the case.<br/>
+<br/>
+<i>Ajeet: </i>So are there any practical consequences of RH?<br/>
+<br/>
+<i>Bill</i>: Would you call better bounds on the error term of the prime number theory practical.<br/>
+<br/>
+<i>Ajeet</i>: YES!<br/>
+<br/>
+<i>Bill:</i> GREAT! For more on RH see <a href="http://empslocal.ex.ac.uk/people/staff/mrwatkin/zeta/riemannhyp.htm#q8">here</a></div><div class="commentbar"><p/></div></summary><updated planet:format="October 15, 2018 02:52 AM">2018-10-15T02:52:00Z</updated><published planet:format="October 15, 2018 02:52 AM">2018-10-15T02:52:00Z</published><author><name>GASARCH</name><email>noreply@blogger.com</email></author><source><id>tag:blogger.com,1999:blog-3722233</id><category term="typecast"/><category term="focs metacomments"/><author><name>Lance Fortnow</name><email>noreply@blogger.com</email></author><link href="https://blog.computationalcomplexity.org/" rel="alternate" type="text/html"/><link href="https://blog.computationalcomplexity.org/feeds/posts/default?alt=rss" rel="self" type="application/atom+xml"/><subtitle>Computational Complexity and other fun stuff in math and computer science from Lance Fortnow and Bill Gasarch</subtitle><title>Computational Complexity</title><updated planet:format="December 17, 2018 01:56 AM">2018-12-17T01:56:56Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;3c48828af0b9b548c409eba7b894fc342a0679ccd23a3f1db96c1212435d64c9&quot;</planet:http_etag><planet:http_last_modified>Sun, 16 Dec 2018 21:24:54 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>computational-complexity</planet:css-id><planet:face>gasarch.png</planet:face><planet:name>Computational Complexity</planet:name><planet:http_status>200</planet:http_status></source></entry>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://agtb.wordpress.com/?p=3352</id><link href="https://agtb.wordpress.com/2018/06/19/wine-2017-a-follow-up/" rel="alternate" type="text/html"/><title>WINE 2017, a follow up</title><summary>Guest post from Nikhil Devanur: Pinyan Lu and I were the PC chairs for WINE 2017, and we decided to conduct an experiment. We asked the PC members to score the submissions in the same way they would score an EC 2017 submission. In fact, we sent them the instructions that were given to the […]<div class="commentbar"><p/></div></summary><content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><em>Guest post from Nikhil Devanur:</em></p>
+<p>Pinyan Lu and I were the PC chairs for WINE 2017, and we decided to conduct an experiment. We asked the PC members to score the submissions in the same way they would score an EC 2017 submission. In fact, we sent them the instructions that were given to the PC for EC 2017 and asked them to follow the same guidelines.</p>
+<p>Right off the bat, there is the question of how well these instructions were followed. We sent these instructions multiple times, and yet some PC members seem to have ignored it initially. This would invariably come up during discussions. Someone would ask, “Is this EC scale, or WINE scale”, and every now and then there would be a “Doh! I forgot”.</p>
+<p>With that aside, I want to present the results of this experiment. Moshe Babaioff kindly gave me the statistics for EC submissions, so we can compare. The key quantity of interest is of course, how do the submission qualities differ. We all know EC gets stronger submissions, but by how much? We sorted the papers into the following buckets, and compared the percentage of submissions in each bucket. The scoring scale for EC was from 1 to 7. Here’s the result.</p>
+<table width="531">
+<tbody>
+<tr>
+<td width="103"><strong>Average score</strong></td>
+<td width="68"><strong>EC</strong></td>
+<td width="68"><strong>WINE</strong></td>
+</tr>
+<tr>
+<td>6+</td>
+<td>6%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>5.5 to 6</td>
+<td>9%</td>
+<td>3%</td>
+</tr>
+<tr>
+<td>5 to 5.5</td>
+<td>17%</td>
+<td>14%</td>
+</tr>
+<tr>
+<td>4.5 to 5</td>
+<td>14%</td>
+<td>11%</td>
+</tr>
+<tr>
+<td>4 to 4.5</td>
+<td>11%</td>
+<td>19%</td>
+</tr>
+<tr>
+<td>3 to 4</td>
+<td>27%</td>
+<td>38%</td>
+</tr>
+<tr>
+<td>1 to 3</td>
+<td>16%</td>
+<td>15%</td>
+</tr>
+</tbody>
+</table>
+<p>This table doesn’t tell the whole story, so I did something else: I added 0.5 to the average of each WINE paper, and then calculated the CDF. Here’s what that looks like.</p>
+<table width="228">
+<tbody>
+<tr>
+<td width="92"><strong>Average score</strong></td>
+<td width="68"><strong>EC</strong></td>
+<td width="68"><strong>WINE + 0.5</strong></td>
+</tr>
+<tr>
+<td>6+</td>
+<td>6%</td>
+<td>3%</td>
+</tr>
+<tr>
+<td>5.5+</td>
+<td>16%</td>
+<td>17%</td>
+</tr>
+<tr>
+<td>5+</td>
+<td>32%</td>
+<td>28%</td>
+</tr>
+<tr>
+<td>4.5+</td>
+<td>47%</td>
+<td>48%</td>
+</tr>
+<tr>
+<td>4+</td>
+<td>58%</td>
+<td>65%</td>
+</tr>
+<tr>
+<td>3+</td>
+<td>84%</td>
+<td>89%</td>
+</tr>
+<tr>
+<td>1+</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<p>Now you can see that the two columns are very close to each other. What this tells me is that there is about a 0.5 to 1 point difference between EC and WINE submissions, on a scale of 1 to 7. (My guess is that this would hold even after taking into consideration a bit of grade inflation in the experiment, which is hard to measure.)</p>
+<p>Other than this experiment, here is some feedback that I wanted to give to the community.</p>
+<ol>
+<li>Historically, WINE has been focused on the CS theory side of AGT, but there is no good reason to continue this. We made a conscious effort to change this and attract all AGT work, including what is typically done in AI and OR communities, as well as experimental work. We said this explicitly in the CFP, and I tried to have the PC represent this as well. I think we got a more diverse set of submissions, especially from the OR community. Several members from OR were attending WINE for the first time, and the feedback from them was that we should publicize WINE more to the OR community. I hope this trend continues, and we see virtually no difference between EC and WINE in terms of topics of relevance.</li>
+<li>WINE has been using Springer for publishing the proceedings and we were not quite happy with them. One, we had ordered some number of hard copies of the proceedings, with the idea that they would be made available on a shared basis at the conference location. These were never delivered. Springer was also supposed to sponsor a monetary reward for the best paper, which they never sent. (We gave the reward out of other sponsorship money.) I would recommend seriously considering alternate publishers, including open access publishers.</li>
+<li>This has been said before, but one of the most painful aspects of organizing WINE is the need to be budget balanced each year. There is no rolling bank account, and if for some reason the balance goes red in a year, that money has to come out of the PC chairs/local organizers!! This leads to a lot of anxiety and conservative actions in terms of how the sponsorship money is used.</li>
+</ol>
+<p>There were other interesting proposals that came up in the WINE business meeting, but I chose not to include any of those so that this blog post is as short as possible. You can watch a recording of this (as well as that of all the talks) here:</p>
+<p><a href="http://lcm.csa.iisc.ernet.in/wine2017/" rel="noopener" target="_blank">http://lcm.csa.iisc.ernet.in/wine2017/</a></p>
+<p>Finally, I want to give a shout out once again to the local organizers of WINE 2017. I got uniformly and overwhelmingly positive feedback from many of the attendees that this was one of the most enjoyable conferences they had attended. The local organizers (Y. Narahari and his group at the IISc, Bangalore) get all the credit for this.</p></div></content><updated planet:format="June 19, 2018 07:42 PM">2018-06-19T19:42:09Z</updated><published planet:format="June 19, 2018 07:42 PM">2018-06-19T19:42:09Z</published><category term="Uncategorized"/><author><name>Jason Hartline</name></author><source><id>https://agtb.wordpress.com</id><logo>https://secure.gravatar.com/blavatar/52ef314e11e379febf97d1a97547f4cd?s=96&amp;d=https%3A%2F%2Fs0.wp.com%2Fi%2Fbuttonw-com.png</logo><link href="https://agtb.wordpress.com/feed/" rel="self" type="application/atom+xml"/><link href="https://agtb.wordpress.com" rel="alternate" type="text/html"/><link href="https://agtb.wordpress.com/osd.xml" rel="search" type="application/opensearchdescription+xml"/><link href="https://agtb.wordpress.com/?pushpress=hub" rel="hub" type="text/html"/><subtitle>Computation, Economics, and Game Theory</subtitle><title>Turing's Invisible Hand</title><updated planet:format="December 17, 2018 05:29 AM">2018-12-17T05:29:24Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_last_modified>Wed, 28 Nov 2018 09:31:04 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>turing-s-invisible-hand</planet:css-id><planet:face>agtb.png</planet:face><planet:name>Turing's invisible hand</planet:name><planet:http_location>https://agtb.wordpress.com/feed/</planet:http_location><planet:http_status>301</planet:http_status></source></entry>

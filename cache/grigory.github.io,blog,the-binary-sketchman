@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><entry xml:lang="en" xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://grigory.github.io/blog/the-binary-sketchman</id><link href="http://grigory.github.io/blog/the-binary-sketchman/" rel="alternate" type="text/html"/><title xml:lang="en">The Binary Sketchman</title><content type="xhtml" xml:lang="en"><div xmlns="http://www.w3.org/1999/xhtml"><p>In this post I will talk about some of my recent work with <a href="http://www.cis.upenn.edu/~kannan/">Sampath Kannan</a> and <a href="https://stat.mit.edu/people/elchanan-mossel/">Elchanan Mossel</a> on linear methods for binary data compression. The paper is <a href="http://eccc.hpi-web.de/report/2016/174/">available here</a>, slides from my talk at Penn are <a href="http://grigory.us/files/talks/penn16.pdf">here</a> and another talk at Columbia is <a href="http://www.cs.columbia.edu/theory/f16-theoryread.html#Grigory">coming up on Nov 21</a>.</p>
+
+<p>Given very large data represented in binary format as a string of length , i.e.  
+we are interested in a compression algorithm that can transform  into a much shorter binary string .
+Here  so that we can achieve some non-trivial savings in space.
+Moreover, if  changes in the future we would like to be able to update our compressed version of it (without having to store the original ).</p>
+
+<p>Clearly compression introduces some loss making it impossible to recover certain properties of the original data from the compressed string.
+However, if we know in advance which property of  we are interested in then efficient compression often becomes possible.
+We will model the property of interest as a binary function  which labels all possible ’s with two labels.
+So our goal will be to be able to: 1) perform this binary classification, i.e. compute  using compressed data  only, 2) do this even if  changes over time – updates for us will be bit flips in the coordinates of  specified by the index of the bit that is getting flipped.</p>
+
+<p>Finally, if  is so big that it can’t be stored locally and has to be divided into chunks stored across multiple machines then we will be able to compress the chunks locally and then combine them on a central server into a compressed version of the entire data – one simple round of MapReduce or whatever your favorite distributed framework is.</p>
+
+<p>To make the above discussion less abstract let’s consider a machine learning application – evaluating a linear classifier over binary data.
+Let’s say we have trained a linear classifier of the form  where sign is the sign function. 
+Is it possible to compress  in such a way that we can still evaluate our classifier in the scenarios described above?
+Turns out we can compress the input down to  bits where  is a parameter of the linear classifier known as its margin. Moreover, no compression scheme can do better.</p>
+
+<h1 id="introducing-the-binary-sketchman">Introducing the Binary Sketchman</h1>
+
+<div align="center"><img alt="The Binary Sketchman" src="http://grigory.github.io/blog/pics/binary-sketchman-final.png"/> </div>
+
+<p><br/></p>
+
+<p>While the setting described above may seem quite challenging it can be handled through a framework of linear sketching.
+In the binary case the interpretation of linear sketching is particularly simple as our binary sketchman is just going to compute  parities of the bits of , say for :</p>
+
+
+
+<p>In a matrix form this corresponds to computing  where  is a  binary matrix and the operations are performed over .
+Note that now our sketch easily satisfies all the requirement above since as  changes we can just update the corresponding parities. In the distributed case we can compute them locally and then add up on a central server.</p>
+
+<p>Unfortunately the power of a deterministic sketchman who just uses a fixed set of parities is quite limited and no such sketchman can compress even a simple linear classifier down to less than  bits.
+In fact, even for the OR function  no deterministic sketch can have less than  bits.
+So our binary sketchman will “<a href="http://www.cs.cmu.edu/~haeupler/15859F14/">unleash the power of randomization</a>” in his quest for a perfect sketch.
+According to <a href="http://www.cs.cmu.edu/~haeupler/">Bernhard Haeupler</a> this can be quite dramatic and looks kind of like this:</p>
+<div align="center"><img alt="The power of randomness unleashed" src="http://www.cs.cmu.edu/~haeupler/15859F14/images/posternoinf.jpg" width="300px"/> </div>
+
+<p><br/>
+So our sketchman will instead pick the matrix  randomly while the rest is the same as before.
+Now the OR function is easy to handle: pick a parity over a random subset of  where each coordinate is included with probability .
+If  then this parity catches a non-zero coordinate of  with probability  and thus evaluates to  with probability at least .
+If  then the parity never evaluates to  so we can distinguish the two cases with probability  using  such parities.
+This illustrates a more general idea – if  is a constant function on all but  different inputs then a sketch of size  suffices.</p>
+
+<p>Now for linear thresholds the high-level ideas behind this sketching process are as follows:
+1) observe that any linear threshold function takes the same value on all but  inputs,
+2) apply the same argument as above to obtain a sketch of size .
+The only thing missing in the above argument is that we still have dependence on .
+This can be avoided if we first hash the domain reducing its size down to  which replaces  in the above calculations giving us .
+While this compression method is quite simple the remarkable fact is that it can’t be improved.
+Even for the simplest threshold function that corresponds to a threshold for the Hamming weight of , i.e. , any compression mechanism would require  bits as follows from <a href="http://link.springer.com/chapter/10.1007/978-3-642-32512-0_44">this work</a> by Dasgupta, Kumar and Sivakumar.
+Note that it isn’t assumed that the protocol is based on linear sketching – it can be an arbitrary scheme.</p>
+
+<h1 id="the-power-of-randomized-binary-sketchman">The Power of Randomized Binary Sketchman</h1>
+
+<p>Linear sketching by itself is not a new idea and has been studied extensively in the last two decades.
+See surveys by <a href="http://researcher.watson.ibm.com/researcher/view.php?person=us-dpwoodru">Woodruff</a> and <a href="http://people.cs.umass.edu/~mcgregor/">McGregor</a> on how it can be applied to problems in <a href="http://researcher.ibm.com/files/us-dpwoodru/wNow3.pdf">numerical linear algebra</a> and <a href="http://link.springer.com/referenceworkentry/10.1007/978-3-642-27848-8_796-1">graph compression</a>.
+However, this work focuses on linear sketching over large finite fields (used to represent real values with bounded precision).
+Nevertheless some striking results are known about linear sketching that are applicable in our context as well.
+In particular, if  is updated through a very long (triply exponential in ) stream of adversarial updates then linear sketches over finite fields are optimal for any function  as shown by Li, Nguyen and Woodruff <a href="https://pdfs.semanticscholar.org/bf89/98d76741f3ee7b4ba1f82524353e7083c3b5.pdf">here</a> in STOC’14.</p>
+
+<p>As our paper shows the same result holds for much shorter random streams of length  in a simple model where each update flips uniformly at random chosen coordinate of .
+In other words binary sketching is optimal if in the end of the stream the input  is uniformly distributed.
+The proof of this fact is quite technical and relies on a notion of <i>approximate Fourier dimension</i> for Boolean functions that we use to characterize binary sketching under the uniform distribution – check the paper for details if you are interested.
+Whether the same result holds for short (length , say) adversarial streams is the main open question left open.</p>
+
+
+  <p><a href="http://grigory.github.io/blog/the-binary-sketchman/">The Binary Sketchman</a> was originally published by Grigory Yaroslavtsev at <a href="http://grigory.github.io/blog">The Big Data Theory</a> on October 07, 2016.</p></div><div class="commentbar"><p/></div></content><updated planet:format="October 07, 2016 12:00 AM">2016-10-07T00:00:00Z</updated><published planet:format="October 07, 2016 12:00 AM">2016-10-07T00:00:00Z</published><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog</uri></author><source><id>http://grigory.github.io/blog/</id><author><name>Grigory Yaroslavtsev</name><email>grigory@grigory.us</email><uri>http://grigory.github.io/blog/</uri></author><link href="http://grigory.github.io/blog/feed.xml" rel="self" type="application/atom+xml"/><link href="http://grigory.github.io/blog" rel="alternate" type="text/html"/><title xml:lang="en">The Big Data Theory</title><updated planet:format="May 27, 2018 09:46 AM">2018-05-27T09:46:42Z</updated><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:http_etag>W/&quot;5b0a7e85-194be&quot;</planet:http_etag><planet:http_last_modified>Sun, 27 May 2018 09:46:45 GMT</planet:http_last_modified><planet:bozo>false</planet:bozo><planet:items_per_page>40</planet:items_per_page><planet:css-id>grigory-yaroslavtsev</planet:css-id><planet:face>yaroslavtsev.jpeg</planet:face><planet:name>Grigory Yaroslavtsev</planet:name><planet:http_status>200</planet:http_status></source></entry>

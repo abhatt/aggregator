@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/"><id>http://offconvex.github.io/2018/06/25/textembeddings/</id><link href="http://offconvex.github.io/2018/06/25/textembeddings/" rel="alternate" type="text/html"/><title>Deep-learning-free Text and Sentence Embedding, Part 2</title><summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>This post continues <a href="http://www.offconvex.org/2018/06/17/textembeddings/">Sanjeev’s post</a> and describes further attempts to construct elementary and interpretable text embeddings. 
+The previous post described the <a href="https://openreview.net/pdf?id=SyK00v5xx">the SIF embedding</a>, which uses a simple weighted combination of word embeddings combined with some mild “denoising” based upon singular vectors, yet outperforms many deep learning based methods, including <a href="https://arxiv.org/pdf/1506.06726.pdf">Skipthought</a>, on certain downstream NLP tasks such as sentence semantic similarity and entailment. 
+See also this <a href="http://nlp.town/blog/sentence-similarity/">independent study by Yves Peirsman</a>.</p>
+
+<p>However, SIF embeddings embeddings ignore word order (similar to classic <em>Bag of Words</em> models in NLP), which leads to unexciting performance on many other downstream classification tasks. 
+(Even the denoising via SVD, which is crucial in similarity tasks, can sometimes reduces performance on other tasks.) 
+Can we design a text embedding with the simplicity and transparency of SIF while also incorporating word order information?
+Our <a href="https://openreview.net/pdf?id=B1e5ef-C-">ICLR’18 paper</a> with Kiran Vodrahalli does this, and achieves strong empirical performance and also some surprising theoretical guarantees stemming from the <a href="https://en.wikipedia.org/wiki/Compressed_sensing">theory of compressed sensing</a>. 
+It is competitive with all pre-2018 LSTM-based methods on standard tasks. 
+Even better, it is much faster to compute, since it uses pretrained (GloVe) word vectors and simple linear algebra.</p>
+
+<p style="text-align: center;">
+<img alt="Pipeline" src="http://www.offconvex.org/assets/unsupervised_pipeline.png" width="50%"/>
+</p>
+
+<h2 id="incorporating-local-word-order-n-gram-embeddings">Incorporating local word order: $n$-gram embeddings</h2>
+
+<p><em>Bigrams</em> are ordered word-pairs that appear in the sentence, and $n$-grams are ordered $n$-tuples. 
+A document with $k$ words has $k-1$ bigrams and $k-n+1$ $n$-grams. 
+The <em>Bag of n-gram (BonG) representation</em> of a document refers to a long vector whose each entry is indexed by all possible $n$-grams, and contains the number of times the corresponding $n$-gram appears in the document. 
+Linear classifiers trained on BonG representations are a <a href="https://www.aclweb.org/anthology/P12-2018">surprisingly strong baseline for document classification tasks</a>.
+While $n$-grams don’t directly encode long-range dependencies in text, one hopes that a fair bit of such information is implicitly present.</p>
+
+<p>A trivial idea for incorporating $n$-grams into SIF embeddings would be to treat $n$-grams like words, and compute word embeddings for them using either GloVe and word2vec. 
+This runs into the difficulty that the number of distinct $n$-grams in the corpus gets very large even for $n=2$ (let alone $n=3$), making it almost impossible to solve word2vec or GloVe. 
+Thus one gravitates towards a more <em>compositional</em> approach.</p>
+
+<blockquote>
+  <p><strong>Compositional $n$-gram embedding:</strong> Represent $n$-gram $g=(w_1,\dots,w_n)$ as the element-wise product $v_g=v_{w_1}\odot\cdots\odot v_{w_n}$ of the embeddings of its constituent words.</p>
+</blockquote>
+
+<p>Note that due to the element-wise multiplication we actually represent unordered $n$-gram information, not ordered $n$-grams (the performance for order-preserving methods is about the same).
+Now we are ready to define our <em>Distributed Co-occurrence (DisC) embeddings</em>.</p>
+
+<blockquote>
+  <p>The <strong>DisC embedding</strong> of a piece of text is just a concatenation for $(v_1, v_2, \ldots)$ where $v_n$ is the sum of the $n$-gram embeddings of all $n$-grams in the document (for $n=1$ this is just the sum of word embeddings).</p>
+</blockquote>
+
+<p>Note that DisC embeddings leverage classic Bag-of-n-Gram information as well as the power of word embeddings. 
+For instance,  the sentences <em>“Loved this movie!”</em> and <em>“I enjoyed the film.”</em> share no $n$-gram information for any $n$, but  their DisC embeddings are fairly similar. 
+Thus if the first example comes with a label, it gives the learner some idea of how to classify the second. 
+This can be useful especially in settings with few labeled examples; e.g. DisC outperform BonG on the Stanford Sentiment Treebank (SST) task, which has only 6,000 labeled examples. 
+DisC embeddings also beat SIF and a standard LSTM-based method, Skipthoughts. 
+On the much larger IMDB testbed, BonG still reigns at top (although DisC is not too far behind).</p>
+
+<div style="text-align: center;">
+<img alt="Performance on SST and IMDB" src="http://www.offconvex.org/assets/clfperf_sst_imdb.png" width="70%"/>
+</div>
+
+<p>Skip-thoughts does match or beat our DisC embeddings on some other classification tasks, but that’s still not too shabby an outcome for such a simple method.  (By contrast, LSTM methods can take days or weeks of training, and are quite slow to evaluate at test time on a new piece of text.)</p>
+
+<div style="text-align: center;">
+<img alt="Performance on various classification tasks" src="http://www.offconvex.org/assets/sentenceembedtable.jpg" width="70%"/>
+</div>
+
+<h2 id="some-theoretical-analysis-via-compressed-sensing">Some theoretical analysis via compressed sensing</h2>
+
+<p>A linear SIF-like embedding represents a document with Bag-of-Words vector $x$ as 
+
+where $v_w$ is the embedding of word $w$ and $\alpha_w$ is a scaling term. 
+In other words, it represents document $x$ as $A x$ where $A$ is the matrix with as many columns as the number of words in the language, and the column corresponding to word $w$ is $\alpha_w A$. 
+Note that $x$ has many zero coordinates corresponding to words that don’t occur in the document; in other words it’s a <em>sparse</em> vector.</p>
+
+<p>The starting point of our DisC work was the realization that perhaps the reason SIF-like embeddings work reasonably well is that they <em>preserve</em> the Bag-of-words information, in the sense that it may be possible to <em>easily recover</em> $x$ from $A$. 
+This is not an outlandish conjecture at all, because <a href="https://en.wikipedia.org/wiki/Compressed_sensing"><em>compressed sensing</em></a> does exactly this when $x$ is suitably sparse and matrix $A$ has some nice properties such as RIP or incoherence. 
+A classic example is when $A$ is a random matrix, which in our case corresponds to using random vectors as word embeddings.
+Thus one could try to use random word embeddings instead of GloVe vectors in the construction and see what happens! 
+Indeed, we find that so long as we raise the dimension of the word embeddings, then text embeddings using random vectors do indeed converge to the performance of BonG representations.</p>
+
+<p>This is a surprising result, as compressed sensing does not imply this per se, since the ability to reconstruct the BoW vector from its compressed version doesn’t directly imply that the compressed version gives the same performance as BoW on linear classification tasks. 
+However, a result of <a href="https://pdfs.semanticscholar.org/627c/14fe9097d459b8fd47e8a901694198be9d5d.pdf">Calderbank, Jafarpour, &amp; Schapire</a> shows that the compressed sensing condition that implies optimal recovery also implies good performance on linear classification under compression. Intuitively, this happens because of two facts.</p>
+
+<p> 
+</p>
+
+<p>Furthermore, by extending these ideas to the $n$-gram case, we show that our DisC embeddings computed using random word vectors, which can be seen as a linear compression of the BonG representation, can do as well as the original BonG representation on linear classification tasks. To do this we prove that the “sensing” matrix $A$ corresponding to DisC embeddings satisfy the  <em>Restricted Isometry Property (RIP)</em> introduced in the seminal paper of <a href="https://statweb.stanford.edu/~candes/papers/DecodingLP.pdf">Candes &amp; Tao</a>. The theorem relies upon <a href="http://www.cis.pku.edu.cn/faculty/vision/zlin/A%20Mathematical%20Introduction%20to%20Compressive%20Sensing.pdf">compressed sensing results for bounded orthonormal systems</a> and says that then the performance of DisC embeddings on linear classification tasks approaches that of BonG vectors as we increase the dimension. 
+Please see our paper for details of the proof.</p>
+
+<p>It is worth noting that our idea of composing objects (words) represented by random vectors to embed structures ($n$-grams/documents) is closely related to ideas in neuroscience and neural coding proposed by  <a href="http://www2.fiit.stuba.sk/~kvasnicka/CognitiveScience/6.prednaska/plate.ieee95.pdf">Tony Plate</a> and <a href="http://www.rctn.org/vs265/kanerva09-hyperdimensional.pdf">Pentti Kanerva</a>.
+They also were interested in how these objects and structures could be recovered from the representations;
+we take the further step of relating the recoverability to performance on a downstream linear classification task.
+Text classification over compressed BonG vectors has been proposed before by <a href="https://papers.nips.cc/paper/4932-compressive-feature-learning.pdf">Paskov, West, Mitchell, &amp; Hastie</a>, albeit with a more complicated compression that does not achieve a low-dimensional representation (dimension &gt;100,000) due to the use of classical lossless algorithms rather than linear projection.
+Our work ties together these ideas of composition and compression into a simple text representation method with provable guarantees.</p>
+
+<h2 id="a-surprising-lower-bound-on-the-power-of-lstm-based-text-representations">A surprising lower bound on the power of LSTM-based text representations</h2>
+
+<p>The above result also leads to a new theorem about deep learning: <em>text embeddings computed using low-memory LSTMs can do at least as well as BonG representations on downstream classification tasks</em>.
+At first glance this result may seem uninteresting: surely it’s no surprise that the field’s latest and greatest method is at least as powerful as its oldest? 
+But in practice, most papers on LSTM-based text embeddings make it a point to compare to performance of BonG baseline, and <em>often are unable to improve upon that baseline</em>! 
+Thus empirically this new theorem had not been clear at all! (One reason could be that our theory requires the random embeddings to be somewhat higher dimensional than the LSTM work had considered.)</p>
+
+<p>The new theorem follows from considering an LSTM that uses random vectors as word embeddings and computes the DisC embedding in one pass over the text. (For details see our appendix.)</p>
+
+<p>We empirically tested the effect of dimensionality by measuring performance of DisC on IMDb sentiment classification.
+As our theory predicts, the accuracy of DisC using random word embeddings converges to that of BonGs as dimensionality increases. (In the figure below “Rademacher vectors” are those with entries drawn randomly from $\pm1$.) Interestingly we also find that DisC using pretrained word embeddings like GloVe reaches BonG performance at much smaller dimensions, an unsurprising but important point that we will discuss next.</p>
+
+<div style="text-align: center;">
+<img src="http://www.offconvex.org/assets/imdbperf_uni_bi.png" width="60%"/>
+</div>
+
+<h2 id="unexplained-mystery-higher-performance-of-pretrained-word-embeddings">Unexplained mystery: higher performance of pretrained word embeddings</h2>
+
+<p>While compressed sensing theory is a good starting point for understanding the power of linear text embeddings, it leaves some mysteries. 
+Using pre-trained embeddings (such as GloVe) in DisC gives higher performance than random embeddings, both in recovering the BonG information out of the text embedding, as well as in downstream tasks. However, pre-trained embeddings do not satisfy some of the nice properties assumed in compressed sensing theory such as RIP or incoherence, since those properties forbid pairs of words having similar  embeddings.</p>
+
+<p>Even though the matrix of embeddings does not satisfy these classical compressed sensing properties, we find that using Basis Pursuit, a sparse recovery approach related to LASSO with provable guarantees for RIP matrices, we can recover Bag-of-Words information better using GloVe-based text embeddings than from embeddings using random word vectors (measuring success via the $F_1$-score of the recovered words — higher is better).</p>
+
+<div style="text-align: center;">
+<img src="http://www.offconvex.org/assets/recovery.png" width="60%"/>
+</div>
+
+<p>Note that random embeddings are better than pretrained embeddings at recovering words from random word salad (the right-hand image).
+This suggests that pretrained embeddings are specialized — thanks to their training on a text corpus — to do well only on real text rather than a random collection of words.
+It would be nice to give a mathematical explanation for this phenomenon. 
+We suspect that this should be possible using a result of <a href="http://www.pnas.org/content/pnas/102/27/9446.full.pdf">Donoho &amp; Tanner</a>, which we use to show that words in a document can be recovered from the sum of word vectors if and only if there is a hyperplane containing the vectors for words in the document with the vectors for all other words on one side of it.
+Since co-occurring words will have similar embeddings, that should make it easier to find such a hyperplane separating words in a document from the rest of the words and hence would ensure good recovery.</p>
+
+<p>However, even if this could be made more rigorous, it would only imply sparse recovery, not good performance on classification tasks.
+Perhaps assuming a generative model for text, like the RandWalk model discussed in an <a href="https://www.offconvex.org/2016/02/14/word-embeddings-2/">earlier post</a>, could help move this theory forward.</p>
+
+<h2 id="discussion">Discussion</h2>
+
+<p>Could we improve the performance of such simple embeddings even further? 
+One promising idea is to define better $n$-gram embeddings than the simple compositional embeddings defined in DisC. 
+An independent <a href="https://arxiv.org/abs/1703.02507">NAACL’18 paper</a> of Pagliardini, Gupta, &amp; Jaggi proposes a text embedding similar to DisC in which unigram and bigram embeddings are trained specifically to be added together to form sentence embeddings, also achieving good results, albeit not as good as DisC. 
+(Of course, their training time is higher than ours.) 
+In our upcoming <a href="https://arxiv.org/abs/1805.05388">ACL’18 paper</a> with Yingyu Liang, Tengyu Ma, &amp; Brandon Stewart we give a very simple and efficient method to induce embeddings for $n$-grams as well as other rare linguistic features that improves upon DisC and beats skipthought on several other benchmarks. 
+This will be described in a future blog post.</p>
+
+<p>Sample code for constructing and evaluating DisC embeddings is <a href="https://github.com/NLPrinceton/text_embedding">available</a>, as well as <a href="https://github.com/NLPrinceton/sparse_recovery">solvers</a> for recreating the sparse recovery results for word embeddings.</p></div><div class="commentbar"><p/></div></summary><updated planet:format="June 25, 2018 10:00 AM">2018-06-25T10:00:00Z</updated><published planet:format="June 25, 2018 10:00 AM">2018-06-25T10:00:00Z</published><source><id>http://offconvex.github.io/</id><author><name>Off the Convex Path</name></author><link href="http://offconvex.github.io/" rel="alternate" type="text/html"/><link href="http://offconvex.github.io/feed.xml" rel="self" type="application/atom+xml"/><subtitle>Algorithms off the convex path.</subtitle><title>Off the convex path</title><updated planet:format="December 16, 2018 04:44 PM">2018-12-16T16:44:10Z</updated><planet:http_location>http://www.offconvex.org/feed.xml</planet:http_location><planet:module>toc</planet:module><planet:format>atom10</planet:format><planet:items_per_page>40</planet:items_per_page><planet:face>convex.jpeg</planet:face><planet:name>Off the Convex Path</planet:name><planet:css-id>off-the-convex-path</planet:css-id><planet:http_last_modified>Wed, 05 Dec 2018 18:59:46 GMT</planet:http_last_modified><planet:http_etag>W/&quot;5c082022-26c3f&quot;</planet:http_etag><planet:http_status>301</planet:http_status><planet:bozo>false</planet:bozo></source></entry>
