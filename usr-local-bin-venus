@@ -1,7 +1,11 @@
 #!/bin/sh
 
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/ssl/lib
+export LD_LIBRARY_PATH
+
 VENUSDIR=/home/a/arnab/aggregator/venus
 OUTDIR=/home/a/arnab/abhatt.github.io
+
 
 [ -d ${VENUSDIR} ] || exit 0;
 
@@ -14,5 +18,5 @@ done;
 python reformatfeed.py < $OUTDIR/atom.xml > $OUTDIR/atom-twitter.xml 2> /tmp/planet-reformat-error.log
 
 cd $OUTDIR
-/usr/local/bin/git commit index.html atom.xml atom-twitter.xml -m "Hourly Updates"
-/usr/local/bin/git push origin master
+/usr/bin/git commit index.html atom.xml atom-twitter.xml -m "Hourly Updates"
+/usr/bin/git push origin master
